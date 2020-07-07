@@ -1,0 +1,731 @@
+{% extends "employee/index.html" %}
+{% load static %}
+{% block dash %}
+
+<div class="col-lg-7 col-md-9 col-sm-12 col-xs-12 col-lg-pull-3 col-lg-offset-0 col-md-offset-3">
+    <script>
+function nokri_location() {
+var input = document.getElementById('sb_user_address');
+var action_on_complete	=	'1';
+var options = { 
+};
+
+var autocomplete = new google.maps.places.Autocomplete(input, options);
+if( action_on_complete )
+{
+new google.maps.event.addListener(autocomplete, 'place_changed', function() {
+// document.getElementById('sb_loading').style.display	= 'block';
+var place = autocomplete.getPlace();
+document.getElementById('ad_map_lat').value = place.geometry.location.lat();
+document.getElementById('ad_map_long').value = place.geometry.location.lng();
+var markers = [
+{
+'title': '',
+'lat': place.geometry.location.lat(),
+'lng': place.geometry.location.lng(),
+},
+];
+
+my_g_map(markers);
+//document.getElementById('sb_loading').style.display	= 'none';
+});
+}
+
+}
+
+</script><form id="candidate-profile" method="post" enctype="multipart/form-data" autocomplete="off" novalidate="">
+<input type="hidden" id="country_level" name="country_level" value="1">
+<div class="cp-loader"></div>
+<!-- Candidate Personal Informations -->
+<div class="main-body">
+<div class="dashboard-edit-profile">
+<h4 class="dashboard-heading">Personal Information </h4>
+<div class="row">
+<div class="col-md-6 col-xs-12 col-sm-6">  
+<div class="form-group">
+<label class="">Your Full Name</label>
+<input autocomplete="off" data-parsley-error-message="Enter Your Name" type="text" required="" class="form-control" value="ayushtyagi1999" name="cand_name" placeholder="Write Full Name">
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6"> 
+<div class="form-group">
+<label class="">Profession</label>
+<input type="text" value="" name="cand_headline" class="form-control" placeholder="e.g. Web Developer" data-parsley-error-message="This value is required">
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Email</label>
+<input type="email" value="ayushtyagi1999@gmail.com" name="cand_email" class="form-control" disabled="" placeholder="candidate@example.com">
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Phone</label>
+<input type="number" data-parsley-error-message="Should be in digits" data-parsley-type="digits" value="" name="cand_phone" class="form-control" placeholder="Contact number without space">
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Gender</label>
+<select class="select-generat form-control select2-hidden-accessible" name="cand_gender" tabindex="-1" aria-hidden="true">
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="other">Other</option>
+</select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 495px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-cand_gender-qd-container"><span class="select2-selection__rendered" id="select2-cand_gender-qd-container" title="Male"><span class="select2-selection__clear">×</span>Male</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label>Date Of Birth</label>
+<input type="text" value="" name="cand_dob" class="datepicker-cand-dob form-control">
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Profile Image</label>
+<div class="file-input file-input-new">
+<div class="kv-upload-progress kv-hidden" style="display: none;"><div class="progress">
+<div class="progress-bar bg-success progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
+0%
+</div>
+</div></div><div class="clearfix"></div>
+<div class="input-group file-caption-main">
+<div class="file-caption form-control  kv-fileinput-caption" tabindex="500">
+<span class="file-caption-icon"></span>
+<input class="file-caption-name" onkeydown="return false;" onpaste="return false;" placeholder="Select file">
+</div>
+<div class="input-group-btn">
+<button type="button" tabindex="500" title="Clear selected files" class="btn btn-default btn-secondary fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-trash"></i>  <span class="hidden-xs">Remove</span></button>
+<button type="button" tabindex="500" title="Abort ongoing upload" class="btn btn-default btn-secondary kv-hidden fileinput-cancel fileinput-cancel-button"><i class="glyphicon glyphicon-ban-circle"></i>  <span class="hidden-xs">Cancel</span></button>
+
+<div tabindex="500" class="btn btn-primary btn-file"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;  <span class="hidden-xs">Browse</span><input id="imgdp" name="candidate_dp[]" type="file" class="candidate_files-data file form-control" data-show-preview="false" data-allowed-file-extensions="[&quot;jpg&quot;, &quot;png&quot;, &quot;jpeg&quot;]" data-show-upload="false"></div>
+</div>
+</div></div>
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Experience</label>
+<select class="select-generat form-control select2-hidden-accessible" name="cand_experience" tabindex="-1" aria-hidden="true">
+    <option value="47">Fresh</option><option value="48">1 year</option><option value="49">2 year</option><option value="50">3 year</option><option value="51">4 year</option><option value="52">5 year</option>                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 495px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-cand_experience-t5-container"><span class="select2-selection__rendered" id="select2-cand_experience-t5-container" title="Fresh"><span class="select2-selection__clear">×</span>Fresh</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Level</label>
+<select class="select-generat form-control select2-hidden-accessible" name="cand_level" tabindex="-1" aria-hidden="true">
+    <option value="25">Manager</option><option value="26">Officer</option><option value="27">Student</option><option value="28">Executive</option>                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 495px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-cand_level-u3-container"><span class="select2-selection__rendered" id="select2-cand_level-u3-container" title="Manager"><span class="select2-selection__clear">×</span>Manager</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+</div>
+     <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Qualification</label>
+<select class="select-generat form-control select2-hidden-accessible" name="cand_qualification" tabindex="-1" aria-hidden="true">
+    <option value="103">Bachelor</option><option value="104">Master</option><option value="105">PHD</option>                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 495px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-cand_qualification-z8-container"><span class="select2-selection__rendered" id="select2-cand_qualification-z8-container" title="Bachelor"><span class="select2-selection__clear">×</span>Bachelor</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+</div>
+     <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Type</label>
+<select class="select-generat form-control select2-hidden-accessible" name="cand_type" tabindex="-1" aria-hidden="true">
+    <option value="19">Freelance</option><option value="20">Full time</option><option value="21">Contract</option><option value="22">Internship</option><option value="23">Temporary</option><option value="24">Part time</option>                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 495px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-cand_type-6s-container"><span class="select2-selection__rendered" id="select2-cand_type-6s-container" title="Freelance"><span class="select2-selection__clear">×</span>Freelance</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Salary Type</label>
+<select class="select-generat form-control select2-hidden-accessible" name="cand_salary_type" tabindex="-1" aria-hidden="true">
+    <option value="34">Monthly</option><option value="35">Weekly</option><option value="36">Hourly</option><option value="37">Yearly</option>                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 495px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-cand_salary_type-th-container"><span class="select2-selection__rendered" id="select2-cand_salary_type-th-container" title="Monthly"><span class="select2-selection__clear">×</span>Monthly</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Salary Range</label>
+<select class="select-generat form-control select2-hidden-accessible" name="cand_salary" tabindex="-1" aria-hidden="true">
+    <option value="29">0-1000</option><option value="30">1000-2000</option><option value="31">2000-3000</option><option value="32">3000-4000</option><option value="33">4000-5000</option><option value="222">7000-8000</option><option value="223">8000-9000</option><option value="228">10000-12000</option>                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 495px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-cand_salary-qt-container"><span class="select2-selection__rendered" id="select2-cand_salary-qt-container" title="0-1000"><span class="select2-selection__clear">×</span>0-1000</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Salary Currency</label>
+<select class="select-generat form-control select2-hidden-accessible" name="cand_salary_currency" tabindex="-1" aria-hidden="true">
+    <option value="53">Dollar</option><option value="54">Rupees</option><option value="55">Pound</option><option value="56">Aed</option><option value="57">Euro</option>                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 495px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-cand_salary_currency-m0-container"><span class="select2-selection__rendered" id="select2-cand_salary_currency-m0-container" title="Dollar"><span class="select2-selection__clear">×</span>Dollar</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+</div>
+
+<div class="col-md-12 col-xs-12 col-sm-12">
+<div class="form-group">
+<label class="">Set your profile</label>
+<select class="select-generat form-control select2-hidden-accessible" name="cand_profile" tabindex="-1" aria-hidden="true">
+<option value="0">Select an option</option>
+    <option value="pub" selected="">Public</option>
+    <option value="priv">Private</option>
+</select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 1020px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-cand_profile-21-container"><span class="select2-selection__rendered" id="select2-cand_profile-21-container" title="Public"><span class="select2-selection__clear">×</span>Public</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+</div>
+    <div class="col-md-12 col-xs-12 col-sm-12">
+<div class="form-group">
+<label class="">About yourSelf</label>
+<div class="jqte"><div class="jqte_toolbar unselectable" role="toolbar" unselectable="on" style="user-select: none;"><div class="jqte_tool jqte_tool_1 unselectable" role="button" data-tool="0" unselectable="on" style="user-select: none;"><a class="jqte_tool_label unselectable" unselectable="on" style="user-select: none;"><span class="jqte_tool_text unselectable" unselectable="on" style="user-select: none;">Paragraph</span><span class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></span></a><div class="jqte_formats unselectable" unselectable="on" style="user-select: none;"><a jqte-formatval="p" class="jqte_format jqte_format_0 unselectable" role="menuitem" unselectable="on" style="user-select: none;">Paragraph</a><a jqte-formatval="h2" class="jqte_format jqte_format_1 unselectable" role="menuitem" unselectable="on" style="user-select: none;">H2</a><a jqte-formatval="h3" class="jqte_format jqte_format_2 unselectable" role="menuitem" unselectable="on" style="user-select: none;">H3</a><a jqte-formatval="h4" class="jqte_format jqte_format_3 unselectable" role="menuitem" unselectable="on" style="user-select: none;">H4</a></div></div><div class="jqte_tool jqte_tool_4 unselectable" role="button" data-tool="3" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_5 unselectable" role="button" data-tool="4" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_6 unselectable" role="button" data-tool="5" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_7 unselectable" role="button" data-tool="6" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_8 unselectable" role="button" data-tool="7" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div></div><div class="jqte_linkform" style="display:none" role="dialog"><div class="jqte_linktypeselect unselectable" unselectable="on" style="user-select: none;"><div class="jqte_linktypeview unselectable" unselectable="on" style="user-select: none;"><div class="jqte_linktypearrow unselectable" unselectable="on" style="user-select: none;"></div><div class="jqte_linktypetext">Web Address</div></div><div class="jqte_linktypes unselectable" role="menu" unselectable="on" style="user-select: none;"><a jqte-linktype="0" unselectable="on" class="unselectable" style="user-select: none;">Web Address</a><a jqte-linktype="1" unselectable="on" class="unselectable" style="user-select: none;">E-mail Address</a><a jqte-linktype="2" unselectable="on" class="unselectable" style="user-select: none;">Picture URL</a></div></div><input class="jqte_linkinput" type="text/css" value=""><div class="jqte_linkbutton unselectable" unselectable="on" style="user-select: none;">OK</div> <div style="height:1px;float:none;clear:both"></div></div><div class="jqte_editor" contenteditable="true"></div><div class="jqte_source jqte_hiddenField"><textarea name="cand_intro" data-parsley-error-message="Feild is required" class="form-control rich_textarea" cols="30" rows="10" data-origin="textarea"></textarea></div></div>
+</div>
+</div>
+    <div class="col-md-12 col-xs-12 col-sm-12">
+<input type="submit" value="Save Information" class="btn n-btn-flat cand_person_save">
+<input type="button" disabled="" value="Processing..." class="btn n-btn-flat cand_person_pro" style="display: none;"> 
+</div>
+</div>
+</div>
+</div>
+<!-- End Candidate Personal Informations -->
+<!-- Candidate Skills-->
+
+<div class="main-body">
+<div class="dashboard-edit-profile skills">
+<h4 class="dashboard-heading">Skills</h4>
+<div class="rows">
+<div class="skills-gen content">
+<div class="row group">
+<div class="col-md-5 col-sm-5 col-xs-12">
+<div class="form-group">
+    <label class="">
+    Select Your Skills                        </label>
+    <select class="candidate-skill-gener form-control" name="cand_skills_new[]">
+        <option value="">
+            Select an option                            </option>
+        <option value="38">Php</option><option value="39">JS</option><option value="40">Designing</option><option value="41">Application development</option><option value="42">Arts</option><option value="43">Painting</option><option value="44">Development</option><option value="45">Modeling</option><option value="46">Architecture</option><option value="114">Management</option><option value="127">SEO</option><option value="128">SMM</option><option value="144">Culinary Arts</option><option value="145">Peruvian Cuisine</option><option value="151">Team Management</option><option value="152">patience</option><option value="153">Commitment</option><option value="154">Team Work</option><option value="155">Flexibility</option><option value="156">Stress Management</option><option value="163">Education</option><option value="171">Analytical skills</option><option value="172">trainings</option><option value="173">communication skills</option><option value="191">Food Products</option><option value="198">cooking</option>                        </select>
+</div>
+</div>
+<div class="col-md-5 col-sm-5 col-xs-12">
+<div class="form-group">
+<label class="">Select Your Skills</label>
+<input class="form-control" type="text" name="cand_skills_val[]" data-parsley-type="number" max="100" data-parsley-error-message="Digits allowed less than 100" placeholder="Digits allowed less than 100">
+</div></div>
+<div class="col-md-2 col-sm-2 col-xs-12">
+<button type="button" class="btn btn-danger btnRemove" style="display: none;">
+    Remove                    </button>
+</div>
+</div>
+<div class="skills-btn-postion">
+<div class="col-md-12">
+<div class="row">
+<button type="button" id="btnAdd-2" class="btn btn-success">
+    Add Skills                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12 col-xs-12 col-sm-12"> 
+<input type="submit" value="Save Skills" class="btn n-btn-flat">
+</div>
+</div>
+</div>
+</div>
+<!-- Candidate Skills End --> 
+        
+<!-- Candidate Resume Uplaoad -->
+<div class="main-body">
+<div class="dashboard-edit-profile" id="add-resume">
+<h4 class="dashboard-heading">Add Resumes</h4>
+<div class="row">
+
+<div class="col-md-12 col-xs-12 col-sm-12">
+<div class="form-group">
+<label class="control-label">
+    Drag drop or click to upload resumes against you apply for jobs                    </label>
+<div id="dropzone_resume" class="dropzone dz-clickable"><div class="dz-default dz-message"><span>undefined</span></div></div> 
+</div>
+</div>
+    <div class="col-md-12 col-sm-12">
+    <div class="form-group">
+        <label>Put your video resume link (only youtube)</label> 
+        <input type="text" placeholder="Put your video resume link (only youtube)" value="" name="cand_intro_video" class="form-control youTubeUrl">
+    </div>
+</div>
+    <div class="col-md-12 col-xs-12 col-sm-12">
+<input type="submit" value="Save Resume" class="btn n-btn-flat cand_person_save">
+<input type="button" disabled="" value="Processing..." class="btn n-btn-flat cand_person_pro" style="display: none;">
+</div>
+</div>
+</div>
+</div>
+<!-- End Candidate Resume Uplaoad --> 
+    
+<!-- Candidate Education -->                           
+<div class="main-body">
+<div class="dashboard-edit-profile for-edus">
+<h4 class="dashboard-heading">Educational Details</h4>
+<div class="row">
+            <div class="ad-more-box-single ">
+                    <div class="col-md-6 col-xs-12 col-sm-6">
+    <div class="form-group ">
+        <label>
+            Qualification Title<span class="required">*</span>
+        </label>
+        <input type="text" placeholder="Degree Title" name="cand_education['degree_name'][]" class="form-control" value="">
+    </div>
+</div>
+                    <div class="col-md-6 col-xs-12 col-sm-6">
+    <div class="form-group">
+        <label>
+            Institute Name							</label>
+        <input type="text" placeholder="Institute Name" name="cand_education['degree_institute'][]" class="form-control" value="">
+    </div>
+</div>
+                    <div class="col-md-6 col-xs-12 col-sm-6">
+    <div class="form-group">
+        <label class="">
+            Start Date							</label>
+        <input type="text" name="cand_education['degree_start'][]" value="" class="datepicker-here-canidate form-control date-start" data-date-input="start-date-1">
+    </div>
+</div>
+                    <div class="col-md-6 col-xs-12 col-sm-6 last-end-date">
+    <div class="form-group">
+        <label class="">
+        End Date							</label>
+        <input type="text" value="" name="cand_education['degree_end'][]" class="datepicker-here-canidate1 form-control date-end " data-date-input="end-date-1">
+    </div>
+</div>
+                     <div class="col-md-6 col-xs-12 col-sm-6">
+    <div class="form-group">
+        <label>
+            Percentage							</label>
+        <input type="text" data-parsley-pattern="/([0-9]{1,}\.[0-9]{1,})/" data-parsley-error-message="Should Be In Decimals " placeholder="Only digits allowed without % sign e.g 80.0" name="cand_education['degree_percent'][]" class="form-control" value="">
+    </div>
+</div>
+                     <div class="col-md-6 col-xs-12 col-sm-6">
+    <div class="form-group">
+        <label>
+            Grades							</label>
+        <input type="text" placeholder="Only Grade Letter e.g A+,B,C" name="cand_education['degree_grade'][]" class="form-control" value="">
+    </div>
+</div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group">
+        <label>
+            Description							</label>
+        <div class="jqte"><div class="jqte_toolbar unselectable" role="toolbar" unselectable="on" style="user-select: none;"><div class="jqte_tool jqte_tool_1 unselectable" role="button" data-tool="0" unselectable="on" style="user-select: none;"><a class="jqte_tool_label unselectable" unselectable="on" style="user-select: none;"><span class="jqte_tool_text unselectable" unselectable="on" style="user-select: none;">Paragraph</span><span class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></span></a><div class="jqte_formats unselectable" unselectable="on" style="user-select: none;"><a jqte-formatval="p" class="jqte_format jqte_format_0 unselectable" role="menuitem" unselectable="on" style="user-select: none;">Paragraph</a><a jqte-formatval="h2" class="jqte_format jqte_format_1 unselectable" role="menuitem" unselectable="on" style="user-select: none;">H2</a><a jqte-formatval="h3" class="jqte_format jqte_format_2 unselectable" role="menuitem" unselectable="on" style="user-select: none;">H3</a><a jqte-formatval="h4" class="jqte_format jqte_format_3 unselectable" role="menuitem" unselectable="on" style="user-select: none;">H4</a></div></div><div class="jqte_tool jqte_tool_4 unselectable" role="button" data-tool="3" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_5 unselectable" role="button" data-tool="4" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_6 unselectable" role="button" data-tool="5" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_7 unselectable" role="button" data-tool="6" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_8 unselectable" role="button" data-tool="7" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div></div><div class="jqte_linkform" style="display:none" role="dialog"><div class="jqte_linktypeselect unselectable" unselectable="on" style="user-select: none;"><div class="jqte_linktypeview unselectable" unselectable="on" style="user-select: none;"><div class="jqte_linktypearrow unselectable" unselectable="on" style="user-select: none;"></div><div class="jqte_linktypetext">Web Address</div></div><div class="jqte_linktypes unselectable" role="menu" unselectable="on" style="user-select: none;"><a jqte-linktype="0" unselectable="on" class="unselectable" style="user-select: none;">Web Address</a><a jqte-linktype="1" unselectable="on" class="unselectable" style="user-select: none;">E-mail Address</a><a jqte-linktype="2" unselectable="on" class="unselectable" style="user-select: none;">Picture URL</a></div></div><input class="jqte_linkinput" type="text/css" value=""><div class="jqte_linkbutton unselectable" unselectable="on" style="user-select: none;">OK</div> <div style="height:1px;float:none;clear:both"></div></div><div class="jqte_editor" contenteditable="true"></div><div class="jqte_source jqte_hiddenField"><textarea rows="6" class="form-control rich_textarea" name="cand_education['degree_detail'][]" data-origin="textarea"></textarea></div></div>
+    </div>
+</div>
+                 </div>
+            <div class="clearfix"></div>
+<div class="ad_more_box"> 
+<div id="education_fields"></div>
+<div class="input-group-btn ad-more-btn">
+<button class="btn btn-success" type="button" onclick="return education_fields();"> <span class="ti-plus" aria-hidden="true"></span>
+    Add More					</button>
+                
+</div>
+</div>
+<div class="col-md-12 col-xs-12 col-sm-12">
+<input type="submit" value="Save Education" class="btn n-btn-flat cand_person_save">
+<input type="button" disabled="" value="Processing..." class="btn n-btn-flat cand_person_pro" style="display: none;">
+</div>
+</div>
+</div>
+</div>
+<!-- End Candidate  Education -->
+<!-- Candidate Professions -->                           
+<div class="main-body">
+<div class="dashboard-edit-profile for-pros">
+<h4 class="dashboard-heading">Job Experience</h4>
+<div class="row">
+                                <div class="ad-more-box-single ">
+                            <div class="col-md-6 col-sm-6 col-sm-6">
+        <div class="form-group">
+            <label>Organization Name<span class="required">*</span></label>
+            <input type="text" value="" placeholder="Organization Name" name="cand_profession['project_organization'][]" class="form-control">
+        </div>
+    </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="form-group">
+            <label>Your Role</label>
+            <input type="text" value="" placeholder="Software Engineer Etc" name="cand_profession['project_role'][]" class="form-control">
+        </div>
+    </div>
+                             <div class="col-md-6 col-xs-12 col-sm-6">
+        <div class="form-group">
+            <label class="">Job start Date</label>
+            <input type="text" name="cand_profession['project_start'][]" value="" class="datepicker-here-canidate form-control date-start" data-date-input="start-date-1">
+        </div>
+    </div>
+                             <div class="col-md-6 col-xs-12 col-sm-6"> 
+        <div class="form-group ">
+            <label class="end-hide">Job End Date</label>
+            <input type="text" value="" name="cand_profession['project_end'][]" class="datepicker-here-canidate form-control end-hide date-end" data-date-input="end-date-1">
+
+<input type="hidden" value="" name="cand_profession['project_name'][]" class="checked-input-hide">
+
+<div class="icheckbox_minimal" style="position: relative;"><input type="checkbox" name="checked" class="icheckbox_minimal form-control" data-parsley-multiple="checked" style="position: absolute; top: -60%; left: -60%; display: block; width: 220%; height: 220%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -60%; left: -60%; display: block; width: 220%; height: 220%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>&nbsp; Are You Currently Working There?                            </div>
+    </div>     
+                             <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <label>Description</label>
+            <div class="jqte"><div class="jqte_toolbar unselectable" role="toolbar" unselectable="on" style="user-select: none;"><div class="jqte_tool jqte_tool_1 unselectable" role="button" data-tool="0" unselectable="on" style="user-select: none;"><a class="jqte_tool_label unselectable" unselectable="on" style="user-select: none;"><span class="jqte_tool_text unselectable" unselectable="on" style="user-select: none;">Paragraph</span><span class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></span></a><div class="jqte_formats unselectable" unselectable="on" style="user-select: none;"><a jqte-formatval="p" class="jqte_format jqte_format_0 unselectable" role="menuitem" unselectable="on" style="user-select: none;">Paragraph</a><a jqte-formatval="h2" class="jqte_format jqte_format_1 unselectable" role="menuitem" unselectable="on" style="user-select: none;">H2</a><a jqte-formatval="h3" class="jqte_format jqte_format_2 unselectable" role="menuitem" unselectable="on" style="user-select: none;">H3</a><a jqte-formatval="h4" class="jqte_format jqte_format_3 unselectable" role="menuitem" unselectable="on" style="user-select: none;">H4</a></div></div><div class="jqte_tool jqte_tool_4 unselectable" role="button" data-tool="3" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_5 unselectable" role="button" data-tool="4" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_6 unselectable" role="button" data-tool="5" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_7 unselectable" role="button" data-tool="6" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_8 unselectable" role="button" data-tool="7" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div></div><div class="jqte_linkform" style="display:none" role="dialog"><div class="jqte_linktypeselect unselectable" unselectable="on" style="user-select: none;"><div class="jqte_linktypeview unselectable" unselectable="on" style="user-select: none;"><div class="jqte_linktypearrow unselectable" unselectable="on" style="user-select: none;"></div><div class="jqte_linktypetext">Web Address</div></div><div class="jqte_linktypes unselectable" role="menu" unselectable="on" style="user-select: none;"><a jqte-linktype="0" unselectable="on" class="unselectable" style="user-select: none;">Web Address</a><a jqte-linktype="1" unselectable="on" class="unselectable" style="user-select: none;">E-mail Address</a><a jqte-linktype="2" unselectable="on" class="unselectable" style="user-select: none;">Picture URL</a></div></div><input class="jqte_linkinput" type="text/css" value=""><div class="jqte_linkbutton unselectable" unselectable="on" style="user-select: none;">OK</div> <div style="height:1px;float:none;clear:both"></div></div><div class="jqte_editor" contenteditable="true"></div><div class="jqte_source jqte_hiddenField"><textarea rows="6" class="form-control rich_textarea" name="cand_profession['project_desc'][]" data-origin="textarea"></textarea></div></div>
+        </div>
+    </div>
+                              </div>
+                            <div class="clearfix"></div>
+     <div class="ad_more_box"> 
+    <div id="professional_fields"></div>
+    <div class="input-group-btn ad-more-btn">
+        <button class="btn btn-success" type="button" onclick="return professional_fields();"> <span class="ti-plus" aria-hidden="true"></span>Add More</button>
+      </div>
+    </div>
+    <div class="col-md-12 col-xs-12 col-sm-12">
+<input type="submit" value="Save experience" class="btn n-btn-flat cand_person_save">
+<input type="button" disabled="" value="Processing..." class="btn n-btn-flat cand_person_pro" style="display: none;">
+</div>
+</div>
+</div>
+</div>
+<!-- End Candidate Professions-->
+<!-- Candidate Certifications -->                           
+<div class="main-body">
+<div class="dashboard-edit-profile for-cert">
+<h4 class="dashboard-heading">Educational Details</h4>
+<div class="row">
+                                <div class="ad-more-box-single ">
+                            <div class="col-md-12 col-sm-12 col-sm-12">
+        <div class="form-group ">
+            <label>Certification Title<span class="required">*</span></label>
+            <input type="text" placeholder="Certification Title" name="cand_certifications['certification_name'][]" class="form-control" value="">
+        </div>
+    </div>
+                            <div class="col-md-6 col-xs-12 col-sm-6">
+        <div class="form-group">
+            <label class="">Certification Start Date</label>
+            <input type="text" name="cand_certifications['certification_start'][]" value="" class="datepicker-here-canidate form-control date-start" data-date-input="start-date-2">
+        </div>
+    </div>
+                            <div class="col-md-6 col-xs-12 col-sm-6">
+        <div class="form-group">
+            <label class="">Certification End Date</label>
+            <input type="text" value="" name="cand_certifications['certification_end'][]" class="datepicker-here-canidate form-control date-end" data-date-input="end-date-2">
+        </div>
+    </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <label>Certification Duration</label>
+            <input type="text" value="" placeholder="Certification Duration" name="cand_certifications['certification_duration'][]" class="form-control">
+        </div>
+    </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <label>Certification Institute</label>
+            <input type="text" value="" placeholder="Certification Institute" name="cand_certifications['certification_institute'][]" class="form-control">
+        </div>
+    </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <label>Description</label>
+            <div class="jqte"><div class="jqte_toolbar unselectable" role="toolbar" unselectable="on" style="user-select: none;"><div class="jqte_tool jqte_tool_1 unselectable" role="button" data-tool="0" unselectable="on" style="user-select: none;"><a class="jqte_tool_label unselectable" unselectable="on" style="user-select: none;"><span class="jqte_tool_text unselectable" unselectable="on" style="user-select: none;">Paragraph</span><span class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></span></a><div class="jqte_formats unselectable" unselectable="on" style="user-select: none;"><a jqte-formatval="p" class="jqte_format jqte_format_0 unselectable" role="menuitem" unselectable="on" style="user-select: none;">Paragraph</a><a jqte-formatval="h2" class="jqte_format jqte_format_1 unselectable" role="menuitem" unselectable="on" style="user-select: none;">H2</a><a jqte-formatval="h3" class="jqte_format jqte_format_2 unselectable" role="menuitem" unselectable="on" style="user-select: none;">H3</a><a jqte-formatval="h4" class="jqte_format jqte_format_3 unselectable" role="menuitem" unselectable="on" style="user-select: none;">H4</a></div></div><div class="jqte_tool jqte_tool_4 unselectable" role="button" data-tool="3" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_5 unselectable" role="button" data-tool="4" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_6 unselectable" role="button" data-tool="5" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_7 unselectable" role="button" data-tool="6" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_8 unselectable" role="button" data-tool="7" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div></div><div class="jqte_linkform" style="display:none" role="dialog"><div class="jqte_linktypeselect unselectable" unselectable="on" style="user-select: none;"><div class="jqte_linktypeview unselectable" unselectable="on" style="user-select: none;"><div class="jqte_linktypearrow unselectable" unselectable="on" style="user-select: none;"></div><div class="jqte_linktypetext">Web Address</div></div><div class="jqte_linktypes unselectable" role="menu" unselectable="on" style="user-select: none;"><a jqte-linktype="0" unselectable="on" class="unselectable" style="user-select: none;">Web Address</a><a jqte-linktype="1" unselectable="on" class="unselectable" style="user-select: none;">E-mail Address</a><a jqte-linktype="2" unselectable="on" class="unselectable" style="user-select: none;">Picture URL</a></div></div><input class="jqte_linkinput" type="text/css" value=""><div class="jqte_linkbutton unselectable" unselectable="on" style="user-select: none;">OK</div> <div style="height:1px;float:none;clear:both"></div></div><div class="jqte_editor" contenteditable="true"></div><div class="jqte_source jqte_hiddenField"><textarea rows="6" class="form-control rich_textarea" name="cand_certifications['certification_desc'][]" data-origin="textarea"></textarea></div></div>
+        </div>
+    </div>
+                            </div>
+                            <div class="clearfix"></div>
+    <div class="ad_more_box">   
+        <div id="certification_fields"></div>
+         <div class="input-group-btn ad-more-btn">
+            <button class="btn btn-success" type="button" onclick="return certification_fields();"> <span class="ti-plus" aria-hidden="true"></span>Add More</button>
+        </div>
+    </div>
+    <div class="col-md-12 col-xs-12 col-sm-12">
+<input type="submit" value="Save Certifications" class="btn n-btn-flat cand_person_save">
+<input type="button" disabled="" value="Processing..." class="btn n-btn-flat cand_person_pro" style="display: none;">
+</div>
+</div>
+</div>
+</div>
+<!-- End Candidate Certifications-->
+<!-- Candidate Portfolio -->
+<div class="main-body">
+<div class="dashboard-edit-profile">
+<h4 class="dashboard-heading">Add Portfolio</h4>
+<div class="row">
+<div class="col-md-12 col-xs-12 col-sm-12">
+<div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+ <div class="form-group">
+    <label class="control-label">Photos for your Projects</label>
+    <div id="dropzone" class="dropzone dz-clickable"><div class="dz-default dz-message"><span>undefined</span></div></div>
+    </div>
+</div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group">
+        <label>Video url (only youtube)</label>
+        <input type="text" placeholder="Put youtube video link" value="" name="cand_video" class="form-control">
+    </div>
+</div>
+                   </div>
+</div>
+<div class="col-md-12 col-xs-12 col-sm-12">
+<input type="submit" value="Save Certifications" class="btn n-btn-flat">
+</div>
+</div>
+</div>
+</div>
+<!-- End Candidate Portfolio -->
+<!-- Candidate Custom Feilds -->
+<div class="main-body">
+<div class="dashboard-edit-profile">
+<h4 class="dashboard-heading">Custom Fields</h4>
+<div class="row">
+<div class="col-md-12 col-xs-12 col-sm-12">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="form-group">
+        <input placeholder="Phone Number" class="form-control" type="Number" data-parsley-type="digits" name="_custom_[PhoneNumber]" value="">
+    </div></div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Location</label>
+                                            <select class="js-example-basic-single select2-hidden-accessible" name="_custom_[Location]" tabindex="-1" aria-hidden="true">
+                                                <option value="Canada">Canada</option><option value="China">China</option><option value="USA">USA</option><option value="UAE   ">UAE   </option> 
+                                            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 82px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-_custom_Location-rk-container"><span class="select2-selection__rendered" id="select2-_custom_Location-rk-container" title="Canada"><span class="select2-selection__clear">×</span>Canada</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                    </div>
+                                </div><div class="col-md-12 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Date </label>
+                                        <input type="text" value="" name="_custom_[Date]" class="datepicker-custom-feilds form-control">
+                                    </div>
+                                </div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="form-group">
+        <input placeholder="Birth City" class="form-control" type="text" name="_custom_[BirthCity]" value="">
+    </div></div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                     <label class="">Marital status</label>
+                                        <ul class="custom-radiobox">
+                                            <li><div class="iradio_square" style="position: relative;"><input type="radio" name="_custom_[Maritalstatus]" class="input-icheck-others" value="Single" data-parsley-required="true" data-parsley-error-message="This field is required." data-parsley-multiple="_custom_Maritalstatus" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div><p>Single</p></li><li><div class="iradio_square" style="position: relative;"><input type="radio" name="_custom_[Maritalstatus]" class="input-icheck-others" value="Married" data-parsley-required="true" data-parsley-error-message="This field is required." data-parsley-multiple="_custom_Maritalstatus" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div><p>Married</p></li>	
+                                        </ul>
+                                    </div>
+                                </div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Searching For Job</label>
+                                            <select class="js-example-basic-single select2-hidden-accessible" name="_custom_[SearchingForJob]" tabindex="-1" aria-hidden="true">
+                                                <option value="Yes">Yes</option><option value="No">No</option> 
+                                            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 49px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-_custom_SearchingForJob-gi-container"><span class="select2-selection__rendered" id="select2-_custom_SearchingForJob-gi-container" title="Yes"><span class="select2-selection__clear">×</span>Yes</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                    </div>
+                                </div><div class="col-md-12 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Joining date</label>
+                                        <input type="text" value="" name="_custom_[Joiningdate]" class="datepicker-custom-feilds form-control">
+                                    </div>
+                                </div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="form-group">
+        <input placeholder="Family Members" class="form-control" type="Number" data-parsley-type="digits" name="_custom_[FamilyMembers]" value="">
+    </div></div> 
+
+</div>
+</div>
+</div>
+<div class="col-md-12 col-xs-12 col-sm-12">
+<input type="submit" value="Save" class="btn n-btn-flat">
+</div>
+</div>
+</div>
+<!-- End Candidate Custom Feilds -->
+<!-- Candidate Social Links -->
+<div class="main-body">
+<div class="dashboard-edit-profile">
+<h4 class="dashboard-heading">Social Links</h4>
+<div class="row">
+<div class="col-md-12 col-xs-12 col-sm-12">
+<div class="dashboard-social-links">
+ 
+    <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+            <label>Facebook</label>
+            <input type="text" value="" name="cand_fb" class="form-control" placeholder="Facebook">
+        </div>
+    </div>
+                            <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+            <label>Twitter</label>
+            <input type="text" value="" name="cand_twiter" class="form-control" placeholder="Twitter">
+        </div>
+    </div>
+                            <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+            <label>LinkedIn</label>
+            <input type="text" value="" name="cand_linked" class="form-control" placeholder="LinkedIn">
+        </div>
+    </div>
+                            <div class="col-md-6 col-sm-12">
+        <div class="form-group">
+            <label>Instagram</label>
+            <input type="text" value="" name="cand_google" class="form-control" placeholder="Instagram">
+        </div>
+    </div>
+                        </div>
+</div>
+<div class="col-md-12 col-xs-12 col-sm-12">
+<input type="submit" value="Save Profiles Links" class="btn n-btn-flat cand_person_save">
+<input type="button" disabled="" value="Processing..." class="btn n-btn-flat cand_person_pro" style="display: none;">
+</div>
+</div>
+</div>
+</div>
+<!-- End Candidate Social Links --> 
+<!-- Candidate Location -->
+<div class="main-body">
+<div class="dashboard-edit-profile">
+<h4 class="dashboard-heading">Location And Address</h4>
+<div class="row">
+<div class="col-md-12 col-xs-12 col-sm-12">
+<div class="row">
+ <!-- Candidate Location -->     
+  <input type="hidden" id="is_profile_edit" value="1">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group"> 
+                 <label class="control-label">Set your location</label>
+                <input class="form-control" name="cand_address" id="sb_user_address" value="">
+                                                </div>
+        </div>
+  <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group"> 
+                 <div id="dvMap" style="width: 100%; height: 300px; position: relative;" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0"><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" role="presentation" src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/13/2411/3079.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(266px, -115px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-b.global.ssl.fastly.net/light_all/13/2411/3080.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(266px, 141px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-c.global.ssl.fastly.net/light_all/13/2410/3079.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(10px, -115px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-b.global.ssl.fastly.net/light_all/13/2412/3079.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(522px, -115px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/13/2410/3080.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(10px, 141px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-c.global.ssl.fastly.net/light_all/13/2412/3080.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(522px, 141px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-b.global.ssl.fastly.net/light_all/13/2409/3079.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-246px, -115px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-c.global.ssl.fastly.net/light_all/13/2413/3079.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(778px, -115px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-c.global.ssl.fastly.net/light_all/13/2409/3080.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-246px, 141px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/13/2413/3080.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(778px, 141px, 0px); opacity: 1;"></div></div></div><div class="leaflet-pane leaflet-shadow-pane"><img src="https://jobs.nokriwp.com/wp-content/themes/nokri/assets/leaflet/images/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" alt="" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(510px, 150px, 0px);"></div><div class="leaflet-pane leaflet-overlay-pane"></div><div class="leaflet-pane leaflet-marker-pane"><img src="https://jobs.nokriwp.com/wp-content/themes/nokri/assets/leaflet/images/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive leaflet-marker-draggable" alt="" tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(510px, 150px, 0px); z-index: 150;"></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div><div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(617460px, 788489px, 0px) scale(4096);"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in">+</a><a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out">−</a></div><div class="leaflet-control-search leaflet-control"><label class="search-input" for="searchtext9" style="display: none;"></label><input class="search-input" type="text" size="9" autocomplete="off" autocapitalize="off" placeholder="Search..." id="searchtext9" style="display: none;"><ul class="search-tooltip" style="display: none;"></ul><a class="search-cancel" href="#" title="Cancel" style="display: none;"><span>⊗</span></a><a class="search-button" href="#" title="Search..."></a><div class="search-alert" style="display: none;"></div></div></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control"><a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a></div></div></div></div>                                            
+            </div>
+        </div>
+  <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="form-group"> 
+                  <label class="control-label">Latitude</label>
+               <input class="form-control" type="text" name="cand_map_lat" id="ad_map_lat" value="40.7127837">
+            </div>
+        </div>
+  <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="form-group"> 
+                 <label class="control-label">Longitude</label>
+                <input class="form-control" name="cand_map_long" id="ad_map_long" value="-74.00594130000002" type="text">
+            </div>
+        </div>
+  <!-- End Candidate Location -->
+  </div>
+</div>
+</div>
+</div>
+<div class="dashboard-edit-profile">
+<h4 class="dashboard-heading"></h4>
+<div class="row">
+    <!--job country -->
+<div class="col-md-6 col-sm-6 col-xs-12">
+<div class="form-group">
+<label></label>
+<select class="js-example-basic-single select2-hidden-accessible" data-allow-clear="true" data-placeholder="Select Your Country" id="ad_country" name="cand_country" tabindex="-1" aria-hidden="true">
+<option value="">Select an option </option>
+<option value="116">Australia</option><option value="76">Germany</option><option value="70">India</option><option value="72">New delhi</option><option value="132">Pakistan</option><option value="73">UAE</option><option value="66">USA</option>              </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 137px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-ad_country-container"><span class="select2-selection__rendered" id="select2-ad_country-container"><span class="select2-selection__placeholder">Select Your Country</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+</div>
+</div>
+<!--job state -->
+<div class="col-md-6 col-sm-6 col-xs-12" id="ad_country_sub_div" style="display: none;">
+<div class="form-group">
+<label></label>
+<select class="js-example-basic-single select2-hidden-accessible" data-allow-clear="true" data-placeholder="Select State" id="ad_country_states" name="cand_country_states" tabindex="-1" aria-hidden="true">
+
+            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-ad_country_states-container"><span class="select2-selection__rendered" id="select2-ad_country_states-container"><span class="select2-selection__placeholder">Select State</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div></div>
+<!--job city -->
+<div class="col-md-6 col-sm-6 col-xs-12" id="ad_country_sub_sub_div" style="display: none;">
+<div class="form-group">
+<label></label>
+<select class="js-example-basic-single select2-hidden-accessible" data-allow-clear="true" data-placeholder="Select City" id="ad_country_cities" name="cand_country_cities" tabindex="-1" aria-hidden="true">
+
+            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-ad_country_cities-container"><span class="select2-selection__rendered" id="select2-ad_country_cities-container"><span class="select2-selection__placeholder">Select City</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+</div>
+<!--job town -->
+<div class="col-md-6 col-sm-6 col-xs-12" id="ad_country_sub_sub_sub_div" style="display: none;">
+<div class="form-group">
+<label></label>
+<select class="js-example-basic-single select2-hidden-accessible" data-allow-clear="true" data-placeholder="Select Town" id="ad_country_towns" name="cand_country_towns" tabindex="-1" aria-hidden="true">
+
+            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-ad_country_towns-container"><span class="select2-selection__rendered" id="select2-ad_country_towns-container"><span class="select2-selection__placeholder">Select Town</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+</div>
+  <div class="col-md-12 col-xs-12 col-sm-12">
+<input type="submit" value="Save Location" class="btn n-btn-flat cand_person_save">
+<input type="button" disabled="" value="Processing..." class="btn n-btn-flat cand_person_pro" style="display: none;">
+</div>
+</div>
+
+</div>
+</div>
+<!-- End Candidate Location -->
+<!-- Hidden Inputs For Candidate Portfolio -->
+<input type="hidden" id="dictFallbackMessage" value="Your browser does not support drag'n'drop file uploads.">
+<input type="hidden" id="dictFallbackText" value="Please use the fallback form below to upload your files like in the olden days.">
+<input type="hidden" id="dictFileTooBig" value="File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.">
+<input type="hidden" id="dictInvalidFileType" value="You can't upload files of this type.">
+<input type="hidden" id="dictResponseError" value="Server responded with {{statusCode}} code.">
+<input type="hidden" id="dictCancelUpload" value="Cancel upload">
+<input type="hidden" id="dictCancelUploadConfirmation" value="Are you sure you want to cancel this upload?">
+<input type="hidden" id="dictRemoveFile" value="Remove file">
+<input type="hidden" id="dictMaxFilesExceeded" value="You can not upload any more files.">
+<input type="hidden" id="required_images" value="Images are required.">
+<input type="hidden" id="is_candidate" name="is_update" value="1385">        
+</form>
+<!-- update password-->  
+<div class="main-body change-password">
+<div class="dashboard-edit-profile">
+<h4 class="dashboard-heading">Change Password</h4>
+<form id="change_password" method="post" enctype="multipart/form-data">
+<div class="row">
+<div class="col-md-12 col-xs-12 col-sm-12">
+<div class="row">
+    <div class="dashboard-location">
+        
+        <div class="col-md-6 col-xs-12 col-sm-6">
+            <div class="form-group">
+                <label>Old Password</label>
+                <input type="password" class="form-control" name="old_password" placeholder="Enter old password">
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-12 col-sm-6">
+            <div class="form-group">
+                <label>New Password</label>
+                <input type="password" name="new_password" class="form-control" placeholder="Enter new password">
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="col-md-12 col-xs-12 col-sm-12">
+            <input type="button" value="Delete account?" class="btn btn-custom del_acount">                 <input type="submit" value="Update password" class="btn n-btn-flat change_password">
+<input type="button" disabled="" value="Processing..." class="btn n-btn-flat cand_pass_pro" style="display: none;">
+</div>
+</div>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+var mymap = L.map('dvMap').setView([40.7127837, -74.00594130000002], 13);
+L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png', {
+maxZoom: 18,
+attribution: ''
+}).addTo(mymap);
+var markerz = L.marker([40.7127837, -74.00594130000002],{draggable: true}).addTo(mymap);
+var searchControl 	=	new L.Control.Search({
+url: '//nominatim.openstreetmap.org/search?format=json&q={s}',
+jsonpParam: 'json_callback',
+propertyName: 'display_name',
+propertyLoc: ['lat','lon'],
+marker: markerz,
+autoCollapse: true,
+autoType: true,
+minLength: 2,
+});
+searchControl.on('search:locationfound', function(obj) {
+var lt	=	obj.latlng + '';
+var res = lt.split( "LatLng(" );
+res = res[1].split( ")" );
+res = res[0].split( "," );
+document.getElementById('ad_map_lat').value = res[0];
+document.getElementById('ad_map_long').value = res[1];
+});
+mymap.addControl( searchControl );
+markerz.on('dragend', function (e) {
+document.getElementById('ad_map_lat').value = markerz.getLatLng().lat;
+document.getElementById('ad_map_long').value = markerz.getLatLng().lng;
+});
+</script>                        </div>
+
+{% endblock %}

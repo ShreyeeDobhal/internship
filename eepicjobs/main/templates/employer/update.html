@@ -1,0 +1,395 @@
+{% extends "employer/index.html" %}
+{% load static %}
+{% block dash %}
+
+<div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 col-lg-pull-3 col-md-pull-2">
+    <script>
+function nokri_location() {
+var input = document.getElementById('sb_user_address');
+var action_on_complete	=	'1';
+var options = { 
+};
+
+var autocomplete = new google.maps.places.Autocomplete(input, options);
+if( action_on_complete )
+{
+new google.maps.event.addListener(autocomplete, 'place_changed', function() {
+// document.getElementById('sb_loading').style.display	= 'block';
+var place = autocomplete.getPlace();
+document.getElementById('ad_map_lat').value = place.geometry.location.lat();
+document.getElementById('ad_map_long').value = place.geometry.location.lng();
+var markers = [
+{
+'title': '',
+'lat': place.geometry.location.lat(),
+'lng': place.geometry.location.lng(),
+},
+];
+
+my_g_map(markers);
+//document.getElementById('sb_loading').style.display	= 'none';
+});
+}
+
+}
+
+</script><form id="sb-emp-profile" method="post" novalidate="">
+<div class="main-body">
+<div class="dashboard-edit-profile">
+<h4 class="dashboard-heading">
+Basic Information 
+</h4>
+<div class="cp-loader"></div>
+<!-- Basic Informations -->
+<div class="dashboard-social-links">
+<div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Company Name</label>
+<input type="text" value="ayushtyagi2139" data-parsley-required="true" data-parsley-error-message="This field is required." name="emp_name" class="form-control">
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Headline</label>
+<input type="text" value="" name="emp_headline" class="form-control" placeholder="Headline" data-parsley-error-message="This field is required.">
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Email*</label>
+<input type="text" disabled="" placeholder="ayushtyagi2139@gmail.com" name="emp_email" class="form-control">
+</div> 
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Phone </label>
+<input type="text" name="sb_reg_contact" data-parsley-error-message="Should be in digits with out space" data-parsley-type="digits" placeholder="Company Phone" value="" class="form-control">
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Website</label>
+<input type="text" data-parsley-error-message="Should be in url" data-parsley-type="url" placeholder="Company Web Url" value="" name="emp_web" class="form-control">
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Profile Image</label>
+<div class="file-input file-input-new">
+<div class="kv-upload-progress kv-hidden" style="display: none;"><div class="progress">
+<div class="progress-bar bg-success progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
+0%
+</div>
+</div></div><div class="clearfix"></div>
+<div class="input-group file-caption-main">
+<div class="file-caption form-control  kv-fileinput-caption" tabindex="500">
+<span class="file-caption-icon"></span>
+<input class="file-caption-name" onkeydown="return false;" onpaste="return false;" placeholder="Select file">
+</div>
+<div class="input-group-btn">
+<button type="button" tabindex="500" title="Clear selected files" class="btn btn-default btn-secondary fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-trash"></i>  <span class="hidden-xs">Remove</span></button>
+<button type="button" tabindex="500" title="Abort ongoing upload" class="btn btn-default btn-secondary kv-hidden fileinput-cancel fileinput-cancel-button"><i class="glyphicon glyphicon-ban-circle"></i>  <span class="hidden-xs">Cancel</span></button>
+
+<div tabindex="500" class="btn btn-primary btn-file"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;  <span class="hidden-xs">Browse</span><input id="input-b1" name="my_file_upload[]" type="file" class="file form-control sb_files-data" data-show-preview="false" data-allowed-file-extensions="[&quot;jpg&quot;, &quot;png&quot;, &quot;jpeg&quot;]" data-show-upload="false"></div>
+</div>
+</div></div>
+</div>
+</div>
+    <div class="col-md-12 col-xs-12 col-sm-12">
+    <div class="form-group">
+        <label class="">Set your profile</label>
+        <select class="select-generat form-control select2-hidden-accessible" name="emp_profile" tabindex="-1" aria-hidden="true">
+            <option value="pub" selected="">Public</option>
+            <option value="priv">Private</option>
+        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 990px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-emp_profile-i4-container"><span class="select2-selection__rendered" id="select2-emp_profile-i4-container" title="Public"><span class="select2-selection__clear">×</span>Public</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+    </div>
+</div>
+        <div class="col-md-12 col-xs-12 col-sm-12">
+<div class="form-group">
+<label class="">About yourself</label>
+<div class="jqte"><div class="jqte_toolbar unselectable" role="toolbar" unselectable="on" style="user-select: none;"><div class="jqte_tool jqte_tool_1 unselectable" role="button" data-tool="0" unselectable="on" style="user-select: none;"><a class="jqte_tool_label unselectable" unselectable="on" style="user-select: none;"><span class="jqte_tool_text unselectable" unselectable="on" style="user-select: none;">Paragraph</span><span class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></span></a><div class="jqte_formats unselectable" unselectable="on" style="user-select: none;"><a jqte-formatval="p" class="jqte_format jqte_format_0 unselectable" role="menuitem" unselectable="on" style="user-select: none;">Paragraph</a><a jqte-formatval="h2" class="jqte_format jqte_format_1 unselectable" role="menuitem" unselectable="on" style="user-select: none;">H2</a><a jqte-formatval="h3" class="jqte_format jqte_format_2 unselectable" role="menuitem" unselectable="on" style="user-select: none;">H3</a><a jqte-formatval="h4" class="jqte_format jqte_format_3 unselectable" role="menuitem" unselectable="on" style="user-select: none;">H4</a></div></div><div class="jqte_tool jqte_tool_4 unselectable" role="button" data-tool="3" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_5 unselectable" role="button" data-tool="4" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_6 unselectable" role="button" data-tool="5" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_7 unselectable" role="button" data-tool="6" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div><div class="jqte_tool jqte_tool_8 unselectable" role="button" data-tool="7" unselectable="on" style="user-select: none;"><a class="jqte_tool_icon unselectable" unselectable="on" style="user-select: none;"></a></div></div><div class="jqte_linkform" style="display:none" role="dialog"><div class="jqte_linktypeselect unselectable" unselectable="on" style="user-select: none;"><div class="jqte_linktypeview unselectable" unselectable="on" style="user-select: none;"><div class="jqte_linktypearrow unselectable" unselectable="on" style="user-select: none;"></div><div class="jqte_linktypetext">Web Address</div></div><div class="jqte_linktypes unselectable" role="menu" unselectable="on" style="user-select: none;"><a jqte-linktype="0" unselectable="on" class="unselectable" style="user-select: none;">Web Address</a><a jqte-linktype="1" unselectable="on" class="unselectable" style="user-select: none;">E-mail Address</a><a jqte-linktype="2" unselectable="on" class="unselectable" style="user-select: none;">Picture URL</a></div></div><input class="jqte_linkinput" type="text/css" value=""><div class="jqte_linkbutton unselectable" unselectable="on" style="user-select: none;">OK</div> <div style="height:1px;float:none;clear:both"></div></div><div class="jqte_editor" contenteditable="true"></div><div class="jqte_source jqte_hiddenField"><textarea name="emp_intro" class="form-control rich_textarea" id="" cols="30" rows="10" data-origin="textarea"></textarea></div></div>
+</div>
+</div>
+  </div>
+<!-- End Basic Informations --> 
+<!-- Company Specialization -->
+<div class="row">
+<div class="col-md-12 col-xs-12 col-sm-12">
+<h4 class="dashboard-heading">Company Details</h4>
+</div>
+    <div class="col-md-12 col-xs-12 col-sm-12">
+<div class="form-group">
+<label class="">Company Specialization</label>
+<select class="select-generat form-control select2-hidden-accessible" name="emp_cat[]" id="change_term" multiple="" tabindex="-1" aria-hidden="true" data-parsley-multiple="emp_cat[]">
+  <option value="38">Php</option><option value="39">JS</option><option value="40">Designing</option><option value="41">Application development</option><option value="42">Arts</option><option value="43">Painting</option><option value="44">Development</option><option value="45">Modeling</option><option value="46">Architecture</option><option value="114">Management</option><option value="127">SEO</option><option value="128">SMM</option><option value="144">Culinary Arts</option><option value="145">Peruvian Cuisine</option><option value="151">Team Management</option><option value="152">patience</option><option value="153">Commitment</option><option value="154">Team Work</option><option value="155">Flexibility</option><option value="156">Stress Management</option><option value="163">Education</option><option value="171">Analytical skills</option><option value="172">trainings</option><option value="173">communication skills</option><option value="191">Food Products</option><option value="198">cooking</option>            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 1020px;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Select an option" style="width: 998px;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+</div>
+    <div class="col-md-6 col-sm-12 col-xs-12">
+<div class="form-group">
+<label>No. of Employees</label>
+<input type="text" placeholder="Enter number of employes" value="" name="emp_nos" class="form-control" data-parsley-error-message="This value is required">
+</div>
+</div>
+    <div class="col-md-6 col-xs-12 col-sm-6">
+<div class="form-group">
+<label class="">Established Date</label>
+<input type="text" value="" name="emp_est" class="datepicker-here-canidate form-control">
+</div>
+</div>
+<!--End Company Specialization --> 
+  </div>       
+   <!-- Custom feilds -->
+<div class="col-md-12 col-xs-12 col-sm-12">
+  <div class="dashboard-social-links">
+    <div class="col-md-12 col-xs-12 col-sm-12">
+      <h4 class="dashboard-heading">Custom Fields</h4>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="form-group">
+                <input placeholder="Phone Number" class="form-control" type="Number" data-parsley-type="digits" name="_custom_[PhoneNumber]" value="">
+            </div></div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Location</label>
+                                                    <select class="js-example-basic-single select2-hidden-accessible" name="_custom_[Location]" tabindex="-1" aria-hidden="true">
+                                                        <option value="Canada">Canada</option><option value="China">China</option><option value="USA">USA</option><option value="UAE   ">UAE   </option> 
+                                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 82px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-_custom_Location-ci-container"><span class="select2-selection__rendered" id="select2-_custom_Location-ci-container" title="Canada"><span class="select2-selection__clear">×</span>Canada</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                            </div>
+                                        </div><div class="col-md-12 col-xs-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Date </label>
+                                                <input type="text" value="" name="_custom_[Date]" class="datepicker-custom-feilds form-control">
+                                            </div>
+                                        </div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="form-group">
+                <input placeholder="Company Tagline" class="form-control" type="text" name="_custom_[CompanyTagline]" value="">
+            </div></div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                             <label class="">Sub-offices</label>
+                                                <ul class="custom-radiobox">
+                                                    <li><div class="iradio_square" style="position: relative;"><input type="radio" name="_custom_[Sub-offices]" class="input-icheck-others" value="Yes" data-parsley-required="true" data-parsley-error-message="This field is required." data-parsley-multiple="_custom_Sub-offices" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div><p>Yes</p></li><li><div class="iradio_square" style="position: relative;"><input type="radio" name="_custom_[Sub-offices]" class="input-icheck-others" value="No" data-parsley-required="true" data-parsley-error-message="This field is required." data-parsley-multiple="_custom_Sub-offices" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div><p>No</p></li>	
+                                                </ul>
+                                            </div>
+                                        </div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label>Medical Allowance </label>
+                                                    <select class="js-example-basic-single select2-hidden-accessible" name="_custom_[MedicalAllowance]" data-parsley-required="true" data-parsley-error-message="This field is required." tabindex="-1" aria-hidden="true">
+                                                        <option value="Yes">Yes</option><option value="No">No</option> 
+                                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 49px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-_custom_MedicalAllowance-rx-container"><span class="select2-selection__rendered" id="select2-_custom_MedicalAllowance-rx-container" title="Yes"><span class="select2-selection__clear">×</span>Yes</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                            </div>
+                                        </div><div class="col-md-12 col-xs-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>New Openings </label>
+                                                <input type="text" value="" name="_custom_[NewOpenings]" class="datepicker-custom-feilds form-control">
+                                            </div>
+                                        </div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="form-group">
+                <input placeholder="Total Offices " class="form-control" type="Number" data-parsley-type="digits" name="_custom_[TotalOffices]" value="">
+            </div></div>              </div>
+</div>
+     <!-- Company Soical Links -->
+<div class="col-md-12 col-xs-12 col-sm-12">
+<div class="dashboard-social-links">
+<div class="col-md-12 col-xs-12 col-sm-12">
+  <h4 class="dashboard-heading">Company Social Links</h4>
+</div>
+            <div class="col-md-6 col-sm-12">
+  <div class="form-group">
+    <label>Facebook</label>
+    <input type="text" placeholder="Profile URL" value="" name="emp_fb" class="form-control" data-parsley-error-message="This value is required">
+  </div>
+</div>
+            <div class="col-md-6 col-sm-12">
+  <div class="form-group">
+    <label>Twitter</label>
+    <input type="text" placeholder="Profile URL" value="" name="emp_twitter" class="form-control" data-parsley-error-message="This value is required">
+  </div>
+</div>
+            <div class="col-md-6 col-sm-12">
+  <div class="form-group">
+    <label>LinkedIn</label>
+    <input type="text" placeholder="Profile URL" value="" name="emp_linked" class="form-control" data-parsley-error-message="This value is required">
+  </div>
+</div>
+            <div class="col-md-6 col-sm-12">
+  <div class="form-group">
+    <label>Instagram</label>
+    <input type="text" placeholder="Profile URL" value="" name="emp_google" class="form-control" data-parsley-error-message="This value is required">
+  </div>
+</div>
+          </div>
+</div>
+<!--End Company Soical Links --> 
+    <!-- Company Locations-->
+<input type="hidden" id="is_profile_edit" value="1">
+    <div class="col-md-12 col-xs-12 col-sm-12">
+<div class="row">
+<div class="dashboard-location">
+  <div class="col-md-12 col-xs-12 col-sm-12">
+ <h4 class="dashboard-heading">Set your location</h4>
+ </div>
+               <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="form-group">
+      <label class="control-label">Set your location</label>
+      <input class="form-control" name="sb_user_address" id="sb_user_address" value="">
+                      </div>
+  </div>
+  <div class="col-md-12 col-sm-12">
+    <div class="form-group">
+      <div id="dvMap" style="width: 100%; height: 300px; position: relative;" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0"><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" role="presentation" src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/13/2411/3079.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(251px, -115px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-b.global.ssl.fastly.net/light_all/13/2412/3079.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(507px, -115px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-b.global.ssl.fastly.net/light_all/13/2411/3080.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(251px, 141px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-c.global.ssl.fastly.net/light_all/13/2412/3080.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(507px, 141px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-c.global.ssl.fastly.net/light_all/13/2410/3079.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-5px, -115px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-c.global.ssl.fastly.net/light_all/13/2413/3079.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(763px, -115px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/13/2410/3080.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-5px, 141px, 0px); opacity: 1;"><img alt="" role="presentation" src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/13/2413/3080.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(763px, 141px, 0px); opacity: 1;"></div></div></div><div class="leaflet-pane leaflet-shadow-pane"><img src="https://jobs.nokriwp.com/wp-content/themes/nokri/assets/leaflet/images/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" alt="" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(495px, 150px, 0px);"></div><div class="leaflet-pane leaflet-overlay-pane"></div><div class="leaflet-pane leaflet-marker-pane"><img src="https://jobs.nokriwp.com/wp-content/themes/nokri/assets/leaflet/images/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive leaflet-marker-draggable" alt="" tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(495px, 150px, 0px); z-index: 150;"></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div><div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(617460px, 788489px, 0px) scale(4096);"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in">+</a><a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out">−</a></div><div class="leaflet-control-search leaflet-control"><label class="search-input" for="searchtext9" style="display: none;"></label><input class="search-input" type="text" size="9" autocomplete="off" autocapitalize="off" placeholder="Search..." id="searchtext9" style="display: none;"><ul class="search-tooltip" style="display: none;"></ul><a class="search-cancel" href="#" title="Cancel" style="display: none;"><span>⊗</span></a><a class="search-button" href="#" title="Search..."></a><div class="search-alert" style="display: none;"></div></div></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control"><a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a></div></div></div></div>
+    </div>
+  </div>
+  <div class="col-md-6 col-sm-12">
+    <div class="form-group">
+      <label class="control-label">Latitude</label>
+      <input class="form-control" type="text" name="ad_map_lat" id="ad_map_lat" value="40.7127837">
+    </div>
+  </div>
+  <div class="col-md-6 col-sm-12">
+    <div class="form-group">
+      <label class="control-label">Longitude</label>
+      <input class="form-control" name="ad_map_long" id="ad_map_long" value="-74.00594130000002" type="text">
+    </div>
+  </div>
+                  </div>
+</div>
+</div>
+     <div class="col-md-12 col-xs-12 col-sm-12">
+<div class="row">
+<div class="dashboard-location">
+ <!--job country -->
+ <div class="col-md-6 col-sm-6 col-xs-12">
+<div class="form-group">
+<label></label>
+  <select class="js-example-basic-single select2-hidden-accessible" data-allow-clear="true" data-placeholder="Select Your Country" id="ad_country" name="cand_country" tabindex="-1" aria-hidden="true">
+     
+      <option value="116">Australia</option><option value="76">Germany</option><option value="70">India</option><option value="72">New delhi</option><option value="132">Pakistan</option><option value="73">UAE</option><option value="66">USA</option>              </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 92px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-ad_country-container"><span class="select2-selection__rendered" id="select2-ad_country-container" title="Australia"><span class="select2-selection__clear">×</span>Australia</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+ 
+</div>
+</div>
+ <!--job state -->
+ <div class="col-md-6 col-sm-6 col-xs-12" id="ad_country_sub_div" style="display: none;">
+<div class="form-group">
+<label></label>
+  <select class="js-example-basic-single select2-hidden-accessible" data-allow-clear="true" data-placeholder="Select State" id="ad_country_states" name="cand_country_states" tabindex="-1" aria-hidden="true">
+     
+                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-ad_country_states-container"><span class="select2-selection__rendered" id="select2-ad_country_states-container"><span class="select2-selection__placeholder">Select State</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div></div>
+ <!--job city -->
+ <div class="col-md-6 col-sm-6 col-xs-12" id="ad_country_sub_sub_div" style="display: none;">
+<div class="form-group">
+<label></label>
+  <select class="js-example-basic-single select2-hidden-accessible" data-allow-clear="true" data-placeholder="Select City" id="ad_country_cities" name="cand_country_cities" tabindex="-1" aria-hidden="true">
+    
+                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-ad_country_cities-container"><span class="select2-selection__rendered" id="select2-ad_country_cities-container"><span class="select2-selection__placeholder">Select City</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+</div>
+<!--job town -->
+ <div class="col-md-6 col-sm-6 col-xs-12" id="ad_country_sub_sub_sub_div" style="display: none;">
+<div class="form-group">
+<label></label>
+  <select class="js-example-basic-single select2-hidden-accessible" data-allow-clear="true" data-placeholder="Select Town" id="ad_country_towns" name="cand_country_towns" tabindex="-1" aria-hidden="true">
+    
+                    </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-ad_country_towns-container"><span class="select2-selection__rendered" id="select2-ad_country_towns-container"><span class="select2-selection__placeholder">Select Town</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+     <!-- Company Locations-->
+<div class="col-md-12 col-xs-12 col-sm-12">
+<input type="submit" id="emp_save" value="Save Profile" class="btn n-btn-flat">
+<button class="btn n-btn-flat" type="button" id="emp_proc" disabled="" style="display: none;">Processing...</button>
+<button class="btn n-btn-flat" type="button" id="emp_redir" disabled="" style="display: none;">Redirecting...</button>
+</div>
+</div>
+</div>
+<div class="main-body change-password">
+<div class="dashboard-edit-profile">
+<h4 class="dashboard-heading">Company Portfolio</h4>
+<div class="row">
+<div class="col-md-12 col-xs-12 col-sm-12">
+<div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+     <div class="form-group">
+        <label class="control-label">Drag drop or click to upload your company image</label>
+        <div id="company-dropzone" class="dropzone dz-clickable"><div class="dz-default dz-message"><span>undefined</span></div></div>
+        </div>
+    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <label>Video url (only youtube)</label>
+            <input type="text" placeholder="Put youtube video link" value="" name="emp_video" class="form-control" data-parsley-pattern="^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+">
+        </div>
+    </div>
+               </div>
+</div>
+</div>
+<input type="submit" value="Save Profile" class="btn n-btn-flat">
+</div>
+</div>
+</form>
+<!-- update password-->
+<div class="main-body change-password">
+<div class="dashboard-edit-profile">
+<h4 class="dashboard-heading">Change Password</h4>
+<form id="change_password" method="post" enctype="multipart/form-data">
+<div class="row">
+<div class="col-md-12 col-xs-12 col-sm-12">
+<div class="row">
+<div class="dashboard-location">
+  <div class="col-md-6 col-xs-12 col-sm-6">
+    <div class="form-group">
+      <label>Old Password</label>
+      <input type="password" class="form-control" name="old_password" placeholder="Enter old password">
+    </div>
+  </div>
+  <div class="col-md-6 col-xs-12 col-sm-6">
+    <div class="form-group">
+      <label>New Password</label>
+      <input type="password" name="new_password" class="form-control" placeholder="Enter new password">
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div class="col-md-12 col-xs-12 col-sm-12">
+      <input type="button" value="Delete account?" class="btn btn-custom del_acount">
+        <input type="submit" value="Processing..." class="btn n-btn-flat cand_pass_pro" style="display: none;">
+<input type="submit" value="Update password" class="btn n-btn-flat change_password">
+</div>
+</div>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+var mymap = L.map('dvMap').setView([40.7127837, -74.00594130000002], 13);
+L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png', {
+maxZoom: 18,
+attribution: ''
+}).addTo(mymap);
+var markerz = L.marker([40.7127837, -74.00594130000002],{draggable: true}).addTo(mymap);
+var searchControl 	=	new L.Control.Search({
+url: '//nominatim.openstreetmap.org/search?format=json&q={s}',
+jsonpParam: 'json_callback',
+propertyName: 'display_name',
+propertyLoc: ['lat','lon'],
+marker: markerz,
+autoCollapse: true,
+autoType: true,
+minLength: 2,
+});
+searchControl.on('search:locationfound', function(obj) {
+
+var lt	=	obj.latlng + '';
+var res = lt.split( "LatLng(" );
+res = res[1].split( ")" );
+res = res[0].split( "," );
+document.getElementById('ad_map_lat').value = res[0];
+document.getElementById('ad_map_long').value = res[1];
+});
+mymap.addControl( searchControl );
+
+markerz.on('dragend', function (e) {
+document.getElementById('ad_map_lat').value = markerz.getLatLng().lat;
+document.getElementById('ad_map_long').value = markerz.getLatLng().lng;
+});
+</script>                </div>
+
+{% endblock %}

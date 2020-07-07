@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="n-single-job n-single-job-transparent" style=" background: url({% static 'img/4.png' %});  background-repeat: no-repeat; background-size: cover;  background-position: center center;  background-attachment: scroll; ">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                <div class="n-single-title">
+                    <h4>{{ job.JobTitle }}</h4>
+                    <ul>
+                        <li> <i class="fa fa-folder-open"></i>Web Designer</li>
+                        <li> <i class="fa fa-hand-o-right"></i>{% if job.jobType == 0 %} Full Time {% else %} Part Time {% endif %}</li>
+                        <li> <i class="fa fa-clock-o"></i>2 years ago</li>
+                        <li> <i class="fa fa-map-marker"></i>{{ job.country }} ,Delhi</li>
+                    </ul>
+                </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                <aside class="n-single-sidebar">
+                    <div class="apply-buttons">
+                    </div>
+                    <div class="apply-buttons">
+                        <a href="javascript:void(0)" class="btn n-btn-flat btn-mid btn-clear apply_job" data-job-id="315" data-author-id="10" data-toggle="modal" data-target="#myModal" id="applying_job">Apply now</a>
+                        <a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&amp;client_id=819vq98insh6za&amp;redirect_uri=https://jobs.nokriwp.com/&amp;state=not_logged_in-315&amp;scope=r_emailaddress%20r_basicprofile" class="btn-linkedIn btn-block"><i class="ti-linkedin"></i> <span>Apply With LinkedIn</span></a>
+                    </div>
+                </aside>
+          </div>
+       </div>
+    </div>
+</section>
+
+
+<section class="n-single-job light-grey n-detail-transparent">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+            <div class="n-single-meta-2">
+                <h4>Job Information</h4>
+                <ul class="">
+                    <li>
+                        <div class="short-detail-icon">
+                            <img src="{% static 'img/icons/tick-icon.png' %}" class="img-responsive" alt="icon">
+                        </div>
+                        <div class="short-detail-meta">
+                            <small>Salary</small>
+                            <strong>Rupees 4000-5000 / Hourly</strong>
+                        </div>
+                    </li>
+                                            
+                                           <li>
+                      <div class="short-detail-icon">
+                         <img src="{% static 'img/icons/tick-icon.png' %}" class="img-responsive" alt="icon">
+                      </div>
+                      <div class="short-detail-meta">
+                         <small>Shift</small>
+                         <strong>Evening</strong>
+                      </div>
+                   </li>
+                                                                   <li>
+                      <div class="short-detail-icon">
+                         <img src="{% static 'img/icons/tick-icon.png' %}" class="img-responsive" alt="icon">
+                      </div>
+                      <div class="short-detail-meta">
+                         <small>No. of Openings</small>
+                         <strong>2 openings</strong>
+                      </div>
+                   </li>
+                                            <li>
+                      <div class="short-detail-icon">
+                         <img src="{% static 'img/icons/tick-icon.png' %}" class="img-responsive" alt="icon">
+                      </div>
+                      <div class="short-detail-meta">
+                         <small>Job Level :</small>
+                         <strong>Officer</strong>
+                      </div>
+                   </li>
+                                           <li>
+                      <div class="short-detail-icon">
+                         <img src="{% static 'img/icons/tick-icon.png' %}" class="img-responsive" alt="icon">
+                      </div>
+                      <div class="short-detail-meta">
+                         <small>Job Experience :</small>
+                         <strong>3 year</strong>
+                      </div>
+                   </li>
+                                           <li>
+                      <div class="short-detail-icon">
+                         <img src="{% static 'img/icons/tick-icon.png' %}" class="img-responsive" alt="icon">
+                      </div>
+                      <div class="short-detail-meta">
+                         <small>Job Qualifications</small>
+                         <strong>Master</strong>
+                      </div>
+                   </li> 
+                                           </ul>
+             </div>
+             <div class="n-single-detail">
+                <h4>Job Description</h4>
+               <p><span style="color: #000000">{{ job.JobDesciption }}.</span></p>
+
+
+               <p><span style="color: #000000"><b>RESPONSIBILITIES</b></span></p>
+                <p><span style="color: #000000">Applies understanding and knowledge of consumer, market and industry trends in developing compelling core and promotional menu offerings that drive guest satisfaction, guest traffic and brand awareness while meeting Nekter’s financial requirements.</span></p>
+                <ul>
+                    <li><span style="color: #000000">Manage and problem solve and manage all aspects of new and existing menu development. This will include but not limited to: recipes, nutrition requirements, yields, in-store procedures and smallwares.</span></li>
+                    <li><span style="color: #000000">Analyze and study competition, direct and non-direct, to ensure that we are staying current with industry trends at the same time introducing initiatives that put us above and first with our customers and competition.</span></li>
+                    <li><span style="color: #000000">Create a pipeline of new items developed, approved and tested ready to be implemented as needed.</span></li>
+                </ul>
+                <ul>
+                    <li><span style="color: #000000">Supported technically the local teams for new product development, adaptation and transfer of international innovations.</span></li>
+                    <li><span style="color: #000000">Involved in costing of new and existing products.</span></li>
+                    <li><span style="color: #000000">In depth market understanding and competitor intelligence in the region.</span></li>
+                    <li><span style="color: #000000">Trained the local teams on best practices in sensory analysis .</span></li>
+                    <li><span style="color: #000000">To initiate and active involvement in new product development (NPD) using advice and information from the quality, sales, marketing &#038; operations departments as inputs.</span></li>
+                    <li><span style="color: #000000">To conduct the study on shelf life of newly developing product to offer quality product to our customer.</span></li>
+                    <li><span style="color: #000000">Ensuring raw Materials, Pre-Mixes, in process Material, Packaging Material and finished Goods needed for new products are in place for the work to be carried out.</span></li>
+                    <li><span style="color: #000000">To ensure all records are maintained with proper back up and presented to the management.</span></li>
+                    <li><span style="color: #000000">Ensuring new products conforms the standards and advice QC in setting HACCP for new products.</span></li>
+                    <li><span style="color: #000000">Performed lead role in setting and establishing a proper R&#038;D department and perform other duties as per the further expansion of the department.</span></li>
+                    <li><span style="color: #000000">Check audit reports to ensure daily opening &#038; closing balance of all raw and packaging material to avoid difference in the monthly audit.</span></li>
+                </ul>
+<div class="addtoany_share_save_container addtoany_content addtoany_content_bottom"><div class="a2a_kit a2a_kit_size_32 addtoany_list" data-a2a-url="https://jobs.nokriwp.com/job/senior-web-developer/" data-a2a-title="Senior Web Developer"><a class="a2a_button_facebook" href="https://www.addtoany.com/add_to/facebook?linkurl=https%3A%2F%2Fjobs.nokriwp.com%2Fjob%2Fsenior-web-developer%2F&amp;linkname=Senior%20Web%20Developer" title="Facebook" rel="nofollow noopener" target="_blank"></a><a class="a2a_button_twitter" href="https://www.addtoany.com/add_to/twitter?linkurl=https%3A%2F%2Fjobs.nokriwp.com%2Fjob%2Fsenior-web-developer%2F&amp;linkname=Senior%20Web%20Developer" title="Twitter" rel="nofollow noopener" target="_blank"></a><a class="a2a_dd addtoany_share_save addtoany_share" href="https://www.addtoany.com/share"></a></div></div>                  </div>
+                                   <div class="jobs-alert-box">
+                       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                          <span>Job alerts</span>
+                          <p>Receive emails for the latest jobs matching your search criteria</p>
+                       </div>
+                       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                           <a href="javascript:void(0)" class="btn n-btn-flat job_alert">Job Alerts</a>
+                       </div>
+                    </div>
+                               <div class="n-skills">
+                <h5><i class="fa fa-tags"></i>Job skills</h5>
+                <div class="n-skills-tags">
+                     <a href="../../search-page/index33c7.html?job_skills=38"> Php </a><a href="../../search-page/index4f0d.html?job_skills=44"> Development </a><a href="../../search-page/index630c.html?job_skills=127"> SEO </a>                     </div>
+             </div>
+        <div class="addtoany_shortcode">
+            <div class="a2a_kit a2a_kit_size_32 addtoany_list" data-a2a-url="https://jobs.nokriwp.com/job/senior-web-developer/" data-a2a-title="Senior Web Developer">
+                <a class="a2a_button_facebook" href="https://www.addtoany.com/add_to/facebook?linkurl=https%3A%2F%2Fjobs.nokriwp.com%2Fjob%2Fsenior-web-developer%2F&amp;linkname=Senior%20Web%20Developer" title="Facebook" rel="nofollow noopener" target="_blank"></a>
+                <a class="a2a_button_twitter" href="https://www.addtoany.com/add_to/twitter?linkurl=https%3A%2F%2Fjobs.nokriwp.com%2Fjob%2Fsenior-web-developer%2F&amp;linkname=Senior%20Web%20Developer" title="Twitter" rel="nofollow noopener" target="_blank"></a>
+                <a class="a2a_dd addtoany_share_save addtoany_share" href="https://www.addtoany.com/share"></a>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+            <aside class="n-single-sidebar">
+                <div class="app-deadline">
+                   <div class="short-detail-icon">
+                      <i class="ti-timer"></i>
+                   </div>
+                   <div class="short-detail-meta">
+                      <small>Deadline</small>
+                      <strong>November 1, 2025</strong>
+                   </div>
+                   <span class="ab-iocn"><i class="ti-alarm-clock"></i></span>
+                </div>
+                <div class="n-single-job-company">
+                    <a class="btn btn-block n-btn-custom-two save_job" href="javascript:void(0)" data-value=315>Save This Job </a>
+                </div>
+                                     <div class="n-single-job-company">
+                    <a class="btn btn-block n-btn-custom email_this_job" href="javascript:void(0)" data-job-id=315>Email This Job </a>
+                </div>
+                                     
+                                     <div class="n-single-job-company">
+                   <div class="dingle-job-company-meta">
+                      <ul class="social-links">
+                                        <li> <a href="#"><img src="{% static 'img/icons/006-facebook.png' %}" class="img-responsive" alt="icon"></a></li>
+                                           <li> <a href="#"><img src="{% static 'img/icons/003-google-plus.png' %}" alt="icon" class="img-responsive"></a></li>
+                                           <li> <a href="#"><img src="{% static 'img/icons/004-twitter.png' %}" alt="icon" class="img-responsive"></a></li>
+                                           <li> <a href="#"><img src="{% static 'img/icons/005-linkedin.png' %}" alt="icon" class="img-responsive"></a></li>
+                                        </ul>
+                      <div class="contact-img">
+                         <img src="../../wp-content/uploads/2018/09/af0d7d7202555927da033a17925db572-1-150x150.png" class="img-responsive img-circle" alt="company profile image">
+                      </div>
+                      <div class="contact-caption">
+                         <h4>Excings Motors</h4>
+                         <a href="http://excingsmotors.com/" target="_blank" >Visit Website</a>
+                      </div>
+                   </div>
+                   <a class="view-profile" href="../../employer/excings/index.html">View Profile </a>
+                </div>
+                                     <div class="n-single-job-company">
+                   <div class="dingle-job-company-meta">
+                   <div id="itemMap" style="height:300px;" ></div>
+                       <input type="hidden" id="lat" value="28.627393" />
+                   <input type="hidden" id="lon" value="77.171695" />
+                   </div>
+                </div>
+                                     <div class="n-job-tags">
+                    <h3>Job tags</h3>
+                    <ul class="job-tag-list">
+                       <a href="../../search-page/index057a.html?job_tags=162">#back-end</a><a href="../../search-page/indexc8f5.html?job_tags=161">#designing</a><a href="../../search-page/index1859.html?job_tags=160">#php</a><a href="../../search-page/index6210.html?job_tags=122">#seo</a><a href="../../search-page/index26df.html?job_tags=159">#web</a>                         </ul>
+                </div>
+            </aside>
+        </div>
+       </div>
+    </div>
+ </section>
+
+
+{% endblock content %}

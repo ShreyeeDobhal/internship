@@ -1,0 +1,28 @@
+<body>
+    {% extends "base.html" %}
+    {% load static %}
+    {% block content %}
+    <section class="n-pages-breadcrumb"  style="background: rgba(0, 0, 0, 0.6) url({% static 'img/header/login-slider-image.png' %}) 0 0 no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-position: center center; background-attachment:scroll;">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+                <div class="n-breadcrumb-info">
+                    <h1>Account SignIn</h1><p>Having great skills and specialty in software quality assurance, software testing, software requirement.</p>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section class="n-job-pages-section">
+        <div class="container">  
+            <div class="col-sm-8 col-sm-offset-3">
+                <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+        <h1>Upload Your Resume Details </h1>
+        <h2>Indeed For employers</h2>
+    {{form.as_p}}
+                </br>
+    <input type="submit"class="butn btn-default" value="Submit"/>
+    </form>
+    {% endblock content %}

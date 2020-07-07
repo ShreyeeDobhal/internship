@@ -1,0 +1,28 @@
+<body> 
+    <div style="width: 40%; 
+    border: 1px solid black; 
+    background-color: lightcyan; 
+    font-family: Helvetica, sans-serif;"> 
+        <div style="margin: 5%;"> 
+            <h1> 
+                <u>Automation</u> 
+            </h1> 
+            <h2> 
+                <u>All Data</u> 
+            </h2> 
+            <h4 id='alldata'></h4><br> 
+             
+            <h4 id='neatdata'></h4> 
+        </div> 
+    </div> 
+</body> 
+</html> 
+<script> 
+    var data = JSON.parse("{{sr|escapejs}}"); 
+    var dataNode = document.getElementById('alldata'); 
+    dataNode.innerHTML+="{{sr|escapejs}}"; 
+    dataNode = document.getElementById('neatdata'); 
+    for(var x in data){ 
+        dataNode.innerHTML+=x+' : '+sr[fields][JobTitle]+'<br><br>'; 
+    } 
+</script>

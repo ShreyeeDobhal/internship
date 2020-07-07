@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="n-pages-breadcrumb"  style="background: rgba(0, 0, 0, 0.6) url({% static 'img/header/login-slider-image.png' %}) 0 0 no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-position: center center; background-attachment:scroll;">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+             <div class="n-breadcrumb-info">
+               <h1>Account Register</h1><p>Having great skills and specialty in software quality assurance, software testing, software requirement.</p>
+             </div>
+          </div>
+       </div>
+    </div>
+</section>
+
+
+<section class="n-job-pages-section">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-lg-offset-3">
+             <div class="row">
+                <div class="n-job-pages register-page">
+                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <div class="row">
+                         <div class="n-page-left-side">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                               <div class="post-job-heading">
+                                  <h3>Login Using your email</h3>
+                               </div>
+                            </div>
+                            <form id="sb-signup-form" method="post" action="{% url 'register' %}">
+                               
+                              <input type="hidden" id="nokri_ajax_url" value="{% url 'register' %}" />
+                              
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                 <div class="form-group">
+                                    <input placeholder="Your Name" class="form-control" type="text" data-parsley-required="true" data-parsley-error-message="Please enter your name." name="first_name"/>
+                                 </div>
+                              </div>
+
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                 <div class="form-group">
+                                    <input placeholder="Last Name" class="form-control" type="text" data-parsley-required="true" data-parsley-error-message="Please enter your Last name." name="last_name"/>
+                                 </div>
+                              </div>
+           
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                 <div class="form-group">
+                                    <input placeholder="Your Email" class="form-control" type="email" data-parsley-type="email" data-parsley-required="true" data-parsley-error-message="Please enter your valid email." data-parsley-trigger="change" name="email"/>
+                                 </div>
+                              </div>
+
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                 <div class="form-group">
+                                    <input placeholder="Username" class="form-control" type="text" data-parsley-required="true" data-parsley-error-message="Please enter your Last name." name="username"/>
+                                 </div>
+                              </div>
+   
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                 <div class="form-group">
+                                    <input placeholder="Your Password" class="form-control" type="password" data-parsley-required="true" data-parsley-error-message="Please enter your password." name="password"/>
+                                 </div>
+                              </div>
+   
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                 <div class="btn-group" id="status" data-toggle="buttons">
+                                    <label class="btn btn-default btn-md ">
+                                    <input type="radio" value="1" name="type"/>Employer</label>
+                                    <label class="btn btn-default btn-md active">
+                                    <input type="radio" value="0" name="type" checked="checked"/>Candidate</label>        
+                                 </div>
+                              </div>
+           
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                 <div class="form-group">
+                                    <input placeholder="Phone Number" class="form-control" type="Number" data-parsley-type="digits"  name="phone_number" value=""/>
+                                 </div>
+                              </div>
+
+  
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="buttons-area">
+                                       <div class="form-group">
+                                          <input type="checkbox" name="icheck_box" class="input-icheck-others" data-parsley-required="true" data-parsley-error-message="Please accept terms and conditions."/>
+                                          <p> I Agree <a href="#" target="_blank">terms and conditions.</a></p>
+                                       </div>
+                                       <button class="btn n-btn-flat btn-mid pull-right " type="submit" id="sb_register_submit">Register</button>
+                                       <button class="btn n-btn-flat btn-mid pull-right  no-display disabled" type="button" id="sb_register_msg">Processing...</button>
+                                       <button class="btn n-btn-flat btn-mid pull-right  no-display disabled" type="button" id="sb_register_redirect">Redirecting...</button>
+                                    </div>
+                              </div>
+   
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                 <div class="signup-area">
+                                    Already have account? <a href="{% url 'login' %}">Login</a>
+                                 </div>
+                              </div>
+                              <input type="hidden" class="get_action" value="register"/>
+                              <input type="hidden" id="verify_account_msg" value="Verificaton email has been sent to your email." />
+                              <input type="hidden" id="nonce" value="1591621390" />
+                           </form>
+                        </div>
+                     </div>
+                  </div>   
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+{% endblock %}

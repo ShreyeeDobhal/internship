@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+{% block bodyclass %}
+class="page-template page-template-page-dashboard page-template-page-dashboard-php page page-id-235 logged-in theme-nokri woocommerce-js wpb-js-composer js-comp-ver-6.0.5 vc_responsive"
+{% endblock %}
+{% block headerclass %}
+<div class="navbar-fixed-top"><div class="top-bar">
+    <div class="container">
+       <div class="row">
+                  <div class="col-lg-7 col-md-5 col-sm-5 col-xs-12">
+                  <ul class="header-social pull-left ">
+                      <li><a href="https://www.facebook.com/eepicmanagement/" class="social-facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="https://twitter.com/eepicmanagement/" class="social-twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                      <li><a href="https://www.instagram.com/eepic_management/" class="social-instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                      <li><a href="https://www.linkedin.com/company/eepicmanagement24/" class="social-linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                      <li><a href="https://www.pinterest.com/eepicmanagement/" class="social-pinterest" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                    </ul>
+                       </div>
+                 <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12">
+             <div class="header-info">
+               <a href="support@eepicjobs.com"><i class="fa fa-envelope"></i>support@eepicjobs.com</a><a href="tel:+919873384233"><i class="fa fa-phone"></i> +91 9873384233</a>          </div>
+          </div>
+              </div>
+    </div>
+   </div> <div class="transparent-header-1">
+    <nav id="menu-1" class="mega-menu n-admin-header as-breadcrumb" style=" background: url({% static 'img/4.png' %});  background-repeat: no-repeat; background-size: cover;  background-position: center center;  background-attachment: scroll; ">
+            <section class="menu-list-items ">
+                <div class="container-fluid">
+                   <ul class="menu-logo">
+                     <li><a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}"  class="img-responsive" alt="logo" style="width: 30px;"></a><div class="menu-mobile-collapse-trigger"><span></span></div></li>
+                   </ul>
+                   <ul class="menu-button">
+                                            <li class="profile-pic dropdown">
+                           <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/candidate-dp.jpg" alt="image" class="img-circle" width="36"><span class="hidden-xs hidden-sm"></span></a>
+                                   <ul class="dropdown-menu">
+                                       <li>
+                                           <a href="{% url 'dashboard' %}"><i class="fa fa-user"></i>Dashboard</a>
+                                       </li>
+                                       <li>
+                                           <a href="{% url 'logout' %}"><i class="fa fa-power-off"></i>Logout</a>
+                                       </li>
+                                   </ul>
+                        </li>
+                        <li><a href="{% url 'index' %}" class="btn n-btn-flat"><i class="fa fa-plus"></i>All Jobs</a></li>
+                                      </ul>
+                                      <ul class="menu-links ">
+                                        <li><a  href="{% url 'index' %}">Home</a></li>
+                                        <li><a  href="{% url 'index' %}">Home</a></li>
+                                        <li><a  href="{% url 'index' %}">Home</a></li>
+                                        <li><a  href="{% url 'index' %}">Home</a></li>
+                                        <li><a  href="{% url 'index' %}">Home</a></li>
+                                    </ul></div>
+            </section>
+         </nav> 
+   </div>
+   </div>
+
+{% block content %}
+<section class="n-pages-breadcrumb social-choose" style=" background: url({% static 'img/4.png' %});  background-repeat: no-repeat; background-size: cover;  background-position: center center;  background-attachment: scroll; ">
+  	<div class="container">
+    	<div class="row">
+        </div>
+    </div>
+</section>
+
+
+<section class="n-job-pages-section">
+    <div class="container">
+      <div class="row">
+          <form id="social_login_form" novalidate="">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="n-job-pages user-section">
+                  <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-2  col-sm-offset-2">
+                       <div class="error-404">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                              <h3>Please Select Your Account Type</h3>
+                             
+                              <div class="btn-group" id="status" data-toggle="buttons">
+                                 <label class="btn btn-default btn-md">
+                                 <input type="radio" value="1" name="sb_reg_type" data-parsley-required="true" data-parsley-multiple="sb_reg_type">
+                                 Employer                                   </label>
+                                 <label class="btn btn-default btn-md active">
+                                 <input type="radio" value="0" data-parsley-required="true" data-parsley-error-message="Please Select Type" name="sb_reg_type" checked="checked" data-parsley-multiple="sb_reg_type">
+                                  Candidate                                   </label>
+                              </div>
+                           </div>
+                          
+                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                               
+                              <div class="buttons-area">                                  
+                                 <div class="form-group">
+                                     <div class="icheckbox_square" style="position: relative;"><input type="checkbox" id="check_social_term" name="icheck_box_terms" class="input-icheck-others" data-parsley-required="true" data-parsley-error-message="Please accept terms and conditions." data-parsley-multiple="icheck_box_terms" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                    <p>I am agree to <a href="https://jobs.nokriwp.com/dashboard/" target="_blank">terms and conditions</a></p>
+                                 </div>
+                                  <input type="submit" class="btn n-btn-flat btn-mid" id="social_login_btn" value="Continue">
+                                 
+                              </div>
+                               
+                              
+                           </div>
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+          </form>
+      </div>
+  </div>
+</section>
+
+
+{% endblock %}
+
+
+{% endblock %}

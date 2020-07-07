@@ -1,0 +1,400 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="main-section-category"  style="background:  url({% static 'img/header/15.jpg' %}) no-repeat scroll center center / cover;"> 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-8 col-xs-12 ">
+                <div class="main-cat-detail-box">
+                    <h1>Find The Best Job</h1>
+                    <hr />
+                    <div class="clearfix"></div>
+                    <p>Search from 1500+ Jobs</p><p>
+                        <form method="POST" action="/search/">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" name="srh" class='form-control' placeholder='Enter the job post '>
+                            <button type="submit"><i class="ti-search"></i> </button>
+                        </div>
+                        <div>
+                            {% if messages %}
+                            <ul class="messages">
+                                {% for k in messages %}
+                                <li style="color:blueviolet">{{k}}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div><br>
+                        <div style="color: crimson">
+                            {% if sr %}
+                            {% for k in sr %}
+                            <table border="5px" width="350px">
+                                <tr>
+                                    <td>Job Title</td>
+                                    <td>{{k.JobTitle}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Job Desciption</td>
+                                    <td>{{k.JobDesciption}}</td>
+                                </tr>
+                                <tr>
+                                    <td>CompanyName </td>
+                                    <td>{{k.CompanyName }}</td>
+                                </tr>
+                                <tr>
+                        
+                            </table>
+                            <hr>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </form>
+                    
+                    <div class="categories-icons">
+                        <div class="featured-cat owl-carousel owl-theme">
+                                        <div class="item">
+                                                <a href="#filter">
+                                                    <img src="{% static 'img/header/settings.png' %}" alt="image"/>
+                                                    <h4>Automotive</h4>
+                                                </a>
+                                            </div><div class="item">
+                                                <a href="#filter">
+                                                    <img src="{% static 'img/header/designing.png' %}" alt="image"/>
+                                                    <h4>Designer</h4>
+                                                </a>
+                                            </div><div class="item">
+                                                <a href="#filter">
+                                                    <img src="{% static 'img/header/support.png' %}" alt="image"/>
+                                                    <h4>Customer Service</h4>
+                                                </a>
+                                            </div><div class="item">
+                                                <a href="#filter">
+                                                    <img src="{% static 'img/header/graduation-cap.png' %}" alt="image"/>
+                                                    <h4>Education</h4>
+                                                </a>
+                                            </div><div class="item">
+                                                <a href="#filter">
+                                                    <img src="{% static 'img/header/restaurant.png' %}" alt="image"/>
+                                                    <h4>Food Service</h4>
+                                                </a>
+                                            </div><div class="item">
+                                                <a href="#filter">
+                                                    <img src="{% static 'img/header/health.png' %}" alt="image"/>
+                                                    <h4>Health and Care</h4>
+                                                </a>
+                                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--MAIN PIC HEADER OVER-->
+
+                <section class="cat-tabs bg-white">
+                    <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-12 col-xs-12">
+                            <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="panel panel-primary">
+                                <div class="panel-heading"> 
+                                    <!-- Tabs -->
+                                    <ul class="nav panel-tabs">
+                                    <li class="active"> <a href="#tab63" data-toggle="tab"><span>Feature</span></a> </li><li class=""> <a href="#tab65" data-toggle="tab"><span>Private</span></a> </li><li class=""> <a href="#tab64" data-toggle="tab"><span>Urgent</span></a> </li>
+                                    </ul>
+                                </div>
+                                </div>
+                                <div class="panel-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active animated fadeInDown" id="tab63">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                                        <div class="n-search-listing n-featured-jobs">
+                                    <div class="n-featured-job-boxes"><div class="n-job-single">
+                                            <div class="n-job-img">
+                                            <img src="{%  static  'img/09/01-2-1-150x150.png' %}" alt="logo" class="img-responsive"/>
+                                            </div>
+                                            <div class="n-job-detail">
+                                            <ul class="list-inline">
+                                                <li class="n-job-title-box">
+                                                    <h4><a href="../job/assistant-editor/index.html">Assistant Editor</a></h4>
+                                                    <p> <a href="../search-page/index8a52.html?job-location=76">Germany</a></p>
+                                                </li>
+                                                <li class="n-job-short">
+                                                    <span> <strong> Type :</strong>Contract</span>
+                                                    <span> <strong> Date :</strong> 2 years ago</span>
+                                                </li>
+                                                <li class="n-job-btns">
+                                                    <a href="javascript:void(0)" class="btn n-btn-rounded apply_job" data-toggle="modal" data-target="#myModal"  data-job-id =795>Apply Now </a>
+                                                    <a href="javascript:void(0)" class="n-job-saved save_job" data-value = "795"><i class="ti-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                        </div><div class="n-job-single">
+                                            <div class="n-job-img">
+                                            <img src="{%  static  'img/09/jornadas-nutricao-2017-ULSNE-1-150x150.png' %}" alt="logo" class="img-responsive"/>
+                                            </div>
+                                            <div class="n-job-detail">
+                                            <ul class="list-inline">
+                                                <li class="n-job-title-box">
+                                                    <h4><a href="../job/rd-manager/index.html">R&#038;D Manager</a></h4>
+                                                    <p> <a href="../search-page/indexec2c.html?job-location=132">Pakistan</a></p>
+                                                </li>
+                                                <li class="n-job-short">
+                                                    <span> <strong> Type :</strong>Part time</span>
+                                                    <span> <strong> Date :</strong> 2 years ago</span>
+                                                </li>
+                                                <li class="n-job-btns">
+                                                    <a href="javascript:void(0)" class="btn n-btn-rounded apply_job" data-toggle="modal" data-target="#myModal"  data-job-id =324>Apply Now </a>
+                                                    <a href="javascript:void(0)" class="n-job-saved save_job" data-value = "324"><i class="ti-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                        </div><div class="n-job-single">
+                                            <div class="n-job-img">
+                                            <img src="../wp-content/themes/nokri/images/candidate-dp.jpg" alt="logo" class="img-responsive"/>
+                                            </div>
+                                            <div class="n-job-detail">
+                                            <ul class="list-inline">
+                                                <li class="n-job-title-box">
+                                                    <h4><a href="../job/network-assistant-manager/index.html">Network Assistant Manager</a></h4>
+                                                    <p> <a href="../search-page/index8a52.html?job-location=76">Germany</a></p>
+                                                </li>
+                                                <li class="n-job-short">
+                                                    <span> <strong> Type :</strong>Contract</span>
+                                                    <span> <strong> Date :</strong> 2 years ago</span>
+                                                </li>
+                                                <li class="n-job-btns">
+                                                    <a href="javascript:void(0)" class="btn n-btn-rounded apply_job" data-toggle="modal" data-target="#myModal"  data-job-id =318>Apply Now </a>
+                                                    <a href="javascript:void(0)" class="n-job-saved save_job" data-value = "318"><i class="ti-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                        </div><div class="n-job-single">
+                                            <div class="n-job-img">
+                                            <img src="{%  static  'img/09/images-1-1-150x150.png' %}" alt="logo" class="img-responsive"/>
+                                            </div>
+                                            <div class="n-job-detail">
+                                            <ul class="list-inline">
+                                                <li class="n-job-title-box">
+                                                    <h4><a href="../job/color-consultant-fine-arts/index.html">Color Consultant (Fine Arts)</a></h4>
+                                                    <p> <a href="../search-page/indexec2c.html?job-location=132">Pakistan</a></p>
+                                                </li>
+                                                <li class="n-job-short">
+                                                    <span> <strong> Type :</strong>Full time</span>
+                                                    <span> <strong> Date :</strong> 2 years ago</span>
+                                                </li>
+                                                <li class="n-job-btns">
+                                                    <a href="javascript:void(0)" class="btn n-btn-rounded apply_job" data-toggle="modal" data-target="#myModal"  data-job-id =297>Apply Now </a>
+                                                    <a href="javascript:void(0)" class="n-job-saved save_job" data-value = "297"><i class="ti-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                        </div></div></div> </div></div><div class="tab-pane  animated fadeInDown" id="tab65">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                                        <div class="n-search-listing n-featured-jobs">
+                                    <div class="n-featured-job-boxes"><div class="n-job-single">
+                                            <div class="n-job-img">
+                                            <img src="{%  static  'img/09/jornadas-nutricao-2017-ULSNE-1-150x150.png' %}" alt="logo" class="img-responsive"/>
+                                            </div>
+                                            <div class="n-job-detail">
+                                            <ul class="list-inline">
+                                                <li class="n-job-title-box">
+                                                    <h4><a href="../job/rd-manager/index.html">R&#038;D Manager</a></h4>
+                                                    <p> <a href="../search-page/indexec2c.html?job-location=132">Pakistan</a></p>
+                                                </li>
+                                                <li class="n-job-short">
+                                                    <span> <strong> Type :</strong>Part time</span>
+                                                    <span> <strong> Date :</strong> 2 years ago</span>
+                                                </li>
+                                                <li class="n-job-btns">
+                                                    <a href="javascript:void(0)" class="btn n-btn-rounded apply_job" data-toggle="modal" data-target="#myModal"  data-job-id =324>Apply Now </a>
+                                                    <a href="javascript:void(0)" class="n-job-saved save_job" data-value = "324"><i class="ti-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                        </div><div class="n-job-single">
+                                            <div class="n-job-img">
+                                            <img src="{%  static  'img/09/06-150x150.png' %}" alt="logo" class="img-responsive"/>
+                                            </div>
+                                            <div class="n-job-detail">
+                                            <ul class="list-inline">
+                                                <li class="n-job-title-box">
+                                                    <h4><a href="../job/assistant-editor-real-estate-news/index.html">Assistant Editor, Real Estate News</a></h4>
+                                                    <p> <a href="../search-page/index1cb0.html?job-location=66">USA</a></p>
+                                                </li>
+                                                <li class="n-job-short">
+                                                    <span> <strong> Type :</strong>Full time</span>
+                                                    <span> <strong> Date :</strong> 2 years ago</span>
+                                                </li>
+                                                <li class="n-job-btns">
+                                                    <a href="javascript:void(0)" class="btn n-btn-rounded apply_job" data-toggle="modal" data-target="#myModal"  data-job-id =298>Apply Now </a>
+                                                    <a href="javascript:void(0)" class="n-job-saved save_job" data-value = "298"><i class="ti-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                        </div><div class="n-job-single">
+                                            <div class="n-job-img">
+                                            <img src="{%  static  'img/09/01-1.png' %}" alt="logo" class="img-responsive"/>
+                                            </div>
+                                            <div class="n-job-detail">
+                                            <ul class="list-inline">
+                                                <li class="n-job-title-box">
+                                                    <h4><a href="../job/seo-marketing-manager/index.html">SEO Marketing Manager</a></h4>
+                                                    <p> <a href="../search-page/index1cb0.html?job-location=66">USA</a></p>
+                                                </li>
+                                                <li class="n-job-short">
+                                                    <span> <strong> Type :</strong>Part time</span>
+                                                    <span> <strong> Date :</strong> 2 years ago</span>
+                                                </li>
+                                                <li class="n-job-btns">
+                                                    <a href="javascript:void(0)" class="btn n-btn-rounded apply_job" data-toggle="modal" data-target="#myModal"  data-job-id =294>Apply Now </a>
+                                                    <a href="javascript:void(0)" class="n-job-saved save_job" data-value = "294"><i class="ti-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                        </div><div class="n-job-single">
+                                            <div class="n-job-img">
+                                            <img src="{%  static  'img/09/01-1.png' %}" alt="logo" class="img-responsive"/>
+                                            </div>
+                                            <div class="n-job-detail">
+                                            <ul class="list-inline">
+                                                <li class="n-job-title-box">
+                                                    <h4><a href="../job/sr-mobile-application-developer/index.html">Sr. Mobile Application Developer</a></h4>
+                                                    <p> <a href="../search-page/index1cb0.html?job-location=66">USA</a></p>
+                                                </li>
+                                                <li class="n-job-short">
+                                                    <span> <strong> Type :</strong>Full time</span>
+                                                    <span> <strong> Date :</strong> 2 years ago</span>
+                                                </li>
+                                                <li class="n-job-btns">
+                                                    <a href="javascript:void(0)" class="btn n-btn-rounded apply_job" data-toggle="modal" data-target="#myModal"  data-job-id =285>Apply Now </a>
+                                                    <a href="javascript:void(0)" class="n-job-saved save_job" data-value = "285"><i class="ti-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                        </div></div></div> </div></div><div class="tab-pane  animated fadeInDown" id="tab64">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                                        <div class="n-search-listing n-featured-jobs">
+                                    <div class="n-featured-job-boxes"><div class="n-job-single">
+                                            <div class="n-job-img">
+                                            <img src="{%  static  'img/09/jornadas-nutricao-2017-ULSNE-1-150x150.png' %}" alt="logo" class="img-responsive"/>
+                                            </div>
+                                            <div class="n-job-detail">
+                                            <ul class="list-inline">
+                                                <li class="n-job-title-box">
+                                                    <h4><a href="../job/rd-manager/index.html">R&#038;D Manager</a></h4>
+                                                    <p> <a href="../search-page/indexec2c.html?job-location=132">Pakistan</a></p>
+                                                </li>
+                                                <li class="n-job-short">
+                                                    <span> <strong> Type :</strong>Part time</span>
+                                                    <span> <strong> Date :</strong> 2 years ago</span>
+                                                </li>
+                                                <li class="n-job-btns">
+                                                    <a href="javascript:void(0)" class="btn n-btn-rounded apply_job" data-toggle="modal" data-target="#myModal"  data-job-id =324>Apply Now </a>
+                                                    <a href="javascript:void(0)" class="n-job-saved save_job" data-value = "324"><i class="ti-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                        </div><div class="n-job-single">
+                                            <div class="n-job-img">
+                                            <img src="{%  static  'img/09/01-2-1-150x150.png' %}" alt="logo" class="img-responsive"/>
+                                            </div>
+                                            <div class="n-job-detail">
+                                            <ul class="list-inline">
+                                                <li class="n-job-title-box">
+                                                    <h4><a href="../job/looking-for-hr-manager-junior/index.html">Looking for HR Manager (junior)</a></h4>
+                                                    <p> <a href="../search-page/index2f7a.html?job-location=73">UAE</a></p>
+                                                </li>
+                                                <li class="n-job-short">
+                                                    <span> <strong> Type :</strong>Full time</span>
+                                                    <span> <strong> Date :</strong> 2 years ago</span>
+                                                </li>
+                                                <li class="n-job-btns">
+                                                    <a href="javascript:void(0)" class="btn n-btn-rounded apply_job" data-toggle="modal" data-target="#myModal"  data-job-id =320>Apply Now </a>
+                                                    <a href="javascript:void(0)" class="n-job-saved save_job" data-value = "320"><i class="ti-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                        </div><div class="n-job-single">
+                                            <div class="n-job-img">
+                                            <img src="{%  static  'img/09/05-1.png' %}" alt="logo" class="img-responsive"/>
+                                            </div>
+                                            <div class="n-job-detail">
+                                            <ul class="list-inline">
+                                                <li class="n-job-title-box">
+                                                    <h4><a href="../job/data-entry-clerk-work-from-home/index.html">Data Entry Clerk &#8211; Work from Home</a></h4>
+                                                    <p> <a href="../search-page/index1cb0.html?job-location=66">USA</a></p>
+                                                </li>
+                                                <li class="n-job-short">
+                                                    <span> <strong> Type :</strong>Part time</span>
+                                                    <span> <strong> Date :</strong> 2 years ago</span>
+                                                </li>
+                                                <li class="n-job-btns">
+                                                    <a href="javascript:void(0)" class="btn n-btn-rounded apply_job" data-toggle="modal" data-target="#myModal"  data-job-id =269>Apply Now </a>
+                                                    <a href="javascript:void(0)" class="n-job-saved save_job" data-value = "269"><i class="ti-heart"></i></a>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                        </div></div></div> </div></div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <div class="featured-job-slider-sidebar">
+                                <h4 class="featured-job-sidebar-heading-title">Premium Jobs</h4>
+                                <div class="featured-job-slider owl-carousel owl-theme">
+                                <div class="item"><div class="featured-image-box">
+                                    <div class="img-box"><img src="{%  static  'img/09/01-2-1-150x150.png' %}" class="img-responsive center-block" alt="logo"/></div>
+                                    <div class="content-area">
+                                        <div class="">
+                                        <h4><a href="../job/assistant-editor/index.html">Assistant Editor</a></h4>
+                                        <p> <a href="../search-page/index8a52.html?job-location=76">Germany</a></p>
+                                        </div>
+                                        <div class="feature-post-meta"> <a href="#"> <i class="fa fa-clock-o"></i>  2 years ago</a><a href="../search-page/index0162.html?job_type=21" class="label part-time"  style= "background-color: #ff3f3f;  color: #fff;">Contract</a></div>
+                                        <div class="feature-post-meta-bottom"> <span> Pound 3000-4000 / Weekly</span>  </div>
+                                    </div>
+                                    </div><div class="featured-image-box">
+                                    <div class="img-box"><img src="{%  static  'img/09/jornadas-nutricao-2017-ULSNE-1-150x150.png' %}" class="img-responsive center-block" alt="logo"/></div>
+                                    <div class="content-area">
+                                        <div class="">
+                                        <h4><a href="../job/rd-manager/index.html">R&#038;D Manager</a></h4>
+                                        <p> <a href="../search-page/indexec2c.html?job-location=132">Pakistan</a></p>
+                                        </div>
+                                        <div class="feature-post-meta"> <a href="#"> <i class="fa fa-clock-o"></i>  2 years ago</a><a href="../search-page/indexc743.html?job_type=24" class="label part-time"  style= "background-color: #dd9933;  color: #fff;">Part time</a></div>
+                                        <div class="feature-post-meta-bottom"> <span> Rupees 2000-3000 / Hourly</span>  </div>
+                                    </div>
+                                    </div></div><div class="item"><div class="featured-image-box">
+                                    <div class="img-box"><img src="{%  static  'img/09/01-2-1-150x150.png' %}" class="img-responsive center-block" alt="logo"/></div>
+                                    <div class="content-area">
+                                        <div class="">
+                                        <h4><a href="../job/looking-for-hr-manager-junior/index.html">Looking for HR Manager (junior)</a></h4>
+                                        <p> <a href="../search-page/index2f7a.html?job-location=73">UAE</a></p>
+                                        </div>
+                                        <div class="feature-post-meta"> <a href="#"> <i class="fa fa-clock-o"></i>  2 years ago</a><a href="../search-page/index091e.html?job_type=20" class="label part-time"  style= "background-color: #d8570d;  color: #fff;">Full time</a></div>
+                                        <div class="feature-post-meta-bottom"> <span> Dollar 1000-2000 / Weekly</span>  </div>
+                                    </div>
+                                    </div><div class="featured-image-box">
+                                    <div class="img-box"><img src="{%  static  'images/candidate-dp.jpg' %}" class="img-responsive center-block" alt="logo"/></div>
+                                    <div class="content-area">
+                                        <div class="">
+                                        <h4><a href="../job/network-assistant-manager/index.html">Network Assistant Manager</a></h4>
+                                        <p> <a href="../search-page/index8a52.html?job-location=76">Germany</a></p>
+                                        </div>
+                                        <div class="feature-post-meta"> <a href="#"> <i class="fa fa-clock-o"></i>  2 years ago</a><a href="../search-page/index0162.html?job_type=21" class="label part-time"  style= "background-color: #ff3f3f;  color: #fff;">Contract</a></div>
+                                        <div class="feature-post-meta-bottom"> <span> Aed 1000-2000 / Yearly</span>  </div>
+                                    </div>
+                                    </div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+
+{% endblock %}

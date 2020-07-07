@@ -1,0 +1,423 @@
+{% extends "base.html" %}
+{% load static %}
+{% block nav %}
+<nav id="menu-1" class="mega-menu fa-change-black n-header-trabsparent as-breadcrumb" style=" background: url({% static 'img/4.png' %});  background-repeat: no-repeat; background-size: cover;  background-position: center center;  background-attachment: scroll; ">  
+{% endblock %} 
+{% block content %}
+<div>
+    {% if messages %}
+    <ul class="messages">
+        {% for k in messages %}
+        <li style="color:blueviolet">{{k}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div><br>
+
+<section class="n-search-page">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+             <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                   <aside class="new-sidebar">
+                      <div class="heading">
+                         <h4> Search Filters</h4>
+                         <a href="index.html">Clear All</a>
+                      </div>
+                      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                         
+                        <div class="panel panel-default">
+                            <div class="panel-heading active" role="tab">
+                                <a role="button" class="" data-toggle="collapse" href="#search-widget">
+                                    Search by Keywords            </a>
+                            </div>
+                            <div id="search-widget" class="panel-collapse collapse in" role="tabpanel" >
+                                <div class="panel-body">
+                                <form role="search" method="get" action = "https://jobs.nokriwp.com/search-page/">
+                                    <div class="form-group">
+                                            <input type="text" class="form-control" value="" name="job-title" placeholder="Search Here">
+                                    </div>
+                                    <div class="form-group form-action">
+                                        <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading active" role="tab" >
+                                <a role="button" class="" data-toggle="collapse" href="#collapse-job_category">
+                                    Search by Category
+                            	</a>
+                            </div>
+                            <div id="collapse-job_category"  class="panel-collapse collapse in" role="tabpanel" >
+                                <div class="panel-body">
+                                    <form method="get" id="search_form" action="https://jobs.nokriwp.com/search-page/">
+                                        <div class="cp-loader"></div>
+                                        <div class="form-group">
+                                            <select class="questions-category form-control" data-parsley-required="true" id="make_id">
+                                                <option value="asa">Select an option</option>
+                                                <option value="80" >Automotive</option>
+                                                <option value="88" >Construction</option>
+                                                <option value="18" >Consultant</option>
+                                                <option value="11" >Customer Service</option>
+                                                <option value="8" >Designer</option>
+                                                <option value="204" >Development</option>
+                                                <option value="84" >Digital Service</option>
+                                                <option value="83" >Education</option>
+                                                <option value="13" >Engineering</option>
+                                                <option value="16" >Fitness Trainer</option>
+                                                <option value="86" >Food Service</option>
+                                                <option value="81" >Health and Care</option>
+                                                <option value="15" >HR</option>
+                                                <option value="12" >Human Resource</option>
+                                                <option value="79" >Industry</option>
+                                                <option value="9" >Information Technology</option>
+                                                <option value="10" >Marketing</option>
+                                                <option value="17" >Networking</option>
+                                                <option value="85" >Other Services</option>
+                                                <option value="14" >Security</option>
+                                                <option value="87" >Web Designer</option>
+                                                <option value="82" >Web Development</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group" id="select_modal">
+                
+                                        </div>
+                                        <div id="select_modals" class="form-group">
+                                        
+                                        </div>
+                                        <div id="select_forth_div" class="margin-top-10">
+                                        
+                                        </div>
+                                        <div class="form-group form-action">
+                                        </div>
+                                        <input type="button" class="btn n-btn-flat btn-mid" id="category_search" value="Search">
+                                        <input type="hidden" name="cat-id" id="cat_id" value="" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading active" role="tab" >
+                                <h4 class="panel-title">
+                                    <a class="" role="button" data-toggle="collapse" href="#collapse-job_type" >
+                                        Job Type	
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse-job_type" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                        <ul class="list">
+                                            <li class=""><input class="input-icheck-search change_select" value = "19" name = "job_type" type="radio"  ><label>Freelance</label></li><li class=""><input class="input-icheck-search change_select" value = "20" name = "job_type" type="radio"  ><label>Full time</label></li><li class=""><input class="input-icheck-search change_select" value = "21" name = "job_type" type="radio"  ><label>Contract</label></li><li class="hide_nexts hide_nexts-job_type"><input class="input-icheck-search change_select" value = "22" name = "job_type" type="radio"  ><label>Internship</label></li><li class="hide_nexts hide_nexts-job_type"><input class="input-icheck-search change_select" value = "23" name = "job_type" type="radio"  ><label>Temporary</label></li><li class="hide_nexts hide_nexts-job_type"><input class="input-icheck-search change_select" value = "24" name = "job_type" type="radio"  ><label>Part time</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_type">Show more</a></small><li>
+                                        </ul>
+                                          
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                                       <div class="panel-heading active" role="tab" >
+                                         <h4 class="panel-title">
+                                           <a class="" role="button" data-toggle="collapse" href="#collapse-job_qualifications" >												Job Qualification	
+                                           </a>
+                                         </h4>
+                                       </div>
+                                       <div id="collapse-job_qualifications" class="panel-collapse collapse in">
+                                         <div class="panel-body">
+                                         <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                           <ul class="list">
+                                             <li class=""><input class="input-icheck-search change_select" value = "103" name = "job_qualifications" type="radio"  ><label>Bachelor</label></li><li class=""><input class="input-icheck-search change_select" value = "104" name = "job_qualifications" type="radio"  ><label>Master</label></li><li class=""><input class="input-icheck-search change_select" value = "105" name = "job_qualifications" type="radio"  ><label>PHD</label></li>
+                                          </ul>
+                                          
+                                         </form>
+                                         </div>
+                                       </div>
+                        </div>
+                        <div class="panel panel-default">
+                                       <div class="panel-heading active" role="tab" >
+                                         <h4 class="panel-title">
+                                           <a class="" role="button" data-toggle="collapse" href="#collapse-job_level" >
+                                               Job Level	
+                                           </a>
+                                         </h4>
+                                       </div>
+                                       <div id="collapse-job_level" class="panel-collapse collapse in">
+                                         <div class="panel-body">
+                                         <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                           <ul class="list">
+                                             <li class=""><input class="input-icheck-search change_select" value = "25" name = "job_level" type="radio"  ><label>Manager</label></li><li class=""><input class="input-icheck-search change_select" value = "26" name = "job_level" type="radio"  ><label>Officer</label></li><li class=""><input class="input-icheck-search change_select" value = "27" name = "job_level" type="radio"  ><label>Student</label></li><li class="hide_nexts hide_nexts-job_level"><input class="input-icheck-search change_select" value = "28" name = "job_level" type="radio"  ><label>Executive</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_level">Show more</a></small><li>
+                                          </ul>
+                                          
+                                         </form>
+                                         </div>
+                                       </div>
+                        </div>
+                        <div class="panel panel-default">
+                                       <div class="panel-heading active" role="tab" >
+                                         <h4 class="panel-title">
+                                           <a class="" role="button" data-toggle="collapse" href="#collapse-job_salary_type" >
+                                               Salary Type	
+                                           </a>
+                                         </h4>
+                                       </div>
+                                       <div id="collapse-job_salary_type" class="panel-collapse collapse in">
+                                         <div class="panel-body">
+                                         <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                           <ul class="list">
+                                             <li class=""><input class="input-icheck-search change_select" value = "34" name = "job_salary_type" type="radio"  ><label>Monthly</label></li><li class=""><input class="input-icheck-search change_select" value = "35" name = "job_salary_type" type="radio"  ><label>Weekly</label></li><li class=""><input class="input-icheck-search change_select" value = "36" name = "job_salary_type" type="radio"  ><label>Hourly</label></li><li class="hide_nexts hide_nexts-job_salary_type"><input class="input-icheck-search change_select" value = "37" name = "job_salary_type" type="radio"  ><label>Yearly</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_salary_type">Show more</a></small><li>
+                                          </ul>
+                                          
+                                         </form>
+                                         </div>
+                                       </div>
+                        </div>
+                        <div class="panel panel-default">
+                                       <div class="panel-heading active" role="tab" >
+                                         <h4 class="panel-title">
+                                           <a class="" role="button" data-toggle="collapse" href="#collapse-job_salary" >
+                                               Job Salary	
+                                           </a>
+                                         </h4>
+                                       </div>
+                                       <div id="collapse-job_salary" class="panel-collapse collapse in">
+                                         <div class="panel-body">
+                                         <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                           <ul class="list">
+                                             <li class=""><input class="input-icheck-search change_select" value = "29" name = "job_salary" type="radio"  ><label>0-1000</label></li><li class=""><input class="input-icheck-search change_select" value = "30" name = "job_salary" type="radio"  ><label>1000-2000</label></li><li class=""><input class="input-icheck-search change_select" value = "31" name = "job_salary" type="radio"  ><label>2000-3000</label></li><li class="hide_nexts hide_nexts-job_salary"><input class="input-icheck-search change_select" value = "32" name = "job_salary" type="radio"  ><label>3000-4000</label></li><li class="hide_nexts hide_nexts-job_salary"><input class="input-icheck-search change_select" value = "33" name = "job_salary" type="radio"  ><label>4000-5000</label></li><li class="hide_nexts hide_nexts-job_salary"><input class="input-icheck-search change_select" value = "222" name = "job_salary" type="radio"  ><label>7000-8000</label></li><li class="hide_nexts hide_nexts-job_salary"><input class="input-icheck-search change_select" value = "223" name = "job_salary" type="radio"  ><label>8000-9000</label></li><li class="hide_nexts hide_nexts-job_salary"><input class="input-icheck-search change_select" value = "228" name = "job_salary" type="radio"  ><label>10000-12000</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_salary">Show more</a></small><li>
+                                          </ul>
+                                          
+                                         </form>
+                                         </div>
+                                       </div>
+                        </div>
+                        <div class="panel panel-default">
+                                       <div class="panel-heading active" role="tab" >
+                                         <h4 class="panel-title">
+                                           <a class="" role="button" data-toggle="collapse" href="#collapse-job_skills" >
+                                               Job Skills	
+                                           </a>
+                                         </h4>
+                                       </div>
+                                       <div id="collapse-job_skills" class="panel-collapse collapse in">
+                                         <div class="panel-body">
+                                         <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                           <ul class="list">
+                                             <li class=""><input class="input-icheck-search change_select" value = "38" name = "job_skills" type="radio"  ><label>Php</label></li><li class=""><input class="input-icheck-search change_select" value = "39" name = "job_skills" type="radio"  ><label>JS</label></li><li class=""><input class="input-icheck-search change_select" value = "40" name = "job_skills" type="radio"  ><label>Designing</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "41" name = "job_skills" type="radio"  ><label>Application development</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "42" name = "job_skills" type="radio"  ><label>Arts</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "43" name = "job_skills" type="radio"  ><label>Painting</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "44" name = "job_skills" type="radio"  ><label>Development</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "45" name = "job_skills" type="radio"  ><label>Modeling</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "46" name = "job_skills" type="radio"  ><label>Architecture</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "114" name = "job_skills" type="radio"  ><label>Management</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "127" name = "job_skills" type="radio"  ><label>SEO</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "128" name = "job_skills" type="radio"  ><label>SMM</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "144" name = "job_skills" type="radio"  ><label>Culinary Arts</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "145" name = "job_skills" type="radio"  ><label>Peruvian Cuisine</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "151" name = "job_skills" type="radio"  ><label>Team Management</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "152" name = "job_skills" type="radio"  ><label>patience</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "153" name = "job_skills" type="radio"  ><label>Commitment</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "154" name = "job_skills" type="radio"  ><label>Team Work</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "155" name = "job_skills" type="radio"  ><label>Flexibility</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "156" name = "job_skills" type="radio"  ><label>Stress Management</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "163" name = "job_skills" type="radio"  ><label>Education</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "171" name = "job_skills" type="radio"  ><label>Analytical skills</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "172" name = "job_skills" type="radio"  ><label>trainings</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "173" name = "job_skills" type="radio"  ><label>communication skills</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "191" name = "job_skills" type="radio"  ><label>Food Products</label></li><li class="hide_nexts hide_nexts-job_skills"><input class="input-icheck-search change_select" value = "198" name = "job_skills" type="radio"  ><label>cooking</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_skills">Show more</a></small><li>
+                                          </ul>
+                                          
+                                         </form>
+                                         </div>
+                                       </div>
+                        </div>
+                        <div class="panel panel-default">
+                                       <div class="panel-heading active" role="tab" >
+                                         <h4 class="panel-title">
+                                           <a class="" role="button" data-toggle="collapse" href="#collapse-job_experience" >
+                                               Job Experience	
+                                           </a>
+                                         </h4>
+                                       </div>
+                                       <div id="collapse-job_experience" class="panel-collapse collapse in">
+                                         <div class="panel-body">
+                                         <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                           <ul class="list">
+                                             <li class=""><input class="input-icheck-search change_select" value = "47" name = "job_experience" type="radio"  ><label>Fresh</label></li><li class=""><input class="input-icheck-search change_select" value = "48" name = "job_experience" type="radio"  ><label>1 year</label></li><li class=""><input class="input-icheck-search change_select" value = "49" name = "job_experience" type="radio"  ><label>2 year</label></li><li class="hide_nexts hide_nexts-job_experience"><input class="input-icheck-search change_select" value = "50" name = "job_experience" type="radio"  ><label>3 year</label></li><li class="hide_nexts hide_nexts-job_experience"><input class="input-icheck-search change_select" value = "51" name = "job_experience" type="radio"  ><label>4 year</label></li><li class="hide_nexts hide_nexts-job_experience"><input class="input-icheck-search change_select" value = "52" name = "job_experience" type="radio"  ><label>5 year</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_experience">Show more</a></small><li>
+                                          </ul>
+                                          
+                                         </form>
+                                         </div>
+                                       </div>
+                        </div>
+                        <div class="panel panel-default">
+                                       <div class="panel-heading active" role="tab" >
+                                         <h4 class="panel-title">
+                                           <a class="" role="button" data-toggle="collapse" href="#collapse-job_currency" >
+                                               Job Currency	
+                                           </a>
+                                         </h4>
+                                       </div>
+                                       <div id="collapse-job_currency" class="panel-collapse collapse in">
+                                         <div class="panel-body">
+                                         <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                           <ul class="list">
+                                             <li class=""><input class="input-icheck-search change_select" value = "53" name = "job_currency" type="radio"  ><label>Dollar</label></li><li class=""><input class="input-icheck-search change_select" value = "54" name = "job_currency" type="radio"  ><label>Rupees</label></li><li class=""><input class="input-icheck-search change_select" value = "55" name = "job_currency" type="radio"  ><label>Pound</label></li><li class="hide_nexts hide_nexts-job_currency"><input class="input-icheck-search change_select" value = "56" name = "job_currency" type="radio"  ><label>Aed</label></li><li class="hide_nexts hide_nexts-job_currency"><input class="input-icheck-search change_select" value = "57" name = "job_currency" type="radio"  ><label>Euro</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_currency">Show more</a></small><li>
+                                          </ul>
+                                          
+                                         </form>
+                                         </div>
+                                       </div>
+                        </div>
+                        <div class="panel panel-default">
+                                       <div class="panel-heading active" role="tab" >
+                                         <h4 class="panel-title">
+                                           <a class="" role="button" data-toggle="collapse" href="#collapse-job_shift" >
+                                               Job Shift	
+                                           </a>
+                                         </h4>
+                                       </div>
+                                       <div id="collapse-job_shift" class="panel-collapse collapse in">
+                                         <div class="panel-body">
+                                         <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                           <ul class="list">
+                                             <li class=""><input class="input-icheck-search change_select" value = "58" name = "job_shift" type="radio"  ><label>Morning</label></li><li class=""><input class="input-icheck-search change_select" value = "59" name = "job_shift" type="radio"  ><label>Evening</label></li><li class=""><input class="input-icheck-search change_select" value = "60" name = "job_shift" type="radio"  ><label>Night</label></li><li class="hide_nexts hide_nexts-job_shift"><input class="input-icheck-search change_select" value = "61" name = "job_shift" type="radio"  ><label>Round</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_shift">Show more</a></small><li>
+                                          </ul>
+                                          
+                                         </form>
+                                         </div>
+                                       </div>
+                        </div>
+                        <div class="panel panel-default">
+                                       <div class="panel-heading active" role="tab" >
+                                         <h4 class="panel-title">
+                                           <a class="" role="button" data-toggle="collapse" href="#collapse-job_tags" >
+                                               Job Tags	
+                                           </a>
+                                         </h4>
+                                       </div>
+                                       <div id="collapse-job_tags" class="panel-collapse collapse in">
+                                         <div class="panel-body">
+                                         <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                           <ul class="list">
+                                             <li class=""><input class="input-icheck-search change_select" value = "108" name = "job_tags" type="radio"  ><label>marketting</label></li><li class=""><input class="input-icheck-search change_select" value = "109" name = "job_tags" type="radio"  ><label>working</label></li><li class=""><input class="input-icheck-search change_select" value = "110" name = "job_tags" type="radio"  ><label>sales</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "111" name = "job_tags" type="radio"  ><label>data entry</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "112" name = "job_tags" type="radio"  ><label>work at ome</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "113" name = "job_tags" type="radio"  ><label>fresher can apply</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "117" name = "job_tags" type="radio"  ><label>manager</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "118" name = "job_tags" type="radio"  ><label>Designs</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "119" name = "job_tags" type="radio"  ><label>IOS</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "120" name = "job_tags" type="radio"  ><label>DEVELOPER</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "121" name = "job_tags" type="radio"  ><label>ANDRIOD</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "122" name = "job_tags" type="radio"  ><label>seo</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "123" name = "job_tags" type="radio"  ><label>smm</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "124" name = "job_tags" type="radio"  ><label>sme</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "125" name = "job_tags" type="radio"  ><label>smo</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "126" name = "job_tags" type="radio"  ><label>marketing</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "129" name = "job_tags" type="radio"  ><label>Hardware</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "130" name = "job_tags" type="radio"  ><label>design</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "131" name = "job_tags" type="radio"  ><label>development</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "136" name = "job_tags" type="radio"  ><label>color</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "137" name = "job_tags" type="radio"  ><label>arts</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "138" name = "job_tags" type="radio"  ><label>paints</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "139" name = "job_tags" type="radio"  ><label>Assistant</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "140" name = "job_tags" type="radio"  ><label>executive</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "141" name = "job_tags" type="radio"  ><label>motors</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "142" name = "job_tags" type="radio"  ><label>customer service</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "143" name = "job_tags" type="radio"  ><label>customer care</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "146" name = "job_tags" type="radio"  ><label>Rms</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "147" name = "job_tags" type="radio"  ><label>officer</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "148" name = "job_tags" type="radio"  ><label>oracle</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "149" name = "job_tags" type="radio"  ><label>specialist</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "150" name = "job_tags" type="radio"  ><label>test</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "157" name = "job_tags" type="radio"  ><label>Sterilization</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "158" name = "job_tags" type="radio"  ><label>Technician</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "159" name = "job_tags" type="radio"  ><label>web</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "160" name = "job_tags" type="radio"  ><label>php</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "161" name = "job_tags" type="radio"  ><label>designing</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "162" name = "job_tags" type="radio"  ><label>back-end</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "164" name = "job_tags" type="radio"  ><label>js</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "165" name = "job_tags" type="radio"  ><label>my sql</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "166" name = "job_tags" type="radio"  ><label>linux</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "167" name = "job_tags" type="radio"  ><label>it staff</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "168" name = "job_tags" type="radio"  ><label>IT Assistant</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "169" name = "job_tags" type="radio"  ><label>Information tech</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "170" name = "job_tags" type="radio"  ><label>HR</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "192" name = "job_tags" type="radio"  ><label>R&amp;D manager</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "193" name = "job_tags" type="radio"  ><label>food service</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "194" name = "job_tags" type="radio"  ><label>sql</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "195" name = "job_tags" type="radio"  ><label>jquery</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "196" name = "job_tags" type="radio"  ><label>HTML</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "199" name = "job_tags" type="radio"  ><label>chef</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "200" name = "job_tags" type="radio"  ><label>Continental</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "201" name = "job_tags" type="radio"  ><label>fast food</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "202" name = "job_tags" type="radio"  ><label>backup engineer</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "211" name = "job_tags" type="radio"  ><label>tag</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "212" name = "job_tags" type="radio"  ><label>W</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "213" name = "job_tags" type="radio"  ><label>P</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "214" name = "job_tags" type="radio"  ><label>ETC</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "215" name = "job_tags" type="radio"  ><label>editor</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "216" name = "job_tags" type="radio"  ><label>asdad</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "217" name = "job_tags" type="radio"  ><label>sdfsf</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "218" name = "job_tags" type="radio"  ><label>фывфыв</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "219" name = "job_tags" type="radio"  ><label>dfgdfg</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "220" name = "job_tags" type="radio"  ><label>1111111111111</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "231" name = "job_tags" type="radio"  ><label>dam</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "234" name = "job_tags" type="radio"  ><label>sfd</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "235" name = "job_tags" type="radio"  ><label>dam DEVELOPER HTML jquery php sql web</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "236" name = "job_tags" type="radio"  ><label>fd</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "237" name = "job_tags" type="radio"  ><label>مطلوب مهندسين</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "238" name = "job_tags" type="radio"  ><label>ac</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "239" name = "job_tags" type="radio"  ><label>ab</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "240" name = "job_tags" type="radio"  ><label>av</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "241" name = "job_tags" type="radio"  ><label>abc</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "242" name = "job_tags" type="radio"  ><label>anb</label></li><li class="hide_nexts hide_nexts-job_tags"><input class="input-icheck-search change_select" value = "243" name = "job_tags" type="radio"  ><label>fefd</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_tags">Show more</a></small><li>
+                                          </ul>
+                                          
+                                         </form>
+                                         </div>
+                                       </div>
+                        </div>
+                        <div class="panel panel-default">
+                                       <div class="panel-heading active" role="tab" >
+                                         <h4 class="panel-title">
+                                           <a class="" role="button" data-toggle="collapse" href="#collapse-job_class" >
+                                               Job Class	
+                                           </a>
+                                         </h4>
+                                       </div>
+                                <div id="collapse-job_class" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                           <ul class="list">
+                                             <li class=""><input class="input-icheck-search change_select" value = "63" name = "job_class" type="radio"  ><label>Feature</label></li><li class=""><input class="input-icheck-search change_select" value = "64" name = "job_class" type="radio"  ><label>Urgent</label></li><li class="hide_nexts hide_nexts-job_class"><input class="input-icheck-search change_select" value = "65" name = "job_class" type="radio"  ><label>Private</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_class">Show more</a></small><li>
+                                          </ul>
+                                          
+                                        </form>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="panel panel-default">
+                                <div class="panel-heading active" role="tab" >
+                                    <a class="" role="button" data-toggle="collapse" href="#location_search">
+                                        Location                </a>
+                                </div>
+                                <div id="location_search"  class="panel-collapse collapse in" role="tabpanel">
+                                    <div class="panel-body">
+                                        <form method="get" id="search_form" action="https://jobs.nokriwp.com/search-page/">
+                                            <div class="cp-loader"></div>
+                                            <div class="form-group">
+                                                <select class="questions-category form-control" data-parsley-required="true" id="countries_id" >
+                                                    <option value="0">Select an option</option><option value="116" >Australia</option><option value="76" >Germany</option><option value="70" >India</option><option value="72" >New delhi</option><option value="132" >Pakistan</option><option value="73" >UAE</option><option value="66" >USA</option>            </select>
+                                            </div>
+                                                <div class="form-group" id="select_modal_countries"></div>
+                                                <div id="select_modals_state" class="form-group"></div>
+                                                <div id="select_forth_div_city" class="margin-top-10"></div>
+                                                <div class="form-group form-action">
+                                                </div>
+                                                    <input type="button" class="btn n-btn-flat btn-mid location_search" id="location_search_btn" value="Search">
+                                                    <input type="hidden" name="job-location" id="location_id" value="" />
+                                        </form>
+                                    </div>
+                                </div>
+                        </div>      
+                    </div>
+                </aside>
+            </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                   <div class="n-search-main">
+                        <div class="n-bread-crumb">
+                            <ol class="breadcrumb">
+                                <li> <a href="javascript:void(0)">Home</a></li>
+                                <li class="active"><a href="javascript:void(0);" class="active">Search Page</a></li>
+                            </ol>
+                        </div>
+                        <div class="heading-area">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                <h4>Available Jobs ({{  sr.count }})</h4>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                <form method="GET" id="job_order_search">
+                                    <select class="js-example-basic-single form-control change_order" data-allow-clear="true" data-placeholder="Select Option" style="width: 100%" name="order_job">
+                                        <option value="" >Select Option</option>
+                                        <option value="ASC" >Ascending</option>
+                                    <option value="DESC" selected>Descending </option>
+                                    </select>
+                                                                </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jobs-alert-box">
+                            <div class="row">
+                                <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                                      <span>Job alerts</span>
+                                      <p>Receive emails for the latest jobs matching your search criteria</p>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                                    <a href="javascript:void(0)" class="btn n-btn-flat job_alert">Job Alerts</a>
+                                </div>
+                            </div>
+                        </div>
+                      
+                      
+                        <div class="n-search-listing n-featured-jobs">
+                            <div class="n-featured-job-boxes">
+                                    {% if sr %}
+                                        {% for k in sr %}
+                                            <div class="n-job-single featured-box">
+                                            <div class="n-job-img"><img src="../wp-content/themes/nokri/images/candidate-dp.jpg" alt="image" class="img-responsive"></div>
+                                            <div class="n-job-detail">
+                                            <div class="features-star-2"><i class="fa fa-star"></i></div>
+                                                <ul class="list-inline">
+                                                    <li class="n-job-title-box">
+                                                        <h4><a href="../job/network-assistant-manager/index.html">{{k.JobTitle}}</a></h4>
+                                                        <p>
+                                                        <span><i class="ti-location-pin"></i> <a href="index8a52.html?job-location=76">Germany</a></span><span><i class="ti-tag"></i> <a href="index23bc.html?cat-id=9">Information Technology</a></span>
+                                                        </p>
+                                                        <ul class="featured-badge-list"><li style=" background-color: rgba(250,122,86,0.2) !important;"><a href="index701b.html?job_class=63" class="job-class-tags-anchor" style="color: #fa7a56 !important;">Feature</a></li></ul>
+                                                    </li>
+                                                    <li class="n-job-short">
+                                                        <span> <strong>Job type</strong>Contract</span>
+                                                        <span> <strong>Company:</strong> {{k.CompanyName }}</span>
+                                                    </li>
+                                                    <li class="n-job-btns">
+                                                        <a href="{% url 'applyjob' k.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Apply now</button> </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                <div class="clearfix"></div>
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                      <li><span aria-current="page" class="page-numbers current">1</span></li>
+                                      {% if sr.count > 15 %}
+                                      <li><a class="page-numbers" href="page/2/index.html">2</a></li>
+                                      <li><a class="next page-numbers" href="page/2/index.html">Next >></a></li>
+                                      {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+</section>
+{%endblock content%}

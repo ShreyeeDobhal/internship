@@ -1,0 +1,48 @@
+{% extends "employee/index.html" %}
+{% load static %}
+{% block dash %}
+
+<div class="col-lg-7 col-md-9 col-sm-12 col-xs-12 col-lg-pull-3 col-lg-offset-0 col-md-offset-3">
+    <div class="main-body">
+<div class="cp-loader"></div>
+<div class="dashboard-job-stats">
+<div class="dashboard-job-filters">
+<div class="row">
+<div class="col-md-7 col-xs-12 col-sm-6">
+<h4>Your applied jobs</h4>
+</div>
+<div class="col-md-5 col-xs-12 col-sm-4">
+<div class="form-group">
+    <form role="search" id="job_search" method="get" class="searchform ">
+         <input type="hidden" name="candidate-page" value="jobs-applied">
+        <input type="text" class="form-control" name="job_name" value="" placeholder="Keyword or name">
+        <a href="javascript:void(0)" class="a-btn no-top search_aplied_job"><i class="ti-search"></i></a>
+                                </form>
+</div>
+</div>  
+</div>
+</div>
+<div class="dashboard-posted-jobs">
+<div class="posted-job-list jobs-saved header-title">
+<ul class="list-inline">
+
+<li class="posted-job-title">Title</li>
+<li class="posted-job-status">Status</li>            
+<li class="posted-job-status">Type</li>
+<li class="posted-job-expiration">Applied on</li>
+<li class="posted-job-expiration">Detail </li>
+</ul>
+</div>
+<div class="dashboard-posted-jobs">
+<div class="notification-box">
+<div class="notification-box-icon"><span class="ti-info-alt"></span></div>
+<h4>You have not applied for any job yet</h4>
+</div>
+</div>
+</div>
+<div class="pagination-box clearfix">
+</div>                        </div>
+                       </div>
+</div>
+
+{% endblock %}

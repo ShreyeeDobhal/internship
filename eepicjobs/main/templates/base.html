@@ -1,0 +1,291 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <style>
+        .light-grey {
+            background-color: #a4d5ec !important;
+        }
+        .vc_row.container {
+            margin: 0 auto !important;
+            padding:0;
+        }
+    </style>
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    <title>EEPIC JOBS</title>
+    <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <link rel="canonical" href="index.html" />
+    <link rel='stylesheet' id='bootstrap-theme-css'  href="{% static 'css/bootstrap.min1852.css' %}" type='text/css' media='all' />
+    <link rel='stylesheet' id='megamenu-css'  href="{% static 'css/mega_menu.min1852.css' %}" type='text/css' media='all' />
+
+    <link rel='stylesheet' id='animate-min-css'  href="{% static 'css/animate.min1852.css' %}" type='text/css' media='all' />
+    <link rel='stylesheet' id='owl-carousel-css'  href="{% static 'css/owl.carousel1852.css' %}" type='text/css' media='all' />
+    <link rel='stylesheet' id='owl-theme-css'  href="{% static 'css/owl.theme.default1852.css' %}" type='text/css' media='all' />
+    <link rel='stylesheet' id='nokri-modern-css'  href="{% static 'css/modern1852.css' %}" type='text/css' media='all' />
+
+    <link rel='stylesheet' id='nokri-theme-style-css'  href="{% static 'css/theme1852.css' %}" type='text/css' media='all' />
+    <link rel='stylesheet' id='nokri-theme-style-css'  href="{% static 'css/custom1852.css' %}" type='text/css' media='all' />
+
+    <link rel='stylesheet' id='wp-block-library-css'  href='../wp-includes/css/dist/block-library/style.min1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css'  href='../wp-includes/css/dashicons.min1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='post-views-counter-frontend-css'  href="{% static 'plugins/post-views-counter/css/frontende7f0.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='leaflet-css'  href="{% static 'assets/leaflet/leaflet1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='leaflet-search-css'  href="{% static 'assets/leaflet/leaflet-search.min1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='perfect-scrollbar-css'  href="{% static 'css/perfect-scrollbar1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='nokri-style-css'  href="{% static 'style1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-theme-css'  href="{% static 'css/bootstrap.min1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='megamenu-css'  href="{% static 'css/mega_menu.min1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='animate-min-css'  href="{% static 'css/animate.min1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='owl-carousel-css'  href="{% static 'css/owl.carousel1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='owl-theme-css'  href="{% static 'css/owl.theme.default1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='et-line-fonts-css'  href="{% static 'css/et-line-fonts1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='nokri-woo-css'  href="{% static 'css/woocommerce1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-te-css'  href="{% static 'css/jquery-te1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href="{% static 'plugins/js_composer/assets/lib/bower/font-awesome/css/font-awesome.min52c7.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='line-awesome-css'  href="{% static 'css/line-awesome.min1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-tagsinput-css'  href="{% static 'css/jquery.tag-editor1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='select2-min-css'  href="{% static 'css/select2.min1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='dropzone-css'  href="{% static 'css/dropzone1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-confirm-css'  href="{% static 'css/jquery-confirm.min1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='toastr-min-css-css'  href="{% static 'css/toastr.min1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='toggle-css'  href="{% static 'css/bootstrap-toggle.min1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-fancybox-css'  href="{% static 'css/jquery.fancybox.min1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='datepicker-css'  href="{% static 'css/new/datepicker.min1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='fileinput-css'  href="{% static 'css/new/fileinput.min1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='ichecksquare-css'  href="{% static 'css/new/checkbox-square1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='icheck-css'  href="{% static 'css/minimal/minimal1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-tipsy-css'  href="{% static 'css/new/jquery.tipsy1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='themify-icons-css'  href="{% static 'css/new/themify-icons1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-bxslider-css'  href="{% static 'css/new/jquery.bxslider1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='popup-video-iframe-css'  href="{% static 'css/YouTubePopUp1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='nokri-theme-slug-fonts-css'  href='https://fonts.googleapis.com/css?family=Poppins:400,500,600%7CSans+Serif:400,500,700%7CQuicksand:400,500,700&amp;subset=latin,latin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='nokri-admin-custom-css'  href="{% static 'css/admin-custom1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='nokri-custom-css'  href="{% static 'css/custom1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='nokri-theme-style-css'  href="{% static 'css/theme1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='nokri-modern-css'  href="{% static 'css/modern1852.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='nokri-colours-css'  href="{% static 'css/colors/dark-blue1852.css' %}" type='text/css' media='all' />
+
+<link rel='stylesheet' id='js_composer_front-css'  href="{% static 'plugins/js_composer/assets/css/js_composer.min52c7.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='addtoany-css'  href="{% static 'plugins/add-to-any/addtoany.min9be6.css' %}" type='text/css' media='all' />
+
+    <script type='text/javascript' src="{% static 'js/jquery/jquery4a5f.js'%}"></script>
+    <script type='text/javascript' src="{% static 'js/jquery/jquery-migrate.min330a.js'%}"></script>
+
+    <script type='text/javascript' defer src="{% static 'plugins/woocommerce/assets/js/frontend/add-to-cart.minf39e.js'%}"></script>
+    <script type='text/javascript' defer src="{% static 'plugins/add-to-any/addtoany.min4963.js'%}"></script>
+    <script type='text/javascript' defer src="{% static 'plugins/js_composer/assets/js/vendors/woocommerce-add-to-cart52c7.js'%}"></script>
+    <script type='text/javascript' defer src="{% static 'assets/leaflet/leaflet1852.js'%}"></script>
+    <script type='text/javascript' defer src="{% static 'assets/leaflet/leaflet.markercluster1852.js'%}"></script>
+    <script type='text/javascript' defer src="{% static 'assets/leaflet/leaflet-search.min1852.js'%}"></script>
+    {% block userstyle %}
+    {% endblock %}
+</head>
+
+<body {% block bodyclass %} class="page-template page-template-page-home page-template-page-home-php page page-id-1075 theme-nokri woocommerce-no-js wpb-js-composer js-comp-ver-6.0.5 vc_responsive" {% endblock %}>
+    <div id="spinner">
+        <div class="spinner-img"><img alt="Preloader" src="{% static 'img/loader.gif' %}"/>
+          <h2>Loading</h2>
+        </div>
+    </div>
+    <!---HEADER AND NAVIGATION-->
+    {% block headerclass %}
+    <div class="transparent-header-1">
+        {% block nav %}
+        <nav id="menu-1" class="mega-menu fa-change-black n-header-trabsparent " >
+            {% endblock %}
+                <section class="menu-list-items ">
+                    <div class="container">
+                    <ul class="menu-logo">
+                        <li><a href="{% url 'index' %}" style="display: flex;"><img  src="{% static 'img/logo.png' %}" class="img-responsive" alt="logo" style="width: 30px;"><span style="color: white; font-size: 1em;font-weight: 900; padding-left: 20px;">EEPIC Jobs</span></a></li>
+                        <!--<li style="color: white; font-size: 1.556em;font-weight: 900;">EEPIC Jobs</li>-->
+                    </ul>
+                    {% if user.is_authenticated %}
+                    <ul class="menu-button">
+                        <li>
+                        <a href="{% url 'dashboard' %}" class="n-login-header">Hi, {{ user.first_name }}</a>
+                        </li>
+                        <li>
+                        <a href="{% url 'logout' %}" class="n-login-header"><i class="fa fa-sign-out"></i>Logout</a>
+                        </li>
+                        <li>
+                        <a href="{% url 'jobpost' %}" class="btn n-btn-flat"><i class="fa fa-plus-square"></i>Job Post</a>
+                        </li>
+                    </ul>
+                    {% else %}
+                    <ul class="menu-button">
+                        <li>
+                        <a href="{% url 'login' %}" class="n-login-header"><i class="fa fa-sign-in"></i>Login</a>
+                        </li>
+                        <li>
+                        <a href="{% url 'register' %}" class="n-login-header"><i class="fa fa-user-plus"></i>Register</a>
+                        </li>
+                        <li>
+                        <a href="{% url 'login' %}" class="btn n-btn-flat"><i class="fa fa-plus-square"></i>Job Post</a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                        
+                        <ul class="menu-links ">
+                            <li><a  href="{% url 'index' %}">Home</a></li>
+                            <li><a  href="{% url 'index' %}">Home</a></li>
+                            <li><a  href="{% url 'index' %}">Home</a></li>
+                            <li><a  href="{% url 'index' %}">Home</a></li>
+                            <li><a  href="{% url 'index' %}">Home</a></li>
+                        </ul>
+                    </div>
+                </section>
+            </nav> 
+    </div>
+    <!--HEADER ENDS-->
+    <div class="clearfix"></div>
+    <div class="vc_row wpb_row vc_row-fluid">
+        <div class="wpb_column vc_column_container vc_col-sm-12">
+            <div class="vc_column-inner">
+                <div class="wpb_wrapper">
+                {% block content %}
+
+
+                {% endblock %}
+                </div>
+                {% block modal %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+
+    <section class="n-footer-transparent footer-two" style=" background: url({% static 'img/footer/acasc.jpg' %});  background-repeat: no-repeat; background-size: cover;  background-position: center center;  background-attachment: scroll; ">
+        <div class="container">
+           <div class="row">
+              <div class="col-lg-3 col-sm-3 col-md-2 col-xs-12">
+                 <div class="n-footer-block">
+                  <img class="img-responsive footer-logo" src="{% static 'img/logo.png' %}"  alt="logo" style="width: 90px;">
+                  <div class="n-social-bar">
+                        <ul>
+                            <li><a class="fa fa-facebook"  href="https://www.facebook.com/eepicmanagement/" target="_blank"></a></li>
+                            <li><a class="fa fa-twitter" href="https://twitter.com/eepicmanagement/" target="_blank"></a></li>
+                            <li><a class="fa fa-instagram" href="https://www.instagram.com/eepic_management/" target="_blank"></a></li>
+                            <li><a class="fa fa-linkedin" href="https://www.linkedin.com/company/eepicmanagement24/" target="_blank"></a></li>
+                            <li><a class="fa fa-pinterest" href="https://pinterest.com/eepicmanagement/" target="_blank"></a></li>
+                        </ul>
+                    </div>                  </div>
+              </div>
+              <div class="col-sm-6 col-md-5 col-lg-5 col-xs-12">                  <div class="n-footer-block">
+                    <h4>Job Locations</h4>                     <ul class="n-page-links multiple">
+                       <li><a href="../search-page/index6b2e.html?job-location=67">Albama</a></li><li><a href="../search-page/index26ed.html?job-location=68">Anniston</a></li><li><a href="../search-page/index0967.html?job-location=69">Chickasaw</a></li><li><a href="../search-page/index1556.html?job-location=71">Delhi</a></li><li><a href="../search-page/index5641.html?job-location=74">Dubai</a></li><li><a href="../search-page/index8a52.html?job-location=76">Germany</a></li><li><a href="../search-page/index2896.html?job-location=77">Hamburg</a></li><li><a href="../search-page/indexf296.html?job-location=70">India</a></li>                     </ul>
+                 </div>
+              </div>
+                             <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
+                 <div class="n-footer-block">
+                 <h4>Get Our Apps</h4>                  	<div class="n-app-btn">
+                       <a href="https://play.google.com/store/apps/details?id=com.scriptsbundle.nokri" target="_blank">
+                           <div class="icon">
+                               <i class="fa fa-play"></i>
+                           </div>
+                           <div class="n-icon-text">
+                               <small>Get it on</small><h5>Play store</h5>                            </div>
+                       </a>
+                   </div>
+                   <div class="n-app-btn">
+                       <a href="https://itunes.apple.com/us/app/nokri/id1430717904?ls=1&amp;mt=8" target="_blank">
+                           <div class="icon">
+                               <i class="fa fa-apple"></i>
+                           </div>
+                           <div class="n-icon-text">
+                              <small>Get it on</small><h5>Play store</h5>                            </div>
+                       </a>
+                   </div>
+               </div>
+              </div>
+                          </div>
+        </div>
+                 <div class="n-footer-bottom">
+           <div class="container">
+              <div class="row">
+                                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <p>All rights reserved. KIB <a href="https://specso.in" target="_blank"> Specso  </a></p>
+                 </div>
+              </div>
+           </div>
+        </div>
+              </section>    
+{% endblock %}
+    <!-- SCRIPTS -->
+    <script type='text/javascript' defer src="{% static  'plugins/contact-form-7/includes/js/scripts6725.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'plugins/nokri_framework/js/theme1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/jquery-ui.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/bootstrap.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/bootstrap-toggle.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/select2/select2.full.minfa0c.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/mega_menu.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/owl-carousel1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/counterup1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/jquery.waypoints1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'plugins/js_composer/assets/lib/bower/isotope/dist/isotope.pkgd.min52c7.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/hello1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/dropzone1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/parsley.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/jquery.caret.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/jquery.tag-editor.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/new/fileinput.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/new/jquery.add-input-area.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/new/datepicker.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/new/date-picker-lang/datepicker.en1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/jquery.appear1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/jquery.tipsy.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/jquery.multifield.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/icheck.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/theia-sticky-sidebar1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/jquery.fancybox.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/toastr.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/search1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/jquery.bxslider1852.js' %}"></script>
+    <script type='text/javascript' src="{% static  'js/YouTubePopUp.jquery1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/jquery-confirm.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/jquery.countTo1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/jquery-te.min1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/color-switcher1852.js' %}"></script>
+    <script type='text/javascript' defer src="{% static  'js/perfect-scrollbar1852.js' %}"></script>
+    <script type="text/javascript" src="{% static 'sweetalert2.all.min.js' %}"></script>
+    
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var get_strings = {"confirmation":"Confirmation!","content":"Are you sure you want to do this?","btn_cnfrm":"Confirm","btn_cancel":"Cancel","success":"Success!","action_success":"Action performed successfully","action_remove":"Remove File","browse_btn":"Browse","remove_btn":"Remove","select_btn":"Select file","new_btn":"New","showNumber":"Show Number","no_res":"No results found","is_cat_temp":"0","external_apply":"You are redirecting to external apply ","max_select":"You can select only ","rgstr_info":"Information","rgstr_resend":"Resend email","rgstr_close":"Close","skillshead":"Add another skill (new)","skilltitle":"Skill Title","skillvalue":"Skill Value","degremov":"Remove","certhead":"Certification additional field","certtitle":"Certification title","certstrt":"Certification start","certend":"Certification end","certdur":"Certification duration","certinst":"Certification institute","certdesc":"Certification description","resume_select":"Select your resume","template_select":"Select email template","option_select":"Select an option","select_tags":"Set skill percentage value (only integers)","select_jobs_tags":"Add tags","select_tags_gen":"Add a tag","apply_msg":"Oooooppss!!","apply_details":"You have already apllied on this job","one":"One Star","two":"Two Stars","three":"Three Stars","four":"Four Stars","five":"Five Stars","Sunday":"Sunday","Monday":"Monday","Tuesday":"Tuesday","Wednesday":"Wednesday","Thursday":"Thursday","Friday":"Friday","Saturday":"Saturday","Sun":"Sun","Mon":"Mon","Tue":"Tue","Wed":"Wed","Thu":"Thu","Fri":"Fri","Sat":"Sat","Su":"Su","Mo":"Mo","Tu":"Tu","We":"We","Th":"Th","Fr":"Fr","Sa":"Sa","January":"January","February":"February","March":"March","April":"April","May":"May","June":"June","July":"July","August":"August","September":"September","October":"October","November":"November","December":"December","Jan":"Jan","Feb":"Feb","Mar":"Mar","Apr":"Apr","Jun":"Jun","Jul":"July","Aug":"Aug","Sep":"Sep","Oct":"Oct","Nov":"Nov","Dec":"Dec","Today":"Today","Clear":"Clear","dateFormat":"dateFormat","timeFormat":"timeFormat","p_text":"Paragraph","nokri_map_type":"leafletjs_map","is_sticky_menu":"0","apply_without":"Applied successfully","apply_with":"Applied successfully","quali_inst":"1","s_date":"1","e_date":"1","percent":"1","grade":"1","desc":"1","deghead":"Qualification Title","degtitle":"Qualification Title","deg_plc":"Degree Title","deg_req":"","inst_title":"Institute Name","inst_plc":"Institute Name","inst_req":"","sdate_title":"Start Date","sdate_req":"","edate_title":"Job End Date","edate_req":"","perc_title":"Percentage","perc_plc":"Only digits allowed without % sign e.g 80.0","perc_req":"","grad_title":"Grades","grad_plc":"Only Grade Letter e.g A+,B,C","grad_req":"","desc_title":"Description","desc_req":"","prof_head":"Profession additional field","prof_remov":"Remove","org_title":"Organization Name","org_plc":"Organization Name","org_req":"","prof_role":"1","role_title":"Your Role","role_plc":"Software Engineer Etc","role_req":"","strt_show":"1","strt_title":"Job start Date","strt_req":"","edate_show":"1","edate_curr":"Are You Currently Working There?","desc_show":"1","cert_head":"Certification additional field","cert_remov":"Remove","certi_title":"Certification Title","certi_plc":"Certification Title","certi_req":"","certi_sdate_show":"1","certi_sdate_title":"Certification Start Date","certi_sdate_req":"","certi_edate_show":"1","certi_edate_title":"Certification End Date","certi_edate_req":"","certi_dur_show":"1","certi_dur_title":"Certification Duration","certi_dur_plc":"Certification Duration","certi_dur_req":"","certi_inst_show":"1","certi_inst_title":"Certification Institute","certi_inst_plc":"Certification Institute","certi_inst_req":""};
+        /* ]]> */
+    </script>
+    <script>
+        jQuery(document).ready(function($) {
+            if ($('#spinner').length > 0) {
+                document.getElementById('spinner').style.display = 'none';
+                }
+        });
+    </script>
+
+    <script type='text/javascript' defer src="{% static 'js/custom1852.js'%}"></script>
+    {% if messages %}
+	{% for message in messages %}
+    <script>
+        jQuery(document).ready(function(){
+            swal.fire('{{message.tags}} ','{{message}}','{{message.tags}}')
+        });
+    </script>
+    {% endfor %}
+{% endif %}
+</body>
+</html>

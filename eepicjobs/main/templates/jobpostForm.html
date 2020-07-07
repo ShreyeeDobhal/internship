@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="n-single-job n-single-job-transparent" style=" background: url({% static 'img/4.png' %});  background-repeat: no-repeat; background-size: cover;  background-position: center center;  background-attachment: scroll; ">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                <div class="n-single-title">
+                    <h4>Senior Web Developer</h4>
+                    <ul>
+                        <li> <i class="fa fa-folder-open"></i>Web Designer</li>
+                        <li> <i class="fa fa-hand-o-right"></i>Freelance</li>
+                        <li> <i class="fa fa-clock-o"></i>2 years ago</li>
+                        <li> <i class="fa fa-map-marker"></i>India ,Delhi</li>
+                    </ul>
+                </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                <aside class="n-single-sidebar">
+                    <div class="apply-buttons">
+                    </div>
+                    <div class="apply-buttons">
+                        <a href="javascript:void(0)" class="btn n-btn-flat btn-mid btn-clear apply_job" data-job-id="315" data-author-id="10" data-toggle="modal" data-target="#myModal" id="applying_job">Apply now</a>
+                        <a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&amp;client_id=819vq98insh6za&amp;redirect_uri=https://jobs.nokriwp.com/&amp;state=not_logged_in-315&amp;scope=r_emailaddress%20r_basicprofile" class="btn-linkedIn btn-block"><i class="ti-linkedin"></i> <span>Apply With LinkedIn</span></a>
+                    </div>
+                </aside>
+          </div>
+       </div>
+    </div>
+</section>
+    
+    
+    <section class="n-job-pages-section">
+        <div class="container">  
+            <div class="col-sm-8 col-sm-offset-3">
+                <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+        <h1>Post a Job</h1>
+        <h2>Indeed For employers</h2>
+    {{form.as_p}}
+                </br>
+    <input type="submit"class="butn btn-default" value="Submit"/>
+    </form>
+    {% endblock content %}
