@@ -38,20 +38,21 @@
 						<p id="contentName" style="font-family: 'Amarante'; font-size: 60px;">{{k.name}}</p>
 					</div>
 					<div id="contact">
-						<p><strong>Profile Photo : </strong>{{k.profile_photo}} </p>
+						<p><strong>Profile Photo : </strong>{{k.request.user.userprofile.profile_photo.url}} </p>
+
 						<p><strong>Email : {{k.email}} </strong></p>
 						<p><strong>Phone : </strong>{{k.phone_number}}</p>
 						<p><strong>Github: </strong>{{k.github}} </p>
 						<p><strong>HackerRank: </strong>{{k.hackerrank}}</p>
 						<p><strong>Linkedin: </strong>{{k.linkedin}} </p>
 						<p><strong>Codechef: </strong> {{k.codechef}} </p>
-						
+
 					</div>
 				</div>
 				</div>
 
-				
-				
+
+
 				<div class="section" id="sectionExperience">
 					<div class="section-title ruled rule-above">
 						<hr class="hr-above">
@@ -69,7 +70,7 @@
 									</div>
 
 
-				
+
 				<div class="section" id="sectionProjects">
 					<div class="section-title ruled rule-above">
 						<hr class="hr-above">
@@ -80,14 +81,14 @@
 					<li>
 						<div>
 						<div class="title">{{k.projects}}</div>
-						
+
 						</div>
 						<div>
 
 					</li>
 
 					<li>
-						
+
 
 				<div class="section" id="sectionSkills">
 					<div class="section-title ruled rule-above">
@@ -112,7 +113,7 @@
 						<hr class="hr-below">
 					</div>
 					<ul>
-						<li>{{k.prev_employments}}</li>
+						<li>{{k.prev_Employments}}</li>
 
 					</ul>
 				</div>
@@ -127,7 +128,7 @@
 					<ul>
 					<li>
 
-						<span class="text">{{k.achievements}}</span>
+						<span class="text">{{k.accomplishments}}</span>
 					</li>
 
 						</ul>

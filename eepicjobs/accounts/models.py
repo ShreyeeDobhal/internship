@@ -22,6 +22,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_photo = models.ImageField(upload_to=USER_PROFILE_PHOTO, null=True, blank=True)
     added = models.DateTimeField(auto_now_add=True)
+    hobbies = models.CharField(max_length=255, null=True, help_text="Mention Your hobbies")
     updated = models.DateTimeField(auto_now=True)
     name=models.CharField(max_length=255, null=True)
     phone_number = models.CharField(validators=[phone_regex], max_length=17, null=True)
