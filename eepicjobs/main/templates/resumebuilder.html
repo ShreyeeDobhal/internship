@@ -38,7 +38,11 @@
 						<p id="contentName" style="font-family: 'Amarante'; font-size: 60px;">{{k.name}}</p>
 					</div>
 					<div id="contact">
-						<p><strong>Profile Photo : </strong>{{k.request.user.userprofile.profile_photo.url}} </p>
+						<p><strong>Profile Photo : </strong>
+						{%if k.profile_photo %}
+						<img src="{{k.profile_photo.url}}" class="img-responsive" />
+						{%endif%}
+						</p>
 
 						<p><strong>Email : {{k.email}} </strong></p>
 						<p><strong>Phone : </strong>{{k.phone_number}}</p>
@@ -198,21 +202,22 @@
 			{% for k in edu %}
 			<div class="row">
                         <div class="col-sm-6">
-                            <li><strong>School:</strong>{{k.school}}</li>
-                            <li><strong>College:</strong>{{k.college}}</li>
+                            <li><strong>School :  </strong>{{k.school}}</li>
+                            <li><strong>College :  </strong>{{k.college}}</li>
 
                         </div>
 				<ul class="nobullet">
 				<li>
 					<table class="table customBordered" id="educationTable">
+						
 						<tr>
-							<td class="header"><strong>Year  of passing  </strong></td>
+							<td class="header"><strong>Year  of passing    </strong></td>
 							<td class="header"><strong>        </strong></td>
 							<td class="header"><strong>Degree    </strong></td>
 							<td class="header"><strong>        </strong></td>
-							<td class="header"><strong>Institute Name  </strong></td>
+							<td class="header"><strong>Institute Name    </strong></td>
 							<td class="header"><strong>        </strong></td>
-							<td class="header"><strong>CGPA/Percentage scored  </strong></td>
+							<td class="header"><strong>CGPA/Percentage scored   </strong></td>
 							<td class="header"><strong>        </strong></td>
 						</tr>
 						<tr>
@@ -235,7 +240,7 @@
 							<td>{{k.CGPA_For_bachelors}}</td>
 						</tr>
 						<tr>
-							<td>{{k.yop_for_twelth}}</td>
+							<td>{{k.yop_for_twelfth}}</td>
 							<td class="header"><strong>        </strong></td>
 							<td>XII</td>
 							<td class="header"><strong>        </strong></td>

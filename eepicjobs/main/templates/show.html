@@ -48,7 +48,11 @@
         </tr>
         <tr>
             <td>Profile photo</td>
-            <td>{{k.profile_photo}}</td>
+                {%if k.profile_photo %}
+                <td><img src="{{k.profile_photo.url}}" class="img-responsive" /></td>
+                {%endif%}
+                
+            
         </tr>
         
 
