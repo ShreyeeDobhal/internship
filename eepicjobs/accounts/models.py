@@ -72,6 +72,27 @@ class Education(models.Model):
                 return "{} - {}".format(str(self.id), self.school,self. CGPA_For_bachelors)
 
 
+
+class Project(models.Model):
+        projectuser=models.ForeignKey(UserProfile, on_delete=models.CASCADE,related_name='projectuser')
+        project1=models.CharField(max_length=255, null=True, verbose_name='Mention project name and give a small desciption about it')
+        project2=models.CharField(max_length=255, null=True, verbose_name='Mention project name and give a small desciption about it')
+        project3=models.CharField(max_length=255, null=True, verbose_name='Mention project name and give a small desciption about it')
+        project4=models.CharField(max_length=255, null=True, verbose_name='Mention project name and give a small desciption about it')
+        project5=models.CharField(max_length=255, null=True, verbose_name='Mention project name and give a small desciption about it')
+        project6=models.CharField(max_length=255, null=True, verbose_name='Mention project name and give a small desciption about it')
+        project7=models.CharField(max_length=255, null=True, verbose_name='Mention project name and give a small desciption about it')
+        project8=models.CharField(max_length=255, null=True, verbose_name='Mention project name and give a small desciption about it')
+        project9=models.CharField(max_length=255, null=True, verbose_name='Mention project name and give a small desciption about it')
+        project10=models.CharField(max_length=255, null=True, verbose_name='Mention project name and give a small desciption about it')
+        class Meta:
+            verbose_name = 'Projects'
+            def __str__(self):
+                return "{} - {}".format(str(self.id), self.project1,self.project10)
+
+
+        
+
 class Orgphoto(models.Model):
     """
     This model contains gallery photos for company.

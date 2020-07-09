@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_list_or_404, get_object_or_40
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from  accounts.models import Jobpost
+from  accounts.models import Project
+from  accounts.projects import ProjectsForm
 from  accounts.models import UserProfile
 from accounts.models import applicant
 from accounts.models import Education
@@ -349,8 +351,19 @@ def education(request):
         "form": form,}
     return render(request, 'education.html',context)
 
-  
 
+def project(request):
+    form=ProjectsForm(request.POST or None,request.FILES or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.user=request.user
+        instance.save()
+        #message of success
+        messages.success(request,"Successfully created")
+        return redirect('home')
+    context = {
+        "form": form,}
+    return render(request, 'projects.html',context)
     
 
 
@@ -372,9 +385,9 @@ def updateresume(request,pk):
 def show(request):  
     employees = UserProfile.objects.filter(user=request.user)  
     
-    
+    pro = Projects.objects.filter(user=request.user.userprofile)
     edu=Education.objects.filter(resume=request.user.userprofile)
-    context={"employees":employees,"edu" : edu}
+    context={"employees":employees,"edu" : edu,"pro":pro}
     return render(request, "show.html", context)
 
      
@@ -451,6 +464,10 @@ def employeesa(request):
 def rr(request):
     ress = UserProfile.objects.filter(user=request.user)
     edu=Education.objects.filter(resume=request.user.userprofile)
+    pro = Project.objects.filter(projectuser=request.user.userprofile)
     context={"ress":ress,
-    "edu" : edu}
+    "edu" : edu,
+    "pro":pro}
     return render(request, 'resumebuilder.html', context)
+
+
