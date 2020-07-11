@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
+from django.core.mail import send_mail
 from django.contrib import messages
+from accounts.models import settime
+from  accounts.setime import settimeForm
 from datetime import date
 from django.contrib.auth.hashers import make_password
 from  accounts.models import Jobpost
@@ -583,10 +586,15 @@ def employerview(request):
     return render(request,'employer/index.html',{'employees':employees})
 
 
-def showapplicants(request):
-    jobdisplay=Jobpost.objects.filter(user=request.user.userprofile)
-    appli=applicant.objects.filter(job=request.user.userprofile.jobpost)
-    return render(request,'showapplicants.html',{'appli':appli})
+def showapplicants(request, jid):
+    ap=Jobpost.objects.filter(user=request.user.userprofile)
+    jobb = ap.get(id=jid)
+    appli=applicant.objects.filter(job=jobb)
+    if appli.exists():
+        return render(request,'showapplicants.html',{'appli':appli})
+    else:
+        messages.error(request,'There are no applicants to this job yet')
+        return redirect('home')
 
 def applyjobb(request, jid):
     form=applicantform(request.POST or None,request.FILES or None)
@@ -645,3 +653,53 @@ def sub(request):
     context = {
         "form": form,}
     return render(request, 'subsformm.html',context)
+
+def sendemail(request,aid):
+    '''if(request.method=='GET'):
+        return render(request,'settime.html')'''
+    s=settime.objects.filter(empid=request.user.userprofile)
+    ap=applicant.objects.get(id=aid)
+    a=s.objects.filter(appliid=a)
+
+    send_mail("Regarding the Interview Process","Congratulations on being selected for the interview.Your interview will be held on "+s.indate+" timings are "+s.intime,"eepicjob.com",["recipent@gmail.com"],fail_silently=False)
+    return render(request,'sendemail.html')
+
+
+def settiiiime(request):
+    form=settimeForm(request.POST or None,request.FILES or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.user=request.user
+        instance.save()
+        #message of success
+        messages.success(request,"Successfully created")
+        return redirect('home')
+    context = {
+        "form": form,}
+    return render(request, 'set_time.html',context)
+
+
+
+def sending(request,apid):
+    form=settimeForm(request.POST or None,request.FILES or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.user=request.user
+        instance.save()
+        #message of success
+        messages.success(request,"Successfully created")
+        return redirect('home')
+    context = {
+        "form": form,}
+    return render(request, 'set_time.html',context)
+
+def seeing(request,apid):
+    a=applicant.objects.get(id=apid)
+    ss=settime.objects.filter(empid=request.user.userprofile.employer,apliid=a )
+    if(ss.exists()):
+            context={'ss':ss}
+            return render(request,"seeing.html",context)
+    else:
+        messages.error(request,'no time set')
+        return redirect('home')
+

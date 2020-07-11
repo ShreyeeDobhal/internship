@@ -8,7 +8,7 @@ urlpatterns = [
 				path('', views.index, name='index'),
                 path('login/', views.login, name='login'),
                 path('register/', views.register, name='register'),
-                path('showapplicants/', views.showapplicants, name='showapplicants'),
+                
                 path('logout/', views.logout, name='logout'),
                 path('home/', views.home, name='home'),
                 ########### CURRENT URLS ##########################
@@ -53,4 +53,8 @@ urlpatterns = [
                  path('rr/', views.rr, name='rr'),
                   path('savedresume', views.saved_resume, name='saved_resume'),
                   path('subsform/',views.sub,name='sub'),
+                  path('showapplicants/<str:jid>/', views.showapplicants, name='showapplicants'),
+                 path('sendemail/', views.sendemail, name='sendemail'), 
+                 path('sending/<str:apid>/', views.sending, name='sending'), 
+                 path('seeing/<str:apid>/', views.seeing, name='seeing'), 
 ]

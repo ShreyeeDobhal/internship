@@ -329,7 +329,12 @@ class subscriptionpack(models.Model):
             verbose_name_plural = 'subscriptionpacks'
     def __str__(self):
         return "{} - {}".format(str(self.id))
-        
+
+class settime(models.Model):
+    indate=models.DateField(auto_now=False, auto_now_add=False,verbose_name='Enter date in yyyy-mm-dd format')
+    intime=models.TimeField(auto_now=False, auto_now_add=False)
+    empid=models.ForeignKey(Employer,on_delete=models.CASCADE)
+    apliid=models.ForeignKey(applicant, on_delete=models.CASCADE)
 
 
 

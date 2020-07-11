@@ -37,11 +37,7 @@
                 <td>{{k.job.JobTitle}}</td>
 
             </tr>
-            <tr>
-                <td><h4>Job Desciption</h4></td>
-            <td>{{k.job.JobDesciption}}</td>
-
-            </tr>
+            
             <tr>
                 <td><h4>Company Name</h4></td>
                 <td>{{k.job.CompanyName}}</td>
@@ -53,11 +49,22 @@
         <tr>
             <td>Email</td>
             <td>{{k.email}}</td>
+            <tr>
+                <td><h4><tr>
+                <td><h4>Company Name</h4></td>
+                <td>{{k.job.CompanyName}}</td>
+            </tr>
+            
             
     
             <tr>
                 <td><h4>Company Name</h4></td>
                 <td>{{k.job.CompanyName}}</td>
+            </tr>
+            <tr>
+                <td><h4>Click To Set Interview</h4></td>
+            <td><a href="{% url 'sending' k.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Set Interview</button></td>
+
             </tr>
             
         </table>
