@@ -632,7 +632,10 @@ def check_status(request):
             else:
                 k.status="active"
                 stat="active"
-        return render(request,'subscription.html',{'stat':stat})
+            subs=k.subscriptionid    
+            
+        context={'subs':subs,'stat':stat} 
+        return render(request,'subscription.html',context)
     else:
         messages.error(request, "Sorry! No valid subscriptions")
         return redirect('home')

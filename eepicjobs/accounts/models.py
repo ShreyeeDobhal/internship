@@ -319,7 +319,7 @@ class savedresume(models.Model):
 
 class subscriptionpack(models.Model):
     empid=models.ForeignKey(Employer,on_delete=models.CASCADE)
-    subscription_choice=(('1','499 per month'),('2','700 for two months',),('3','Yearly subscription @3400',))
+    subscription_choice=(('499 per month','499 per month'),('700 for two months','700 for two months',),('Yearly subscription @3400','Yearly subscription @3400',))
     subscriptionid=models.CharField(max_length=20,choices=subscription_choice,default='499 per month')
     statuschoice=(('0','expired'),('1','active'))
     status=models.CharField(max_length=20,choices=statuschoice,default='expired')
