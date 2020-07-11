@@ -20,20 +20,22 @@
                 <a href="javascript:void(0)" class="menu-dashboard"> <i class="ti-menu-alt"></i></a>
                 <ul id="accordion" class="accordion ps ps--active-y">
                 <li><a href="{% url 'employerin' %}"><span class="la la-tachometer"></span>Dashbboard</a></li>
-                <li><a href="{% url 'employerup' %}"><span class="la la-edit"></span>Update Profile</a></li>
-                <li><a href="https://jobs.nokriwp.com/employer/ayushtyagi2139/"><span class="la la-user"></span>View My Profile</a></li><li>
+                {% if request.user.userprofile.employer.id %}
+                <li><a href="{% url 'updateEmp' request.user.userprofile.employer.id %}"><span class="la la-edit"></span>Update Profile</a></li>
+                {% endif %}
+                <li><a href="{% url 'empview' %}"><span class="la la-user"></span>View My Profile</a></li><li>
                     <div class="profile-menu-link">
                       <span class="la la-bars"></span>My Jobs<i class="fa fa-angle-down"></i>
                     </div>
                     <ul class="submenu">
-                      <li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=active-jobs"> Active Jobs</a></li>
-                      <li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=inactive-jobs">In-Active Jobs</a></li>
-                      <li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=pending-jobs">Pending Jobs</a></li>
+                      <li><a href="{% url 'showmyjobs' %}"> Active Jobs</a></li>
+                      <li><a href="{% url 'showmyjobs' %}">In-Active Jobs</a></li>
+                      <li><a href="{% url 'showmyjobs' %}">Pending Jobs</a></li>
                     </ul>
                   </li><li>
                 
                   </li>
-                  <li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=matched-resumes"><span class="la la-external-link"></span>Matched Resumes</a></li><li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=saved-resumes"><span class="la la-file-pdf-o"></span>Saved Resumes</a></li><li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=our-followers"><span class="fa fa-users"></span>Followers</a></li><li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=my-packages">
+                  <li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=matched-resumes"><span class="la la-external-link"></span>Matched Resumes</a></li><li><a href="{% url 'saved_resume' %}"><span class="la la-file-pdf-o"></span>Saved Resumes</a></li><li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=our-followers"><span class="fa fa-users"></span>Followers</a></li><li><a href="{% url 'check_status' %}">
                     <span class="la la-list-alt"></span>My Package</a></li><li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=my-orders"><span class="la la-check-circle"></span>My Order</a></li><li><a href="https://jobs.nokriwp.com/wp-login.php?action=logout&amp;redirect_to=https%3A%2F%2Fjobs.nokriwp.com&amp;_wpnonce=477d8604c7"><span class="la la-sign-out"></span>Logout</a></li>                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 500px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 454px;"></div></div></ul>
             </div>
         </div>
@@ -79,7 +81,7 @@
                 <img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/icons/job1.png" class="img-responsive" alt="image">
             </div>
         </div>
-        <p><a href="https://jobs.nokriwp.com/dashboard/?tab-data=active-jobs">View All Published Jobs</a></p>
+        <p><a href="{% url 'showmyjobs' %}">View All Published Jobs</a></p>
     </div>
 </div>
 <div class="col-md-6 col-sm-6 col-xs-12">

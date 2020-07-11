@@ -39,9 +39,9 @@
 					</div>
 					<div id="contact">
 						<p><strong>Profile Photo : </strong>
-						{%if k.profile_photo %}
-						<img src="{{k.profile_photo.url}}" class="img-responsive" />
-						{%endif%}
+							{%if k.profile_photo %}
+							<td><img src="{{k.profile_photo.url}}"width="200" height="100" alt="Computer Hope" class="img-responsive" /></td>
+							{%endif%}
 						</p>
 
 						<p><strong>Email : {{k.email}} </strong></p>
@@ -201,116 +201,132 @@
 				</div>
 				{% if pro %}
 			{% for k in pro %}
+			{%if k.project1 %}
 				<ul>
+					
 				<li>
 					<div>
-						{%if k.project1 %}
+						
 						<div class="title">{{k.project1}}</div>
-						{% endif %}
+						
 
 					</div>
 				</div>
 
 			</li></ul>
+			{% endif %}
+			{%if k.project2 %}
 			<ul>
 				<li>
 					<div>
-						{%if k.project2 %}
+						
 						<div class="title">{{k.project2}}</div>
-						{% endif %}
+						
 
 					</div>
 				</div>
 
-			</li></ul>
+			</li></ul>{% endif %}
+			{%if k.project3 %}
 			<ul>
 				<li>
 					<div>
-						{%if k.project3 %}
+						
 						<div class="title">{{k.project3}}</div>
-						{% endif %}
+						
 
 					</div>
 				</div>
 
 			</li></ul>
+			{% endif %}
+			{%if k.project4 %}
 			<ul>
 				<li>
 					<div>
-						{%if k.project4 %}
+						
 						<div class="title">{{k.project4}}</div>
-						{% endif %}
+						
 
 					</div>
 				</div>
 
 			</li></ul>
+			{% endif %}
+			{%if k.project5 %}
 			<ul>
 				<li>
 					<div>
-						{%if k.project5 %}
+						
 						<div class="title">{{k.project5}}</div>
-						{% endif %}
+						
 
 					</div>
 				</div>
 
 			</li></ul>
+			{% endif %}
+			{%if k.project6 %}
 			<ul>
 				<li>
 					<div>
-						{%if k.project6 %}
+						
 						<div class="title">{{k.project6}}</div>
-						{% endif %}
+						
 
 					</div>
 				</div>
 
-			</li></ul>
+			</li></ul>{% endif %}
+			{%if k.project7 %}
 			<ul>
 				<li>
 					<div>
-						{%if k.project7 %}
+						
 						<div class="title">{{k.project7}}</div>
-						{% endif %}
+						
 
 					</div>
 				</div>
 
-			</li></ul>
+			</li></ul>{% endif %}
+			{%if k.project8 %}
 			<ul>
 				<li>
 					<div>
-						{%if k.project8 %}
+						
 						<div class="title">{{k.project8}}</div>
-						{% endif %}
+						
 
 					</div>
 				</div>
 
-			</li></ul>
+			</li></ul>{% endif %}
+			{%if k.project9 %}
 			<ul>
 				<li>
 					<div>
-						{%if k.project9 %}
+						
 						<div class="title">{{k.project9}}</div>
-						{% endif %}
+						
 
 					</div>
 				</div>
 
-			</li></ul>
+			</li></ul>{% endif %}
+			{%if k.project10 %}
 			<ul>
 				<li>
 					<div>
-						{%if k.project10 %}
+						
 						<div class="title">{{k.project10}}</div>
-						{% endif %}
+						
 
 					</div>
 				</div>
 
 			</li></ul>
+			{% endif %}
 			{% endfor %}
 			{% endif %}
 

@@ -19,7 +19,7 @@
     <head><link rel='stylesheet' type="text/css" href="/static/css/bootstrap.min.css"></head>
  
     <div class="container">
-        <h1>Here is the list of your job posts</h1>
+        <h1>Your Subscription Status:</h1>
        
 <div>
     
@@ -29,29 +29,12 @@
 
 </div><br>
 
-    <div style="color: crimson">
-        {% for k in jobdisplay %}
-        <table border="5px" width="850px">
-            <tr>
-                <td><h4>Job Title</h4></td>
-                <td>{{k.JobTitle}}</td>
-
-            </tr>
-            <tr>
-                <td><h4>Job Desciption</h4></td>
-            <td>{{k.JobDesciption}}</td>
-
-            </tr>
-            
-    
-            <tr>
-                <td><h4>Company Name</h4></td>
-                <td>{{k.CompanyName}}</td>
-            </tr>
-            
-        </table>
+    <div style="color:black">
+        
+        <h2>Your current Subscription is {{stat}}</h2>
+       
         <hr>
-        {% endfor %}
+        
 
 </div>
                 </div>

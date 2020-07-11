@@ -30,23 +30,34 @@
 </div><br>
 
     <div style="color: crimson">
-        {% for k in jobdisplay %}
+        {% for k in appli %}
         <table border="5px" width="850px">
             <tr>
                 <td><h4>Job Title</h4></td>
-                <td>{{k.JobTitle}}</td>
+                <td>{{k.job.JobTitle}}</td>
 
             </tr>
             <tr>
                 <td><h4>Job Desciption</h4></td>
-            <td>{{k.JobDesciption}}</td>
+            <td>{{k.job.JobDesciption}}</td>
 
             </tr>
+            <tr>
+                <td><h4>Company Name</h4></td>
+                <td>{{k.job.CompanyName}}</td>
+            </tr>
+            <tr>
+            <td>Projects</td>
+            <td>{{k.projects}}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{k.email}}</td>
             
     
             <tr>
                 <td><h4>Company Name</h4></td>
-                <td>{{k.CompanyName}}</td>
+                <td>{{k.job.CompanyName}}</td>
             </tr>
             
         </table>

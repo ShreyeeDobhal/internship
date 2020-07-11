@@ -1,5 +1,96 @@
-{% extends "employee/index.html" %}
+
 {% load static %}
 {% block dash %}
+<html>
+                   
+<body>
+
+<h1>Personal Info</h1>
+    
+        {% for k in messages %}
+        <li style="color:blueviolet">{{k}}</li>
+        {% endfor %}
+
+</div><br>
+<div style="color: crimson">
+    {% for k in employees %}
+    <table border="6px" width="850px">
+        <tr>
+            <td><h2>Name</h2></td>
+            <td><h3>{{k.name}}</h3></td>
+        </tr>
+        <tr>
+            <td><h2>Profile photo</h2></td>
+                {%if k.profile_photo %}
+                <td><img src="{{k.profile_photo.url}}"width="200" height="100" alt="Computer Hope" class="img-responsive" /></td>
+                {%endif%}
+                
+            
+        </tr>
+        
+
+        <tr>
+            <td><h2>Phone number</h2></td>
+            <td><h3>{{k.phone_number}}</h3></td>
+        </tr>
+        <tr>
+            <td><h2>Company Website </h2></td>
+            <td><h3>{{k.Website }}</h3></td>
+        </tr>
+        <tr>
+            <td><h2>Your Profile Status</h2></td>
+            <td><h3>{{k.set_your_profile}}</h3></td>
+        </tr>
+        <tr>
+            <td><h2>About yourself</h2></td>
+            <td><h3>{{k.about_yourself}}</h3></td>
+        </tr>
+        <tr>
+            <td><h2>Company specialization</h2></td>
+            <td><h3>{{k.company_specialization}}</h3></td>
+        </tr>
+        <tr>
+            <td><h2>No.of employees</h2></td>
+            <td><h3>{{k.no_of_employees}}</h3></td>
+        </tr>
+        <tr>
+            <td><h2>Established_Date</h2></td>
+            <td><h3>{{k.Established_Date}}</h3></td>
+        </tr>
+        <tr>
+            <td><h2>Email</h2></td>
+            <td><h3>{{k.email}}</h3></td>
+        </tr>
+        <tr>
+            <td><h2>Location</h2></td>
+            <td><h3>{{k.location}}</h3></td>
+        </tr>
+        <tr>
+            <td><h2>twitter</h2></td>
+            <td><h3>{{k.twitter}}</h3></td>
+        </tr>
+        <tr>
+            <td><h2>linkedin</h2></td>
+            <td><h3>{{k.linked_in}}</h3></td>
+        </tr>
+        <tr>
+            <td><h2>Facebook</h2></td>
+            <td><h3>{{k.Facebook}}</h3></td>
+        </tr>
+        <tr>
+            <td><h2>instagram</h2></td>
+            <td><h3>{{k.insta}}</h3></td>
+        </tr>
+        <tr>
+            <td><h2>Click to Update Your Profile</h2>></td>
+            <td> <a href="{% url 'updateEmp' k.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply">Update</button> </a></td>
+        </tr>
+
+    </table>
+    <hr>
+    {% endfor %}
+
+</body>
+            </html>
 
 {% endblock %}

@@ -27,7 +27,7 @@ class UserProfileForm(forms.ModelForm):
         fields = ('name','profile_photo',
         'email' ,'hobbies',
         'phone_number','address','education_details', 'is_emp',
-        'prev_Employments','skills','projects','accomplishments','experience','otherLinks','linkedin','github','hackerrank')
+        'prev_Employments','skills','projects','accomplishments','experience','otherLinks','linkedin','codechef','github','hackerrank')
         
         
         

@@ -269,10 +269,67 @@ class applicant(models.Model):
         def __str__(self):
             return "{} - {}".format(str(self.id), self.email,self.job)
         
+        
+        
+
+class Employer(models.Model):
+    """
+    This model is for creating a UserProfile that contains more information about the user
+    """
+    USER_PROFILE_PHOTO = 'user__profilephoto'
+    pchoice= (('0',"Public"),('1',"Private"))
+    empuser = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    profile_photo = models.ImageField(upload_to=USER_PROFILE_PHOTO, null=True, blank=True)
+    name=models.CharField(max_length=255, null=True)
+    phone_number = models.CharField(validators=[phone_regex], max_length=17, null=True)
+    Website=models.URLField(blank=True, null=True)
+    set_your_profile=models.CharField(max_length=20,choices=pchoice,default='Public')
+    about_yourself=models.CharField(max_length=2000, null=True)
+    email =  models.EmailField(validators=[validators.EmailValidator], null=True)
+    compchoice=(('0',"Php"),('1',"JS"),('2',"Designing"),('3',"Application development"),('4',"Painting"),('5',"Arts"),('6',"Development"),('7',"Modeling"),('8','SEO'),('9',"Architecture"),('10',"Management"),('11',"SMM"),('12',"Culinary Arts"),('13',"Peruvian Cuisine"),('14',"Team Management"),('15',"patience"),('16',"Commitment"),('17',"Team Work"),('18',"Flexibility"),('19',"Stress Management"),('20',"Analytical skills"),('21',"trainings"),('22','communication skills'),('23',"Food Products"),('24',"Education"),('25',"cooking"))
+    company_specialization=models.CharField(max_length=20,choices=compchoice,default='Php')
+    no_of_employees=models.IntegerField(blank=True, null=True)
+    Established_Date= models.DateField(verbose_name='Enter date in yy-mm-dd format') 
+    location = models.CharField(max_length=255, null=True)
+    Facebook= models.URLField(blank=True,null=True)
+    
+    insta = models.URLField(blank=True,null=True)
+    twitter = models.URLField(blank=True,null=True)
+    linked_in = models.URLField(blank=True,null=True)
+    #company_logo=models.ImageField(upload_to='', null=True, blank=True)
+    youtube_url=models.URLField(blank=True,null=True)
+    class Meta:
+        verbose_name = 'Employer'
+        verbose_name_plural = 'Employers'
+
+    def __str__(self):
+        return "{} - {}".format(str(self.id), self.name,self.email)
 
 
 
+class savedresume(models.Model):
+    resid=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+    empid=models.ForeignKey(Employer,on_delete=models.CASCADE)
+    class Meta:
+            verbose_name = 'savedresume'
+            verbose_name_plural = 'savedresumes'
+    def __str__(self):
+        return "{} - {}".format(str(self.id))
+        
 
+class subscriptionpack(models.Model):
+    empid=models.ForeignKey(Employer,on_delete=models.CASCADE)
+    subscription_choice=(('1','499 per month'),('2','700 for two months',),('3','Yearly subscription @3400',))
+    subscriptionid=models.CharField(max_length=20,choices=subscription_choice,default='499 per month')
+    statuschoice=(('0','expired'),('1','active'))
+    status=models.CharField(max_length=20,choices=statuschoice,default='expired')
+    purchasedate=models.DateField(verbose_name='Enter date in yy-mm-dd format')
+    class Meta:
+            verbose_name = 'subscriptionpack'
+            verbose_name_plural = 'subscriptionpacks'
+    def __str__(self):
+        return "{} - {}".format(str(self.id))
+        
 
 
 

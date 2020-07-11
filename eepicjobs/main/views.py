@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 from django.contrib import messages
+from datetime import date
 from django.contrib.auth.hashers import make_password
 from  accounts.models import Jobpost
-from  accounts.models import Project
+from  accounts.models import Employer
+from  accounts.models import savedresume
+from  accounts.models import subscriptionpack
+from  accounts.subsform import subscriptionpackForm
+from  accounts.employer import EmployerForm
 from  accounts.projects import ProjectsForm
 from  accounts.models import UserProfile
 from accounts.models import applicant
@@ -32,6 +37,12 @@ import time
 from django.db.models import Q
 from accounts.models import *
 from eepicjobs.utils import *
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.shortcuts import render, redirect
+
+
 
 def index(request):
     return render(request, 'index.html')
@@ -306,19 +317,82 @@ def searchjobb(request):
 
 
     
-def searchindustry(request):
-    match=Jobpost.objects.filter(Q(Jobindustry__icontains="automotive"))
-    if(match.exists()):
-        #dataJSON = dumps(match) 
-        dataJSON = serializers.serialize("json",match)
-        tmpObj = json.loads(dataJSON)
-        return render(request, 'automation.html', {'sr':dataJSON}) 
-        #return HttpResponse(json.dumps(tmpObj))
+def automotive(request):
+    match = Jobpost.objects.filter(Q(Jobindustry__icontains="automotive") | Q(JobDesciption__icontains="automotive") | Q(Jobindustry__icontains="automotion"))
+    if (match.exists()):
+        return render(request, 'industry.html', {'sr': match})
+    
     else:
-        messages.error(request,"Sorry! No results found.")
+        messages.error(request, "Sorry! No results found.")
+        return redirect('home')
+    
 
 
 
+def food(request):
+    match = Jobpost.objects.filter(Q(Jobindustry__icontains="food") | Q(JobDesciption__icontains="food service") | Q(Jobindustry__icontains="food"))
+    if (match.exists()):
+        return render(request, 'industry.html', {'sr': match})
+    
+    else:
+        messages.error(request, "Sorry! No results found.")
+        return redirect('home')
+
+
+def educationIndustry(request):
+    match = Jobpost.objects.filter(Q(Jobindustry__icontains="education"))
+    if (match.exists()):
+        return render(request, 'industry.html', {'sr': match})
+    
+    else:
+        messages.error(request, "Sorry! No results found.")
+        return redirect('home')
+
+def designer(request):
+    match = Jobpost.objects.filter(Q(Jobindustry__icontains="designer"))
+    if (match.exists()):
+        return render(request, 'industry.html', {'sr': match})
+    
+    else:
+        messages.error(request, "Sorry! No results found.")
+        return redirect('home')
+
+
+def cutomerService(request):
+    match = Jobpost.objects.filter(Q(Jobindustry__icontains="Customer Service") | Q(Jobindustry__icontains="Customer Care"))
+    if (match.exists()):
+        return render(request, 'industry.html', {'sr': match})
+    
+    else:
+        messages.error(request, "Sorry! No results found.")
+        return redirect('home')
+
+
+def health(request):
+    match = Jobpost.objects.filter(Q(Jobindustry__icontains="Health"))
+    if (match.exists()):
+        return render(request, 'industry.html', {'sr': match})
+    
+    else:
+        messages.error(request, "Sorry! No results found.")
+        return redirect('home')
+
+
+
+
+def project(request):
+    form=ProjectsForm(request.POST or None,request.FILES or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.projectuser=request.user.userprofile
+        instance.save()
+        #message of success
+        messages.success(request,"Successfully created")
+        return redirect('home')
+    context = {
+        "form": form,}
+    return render(request, 'projects.html',context)
+    
 def createresume(request):
     try:
         profile = request.user.userprofile
@@ -330,42 +404,13 @@ def createresume(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Successfully created")
-            return redirect('home')
+            return redirect('education')
     else:
         form = UserProfileForm(instance=profile)
 
     context = {
         "form": form,}
     return render(request, 'resume.html',context)
-
-def education(request):
-    form=EducationForm(request.POST or None,request.FILES or None)
-    if form.is_valid():
-        instance=form.save(commit=False)
-        instance.user=request.user
-        instance.save()
-        #message of success
-        messages.success(request,"Successfully created")
-        return redirect('home')
-    context = {
-        "form": form,}
-    return render(request, 'education.html',context)
-
-
-def project(request):
-    form=ProjectsForm(request.POST or None,request.FILES or None)
-    if form.is_valid():
-        instance=form.save(commit=False)
-        instance.user=request.user
-        instance.save()
-        #message of success
-        messages.success(request,"Successfully created")
-        return redirect('home')
-    context = {
-        "form": form,}
-    return render(request, 'projects.html',context)
-    
-
 
 
 
@@ -376,6 +421,7 @@ def updateresume(request,pk):
         form=UserProfileForm(request.POST,instance=up)
         if form.is_valid():  
                 form.save()
+                messages.success(request,"Successfully created")
                 return redirect('/') 
     context={'form':form}
     return render(request,'resume.html',context)  
@@ -384,11 +430,23 @@ def updateresume(request,pk):
 
 def show(request):  
     employees = UserProfile.objects.filter(user=request.user)  
-    
-    pro = Projects.objects.filter(user=request.user.userprofile)
+    pro = Project.objects.filter(projectuser=request.user.userprofile)
     edu=Education.objects.filter(resume=request.user.userprofile)
     context={"employees":employees,"edu" : edu,"pro":pro}
     return render(request, "show.html", context)
+
+def education(request):
+    form=EducationForm(request.POST or None,request.FILES or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.user=request.user
+        instance.save()
+        #message of success
+        messages.success(request,"Successfully created")
+        return redirect('project')
+    context = {
+        "form": form,}
+    return render(request, 'education.html',context)
 
      
                     
@@ -397,7 +455,7 @@ def applyjob(request, jid):
     form=applicantform(request.POST or None,request.FILES or None)
     if form.is_valid():
         instance=form.save(commit=False)
-        instance.user=request.user
+        instance.user=request.user.userprofile
         instance.save()
         #message of success
         messages.success(request,"Successfully created")
@@ -440,7 +498,9 @@ def employeeup(request):
     return render(request,'employee/update.html')
 
 def employeev(request):
-    return render(request,'employee/view.html')
+    employees=Employer.objects.filter(user=request.user.userprofile)
+    return render(request,'employee/view.html',{'employees':employees})
+    
 
 def employeeapp(request):
     return render(request,'employee/applied.html')
@@ -471,3 +531,117 @@ def rr(request):
     return render(request, 'resumebuilder.html', context)
 
 
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'accounts/change_password.html', {
+        'form': form
+    })
+
+
+def employerdetails(request):
+    form=EmployerForm(request.POST or None,request.FILES or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.user=request.user
+        instance.save()
+        #message of success
+        messages.success(request,"Successfully created")
+        return redirect('home')
+    context = {
+        "form": form,}
+    return render(request, 'e.html',context)
+
+def empview(request):
+    employees=Employer.objects.filter(empuser=request.user.userprofile)
+    return render(request,'employee/view.html',{'employees':employees})
+    
+    
+def updateEmp(request,pk):
+    up=Employer.objects.get(id=pk)
+    form=EmployerForm(instance=up)
+    if(request.method=='POST'):
+        form=EmployerForm(request.POST,instance=up)
+        if form.is_valid(): 
+            messages.success(request,"Successfully created") 
+            form.save()
+            return redirect('/') 
+    context={'form':form}
+    return render(request,'e.html',context) 
+
+def employerview(request):
+    employees=Employer.objects.filter(empuser=request.user.userprofile)
+    return render(request,'employer/index.html',{'employees':employees})
+
+
+def showapplicants(request):
+    jobdisplay=Jobpost.objects.filter(user=request.user.userprofile)
+    appli=applicant.objects.filter(job=request.user.userprofile.jobpost)
+    return render(request,'showapplicants.html',{'appli':appli})
+
+def applyjobb(request, jid):
+    form=applicantform(request.POST or None,request.FILES or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.user=request.user
+        instance.save()
+        #message of success
+        messages.success(request,"Successfully created")
+        return redirect('home')
+    #form= JobPostform()
+    job = Jobpost.objects.get(id=jid)
+    context = {
+        "form": form,
+        "job": job,}
+    return render(request, 'applyjobb.html',context)
+
+def saved_resume(request):
+    sav=savedresume.objects.filter(empid=request.user.userprofile.employer)
+    return render(request,'saved_resume.html',{"sav": sav})
+
+
+def check_status(request):
+    #to check if subscription of logged in user is expired or not
+    value=subscriptionpack.objects.filter(empid=request.user.userprofile.employer)
+    stat=""
+    if (value.exists()):
+        for k in value:
+            d0 =k.purchasedate
+            d1=date.today()
+            delta = d1 - d0
+            if(delta.days>30):
+                k.status="expired"
+                stat='expired'
+            else:
+                k.status="active"
+                stat="active"
+        return render(request,'subscription.html',{'stat':stat})
+    else:
+        messages.error(request, "Sorry! No valid subscriptions")
+        return redirect('home')
+
+        
+ 
+       
+
+def sub(request):
+    form=subscriptionpackForm(request.POST or None,request.FILES or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.user=request.user
+        instance.save()
+        #message of success
+        messages.success(request,"Successfully created")
+        return redirect('home')
+    context = {
+        "form": form,}
+    return render(request, 'subsformm.html',context)
