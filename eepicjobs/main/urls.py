@@ -56,5 +56,6 @@ urlpatterns = [
                   path('showapplicants/<str:jid>/', views.showapplicants, name='showapplicants'),
                  path('sendemail/', views.sendemail, name='sendemail'), 
                  path('sending/<str:apid>/', views.sending, name='sending'), 
-                 path('seeing/<str:apid>/', views.seeing, name='seeing'), 
+                 path('seeing/<str:apid>/', views.seeing, name='seeing'),
+                 path('updatesubs/<str:pk>/', views.updatesubs, name='updatesubs'), 
 ]

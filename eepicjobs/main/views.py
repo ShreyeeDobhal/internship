@@ -657,6 +657,20 @@ def sub(request):
         "form": form,}
     return render(request, 'subsformm.html',context)
 
+def updatesubs(request,pk):
+    up=subscriptionpack.objects.get(id=pk)
+    form=subscriptionpackForm(instance=up)
+    if(request.method=='POST'):
+        form=subscriptionpackForm(request.POST,instance=up)
+        if form.is_valid(): 
+            messages.success(request,"Successfully created") 
+            form.save()
+            return redirect('/') 
+    context={'form':form}
+    return render(request,'subsformm.html',context) 
+
+
+
 def sendemail(request,aid):
     '''if(request.method=='GET'):
         return render(request,'settime.html')'''
