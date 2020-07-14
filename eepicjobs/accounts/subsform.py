@@ -9,4 +9,4 @@ class subscriptionpackForm(forms.ModelForm):
             'purchsedate': forms.DateInput(attrs={'class':'datepicker'})}
     class Meta:
         model=subscriptionpack
-        fields = '__all__'
+        fields = ["subscriptionid","status","purchasedate"]

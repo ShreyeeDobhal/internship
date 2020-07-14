@@ -642,15 +642,34 @@ def check_status(request):
         messages.error(request, "Sorry! No valid subscriptions")
         return redirect('home')
 
-        
- 
-       
+def check_status_employee(request):
+    #to check if subscription of logged in user is expired or not
+    eevalue=subscriptionpack.objects.filter(empid=request.user.userprofile)
+    stat=""
+    if (eevalue.exists()):
+        for k in eevalue:
+            d0 =k.purchasedate
+            d1=date.today()
+            delta = d1 - d0
+            if(delta.days>30):
+                k.status="expired"
+                stat='expired'
+            else:
+                k.status="active"
+                stat="active"
+            subs=k.subscriptionid    
+            
+        context={'subs':subs,'stat':stat} 
+        return render(request,'subscription.html',context)
+    else:
+        messages.error(request, "Sorry! No valid subscriptions")
+        return redirect('home')
 
 def sub(request):
     form=subscriptionpackForm(request.POST or None,request.FILES or None)
     if form.is_valid():
         instance=form.save(commit=False)
-        instance.user=request.user
+        instance.empid=request.user.userprofile
         instance.save()
         #message of success
         messages.success(request,"Successfully created")
@@ -741,7 +760,7 @@ def jobexpe(request):
     form=JobexperienceForm(request.POST or None,request.FILES or None)
     if form.is_valid():
         instance=form.save(commit=False)
-        instance.user=request.user
+        instance.euser=request.user.userprofile
         instance.save()
         #message of success
         messages.success(request,"Successfully created")
@@ -759,7 +778,7 @@ def updateJobexp(request,pk):
         if form.is_valid(): 
             messages.success(request,"Successfully created") 
             form.save()
-            return redirect('dashboard/employees') 
+            return redirect('employeein') 
     context={'form':form}
     return render(request,'employee/Jobexp.html',context)
 

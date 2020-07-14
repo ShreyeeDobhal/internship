@@ -28,6 +28,8 @@ urlpatterns = [
                 path('project/', views.project, name='project'),
                 path('education/', views.education, name='education'),
                 path('change_password/', views.change_password, name='change_password'),
+
+                 path('check_status_employee/', views.check_status_employee, name='check_status_employee'),
                 path('show/', views.show, name='show'),
                 path('applyjob/<jid>', views.applyjob, name='applyjob'),
                 path('applyjobb/<jid>', views.applyjobb, name='applyjobb'),

@@ -26,8 +26,7 @@ class UserProfile(models.Model):
     updated = models.DateTimeField(auto_now=True)
     name=models.CharField(max_length=255, null=True)
     phone_number = models.CharField(validators=[phone_regex], max_length=17, null=True)
-    is_emp = models.BooleanField(default=False)
-    is_seek = models.BooleanField(default=False)
+    
     active = models.BooleanField(default=True)
     email =  models.EmailField(validators=[validators.EmailValidator], null=True)
     skills=models.CharField(max_length=255, null=True, help_text="Mention Your Skils")
@@ -286,7 +285,7 @@ class Employer(models.Model):
     set_your_profile=models.CharField(max_length=20,choices=pchoice,default='Public')
     about_yourself=models.CharField(max_length=2000, null=True)
     email =  models.EmailField(validators=[validators.EmailValidator], null=True)
-    compchoice=(('0',"Php"),('1',"JS"),('2',"Designing"),('3',"Application development"),('4',"Painting"),('5',"Arts"),('6',"Development"),('7',"Modeling"),('8','SEO'),('9',"Architecture"),('10',"Management"),('11',"SMM"),('12',"Culinary Arts"),('13',"Peruvian Cuisine"),('14',"Team Management"),('15',"patience"),('16',"Commitment"),('17',"Team Work"),('18',"Flexibility"),('19',"Stress Management"),('20',"Analytical skills"),('21',"trainings"),('22','communication skills'),('23',"Food Products"),('24',"Education"),('25',"cooking"))
+    compchoice=(('Php',"Php"),('JS',"JS"),('Designing',"Designing"),('Application development',"Application development"),('Painting',"Painting"),('Arts',"Arts"),('Development',"Development"),('Modeling',"Modeling"),('SEO','SEO'),('Architecture',"Architecture"),('Management',"Management"),('SMM',"SMM"),('Culinary Arts',"Culinary Arts"),('Peruvian Cuisine',"Peruvian Cuisine"),('Team Management',"Team Management"),('patience',"patience"),('Commitment',"Commitment"),('Team Work',"Team Work"),('Flexibility',"Flexibility"),('Stress Management',"Stress Management"),('Analytical skills',"Analytical skills"),('trainings',"trainings"),('communication skills','communication skills'),('Food Products',"Food Products"),('Education',"Education"),('cooking',"cooking"))
     company_specialization=models.CharField(max_length=20,choices=compchoice,default='Php')
     no_of_employees=models.IntegerField(blank=True, null=True)
     Established_Date= models.DateField(verbose_name='Enter date in yy-mm-dd format') 
@@ -311,7 +310,7 @@ class Jobexperience(models.Model):
     euser = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     Organization_name1=models.CharField(max_length=255,blank=True,verbose_name='Mention Organization Name')
     your_role1=models.CharField(max_length=255,blank=True,verbose_name='Mention Your Role')
-    jobtenure1=models.IntegerField(blank=True, null=True,verbose_name='Mention Job Tenure')
+    jobtenure1=models.IntegerField(blank=True, null=True,verbose_name='Mention Job Tenure For the above role')
     Organization_name2=models.CharField(max_length=255,blank=True,verbose_name='Mention Organization Name')
     jobtenure2=models.IntegerField(blank=True, null=True,verbose_name='Mention Job Tenure')
     your_role2=models.CharField(max_length=255,blank=True,verbose_name='Mention Your Role')
@@ -372,7 +371,7 @@ class Employee(models.Model):
     set_your_profile=models.CharField(max_length=20,choices=pchoice,default='Public')
     about_yourself=models.CharField(max_length=2000, null=True)
     email =  models.EmailField(validators=[validators.EmailValidator], null=True)
-    compchoice=(('0',"Php"),('1',"JS"),('2',"Designing"),('3',"Application development"),('4',"Painting"),('5',"Arts"),('6',"Development"),('7',"Modeling"),('8','SEO'),('9',"Architecture"),('10',"Management"),('11',"SMM"),('12',"Culinary Arts"),('13',"Peruvian Cuisine"),('14',"Team Management"),('15',"patience"),('16',"Commitment"),('17',"Team Work"),('18',"Flexibility"),('19',"Stress Management"),('20',"Analytical skills"),('21',"trainings"),('22','communication skills'),('23',"Food Products"),('24',"Education"),('25',"cooking"))
+    compchoice=(('Php',"Php"),('JS',"JS"),('Designing',"Designing"),('Application development',"Application development"),('Painting',"Painting"),('Arts',"Arts"),('Development',"Development"),('Modeling',"Modeling"),('SEO','SEO'),('Architecture',"Architecture"),('Management',"Management"),('SMM',"SMM"),('Culinary Arts',"Culinary Arts"),('Peruvian Cuisine',"Peruvian Cuisine"),('Team Management',"Team Management"),('patience',"patience"),('Commitment',"Commitment"),('Team Work',"Team Work"),('Flexibility',"Flexibility"),('Stress Management',"Stress Management"),('Analytical skills',"Analytical skills"),('trainings',"trainings"),('communication skills','communication skills'),('Food Products',"Food Products"),('Education',"Education"),('cooking',"cooking"))
     company_specialization=models.CharField(max_length=20,choices=compchoice,default='Php')
     location = models.CharField(max_length=255, null=True)
     Facebook= models.URLField(blank=True,null=True)
@@ -404,8 +403,9 @@ class savedresume(models.Model):
         return "{} - {}".format(str(self.id))
         
 
+
 class subscriptionpack(models.Model):
-    empid=models.ForeignKey(Employer,on_delete=models.CASCADE)
+    empid=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     subscription_choice=(('499 per month','499 per month'),('700 for two months','700 for two months',),('Yearly subscription @3400','Yearly subscription @3400',))
     subscriptionid=models.CharField(max_length=20,choices=subscription_choice,default='499 per month')
     statuschoice=(('0','expired'),('1','active'))
@@ -415,7 +415,7 @@ class subscriptionpack(models.Model):
             verbose_name = 'subscriptionpack'
             verbose_name_plural = 'subscriptionpacks'
     def __str__(self):
-        return "{} - {}".format(str(self.id))
+        return "{} - {}".format(str(self.id),self.empid)
 
 class settime(models.Model):
     indate=models.DateField(auto_now=False, auto_now_add=False,verbose_name='Enter date in yyyy-mm-dd format')
