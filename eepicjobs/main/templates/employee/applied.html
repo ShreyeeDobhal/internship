@@ -24,22 +24,28 @@
 </div>
 <div class="dashboard-posted-jobs">
 <div class="posted-job-list jobs-saved header-title">
-<ul class="list-inline">
 
-<li class="posted-job-title">Title</li>
-<li class="posted-job-status">Status</li>            
-<li class="posted-job-status">Type</li>
-<li class="posted-job-expiration">Applied on</li>
-<li class="posted-job-expiration">Detail </li>
-</ul>
 </div>
-<div class="dashboard-posted-jobs">
-<div class="notification-box">
-<div class="notification-box-icon"><span class="ti-info-alt"></span></div>
-<h4>You have not applied for any job yet</h4>
-</div>
-</div>
-</div>
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th scope="row">Title</th>
+            <th scope="row">Status</th>
+            <th scope="row">Type</th>
+            <th scope="row">Applied on</th>
+            <th scope="row">Description</th>
+        </tr>
+        {% for k in request.user.userprofile.applicant_set.all %}
+        <tr>
+            <td> {{ k.job.JobTitle }} </td>
+            <td>  </td>
+            <td> </td>
+            <td> </td>
+            <td> {{ k.job.JobDesciption}} </td>
+        </tr>
+        {% endfor %}
+                        </tbody>
+</table>
 <div class="pagination-box clearfix">
 </div>                        </div>
                        </div>
