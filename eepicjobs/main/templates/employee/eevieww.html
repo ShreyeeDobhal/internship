@@ -1,0 +1,612 @@
+<html>
+<head>
+	<title>View Profile</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/scroll.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/column_scroll.css">
+	<link href='https://fonts.googleapis.com/css?family=Amarante' rel='stylesheet'>
+	<link rel="stylesheet" type="text/css" href="css/thin_scroll.css">
+	<link rel="stylesheet" type="text/css" href="css/theme.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
+
+
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-3 no-print" id="left">
+			<div id="panel">
+					<h3 class="text-center" data-toggle="modal">View Your details</h3>
+             <!--   <button class="btn btn-block btn-primary" data-toggle="modal" data-target="#usageModal">VIEW INSTRUCTIONS</button> -->
+				
+
+			</div>
+
+		</div>
+        {% if ress %}
+        {% for k in ress %}
+
+		<div class="col-sm-9 text-center" id="right">
+
+			<div id="page" class="droid">
+
+				<div class="row" style="margin-bottom:10px;">
+				<div class="col-sm-12">
+					<div id="info" style="text-align: center; padding-top:40px; padding-bottom: 15px;">
+						<p id="contentName" style="font-family: 'Amarante'; font-size: 60px;">{{k.name}}</p>
+					</div>
+					<div id="contact">
+						<p><strong>Profile Photo : </strong>
+							{%if k.profile_photo %}
+							<td><img src="{{k.profile_photo.url}}"width="200" height="100" alt="Computer Hope" class="img-responsive" /></td>
+							{%endif%}
+						</p>
+
+						<p><strong>Email : {{k.email}} </strong></p>
+						<p><strong>Phone : </strong>{{k.phone_number}}</p>
+						<p><strong>Twitter: </strong>{{k.twitter}} </p>
+						<p><strong>Instagram: </strong>{{k.insta}}</p>
+						<p><strong>Linkedin: </strong>{{k.linkedin}} </p>
+						
+
+					</div>
+				</div>
+				</div>
+
+
+
+				<div class="section" id="sectionExperience">
+					<div class="section-title ruled rule-above">
+						<hr class="hr-above">
+						<h4><strong>Salary Info</strong></h4>
+						<hr class="hr-below">
+					</div>
+					<ul>
+					<li>
+						<div>
+						<div class="title">Salary Type: {{k.salry_type}}</div>
+
+						</div>
+
+                    </li>
+                    <ul>
+                        <li>
+                            <div>
+                            <div class="title">Salary Amaount: {{k.salary_amount}}</div>
+    
+                            </div>
+    
+                        </li>
+                        <ul>
+                            <li>
+                                <div>
+                                <div class="title">Salary Currency: {{k.salary_currency}}</div>
+        
+                                </div>
+        
+                            </li>
+                            
+									</div>
+
+
+
+				<div class="section" id="sectionProjects">
+					<div class="section-title ruled rule-above">
+						<hr class="hr-above">
+						<h4><strong>Marital status</strong></h4>
+						<hr class="hr-below">
+					</div>
+					<ul>
+					<li>
+						<div>
+						<div class="title">{{k.Marital_status}}</div>
+
+						</div>
+						<div>
+
+					</li>
+
+					<li>
+
+
+				<div class="section" id="sectionSkills">
+					<div class="section-title ruled rule-above">
+						<hr class="hr-above">
+						<h4><strong>Profile status</strong></h4>
+						<hr class="hr-below">
+					</div>
+					<ul>
+					<li>
+
+						<strong><span class="skillCategory">{{k.set_your_profile}}</span> :</strong>
+
+					</li>
+
+
+
+
+				<div class="section" id="sectionResponsibility">
+					<div class="section-title ruled rule-above">
+						<hr class="hr-above">
+						<h4><strong>About you</strong></h4>
+						<hr class="hr-below">
+					</div>
+					<ul>
+						<li>{{k.about_yourself}}</li>
+
+					</ul>
+				</div>
+
+
+				<div class="section" id="sectionAchievements">
+					<div class="section-title ruled rule-above">
+						<hr class="hr-above">
+						<h4><strong>company_specialization</strong></h4>
+						<hr class="hr-below">
+					</div>
+					<ul>
+					<li>
+
+						<span class="text">{{k.company_specialization}}</span>
+					</li>
+
+						</ul>
+					</li>
+					</ul>
+				</div>
+
+
+				<div class="section" id="sectionCourses">
+					<div class="section-title ruled rule-above">
+						<hr class="hr-above">
+						<h4><strong>location</strong></h4>
+						<hr class="hr-below">
+					</div>
+					<ul>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <li>{{k.location}}</li>
+                            
+
+                        </div>
+                        </div>
+                    </ul>
+                </div>
+
+				
+
+
+					
+				
+                {% endfor %}
+									{% endif %}
+									
+			
+
+			</div>
+
+
+
+			<div class="section" id="sectionProjects">
+				<div class="section-title ruled rule-above">
+					<hr class="hr-above">
+					<h4><strong>Projects</strong></h4>
+					<hr class="hr-below">
+				</div>
+				{% if pro %}
+			{% for k in pro %}
+			{%if k.project1 %}
+				<ul>
+					
+				<li>
+					<div>
+						
+						<div class="title">{{k.project1}}</div>
+						
+
+					</div>
+				</div>
+
+			</li></ul>
+			{% endif %}
+			{%if k.project2 %}
+			<ul>
+				<li>
+					<div>
+						
+						<div class="title">{{k.project2}}</div>
+						
+
+					</div>
+				</div>
+
+			</li></ul>{% endif %}
+			{%if k.project3 %}
+			<ul>
+				<li>
+					<div>
+						
+						<div class="title">{{k.project3}}</div>
+						
+
+					</div>
+				</div>
+
+			</li></ul>
+			{% endif %}
+			{%if k.project4 %}
+			<ul>
+				<li>
+					<div>
+						
+						<div class="title">{{k.project4}}</div>
+						
+
+					</div>
+				</div>
+
+			</li></ul>
+			{% endif %}
+			{%if k.project5 %}
+			<ul>
+				<li>
+					<div>
+						
+						<div class="title">{{k.project5}}</div>
+						
+
+					</div>
+				</div>
+
+			</li></ul>
+			{% endif %}
+			{%if k.project6 %}
+			<ul>
+				<li>
+					<div>
+						
+						<div class="title">{{k.project6}}</div>
+						
+
+					</div>
+				</div>
+
+			</li></ul>{% endif %}
+			{%if k.project7 %}
+			<ul>
+				<li>
+					<div>
+						
+						<div class="title">{{k.project7}}</div>
+						
+
+					</div>
+				</div>
+
+			</li></ul>{% endif %}
+			{%if k.project8 %}
+			<ul>
+				<li>
+					<div>
+						
+						<div class="title">{{k.project8}}</div>
+						
+
+					</div>
+				</div>
+
+			</li></ul>{% endif %}
+			{%if k.project9 %}
+			<ul>
+				<li>
+					<div>
+						
+						<div class="title">{{k.project9}}</div>
+						
+
+					</div>
+				</div>
+
+			</li></ul>{% endif %}
+			{%if k.project10 %}
+			<ul>
+				<li>
+					<div>
+						
+						<div class="title">{{k.project10}}</div>
+						
+
+					</div>
+				</div>
+
+			</li></ul>
+			{% endif %}
+			{% endfor %}
+            {% endif %}
+            
+
+            <div class="section" id="sectionProjects">
+				<div class="section-title ruled rule-above">
+					<hr class="hr-above">
+					<h4><strong>Job Experiences</strong></h4>
+					<hr class="hr-below">
+				</div>
+				{% if jobb %}
+			{% for k in jobb %}
+			{%if k.Organization_name1 %}
+				<ul>
+					
+				<li>
+					<div>
+						<p>Organization Name:  {{k.Organization_name1}}</p>
+                    
+                        <p>Your role:  {{your_role1}} </p>
+                        
+                        <p>Your tenure in Years: {{k.jobtenure1}}</p>
+                        
+						
+
+					</div>
+				</div>
+
+			</li></ul>
+			{% endif %}
+			{%if k.Organization_name2 %}
+				<ul>
+					
+				<li>
+					<div>
+						<p>Organization Name:  {{k.Organization_name2}}</p>
+                    
+                        <p>Your role:  {{your_role2}} </p>
+                        
+                        <p>Your tenure in Years: {{k.jobtenure2}}</p>
+                        
+						
+
+					</div>
+				</div>
+
+			</li></ul>{% endif %}
+			{%if k.Organization_name3 %}
+				<ul>
+					
+				<li>
+					<div>
+						<p>Organization Name:  {{k.Organization_name3}}</p>
+                    
+                        <p>Your role:  {{your_role3}} </p>
+                        
+                        <p>Your tenure in Years: {{k.jobtenure3}}</p>
+                        
+						
+
+					</div>
+				</div>
+
+			</li></ul>{% endif %}
+			
+			{%if k.Organization_name4 %}
+				<ul>
+					
+				<li>
+					<div>
+						<p>Organization Name:  {{k.Organization_name4}}</p>
+                    
+                        <p>Your role:  {your_role4}} </p>
+                        
+                        <p>Your tenure in Years: {{k.jobtenure4}}</p>
+                        
+						
+
+					</div>
+				</div>
+
+			</li></ul>{% endif %}
+			{%if k.Organization_name5 %}
+				<ul>
+					
+				<li>
+					<div>
+						<p>Organization Name:  {{k.Organization_name2}}</p>
+                    
+                        <p>Your role:  {{your_role5}} </p>
+                        
+                        <p>Your tenure in Years: {{k.jobtenure5}}</p>
+                        
+						
+
+					</div>
+				</div>
+
+			</li></ul>{% endif %}
+			
+			{%if k.Organization_name6 %}
+				<ul>
+					
+				<li>
+					<div>
+						<p>Organization Name:  {{k.Organization_name6}}</p>
+                    
+                        <p>Your role:  {{your_role6}} </p>
+                        
+                        <p>Your tenure in Years: {{k.jobtenure6}}</p>
+                        
+						
+
+					</div>
+				</div>
+
+            </li></ul>{% endif %}
+            {% endfor %}
+            {% endif %}
+			
+
+
+
+
+			
+			<div class="section" id="sectionEducation">
+				<div class="section-title ruled rule-above">
+					<hr class="hr-above">
+					<h4><strong>Education</strong></h4>
+					<hr class="hr-below">
+				</div>
+				{% if edu %}
+			{% for k in edu %}
+			<div class="row">
+                        <div class="col-sm-6">
+                            <li><strong>School :  </strong>{{k.school}}</li>
+                            <li><strong>College :  </strong>{{k.college}}</li>
+
+                        </div>
+				<ul class="nobullet">
+				<li>
+					<table class="table customBordered" id="educationTable">
+						
+						<tr>
+							<td class="header"><strong>Year  of passing    </strong></td>
+							<td class="header"><strong>        </strong></td>
+							<td class="header"><strong>Degree    </strong></td>
+							<td class="header"><strong>        </strong></td>
+							<td class="header"><strong>Institute Name    </strong></td>
+							<td class="header"><strong>        </strong></td>
+							<td class="header"><strong>CGPA/Percentage scored   </strong></td>
+							<td class="header"><strong>        </strong></td>
+						</tr>
+						<tr>
+							<td>{{k.yop_for_masters}}</td>
+							<td class="header"><strong>        </strong></td>
+							<td>{{k.masters_degree}}</td>
+							<td class="header"><strong>        </strong></td>
+							<td>{{k.college}}</td>
+							<td class="header"><strong>        </strong></td>
+							<td>{{k.CGPA_For_masters}}</td>
+							<td class="header"><strong>        </strong></td>
+						</tr>
+						<tr>
+							<td>{{k.yop_for_bachelors}}</td>
+							<td class="header"><strong>        </strong></td>
+							<td>{{k.bachelor_degree}}</td>
+							<td class="header"><strong>        </strong></td>
+							<td>{{k.college}}</td>
+							<td class="header"><strong>        </strong></td>
+							<td>{{k.CGPA_For_bachelors}}</td>
+						</tr>
+						<tr>
+							<td>{{k.yop_for_twelfth}}</td>
+							<td class="header"><strong>        </strong></td>
+							<td>XII</td>
+							<td class="header"><strong>        </strong></td>
+							<td>{{k.school}}</td>
+							<td class="header"><strong>        </strong></td>
+							<td>{{k.twelth_percentage}}</td>
+						</tr>
+
+						<tr>
+							<td>{{k.yop_for_tenth}}</td>
+							<td class="header"><strong>        </strong></td>
+							<td>X</td>
+							<td class="header"><strong>        </strong></td>
+							<td>{{k.school}}</td>
+							<td class="header"><strong>        </strong></td>
+							<td>{{k.tenth_percentage}}</td>
+						</tr>
+						
+						
+					</table>
+				</li>
+				</ul>
+			
+	{% endfor %}
+	{% endif %}
+</div>
+
+
+		</div>
+
+
+	</div>
+
+</div>
+<!--
+
+<div class="modal fade" id="usageModal" tabindex='-1'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-body">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h5><strong>Note : </strong>Use <strong>Google Chrome</strong>. Other browsers are unable to print properly and don't support some features.</h5>
+				<h4><strong>Editing content</strong></h4>
+				<ul>
+					<li>Edit the Resume content just like a normal document editor (cut,copy,undo etc).</li>
+					<li>Entire sections can be added, reordered, removed just by cut,copy,pasting method. (Use "show/hide sections" button to hide but retain content)</li>
+					<li>To remove a section/point/mentor/link etc, just delete it.</li>
+					<li>For styled/formatted text, select the text portion and press <kbd>Ctrl+b</kbd> for bold, <kbd>Ctrl+i</kbd> for italics, <kbd>Ctrl+u</kbd> for underlined text.</li>
+					<li>Use "Insert sub-list" button to insert sub-points in a point. (like as in achivements section)</li>
+					<li>Change indentation and bullet style of the list where your cursor is placed.</li>
+				</ul>
+				<h4><strong>Editing template</strong></h4>
+				<ul>
+					<li>Use the options in the left panel to modify the template/look.</li>
+					<li>In case you want to use a different template than the official IITG template, choose the corresponding button to see other setting options. (For on-campus purpose, you must use official IITG template)</li>
+				</ul>
+				<h4><strong>Saving</strong></h4>
+				<ul>
+					<li>Close any popup box (like this instructions popup	) if opened. Press <kbd>Ctrl+s</kbd></li>
+					<li>This will save the webpage (a .html file and a folder will be saved. Keep them together)</li>
+					<li>Open the .html file in browser from your PC.</li>
+					<li>This way, you can maintain multiple saved copies for each profile/template on your PC.</li>
+				</ul>
+				<h4><strong>Print as PDF</strong></h4>
+				<ul>
+					<li>Adjust margin in the Chrome's print dialog box. You may need it if a section is getting split between two pages. Print each page separately with different margins if needed.</li>
+					<li>If URLs or some stray text is being shown in print preview, disable the options "Include headers and footers","Include background graphics" etc in the print dialog box.</li>
+				</ul>
+				<h4><strong>Merge and compress PDFs</strong></h4>
+				<ul>
+					<li><a class="blue" target="_blank" href="http://www.pdfmerge.com/">pdfmerge.com/</a> is one of the best sites available for this task.</li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+-->
+
+<div class="modal fade" id="sectionToggleModal" tabindex='-1'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<div class="checkbox"><label><input type="checkbox" name="sectionToggle" checked="true" value="sectionEducation">Education</label></div>
+				<div class="checkbox"><label><input type="checkbox" name="sectionToggle" checked="true" value="sectionExperience">Experience</label></div>
+				<div class="checkbox"><label><input type="checkbox" name="sectionToggle" checked="true" value="sectionPublications">Publications</label></div>
+				<div class="checkbox"><label><input type="checkbox" name="sectionToggle" checked="true" value="sectionProjects">Projects</label></div>
+				<div class="checkbox"><label><input type="checkbox" name="sectionToggle" checked="true" value="sectionSkills">Technical Skills</label></div>
+				<div class="checkbox"><label><input type="checkbox" name="sectionToggle" checked="true" value="sectionResponsibility">Positions of Responsibility</label></div>
+				<div class="checkbox"><label><input type="checkbox" name="sectionToggle" checked="true" value="sectionAchievements">Achievements</label></div>
+				<div class="checkbox"><label><input type="checkbox" name="sectionToggle" checked="true" value="sectionCourses">Key courses taken</label></div>
+                <div class="checkbox"><label><input type="checkbox" name="sectionToggle" checked="true" value="sectionlinks">Links</label></div>
+				<div class="checkbox"><label><input type="checkbox" name="sectionToggle" checked="true" value="sectionCurricular">Hobbies</label></div>
+				<div class="checkbox"><label><input type="checkbox" name="sectionToggle" value="sectionFooterMessage">References message</label></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/header.js"></script>
+
+</body>
+
+</html>
+

@@ -69,7 +69,7 @@ class Education(models.Model):
         class Meta:
             verbose_name = 'Education'
             def __str__(self):
-                return "{} - {}".format(str(self.id), self.school,self. CGPA_For_bachelors)
+                return "{} - {}".format(str(self.id),self.resume, self.school,self. CGPA_For_bachelors)
 
 
 
@@ -88,7 +88,7 @@ class Project(models.Model):
         class Meta:
             verbose_name = 'Projects'
             def __str__(self):
-                return "{} - {}".format(str(self.id), self.project1,self.project10)
+                return "{} - {}".format(str(self.id),self.projectuser)
 
 
         
@@ -304,6 +304,93 @@ class Employer(models.Model):
 
     def __str__(self):
         return "{} - {}".format(str(self.id), self.name,self.email)
+
+
+class Jobexperience(models.Model):
+    USER_PROFILE_PHOTO = 'user__profilephoto'
+    euser = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    Organization_name1=models.CharField(max_length=255,blank=True,verbose_name='Mention Organization Name')
+    your_role1=models.CharField(max_length=255,blank=True,verbose_name='Mention Your Role')
+    jobtenure1=models.IntegerField(blank=True, null=True,verbose_name='Mention Job Tenure')
+    Organization_name2=models.CharField(max_length=255,blank=True,verbose_name='Mention Organization Name')
+    jobtenure2=models.IntegerField(blank=True, null=True,verbose_name='Mention Job Tenure')
+    your_role2=models.CharField(max_length=255,blank=True,verbose_name='Mention Your Role')
+    Organization_name3=models.CharField(max_length=255,blank=True,verbose_name='Mention Organization Name')
+    jobtenure3=models.IntegerField(blank=True, null=True,verbose_name='Mention Job Tenure')
+    your_role3=models.CharField(max_length=255,blank=True,verbose_name='Mention Your Role')
+    Organization_name4=models.CharField(max_length=255,blank=True,verbose_name='Mention Organization Name')
+    jobtenure4=models.IntegerField(blank=True, null=True,verbose_name='Mention Job Tenure')
+    your_role4=models.CharField(max_length=255,blank=True,verbose_name='Mention Your Role')
+    Organization_name5=models.CharField(max_length=255,blank=True,verbose_name='Mention Organization Name')
+    jobtenure5=models.IntegerField(blank=True, null=True,verbose_name='Mention Job Tenure')
+    your_role5=models.CharField(max_length=255,blank=True,verbose_name='Mention Your Role')
+    Organization_name6=models.CharField(max_length=255,blank=True,verbose_name='Mention Organization Name')
+    jobtenure6=models.IntegerField(blank=True, null=True,verbose_name='Mention Job Tenure')
+    your_role6=models.CharField(max_length=255,blank=True,verbose_name='Mention Your Role') 
+    class Meta:
+            verbose_name = 'Jobexperience'
+            verbose_name_plural = 'Jobexperiences'
+
+    def __str__(self):
+            return "{} - {}".format(str(self.id), self.euser)
+        
+
+    
+
+
+class Employee(models.Model):
+    """
+    This model is for creating a UserProfile that contains more information about the user
+    """
+    USER_PROFILE_PHOTO = 'user__profilephoto'
+    pchoice= (('0',"Public"),('1',"Private"))
+    employeeuser = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    
+    profile_photo = models.ImageField(upload_to=USER_PROFILE_PHOTO, null=True, blank=True)
+    name=models.CharField(max_length=255, null=True)
+    profession=models.CharField(max_length=255, null=True)
+    genderchoice=(('Male','Male'),('Female','Female'),('Other','Other'))
+    gender=models.CharField(max_length=10,choices=genderchoice,default='Male')
+    tenurechoice=(('Fresher','Fresher'),('1 year','1 year'),('2 years','2 years'),('3 years','3 year'),('4 years','4years'),('5 years','5 years'))
+    experience_tenure=models.CharField(max_length=10,choices=tenurechoice,default='Fresher')
+    level=(('Manager','Manager'),('Student',"Student"),("Officer","Officer"),("Executive","Executive"))
+    experience_level=models.CharField(max_length=10,choices=level,default='Student')
+    qchoice=(('Bachelor','Bachelor'),('Master',"Master"),("PHD","PHD"))
+    qualification=models.CharField(max_length=10,choices=qchoice,default='Bachelor')
+    contractchoices=(('Contract',"Contract"),('Internship',"Internship"),('Temporary',"Temporary"),('Freelance',"Freelance"),('Part Time',"Part Time"),('Full Time',"Full Time"))
+    contract_type =models.CharField(max_length=10,choices=contractchoices,default='Internship')
+    phone_number = models.CharField(validators=[phone_regex], max_length=17, null=True)
+   
+    marital=(("Single","Single"),("Married","Married"))
+    salt=(("Monthly","Monthly"),("Weekly","Weekly"),("Hourly","Hourly"),("Yearly","Yearly"))
+    
+    sal_c=(("Rupees","Rupees"),("Dollar","Dollar"),("Euro","Euro"),("Pound","Pound"))
+    salry_type=models.CharField(max_length=10,choices=salt,default='Monthly')
+    salary_amount=models.IntegerField(null=True,blank=True)
+    salary_currency=models.CharField(max_length=10,choices=sal_c,default='Rupees')
+    Marital_status=models.CharField(max_length=10,choices=marital,default='Single')
+    set_your_profile=models.CharField(max_length=20,choices=pchoice,default='Public')
+    about_yourself=models.CharField(max_length=2000, null=True)
+    email =  models.EmailField(validators=[validators.EmailValidator], null=True)
+    compchoice=(('0',"Php"),('1',"JS"),('2',"Designing"),('3',"Application development"),('4',"Painting"),('5',"Arts"),('6',"Development"),('7',"Modeling"),('8','SEO'),('9',"Architecture"),('10',"Management"),('11',"SMM"),('12',"Culinary Arts"),('13',"Peruvian Cuisine"),('14',"Team Management"),('15',"patience"),('16',"Commitment"),('17',"Team Work"),('18',"Flexibility"),('19',"Stress Management"),('20',"Analytical skills"),('21',"trainings"),('22','communication skills'),('23',"Food Products"),('24',"Education"),('25',"cooking"))
+    company_specialization=models.CharField(max_length=20,choices=compchoice,default='Php')
+    location = models.CharField(max_length=255, null=True)
+    Facebook= models.URLField(blank=True,null=True)
+    
+    insta = models.URLField(blank=True,null=True)
+    twitter = models.URLField(blank=True,null=True)
+    linked_in = models.URLField(blank=True,null=True)
+    #company_logo=models.ImageField(upload_to='', null=True, blank=True)
+    youtube_url=models.URLField(blank=True,null=True)
+    class Meta:
+        verbose_name = 'Employee'
+        verbose_name_plural = 'Employees'
+
+    def __str__(self):
+        return "{} - {}".format(str(self.id), self.name,self.email)
+
+    
+
 
 
 

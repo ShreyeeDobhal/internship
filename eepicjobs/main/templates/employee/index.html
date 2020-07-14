@@ -21,10 +21,26 @@
                         <ul id="accordion" class="accordion ps ps--active-y">
                             <li><a href="{% url 'employeein' %}"><span class="la la-tachometer"></span>Dashboard</a></li>
                             <li><a href="{% url 'employeeup' %}"><span class="la la-edit"></span>update profile</a></li>
-                            <li><a href="{% url 'employeev' %}"><span class="la la-user"></span>view my profile</a></li>
+
+                            <div class="profile-menu-link">
+                                <span class="la la-bars"></span>Update Profile<i class="fa fa-angle-down"></i>
+                              </div>
+                              <ul class="submenu">
+                                <li><a href="{% url 'eeup' request.user.userprofile.employee.id %}"> Update personal info</a></li>
+                                <li><a href="{% url 'updateJobexp' request.user.userprofile.jobexperience_set.first.id %}">Update Job experiences</a></li>
+                                <li><a href="{% url 'proup' request.user.userprofile.project_set.first.id %}">Update Project Details</a></li>
+                                
+                              </ul>
+                            </li><li>
+                          
+                            </li>
+                            
+
+
+                            <li><a href="{% url 'eeview' %}"><span class="la la-user"></span>view my profile</a></li>
                             <li><a href="{% url 'employeeresume' %}"><span class="la la-file-pdf-o"></span>My Resume</a></li>
                             <li><a href="{% url 'employeeapp' %}"><span class="la la-bars"></span>Jobs Applied</a></li>
-                            <li><a href="{% url 'employeesa' %}"><span class="la la-bookmark"></span>Saved Jpbs</a></li>
+                            <li><a href="{% url 'employeesa' %}"><span class="la la-bookmark"></span>Saved Jobs</a></li>
                             <li><a href="{% url 'employeein' %}"><span class="la la-external-link"></span>Followed </a></li>
                             <li><a href="{% url 'employeeal' %}"><span class="la la-bell"></span>Job alerts</a></li>
                             <li><a href="{% url 'employeepack' %}"><span class="la la-list-alt"></span>My packages</a></li>

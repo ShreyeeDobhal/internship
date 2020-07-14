@@ -6,6 +6,10 @@ from  accounts.setime import settimeForm
 from datetime import date
 from django.contrib.auth.hashers import make_password
 from  accounts.models import Jobpost
+from  accounts.models import Jobexperience
+from accounts.Jobexp import JobexperienceForm
+from  accounts.models import Employee
+from  accounts.employee import EmployeeForm
 from  accounts.models import Employer
 from  accounts.models import savedresume
 from  accounts.models import subscriptionpack
@@ -500,9 +504,7 @@ def employeein(request):
 def employeeup(request):
     return render(request,'employee/update.html')
 
-def employeev(request):
-    employees=Employer.objects.filter(user=request.user.userprofile)
-    return render(request,'employee/view.html',{'employees':employees})
+
     
 
 def employeeapp(request):
@@ -566,7 +568,7 @@ def employerdetails(request):
 
 def empview(request):
     employees=Employer.objects.filter(empuser=request.user.userprofile)
-    return render(request,'employee/view.html',{'employees':employees})
+    return render(request,'employer/view.html',{'employees':employees})
     
     
 def updateEmp(request,pk):
@@ -719,4 +721,95 @@ def seeing(request,apid):
     else:
         messages.error(request,'no time set')
         return redirect('home')
+
+def employeedetails(request):
+    form=EmployeeForm(request.POST or None,request.FILES or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.employeeuser=request.user.userprofile
+        instance.save()
+        #message of success
+        messages.success(request,"Successfully created")
+        return redirect('jobexpe')
+    context = {"form":form}
+    return render(request, 'employee/ee.html',context)
+
+
+    
+
+def jobexpe(request):
+    form=JobexperienceForm(request.POST or None,request.FILES or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.user=request.user
+        instance.save()
+        #message of success
+        messages.success(request,"Successfully created")
+        return redirect('education')
+    context = {
+        "form": form,}
+    return render(request, 'employee/Jobexp.html',context)
+
+
+def updateJobexp(request,pk):
+    up=Jobexperience.objects.get(id=pk)
+    form=JobexperienceForm(instance=up)
+    if(request.method=='POST'):
+        form=JobexperienceForm(request.POST,instance=up)
+        if form.is_valid(): 
+            messages.success(request,"Successfully created") 
+            form.save()
+            return redirect('dashboard/employees') 
+    context={'form':form}
+    return render(request,'employee/Jobexp.html',context)
+
+
+
+def eeview(request):
+    ress = Employee.objects.filter(employeeuser=request.user.userprofile)
+    edu=Education.objects.filter(resume=request.user.userprofile)
+    pro = Project.objects.filter(projectuser=request.user.userprofile)
+    jobb=Jobexperience.objects.filter(euser=request.user.userprofile)
+    context={"ress":ress,
+    "edu" : edu,
+    "pro":pro,"jobb":jobb}
+    return render(request, 'employee/eeview.html', context)
+
+def eeup(request,pk):
+    up=Employee.objects.get(id=pk)
+    form=EmployerForm(instance=up)
+    if(request.method=='POST'):
+        form=EmployeeForm(request.POST,instance=up)
+        if form.is_valid(): 
+            messages.success(request,"Successfully created") 
+            form.save()
+            return redirect('dashboard/employee/') 
+    context={'form':form}
+    return render(request,'employee/ee.html',context) 
+
+def eduup(request,pk):
+    up=EducationForm.objects.get(id=pk)
+    form=EmployerForm(instance=up)
+    if(request.method=='POST'):
+        form=EmployerForm(request.POST,instance=up)
+        if form.is_valid(): 
+            messages.success(request,"Successfully created") 
+            form.save()
+            return redirect('dashboard/employee/') 
+    context={'form':form}
+    return render(request,'education.html',context) 
+
+
+def proup(request,pk):
+    up=Project.objects.get(id=pk)
+    form=ProjectsForm(instance=up)
+    if(request.method=='POST'):
+        form=ProjectsForm(request.POST,instance=up)
+        if form.is_valid(): 
+            messages.success(request,"Successfully created") 
+            form.save()
+            return redirect('dashboard/employee/') 
+    context={'form':form}
+    return render(request,'projects.html',context) 
+
 
