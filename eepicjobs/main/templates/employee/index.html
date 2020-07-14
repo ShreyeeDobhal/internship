@@ -27,8 +27,6 @@
                               </div>
                               <ul class="submenu">
                                 <li><a href="{% url 'eeup' request.user.userprofile.employee.id %}"> Update personal info</a></li>
-                                <li><a href="{% url 'updateJobexp' request.user.userprofile.jobexperience_set.first.id %}">Update Job experiences</a></li>
-                                <li><a href="{% url 'proup' request.user.userprofile.project_set.first.id %}">Update Project Details</a></li>
                                 
                               </ul>
                             </li><li>
@@ -111,13 +109,13 @@
         <div class="stat-box-meta">
             <div class="stat-box-meta-text">
                 <h4>Applied jobs</h4>
-                <h3>0</h3>
+                <h3>{{ request.user.userprofile.applicant_set.count }}</h3>
             </div>
             <div class="stat-box-meta-icon">
                 <img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/icons/applied-jobs.png" class="img-responsive" alt="applied jobs">
             </div>
         </div>
-        <p><a href="https://jobs.nokriwp.com/dashboard/?candidate-page=jobs-applied">View all applied jobs</a></p>
+        <p><a href="{% url 'showapplied' request.user.userprofile.applicant_set.first.id %}">View all applied jobs</a></p>
     </div>
 </div>
 <div class="col-md-6 col-sm-6 col-xs-12">

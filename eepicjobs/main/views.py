@@ -773,7 +773,7 @@ def eeview(request):
     context={"ress":ress,
     "edu" : edu,
     "pro":pro,"jobb":jobb}
-    return render(request, 'employee/eeview.html', context)
+    return render(request, 'employee/eevieww.html', context)
 
 def eeup(request,pk):
     up=Employee.objects.get(id=pk)
@@ -813,3 +813,7 @@ def proup(request,pk):
     return render(request,'projects.html',context) 
 
 
+def showapplied(request,pk):
+     appli=applicant.objects.filter(user=request.user.userprofile)
+     return render(request,'showapplied.html',{'appli':appli})
+    

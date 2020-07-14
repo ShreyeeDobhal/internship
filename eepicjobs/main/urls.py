@@ -65,4 +65,5 @@ urlpatterns = [
                  path('employeedetails/', views.employeedetails, name='employeedetails'),
                  path('jobexpe', views.jobexpe, name='jobexpe'),
                  path('eeview', views.eeview, name='eeview'),
+                 path('showapplied/<str:pk>', views.showapplied, name='showapplied'),
 ]
