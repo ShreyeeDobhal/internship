@@ -1,9 +1,13 @@
+import stripe
+from django.conf import settings
 from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 from django.core.mail import send_mail
 from django.contrib import messages
 from accounts.models import settime
+from accounts.models import Pay
 from  accounts.setime import settimeForm
 from datetime import date
+
 from django.contrib.auth.hashers import make_password
 from  accounts.models import Jobpost
 from  accounts.models import Jobexperience
@@ -49,7 +53,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 
-
+API_KEY=settings.STRIPE_SECRET_KEY
 
 def index(request):
     return render(request, 'index.html')
@@ -446,7 +450,7 @@ def education(request):
     form=EducationForm(request.POST or None,request.FILES or None)
     if form.is_valid():
         instance=form.save(commit=False)
-        instance.user=request.user
+        instance.resume=request.user.userprofile
         instance.save()
         #message of success
         messages.success(request,"Successfully created")
@@ -617,6 +621,11 @@ def applyjobb(request, jid):
 def saved_resume(request):
     sav=savedresume.objects.filter(empid=request.user.userprofile.employer)
     return render(request,'saved_resume.html',{"sav": sav})
+
+def saved_jobs(request):
+    sav=savedjobs.objects.filter(empid=request.user.userprofile.employee)
+    return render(request,'employee/saved_jobs.html',{"sav": sav})
+
 
 
 def check_status(request):
@@ -835,4 +844,25 @@ def proup(request,pk):
 def showapplied(request,pk):
      appli=applicant.objects.filter(user=request.user.userprofile)
      return render(request,'showapplied.html',{'appli':appli})
+
+def upgrade(request):
+    logger.info("upgrade")
+    return render(request,"payments.upgrade.html")
+    
+def card(request):
+    return render(request,"payments/thankyou.html")
+
+def payment_method(request):
+    plan=request.POST.get('plan','m')
+    automatic=request.POST.get("automatic",'on')
+    payment_method=request.POST.get("payment_method",'card')
+    context={}
+    plan_inst= Plan(plan_id=plan)
+    payment_intent=stripe.PaymentIntent.create(amount=plan_inst.amount,currency=plan_inst.currency,payment_method_types=['card'])
+    if payment_method=="card":
+        context['secret_key']=payment_intent.client.secret_key
+        context['STRIPE_PUBLISHABLE_KEY']=settings.STRIPE_PUBLISHABLE_KEY
+        context["customer_email"]=request.user.email
+        context["payment_intent_id"]=payment_intent_id
+        return render(request,"payments/card.html",context)
     

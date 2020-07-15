@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
 'django_countries',
     'main',
+    'stripe'
 ]
 
 MIDDLEWARE = [
@@ -145,3 +146,7 @@ EMAIL_HOST_USER = 'localhost'
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_ID= os.environ.get('STRIPE_PUBLISHABLE_ID')
+STRIPE_PLAN_ANNUAL_ID=os.environ.get('STRIPE_PLAN_ANNUAL_ID')

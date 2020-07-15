@@ -28,7 +28,9 @@ urlpatterns = [
                 path('project/', views.project, name='project'),
                 path('education/', views.education, name='education'),
                 path('change_password/', views.change_password, name='change_password'),
-
+                path('payment_method/',views.payment_method,name="payment_method"),
+                path('card/',views.card,name="card"),
+                path('saved_jobs/',views.saved_jobs,name="saved_jobs"),
                  path('check_status_employee/', views.check_status_employee, name='check_status_employee'),
                 path('show/', views.show, name='show'),
                 path('applyjob/<jid>', views.applyjob, name='applyjob'),

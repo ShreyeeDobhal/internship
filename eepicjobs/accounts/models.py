@@ -401,6 +401,15 @@ class savedresume(models.Model):
             verbose_name_plural = 'savedresumes'
     def __str__(self):
         return "{} - {}".format(str(self.id))
+
+class savedjobs(models.Model):
+    jid=models.ForeignKey(Jobpost,on_delete=models.CASCADE)
+    empid=models.ForeignKey(Employee,on_delete=models.CASCADE)
+    class Meta:
+            verbose_name = 'savedjob'
+            verbose_name_plural = 'savedjobs'
+    def __str__(self):
+        return "{} - {}".format(str(self.id))
         
 
 
@@ -408,7 +417,7 @@ class subscriptionpack(models.Model):
     empid=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     subscription_choice=(('499 per month','499 per month'),('700 for two months','700 for two months',),('Yearly subscription @3400','Yearly subscription @3400',))
     subscriptionid=models.CharField(max_length=20,choices=subscription_choice,default='499 per month')
-    statuschoice=(('0','expired'),('1','active'))
+    statuschoice=(('expired','expired'),('active','active'))
     status=models.CharField(max_length=20,choices=statuschoice,default='expired')
     purchasedate=models.DateField(verbose_name='Enter date in yy-mm-dd format')
     class Meta:
@@ -416,6 +425,16 @@ class subscriptionpack(models.Model):
             verbose_name_plural = 'subscriptionpacks'
     def __str__(self):
         return "{} - {}".format(str(self.id),self.empid)
+    
+class Pay(models.Model):
+    amount=models.IntegerField(blank=True, null=True)
+    subscription_choice=(('499 per month','499 per month'),('700 for two months','700 for two months',),('Yearly subscription @3400','Yearly subscription @3400',))
+    plan_id=models.CharField(max_length=20,choices=subscription_choice,default='499 per month')
+    curren=(('Rupees','Rupees'),('Dollar','Dollar'))
+    currency=models.CharField(max_length=20,choices=curren,default='Rupees')
+    paychoice=(('card','card'),('paypal','paypal'))
+    payment_method_types=models.CharField(max_length=20,choices=paychoice,default='card')
+
 
 class settime(models.Model):
     indate=models.DateField(auto_now=False, auto_now_add=False,verbose_name='Enter date in yyyy-mm-dd format')
