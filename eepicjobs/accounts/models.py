@@ -277,7 +277,7 @@ class Employer(models.Model):
     This model is for creating a UserProfile that contains more information about the user
     """
     USER_PROFILE_PHOTO = 'user__profilephoto'
-    pchoice= (('0',"Public"),('1',"Private"))
+    pchoice= (('Public',"Public"),('Private',"Private"))
     empuser = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
     profile_photo = models.ImageField(upload_to=USER_PROFILE_PHOTO, null=True, blank=True)
     name=models.CharField(max_length=255, null=True)

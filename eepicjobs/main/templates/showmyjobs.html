@@ -49,6 +49,11 @@
                 <td>{{k.CompanyName}}</td>
             </tr>
             <tr>
+                <td><h4>Company Logo</h4></td>
+
+                <td><img  class="img-responsive watch-right" alt="not found" width="400" height="300"  src={% if k.company_logo %}"{{k.company_logo.url}}"{% endif %}/></td>
+            </tr>
+            <tr>
                 <td><h4>Applicants list</h4></td>
                 <td><a href="{% url 'showapplicants' k.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Click to see applicants of this job</button></td>
             </tr>

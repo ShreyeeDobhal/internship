@@ -585,11 +585,11 @@ def employerdetails(request):
     form=EmployerForm(request.POST or None,request.FILES or None)
     if form.is_valid():
             instance=form.save(commit=False)
-            instance.user=request.user
+            instance.empuser=request.user.userprofile
             instance.save()
             #message of success
             messages.success(request,"Successfully created")
-            return redirect('home')
+            return redirect('employerin')
     context = {
             "form": form,}
     return render(request, 'e.html',context)

@@ -39,9 +39,10 @@
 					</div>
 					<div id="contact">
 						<p><strong>Profile Photo : </strong>
-							{%if k.profile_photo %}
-							<td><img src="{{k.profile_photo.url}}"width="200" height="100" alt="Computer Hope" class="img-responsive" /></td>
-							{%endif%}
+							
+							<td><img  class="img-responsive watch-right" alt="not found" src={% if k.profile_photo %}"{{k.profile_photo.url}}"{% endif %}/></td>
+							
+							
 						</p>
 
 						<p><strong>Email : {{k.email}} </strong></p>
