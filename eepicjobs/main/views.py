@@ -143,7 +143,11 @@ def register(request):
                         except:
                             messages.warning(request,'Invalid Phone Number')
                         profile.save()
-                        return redirect('dashboard')
+                        if cat==1:
+                            return redirect('employerdetails')
+                        if cat!=1:
+                            return redirect("employeedetails")
+
                     else:
                         messages.error(request, 'Your account has been suspended')
                         return redirect('login')
@@ -415,7 +419,7 @@ def createresume(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Successfully created")
-            return redirect('education')
+            return redirect('home')
     else:
         form = UserProfileForm(instance=profile)
 
@@ -463,10 +467,13 @@ def education(request):
                     
 
 def applyjob(request, jid):
+
     form=applicantform(request.POST or None,request.FILES or None)
     if form.is_valid():
         instance=form.save(commit=False)
         instance.user=request.user.userprofile
+        job = Jobpost.objects.get(id=jid)
+        instance.job=job
         instance.save()
         #message of success
         messages.success(request,"Successfully created")
@@ -478,9 +485,20 @@ def applyjob(request, jid):
         "job": job,}
     return render(request, 'applyjob.html',context)
 
+
+
+
+
+
+
 def showmyjobs(request):
     jobdisplay=Jobpost.objects.filter(user=request.user.userprofile)
     return render(request,'showmyjobs.html',{'jobdisplay':jobdisplay})
+
+def noappli(request):
+    
+    return render(request,'employee/noappli.html')
+
 
 def dashboard(request):
     try:
@@ -558,16 +576,22 @@ def change_password(request):
 
 
 def employerdetails(request):
+    '''try:
+        if(request.user.userprofile.employer.email is not None):
+            messages.success(request,"Welcome")
+            context={}
+            return redirect('employerin')'''
+    
     form=EmployerForm(request.POST or None,request.FILES or None)
     if form.is_valid():
-        instance=form.save(commit=False)
-        instance.user=request.user
-        instance.save()
-        #message of success
-        messages.success(request,"Successfully created")
-        return redirect('home')
+            instance=form.save(commit=False)
+            instance.user=request.user
+            instance.save()
+            #message of success
+            messages.success(request,"Successfully created")
+            return redirect('home')
     context = {
-        "form": form,}
+            "form": form,}
     return render(request, 'e.html',context)
 
 def empview(request):
@@ -606,7 +630,7 @@ def applyjobb(request, jid):
     form=applicantform(request.POST or None,request.FILES or None)
     if form.is_valid():
         instance=form.save(commit=False)
-        instance.user=request.user
+        instance.user=request.user.userprofile
         instance.save()
         #message of success
         messages.success(request,"Successfully created")
@@ -630,7 +654,7 @@ def saved_jobs(request):
 
 def check_status(request):
     #to check if subscription of logged in user is expired or not
-    value=subscriptionpack.objects.filter(empid=request.user.userprofile.employer)
+    value=subscriptionpack.objects.filter(empid=request.user.userprofile)
     stat=""
     if (value.exists()):
         for k in value:
@@ -701,17 +725,19 @@ def updatesubs(request,pk):
 
 
 
-def sendemail(request,aid):
+def sendemail(request,apid):
     '''if(request.method=='GET'):
         return render(request,'settime.html')'''
-    s=settime.objects.filter(empid=request.user.userprofile)
-    ap=applicant.objects.get(id=aid)
-    a=s.objects.filter(appliid=a)
-
-    send_mail("Regarding the Interview Process","Congratulations on being selected for the interview.Your interview will be held on "+s.indate+" timings are "+s.intime,"eepicjob.com",["recipent@gmail.com"],fail_silently=False)
+    
+    ap=applicant.objects.get(id=apid)
+    s=settime.objects.filter(Q(empid=request.user.userprofile.employer),Q(apliid=ap))
+    print(s)
+    for k in s:
+        print("Regarding the Interview Process","Congratulations on being selected for the interview.Your interview will be held on "+str(k.indate)+" timings are "+str(k.intime),"eepicjob.com",["recipent@gmail.com"])
+        send_mail("Regarding the Interview Process","Dear "+str(k.apliid.name)+", Congratulations on being selected for the interview.Your interview will be held on "+str(k.indate)+" timings are "+str(k.intime),"eepicjob.com",[k.apliid.email],fail_silently=False)
     return render(request,'sendemail.html')
 
-
+'''
 def settiiiime(request):
     form=settimeForm(request.POST or None,request.FILES or None)
     if form.is_valid():
@@ -723,19 +749,23 @@ def settiiiime(request):
         return redirect('home')
     context = {
         "form": form,}
-    return render(request, 'set_time.html',context)
+    return render(request, 'set_time.html',context)'''
 
 
 
 def sending(request,apid):
     form=settimeForm(request.POST or None,request.FILES or None)
+    a=apid
     if form.is_valid():
+        ap=applicant.objects.get(id=apid)
         instance=form.save(commit=False)
-        instance.user=request.user
+        instance.empid=request.user.userprofile.employer
+        instance.apliid=ap
         instance.save()
         #message of success
         messages.success(request,"Successfully created")
-        return redirect('home')
+        return redirect("sendemail",apid=a)
+        #return redirect('home')
     context = {
         "form": form,}
     return render(request, 'set_time.html',context)
@@ -751,14 +781,17 @@ def seeing(request,apid):
         return redirect('home')
 
 def employeedetails(request):
+    '''if(request.user.userprofile.employee.email is not None):
+        messages.success(request,"Welcome")
+        return redirect("employeein")'''
     form=EmployeeForm(request.POST or None,request.FILES or None)
     if form.is_valid():
-        instance=form.save(commit=False)
-        instance.employeeuser=request.user.userprofile
-        instance.save()
-        #message of success
-        messages.success(request,"Successfully created")
-        return redirect('jobexpe')
+            instance=form.save(commit=False)
+            instance.employeeuser=request.user.userprofile
+            instance.save()
+            #message of success
+            messages.success(request,"Successfully created")
+            return redirect('jobexpe')
     context = {"form":form}
     return render(request, 'employee/ee.html',context)
 
@@ -805,13 +838,13 @@ def eeview(request):
 
 def eeup(request,pk):
     up=Employee.objects.get(id=pk)
-    form=EmployerForm(instance=up)
+    form=EmployeeForm(instance=up)
     if(request.method=='POST'):
         form=EmployeeForm(request.POST,instance=up)
         if form.is_valid(): 
             messages.success(request,"Successfully created") 
             form.save()
-            return redirect('dashboard/employee/') 
+            return redirect('employeein') 
     context={'form':form}
     return render(request,'employee/ee.html',context) 
 
@@ -823,7 +856,7 @@ def eduup(request,pk):
         if form.is_valid(): 
             messages.success(request,"Successfully created") 
             form.save()
-            return redirect('dashboard/employee/') 
+            return redirect('employeein') 
     context={'form':form}
     return render(request,'education.html',context) 
 
@@ -836,7 +869,7 @@ def proup(request,pk):
         if form.is_valid(): 
             messages.success(request,"Successfully created") 
             form.save()
-            return redirect('dashboard/employee/') 
+            return redirect('employeein') 
     context={'form':form}
     return render(request,'projects.html',context) 
 
@@ -865,4 +898,6 @@ def payment_method(request):
         context["customer_email"]=request.user.email
         context["payment_intent_id"]=payment_intent_id
         return render(request,"payments/card.html",context)
+
+
     

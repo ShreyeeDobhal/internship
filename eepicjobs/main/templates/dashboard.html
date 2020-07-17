@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% load static %}
 {% block bodyclass %}
@@ -57,12 +58,11 @@ class="page-template page-template-page-dashboard page-template-page-dashboard-p
 
 {% block content %}
 <section class="n-pages-breadcrumb social-choose" style=" background: url({% static 'img/4.png' %});  background-repeat: no-repeat; background-size: cover;  background-position: center center;  background-attachment: scroll; ">
-  	<div class="container">
-    	<div class="row">
+    <div class="container">
+        <div class="row">
         </div>
     </div>
 </section>
-
 
 <section class="n-job-pages-section">
     <div class="container">
@@ -74,15 +74,12 @@ class="page-template page-template-page-dashboard page-template-page-dashboard-p
                        <div class="error-404">
                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                               <h3>Please Select Your Account Type</h3>
-                             
-                              <div class="btn-group" id="status" data-toggle="buttons">
-                                 <label class="btn btn-default btn-md">
-                                 <input type="radio" value="1" name="sb_reg_type" data-parsley-required="true" data-parsley-multiple="sb_reg_type">
-                                 Employer                                   </label>
-                                 <label class="btn btn-default btn-md active">
-                                 <input type="radio" value="0" data-parsley-required="true" data-parsley-error-message="Please Select Type" name="sb_reg_type" checked="checked" data-parsley-multiple="sb_reg_type">
-                                  Candidate                                   </label>
-                              </div>
+                              <
+                                      
+                                      <ul class="menu-links ">
+                                        <li><a  href="{% url 'employerin' %}"><h2>Employer</h2>></a></li>
+                                        <li><a  href="{% url 'employeein' %}"><h2>Employee</h2>></a></li>
+                                      </ul>
                            </div>
                           
                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -92,7 +89,7 @@ class="page-template page-template-page-dashboard page-template-page-dashboard-p
                                      <div class="icheckbox_square" style="position: relative;"><input type="checkbox" id="check_social_term" name="icheck_box_terms" class="input-icheck-others" data-parsley-required="true" data-parsley-error-message="Please accept terms and conditions." data-parsley-multiple="icheck_box_terms" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -10%; left: -10%; display: block; width: 120%; height: 120%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
                                     <p>I am agree to <a href="https://jobs.nokriwp.com/dashboard/" target="_blank">terms and conditions</a></p>
                                  </div>
-                                  <input type="submit" class="btn n-btn-flat btn-mid" id="social_login_btn" value="Continue">
+                                  
                                  
                               </div>
                                
@@ -108,8 +105,6 @@ class="page-template page-template-page-dashboard page-template-page-dashboard-p
   </div>
 </section>
 
-
 {% endblock %}
-
 
 {% endblock %}

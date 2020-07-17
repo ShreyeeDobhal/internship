@@ -19,7 +19,7 @@
     <head><link rel='stylesheet' type="text/css" href="/static/css/bootstrap.min.css"></head>
  
     <div class="container">
-        <h1>Here is the list of your job posts</h1>
+        <h1>List of applicants to your job posts</h1>
        
 <div>
     
@@ -43,24 +43,34 @@
                 <td>{{k.job.CompanyName}}</td>
             </tr>
             <tr>
-            <td>Projects</td>
-            <td>{{k.projects}}</td>
+            <td>Applicant Name</td>
+            <td>{{k.name}}</td>
         </tr>
         <tr>
             <td>Email</td>
             <td>{{k.email}}</td>
             <tr>
-                <td><h4><tr>
-                <td><h4>Company Name</h4></td>
-                <td>{{k.job.CompanyName}}</td>
+                
+                    <td><h4>Projects</h4></td>
+                    <td>{{k.projects}}</td>
             </tr>
             
             
     
             <tr>
-                <td><h4>Company Name</h4></td>
-                <td>{{k.job.CompanyName}}</td>
+                <td><h4>Phone</h4></td>
+                <td>{{k.phone_number}}</td>
             </tr>
+            <tr>
+                
+                <td><h4>Skills</h4></td>
+                <td>{{k.skills}}</td>
+        </tr>
+        <tr>
+                
+            <td><h4>Experiences</h4></td>
+            <td>{{k.experience}}</td>
+    </tr>
             <tr>
                 <td><h4>Click To Set Interview</h4></td>
             <td><a href="{% url 'sending' k.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Set Interview</button></td>

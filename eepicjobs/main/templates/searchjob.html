@@ -383,13 +383,18 @@
                                                     <li class="n-job-title-box">
                                                         <h4><a href="../job/network-assistant-manager/index.html">{{k.JobTitle}}</a></h4>
                                                         <p>
-                                                        <span><i class="ti-location-pin"></i> <a href="index8a52.html?job-location=76">Germany</a></span><span><i class="ti-tag"></i> <a href="index23bc.html?cat-id=9">Information Technology</a></span>
+                                                        <span><i class="ti-location-pin"></i> <a href="index8a52.html?job-location=76">{{k.location}}</a></span><span><i class="ti-tag"></i> <a href="index23bc.html?cat-id=9">Information Technology</a></span>
                                                         </p>
                                                         <ul class="featured-badge-list"><li style=" background-color: rgba(250,122,86,0.2) !important;"><a href="index701b.html?job_class=63" class="job-class-tags-anchor" style="color: #fa7a56 !important;">Feature</a></li></ul>
                                                     </li>
                                                     <li class="n-job-short">
-                                                        <span> <strong>Job type</strong>Contract</span>
+                                                      <span> <strong>Company logo</strong>{{k.company_logo}}</span>
+                                                      
+                                                  </li>
+                                                    <li class="n-job-short">
+                                                        <span> <strong>Job type</strong>{{k.jobType}}</span>
                                                         <span> <strong>Company:</strong> {{k.CompanyName }}</span>
+                                                        <span> <strong>Country :</strong> {{k.country}}</span>
                                                     </li>
                                                     <li class="n-job-btns">
                                                         <a href="{% url 'applyjob' k.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Apply now</button> </a>

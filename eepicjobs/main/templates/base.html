@@ -146,7 +146,15 @@
                             <li><a  href="{% url 'index' %}">Home</a></li>
                             <li><a  href="{% url 'index' %}">Home</a></li>
                             <li><a  href="{% url 'index' %}">Home</a></li>
+                            {% if request.user.userprofile.employee.id %}
+                            <li><a  href="{% url 'employeein' %}">Dashboard</a></li>
+                            {% elif request.user.userprofile.employer.id %}
+                            <li><a  href="{% url 'employerin' %}">Dashboard</a></li>
+                            {% else %}
                             <li><a  href="{% url 'index' %}">Home</a></li>
+                            {% endif %}
+
+
                         </ul>
                     </div>
                 </section>

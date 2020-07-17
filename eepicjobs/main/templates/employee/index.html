@@ -20,6 +20,7 @@
                          <a href="javascript:void(0)" class="menu-dashboard"> <i class="ti-menu-alt"></i></a>
                         <ul id="accordion" class="accordion ps ps--active-y">
                             <li><a href="{% url 'employeein' %}"><span class="la la-tachometer"></span>Dashboard</a></li>
+                            {% if request.user.userprofile.employee.id %}
                             <li><a href="{% url 'employeeup' %}"><span class="la la-edit"></span>update profile</a></li>
 
                             <div class="profile-menu-link">
@@ -32,12 +33,24 @@
                                 <li><a href=""> Update Education details</a></li>
                                 
                               </ul>
-                            </li><li>
+                            </li>
+                            {% endif %}
+                            <li>
                           
+                            </li>
+                            <div class="profile-menu-link">
+                                <span class="la la-bars"></span>Create Resume<i class="fa fa-angle-down"></i>
+                              </div>
+                              <ul class="submenu">
+                                <li><a href="{% url 'createresume' %}"> create resume</a></li>
+                                <li><a href="{% url 'updateresume' request.user.id %}"> Update your resume</a></li>
+                                <li><a href="{% url 'rr' %}"> View your resume</a></li>
+                                
+                              </ul>
                             </li>
                             
 
-
+                            
                             <li><a href="{% url 'eeview' %}"><span class="la la-user"></span>view my profile</a></li>
                             <li><a href="{% url 'rr' %}"><span class="la la-file-pdf-o"></span>My Resume</a></li>
                             <li><a href="{% url 'employeeapp' %}"><span class="la la-bars"></span>Jobs Applied</a></li>
@@ -64,7 +77,7 @@
                                 <img src="https://demo.nokriwp.com/wp-content/themes/nokri/images/candidate-dp.jpg" id="candidate_dp" class="img-responsive img-circle" alt="candidate profile image">
                             </div>
                             <div class="contact-caption">
-                                <h4>ayushtyagi1999</h4>
+                                <h4>{{ request.user.first_name }} {{ request.user.last_name }}</h4>
                                 <span></span>
                             </div>
                             <ul class="social-links list-inline">
@@ -85,7 +98,7 @@
                                                             </div>
                         <div class="resume-detail">
                                 <ul>
-                                                                            <li> <i class="ti-email"></i> ayushtyagi1999@gmail.com</li>
+                                                                            <li> <i class="ti-email"></i> {{request.user.email}}</li>
                                                                             </ul>
                             </div>
                                                             <div class="notification-area">
@@ -112,13 +125,21 @@
         <div class="stat-box-meta">
             <div class="stat-box-meta-text">
                 <h4>Applied jobs</h4>
+                
                 <h3>{{ request.user.userprofile.applicant_set.count }}</h3>
+                
+                
             </div>
             <div class="stat-box-meta-icon">
                 <img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/icons/applied-jobs.png" class="img-responsive" alt="applied jobs">
             </div>
         </div>
+        {% if request.user.userprofile.applicant.id %}
         <p><a href="{% url 'showapplied' request.user.userprofile.applicant_set.first.id %}">View all applied jobs</a></p>
+ 
+        {% else %}
+   <p><a href="{% url 'noappli' %}">View all applied jobs</a></p>
+   {% endif %}
     </div>
 </div>
 <div class="col-md-6 col-sm-6 col-xs-12">

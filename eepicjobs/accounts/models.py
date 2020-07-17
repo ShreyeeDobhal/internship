@@ -26,7 +26,8 @@ class UserProfile(models.Model):
     updated = models.DateTimeField(auto_now=True)
     name=models.CharField(max_length=255, null=True)
     phone_number = models.CharField(validators=[phone_regex], max_length=17, null=True)
-    
+    is_emp = models.BooleanField(default=False)
+    is_seek = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
     email =  models.EmailField(validators=[validators.EmailValidator], null=True)
     skills=models.CharField(max_length=255, null=True, help_text="Mention Your Skils")
@@ -63,7 +64,7 @@ class Education(models.Model):
         CGPA_For_bachelors = models.FloatField(default=0.0)
         masters_degree = models.CharField(max_length=255, null=True, verbose_name='Mention Your Master Degree if any')
         yop_for_masters = models.IntegerField(blank=True, null=True)
-        CGPA_For_masters = models.FloatField(default=0.0)
+        CGPA_For_masters = models.FloatField(blank=True, null=True)
 
         class Meta:
             verbose_name = 'Education'
@@ -225,7 +226,7 @@ class Jobpost(models.Model):
     contractchoices=(('0',"Contract"),('1',"Internship"),('2',"Temporary"),('3',"Walk-In"),('4',"Fresher"))
     hearchoices=(('0',"Mail"),('1',"Tv"),('2',"Newspapaer"),('3',"other"))
     jobchoice= (('0',"Full time"),('1',"Part time"))
-
+    company_logo=models.ImageField(upload_to='images/',null=True,blank=True)
     hear = models.CharField(max_length=20,choices=hearchoices,default='Newspaper')
     contractType = models.CharField(max_length=20,choices=contractchoices,default='Fresher')
     jobType=models.CharField(max_length=20,choices=jobchoice,default='Full time')
@@ -250,7 +251,7 @@ class applicant(models.Model):
         phone_number = models.CharField(validators=[phone_regex], max_length=17, null=True)
         is_emp = models.BooleanField(default=False)
         is_seek = models.BooleanField(default=False)
-       
+        name=models.CharField(max_length=255, null=True, blank=True)
         skills=models.CharField(max_length=255, null=True, help_text="Mention Your Skils")
         experience= models.CharField(max_length=255, null=True, verbose_name='experience')
         address= models.CharField(max_length=255, null=True, verbose_name='address')
@@ -266,7 +267,7 @@ class applicant(models.Model):
             verbose_name_plural = 'applicants'
 
         def __str__(self):
-            return "{} - {}".format(str(self.id), self.email,self.job)
+            return "{} - {}".format(str(self.id), self.email,self.job,self.user,self.job)
         
         
         
@@ -344,6 +345,9 @@ class Employee(models.Model):
     USER_PROFILE_PHOTO = 'user__profilephoto'
     pchoice= (('Public',"Public"),('Private',"Private"))
     employeeuser = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    #projuser=models.ForeignKey(Project, on_delete=models.CASCADE)
+    #eduuser=models.ForeignKey(Education, on_delete=models.CASCADE)
+    #jobexp=models.ForeignKey(Jobexperience, on_delete=models.CASCADE)
     
     profile_photo = models.ImageField(upload_to=USER_PROFILE_PHOTO, null=True, blank=True)
     name=models.CharField(max_length=255, null=True)
@@ -438,9 +442,14 @@ class Pay(models.Model):
 
 class settime(models.Model):
     indate=models.DateField(auto_now=False, auto_now_add=False,verbose_name='Enter date in yyyy-mm-dd format')
-    intime=models.TimeField(auto_now=False, auto_now_add=False)
+    intime=models.TimeField(auto_now=False, auto_now_add=False,verbose_name='Enter time in IST date time format(hh:mm:ss)')
     empid=models.ForeignKey(Employer,on_delete=models.CASCADE)
     apliid=models.ForeignKey(applicant, on_delete=models.CASCADE)
+    class Meta:
+            verbose_name = 'settime'
+            
+    def __str__(self):
+        return "{} - {}".format(str(self.id),self.empid,self.indate,self.intime,self.apliid)
 
 
 

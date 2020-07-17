@@ -8,8 +8,8 @@ class UserProfileForm(forms.ModelForm):
 
     name=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Name'}))
     email = forms.EmailField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Email'}))
-    is_emp =forms.BooleanField()
-    is_seeker=forms.BooleanField()
+    is_emp =forms.BooleanField(label="Are you an employer?",required=False)
+    is_seek=forms.BooleanField(label="Are you an candidate?",required=False)
     skills=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Skills'}))
 
     experience =forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Experience'}))
@@ -26,7 +26,7 @@ class UserProfileForm(forms.ModelForm):
         model=UserProfile
         fields = ('name','profile_photo',
         'email' ,'hobbies',
-        'phone_number','address','education_details', 'is_emp',
+        'phone_number','address','education_details','is_emp','is_seek',
         'prev_Employments','skills','projects','accomplishments','experience','otherLinks','linkedin','codechef','github','hackerrank')
         
         

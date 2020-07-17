@@ -11,4 +11,4 @@ class settimeForm(forms.ModelForm):
             'intime': forms.DateInput(attrs={'class':'timepicker'})}    
     class Meta:
         model=settime
-        fields = '__all__'
+        fields = ['indate','intime']

@@ -15,7 +15,7 @@ function card(stripe_publishable_key,customer_email)
             },
             invalid:{
                 color:"#fa755a"
-                iconColor:"#fa755a"
+                iconColor:"#fa755a" 
             }
         };
         var card=elements.create("card",{style:style});

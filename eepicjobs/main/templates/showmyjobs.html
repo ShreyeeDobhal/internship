@@ -48,6 +48,11 @@
                 <td><h4>Company Name</h4></td>
                 <td>{{k.CompanyName}}</td>
             </tr>
+            <tr>
+                <td><h4>Applicants list</h4></td>
+                <td><a href="{% url 'showapplicants' k.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Click to see applicants of this job</button></td>
+            </tr>
+
             
         </table>
         <hr>

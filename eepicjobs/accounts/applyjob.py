@@ -9,4 +9,7 @@ class applicantform(forms.ModelForm):
 
     class Meta:
             model=applicant
-            fields = '__all__'
+            fields = ('name',
+        'email' ,
+        'phone_number','education_details',
+        'prev_Employments','skills','projects','accomplishments','experience','otherLinks')
