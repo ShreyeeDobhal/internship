@@ -6,6 +6,10 @@ from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 
 urlpatterns = [
 				path('', views.index, name='index'),
+
+
+        #path('order/<int:pk>',views.edit_order,name='edit_order'),
+        path('order',views.order,name='order'),
                 path('login/', views.login, name='login'),
                 path('register/', views.register, name='register'),
                 
@@ -28,7 +32,7 @@ urlpatterns = [
                 path('project/', views.project, name='project'),
                 path('education/', views.education, name='education'),
                 path('change_password/', views.change_password, name='change_password'),
-                path('payment_method/',views.payment_method,name="payment_method"),
+               # path('payment_method/',views.payment_method,name="payment_method"),
                 path('card/',views.card,name="card"),
                 path('noappli',views.noappli,name="noappli"),
                 path('saved_jobs/',views.saved_jobs,name="saved_jobs"),
@@ -72,4 +76,6 @@ urlpatterns = [
                  path('jobexpe', views.jobexpe, name='jobexpe'),
                  path('eeview', views.eeview, name='eeview'),
                  path('showapplied/<str:pk>', views.showapplied, name='showapplied'),
+                  path('join', views.join, name='join'),
+    path('checkout', views.checkout, name='checkout'),
 ]

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'accounts',
     'phonenumber_field',
+    'widget_tweaks',
 'django_countries',
     'main',
     'stripe'

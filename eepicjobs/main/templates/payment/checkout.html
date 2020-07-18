@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% extends 'payment/base1.html' %}
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-md-4 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Your cart</span>
+          <span class="badge badge-secondary badge-pill">1</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">EEpic Jobs Premium</h6>
+              <small class="text-muted">{{price}}</small>
+            </div>
+            <span class="text-muted">{{original_amt}}</span>
+          </li>
+          {% if coupon != 'none' %}
+          <li class="list-group-item d-flex justify-content-between bg-light">
+            <div class="text-success">
+              <h6 class="my-0">Promo code</h6>
+              <small>{{coupon}}</small>
+            </div>
+            <span class="text-success">-{{coupon_amt}}</span>
+          </li>
+          {% endif %}
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total Amount</span>
+            <strong>Rupees {{final_amt}}</strong>
+          </li>
+        </ul>
+
+        <form class="card p-2" action="{% url 'checkout' %}" method="GET">
+          <div class="input-group">
+            
+            
+          </div>
+        </form>
+
+        <div class="text-center pt-3">
+        <form action="{% url 'checkout' %}" method="POST">
+          {% csrf_token %}
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_51H55s7EqYDD5vPrpW2otm6YhqHOx4NBmeWWogXhTgVmkZxppVTKf0utgUVlQwtXNzvxFHokiwoTTVOgO9znseIlb00clHPcIl4"
+            data-amount="{{amount}}"
+            data-name="EEpic Jobs Premium"
+            data-description="Premium Membership"
+            data-email="{{user.email}}"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto">
+          </script>
+          <input type="hidden" value="{{price}}" name="price" />
+          <input type="hidden" value="{{coupon}}" name="coupon" />
+        </form>
+        </div>
+        </div>
+      </div>
+      </div>
+
+
+
+{% endblock %}
+
+</body>
+</html>

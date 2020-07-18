@@ -53,7 +53,8 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 
-API_KEY=settings.STRIPE_SECRET_KEY
+stripe.api_key="sk_test_51H55s7EqYDD5vPrpoPYOjFkBpY9BjqS72mY8R1e9u1aiB2SL9ZjheHIttbyCaBSXFFLwttyxxKtZykHJwNjPXEyX00lzRgnd54"
+
 
 def index(request):
     return render(request, 'index.html')
@@ -885,7 +886,7 @@ def upgrade(request):
 def card(request):
     return render(request,"payments/thankyou.html")
 
-def payment_method(request):
+'''def payment_method(request):
     plan=request.POST.get('plan','m')
     automatic=request.POST.get("automatic",'on')
     payment_method=request.POST.get("payment_method",'card')
@@ -897,7 +898,66 @@ def payment_method(request):
         context['STRIPE_PUBLISHABLE_KEY']=settings.STRIPE_PUBLISHABLE_KEY
         context["customer_email"]=request.user.email
         context["payment_intent_id"]=payment_intent_id
-        return render(request,"payments/card.html",context)
+        return render(request,"payments/card.html",context)'''
+
+def join(request):
+    return render(request, 'payment/a.html')
 
 
+@login_required
+def checkout(request):
+    if request.method =="POST":
+        stripe_customer=stripe.Customer.create(email=request.user.email,source=request.POST['stripeToken'])
+        price="prod_HejhyUxVSoZhAt"
+        if request.POST['price']=="Subscription@1400for three months":
+            price="prod_HejiWQVbLXRdYy"
+        if request.POST['price']=="Subscription@3000 for a year":
+            price="prod_Hejk6aN99DhNaY"
+        subscription=stripe.Subscription.create(customer=stripe_customer.id,items=[{"price":price}],coupon="none")
+        customer=Customer()
+        customer.user=request.user
+        customer.stripeid=stripe_customer.stripe_id
+        customer.membership=True
+        customer.cancel_at_period_end=False
+        customer.stripe_subscription_id=subscription.stripe_id
+        customer.save()
+        return redirect("home")
+    else:
+        price="Subscription@499pm"
+        coupon="none"
+        amount=499
+        original_amt=499
+        coupon_amt=0
+        final_amt=499
+        if request.method=="GET" and "price" in request.GET:
+            if request.GET["price"] == "Subscription@1400 for three months":
+                amount = 1400
+                price="subscription@1400for three months"
+                original_amt = 1400
+                final_amt = 1400
+            if request.GET["price"]=="Subscription@3000 for a year":
+                price="Subscription@3000 for a year"
+                amount = 3000
+                original_amt = 3000
+
+                final_amt = 3000
+        amount=amount*100
+        return render(request, 'payment/checkout.html',{"price":price,"coupon":coupon,"amount":amount,"original_amt":original_amt,"final_amt":final_amt,
+                                                         "coupon_amt":coupon_amt })
+
+    
+
+
+def order(request):
+    form=subscriptionpackForm(request.POST or None,request.FILES or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.empid=request.user.userprofile
+        instance.save()
+        #message of success
+        messages.success(request,"Successfully created")
+        return redirect('home')
+    context = {
+        "form": form,}
+    return render(request, 'payment/order.html',context)
     
