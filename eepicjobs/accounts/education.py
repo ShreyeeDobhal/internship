@@ -5,9 +5,9 @@ from phonenumber_field.formfields import PhoneNumberField
 from django_countries.fields import CountryField
 from django_countries.data import COUNTRIES
 class EducationForm(forms.ModelForm):
-    masters_degree=forms.CharField(label='Mention Your Master Degree if any',widget=forms.TextInput(attrs={'class':'form-control','placeholder':"Master's details"}),required=False)
-    CGPA_For_masters=forms.FloatField(label='Mention if if you have done masters',widget=forms.TextInput(attrs={'class':'form-control','placeholder':"Master's details"}),required=False)
-    yop_for_masters=forms.IntegerField(label='Mention if if you have done masters',widget=forms.TextInput(attrs={'class':'form-control','placeholder':"Master's details"}),required=False)
+    masters_degree=forms.CharField(label='Mention Your Master Degree if any(optional)',widget=forms.TextInput(attrs={'class':'form-control','placeholder':"Master's details"}),required=False)
+    CGPA_For_masters=forms.FloatField(label='Mention your cgpa in masters(optional)',widget=forms.TextInput(attrs={'class':'form-control','placeholder':"Master's details"}),required=False)
+    yop_for_masters=forms.IntegerField(label='Mention year of passing  for masters(optional)',widget=forms.TextInput(attrs={'class':'form-control','placeholder':"Master's details"}),required=False)
     class Meta:
         model=Education
         fields = ["school",

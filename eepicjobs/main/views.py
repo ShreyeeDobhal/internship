@@ -414,7 +414,7 @@ def project(request):
 def createresume(request):
     s=UserProfile.objects.filter(user=request.user)
     if(s.exists):
-        messages.error(request,"You have already created yiur resume, you may update existing one")
+        messages.error(request,"You have already created your resume, you may update existing one")
         return redirect(employeein)
     else:
         form=subscriptionForm(request.POST or None,request.FILES or None)
@@ -479,7 +479,7 @@ def applyjob(request, jid):
         instance.save()
         #message of success
         messages.success(request,"Successfully created")
-        return redirect('home')
+        return redirect('employeein')
     #form= JobPostform()
     job = Jobpost.objects.get(id=jid)
     context = {
@@ -774,6 +774,7 @@ def sendemail(request,apid):
     for k in s:
         print("Regarding the Interview Process","Congratulations on being selected for the interview.Your interview will be held on "+str(k.indate)+" timings are "+str(k.intime),"eepicjob.com",["recipent@gmail.com"])
         send_mail("Regarding the Interview Process","Dear "+str(k.apliid.name)+", Congratulations on being selected for the interview.Your interview will be held on "+str(k.indate)+" timings are "+str(k.intime),"eepicjob.com",[k.apliid.email],fail_silently=False)
+        #send_mail("Regarding the Interview Process","Dear "+str(k.apliid.name)+", Congratulations on being selected for the interview.Your interview will be held on "+str(k.indate)+", timings are "+str(k.intime),"agritadobhal.21864@gmail.com",["agritadobhal.21864@gmail.com"],fail_silently=False)
     return render(request,'sendemail.html')
 
 '''

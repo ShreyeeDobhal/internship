@@ -28,7 +28,9 @@
                               </div>
                               <ul class="submenu">
                                 <li><a href="{% url 'eeup' request.user.userprofile.employee.id %}"> Update personal info</a></li>
+                                {% if request.user.userprofile.jobexperience.id %}
                                 <li><a href="{% url 'updateJobexp' request.user.userprofile.jobexperience_set.first.id %}"> Update Jobexperience</a></li>
+                                {% endif %}
                                 <li><a href=""> Update project info</a></li>
                                 <li><a href=""> Update Education details</a></li>
                                 
