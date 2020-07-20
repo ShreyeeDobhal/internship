@@ -6,6 +6,8 @@ from django.core import validators
 from django.urls import reverse
 from django import forms
 from django_countries.fields import CountryField
+from django.utils import timezone
+from datetime import datetime
 
 from eepicjobs.utils import unique_slug_generator
 
@@ -221,6 +223,12 @@ class Jobpost(models.Model):
     JobDesciption=models.TextField()
     CompanyName=models.CharField(max_length=250)
     Jobindustry=models.CharField(max_length=250,null=True)
+    statuschoice=(('expired','expired'),('active','active'))
+    status=models.CharField(max_length=20,choices=statuschoice,default='expired')
+    posted_on=models.DateField(default=datetime.today )
+    #timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+    #updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+    valid_till=models.DateField(verbose_name='Enter date in yy-mm-dd format',default=datetime.today)
     email = models.EmailField(validators=[validators.EmailValidator], null=True)
     phone_number = models.CharField(validators=[phone_regex], max_length=17, null=True)
     contractchoices=(('Contract',"Contract"),('Internship',"Internship"),('Temporary',"Temporary"),('Walk-In',"Walk-In"),('Fresher',"Fresher"))
@@ -417,18 +425,26 @@ class savedjobs(models.Model):
         
 
 
-class subscriptionpack(models.Model):
-    empid=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
-    subscription_choice=(('499 per month','499 per month'),('700 for two months','700 for two months',),('Yearly subscription @3400','Yearly subscription @3400',))
-    subscriptionid=models.CharField(max_length=20,choices=subscription_choice,default='499 per month')
+class subscription(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    subscription_choice=(('499 per month','499 per month'),('Yearly subscription @3400','Yearly subscription @3400',))
+    subscriptionid=models.CharField(max_length=40,choices=subscription_choice,default='499 per month')
     statuschoice=(('expired','expired'),('active','active'))
     status=models.CharField(max_length=20,choices=statuschoice,default='expired')
-    purchasedate=models.DateField(verbose_name='Enter date in yy-mm-dd format')
+    Monthly_499 = 0
+    Yearly_3400 = 1
+
+    PRIORITIES = (
+    (Monthly_499, 'Monthly_499'),
+    (Yearly_3400, 'Yearly_3400'),)
+    price=models.IntegerField(default=0, choices=PRIORITIES)
+    purchasedate=models.DateField(auto_now_add=True)
+    last_date=models.DateField(default=timezone.now)
     class Meta:
-            verbose_name = 'subscriptionpack'
-            verbose_name_plural = 'subscriptionpacks'
+            verbose_name = 'subscription'
+            verbose_name_plural = 'subscription'
     def __str__(self):
-        return "{} - {}".format(str(self.id),self.empid)
+        return "{} - {}".format(str(self.id),self.user)
     
 class Pay(models.Model):
     amount=models.IntegerField(blank=True, null=True)

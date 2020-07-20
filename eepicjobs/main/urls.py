@@ -3,6 +3,7 @@ from . import views
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
+from django.conf.urls import url
 
 urlpatterns = [
 				path('', views.index, name='index'),
@@ -11,6 +12,7 @@ urlpatterns = [
         #path('order/<int:pk>',views.edit_order,name='edit_order'),
         path('order',views.order,name='order'),
                 path('login/', views.login, name='login'),
+                path('order',views.order,name='order'),
                 path('register/', views.register, name='register'),
                 
                 path('logout/', views.logout, name='logout'),
@@ -61,6 +63,7 @@ urlpatterns = [
                 path('dashboard/employerdetails/', views.employerdetails, name='employerdetails'),
                 path('checksubscription/',views.check_status,name='check_status'),
                  path('rr/', views.rr, name='rr'),
+                 path('rrr/<str:pk>', views.rrr, name='rrr'),
                   path('savedresume', views.saved_resume, name='saved_resume'),
                   path('subsform/',views.sub,name='sub'),
                   path('showapplicants/<str:jid>/', views.showapplicants, name='showapplicants'),
@@ -78,4 +81,6 @@ urlpatterns = [
                  path('showapplied/<str:pk>', views.showapplied, name='showapplied'),
                   path('join', views.join, name='join'),
     path('checkout', views.checkout, name='checkout'),
+    url(r'^recharge/$', views.recharge, name='recharge'),
+    url(r'^charge/$', views.charge, name='charge'),
 ]

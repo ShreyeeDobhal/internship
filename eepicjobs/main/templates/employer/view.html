@@ -1,96 +1,203 @@
 
+{% extends "dashboard.html" %}
 {% load static %}
-{% block dash %}
-<html>
-                   
-<body>
+{% block content %}
 
-<h1>Personal Info</h1>
-    
-        {% for k in messages %}
-        <li style="color:blueviolet">{{k}}</li>
-        {% endfor %}
-
-</div><br>
-<div style="color: crimson">
-    {% for k in employees %}
-    <table border="6px" width="850px">
-        <tr>
-            <td><h2>Name</h2></td>
-            <td><h3>{{k.name}}</h3></td>
-        </tr>
-        <tr>
-            <td><h2>Profile photo</h2></td>
-                {%if k.profile_photo %}
-                <td><img src="{{k.profile_photo.url}}"width="200" height="100" alt="Computer Hope" class="img-responsive" /></td>
-                {%endif%}
+<section class="dashboard-new emp_dashboard  " style="transform: none;">
+    <div class="container-fluid" style="transform: none;">
+        <div class="row" style="transform: none;">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding" style="transform: none;">
+            <div class="col-lg-2 col-md-1 col-sm-2 col-xs-12 nopadding">
+             <div class="profile-menu">
+             <div class="menu-avtr-box">
+                            <div class="user-img">
+                                <img src="https://demo.nokriwp.com/wp-content/themes/nokri/images/candidate-dp.jpg" class="img-responsive" alt="image">
+                            </div>
+                            <div class="user-text">
+                                <h4>Howdy !</h4>
+                                <p>Welcome back</p>
+                            </div>
+                        </div>
+                <a href="javascript:void(0)" class="menu-dashboard"> <i class="ti-menu-alt"></i></a>
+                <ul id="accordion" class="accordion ps ps--active-y">
+                <li><a href="{% url 'employerin' %}"><span class="la la-tachometer"></span>Dashbboard</a></li>
+                {% if request.user.userprofile.employer.id %}
+                <li><a href="{% url 'updateEmp' request.user.userprofile.employer.id %}"><span class="la la-edit"></span>Update Profile</a></li>
+                {% endif %}
+                <li><a href="{% url 'empview' %}"><span class="la la-user"></span>View My Profile</a></li><li>
+                    <li><a href="{% url 'jobpost' %}"><span class="la la-user"></span>Post a job</a></li><li></li>
+                    <div class="profile-menu-link">
+                      <span class="la la-bars"></span>My Jobs<i class="fa fa-angle-down"></i>
+                    </div>
+                    <ul class="submenu">
+                      <li><a href="{% url 'showmyjobs' %}"> Active Jobs</a></li>
+                      <li><a href="{% url 'showmyjobs' %}">In-Active Jobs</a></li>
+                      <li><a href="{% url 'showmyjobs' %}">Pending Jobs</a></li>
+                    </ul>
+                  </li><li>
                 
-            
-        </tr>
-        
-
-        <tr>
-            <td><h2>Phone number</h2></td>
-            <td><h3>{{k.phone_number}}</h3></td>
-        </tr>
-        <tr>
-            <td><h2>Company Website </h2></td>
-            <td><h3>{{k.Website }}</h3></td>
-        </tr>
-        <tr>
-            <td><h2>Your Profile Status</h2></td>
-            <td><h3>{{k.set_your_profile}}</h3></td>
-        </tr>
-        <tr>
-            <td><h2>About yourself</h2></td>
-            <td><h3>{{k.about_yourself}}</h3></td>
-        </tr>
-        <tr>
-            <td><h2>Company specialization</h2></td>
-            <td><h3>{{k.company_specialization}}</h3></td>
-        </tr>
-        <tr>
-            <td><h2>No.of employees</h2></td>
-            <td><h3>{{k.no_of_employees}}</h3></td>
-        </tr>
-        <tr>
-            <td><h2>Established_Date</h2></td>
-            <td><h3>{{k.Established_Date}}</h3></td>
-        </tr>
-        <tr>
-            <td><h2>Email</h2></td>
-            <td><h3>{{k.email}}</h3></td>
-        </tr>
-        <tr>
-            <td><h2>Location</h2></td>
-            <td><h3>{{k.location}}</h3></td>
-        </tr>
-        <tr>
-            <td><h2>twitter</h2></td>
-            <td><h3>{{k.twitter}}</h3></td>
-        </tr>
-        <tr>
-            <td><h2>linkedin</h2></td>
-            <td><h3>{{k.linked_in}}</h3></td>
-        </tr>
-        <tr>
-            <td><h2>Facebook</h2></td>
-            <td><h3>{{k.Facebook}}</h3></td>
-        </tr>
-        <tr>
-            <td><h2>instagram</h2></td>
-            <td><h3>{{k.insta}}</h3></td>
-        </tr>
-        <tr>
-            <td><h2>Click to Update Your Profile</h2>></td>
-            <td> <a href="{% url 'updateEmp' k.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply">Update</button> </a></td>
-        </tr>
-
-    </table>
-    <hr>
+                  </li>
+                  <li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=matched-resumes"><span class="la la-external-link"></span>Matched Resumes</a></li><li><a href="{% url 'saved_resume' %}"><span class="la la-file-pdf-o"></span>Saved Resumes</a></li><li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=our-followers"><span class="fa fa-users"></span>Followers</a></li><li><a href="{% url 'check_status' %}">
+                    <span class="la la-list-alt"></span>My Package</a></li><li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=my-orders"><span class="la la-check-circle"></span>My Order</a></li><li><a href="https://jobs.nokriwp.com/wp-login.php?action=logout&amp;redirect_to=https%3A%2F%2Fjobs.nokriwp.com&amp;_wpnonce=477d8604c7"><span class="la la-sign-out"></span>Logout</a></li>                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 500px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 454px;"></div></div></ul>
+            </div>
+        </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 col-lg-push-7 col-md-push-7 nopadding" id="dashboard-bar-right" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+            <div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static;">
+                <div class="main-profile-card">
+                <div class="contact-box">
+                    <div class="contact-img">
+                        <img src="https://demo.nokriwp.com/wp-content/themes/nokri/images/candidate-dp.jpg" id="emp_dp" class="img-responsive" alt="image">
+                    </div>
+                    <div class="contact-caption">
+                        <h4>{{ request.user.first_name }} {{ request.user.last_name }}</h4>
+                        <span></span>
+                    </div>
+                    <ul class="social-links list-inline">
+                                  </ul>
+                </div>
+                <div class="notification-area">
+                    <h4> Recent Notifications</h4>
+                    <div class="notif-box">
+                        <ul>
+                                No Notifications                                    <li>
+                                                                </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        {% block dash %}                    
+        <div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 col-lg-pull-3 col-md-pull-2">
+        <div class="main-body dashbord-height-fix">
+<div class="dashboard-stats">
+<div class="row">
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="stat-box parallex">
+        <div class="stat-box-meta">
+            <div class="stat-box-meta-text">
+                <h4>Published Jobs</h4>
+                <h3>{{ request.user.userprofile.jobpost_set.count }}</h3>
+            </div>
+            <div class="stat-box-meta-icon">
+                <img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/icons/job1.png" class="img-responsive" alt="image">
+            </div>
+        </div>
+        <p><a href="{% url 'showmyjobs' %}">View All Published Jobs</a></p>
+    </div>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="stat-box blue">
+        <div class="stat-box-meta">
+            <div class="stat-box-meta-text">
+                <h4>Pending Jobs</h4>
+                <h3>0</h3>
+            </div>
+            <div class="stat-box-meta-icon">
+                <img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/icons/warning.png" class="img-responsive" alt="published jobs">
+            </div>
+        </div>
+        <p><a href="https://jobs.nokriwp.com/dashboard/?tab-data=pending-jobs">View All Pending Jobs</a></p>
+    </div>
+</div>
+</div>
+</div>
+<div class="dashboard-job-stats">
+<h4>Recent Jobs Overview</h4>
+<div class="table-responsive dashboard-job-stats-table">
+    <h1>Personal Info</h1>
+    
+    {% for k in messages %}
+    <li style="color:blueviolet">{{k}}</li>
     {% endfor %}
 
-</body>
-            </html>
+</div><br>
+<div style="color:black">
+{% for k in employees %}
+<table border="6px" width="850px">
+    <tr>
+        <td><h3>Name</h3></td>
+        <td><h3>{{k.name}}</h3></td>
+    </tr>
+    <tr>
+        <td><h3>Profile photo</h3></td>
+            {%if k.profile_photo %}
+            <td><img src="{{k.profile_photo.url}}"width="200" height="100" alt="Computer Hope" class="img-responsive" /></td>
+            {%endif%}
+            
+        
+    </tr>
+    
+
+    <tr>
+        <td><h3>Phone number</h3></td>
+        <td><h3>{{k.phone_number}}</h3></td>
+    </tr>
+    <tr>
+        <td><h3>Company Website </h3></td>
+        <td><h3>{{k.Website }}</h3></td>
+    </tr>
+    <tr>
+        <td><h3>Your Profile Status</h3></td>
+        <td><h3>{{k.set_your_profile}}</h3></td>
+    </tr>
+    <tr>
+        <td><h3>About yourself</h3></td>
+        <td><h3>{{k.about_yourself}}</h3></td>
+    </tr>
+    <tr>
+        <td><h3>Company specialization</h3></td>
+        <td><h3>{{k.company_specialization}}</h3></td>
+    </tr>
+    <tr>
+        <td><h2>No.of employees</h2></td>
+        <td><h3>{{k.no_of_employees}}</h3></td>
+    </tr>
+    <tr>
+        <td><h2>Established_Date</h2></td>
+        <td><h3>{{k.Established_Date}}</h3></td>
+    </tr>
+    <tr>
+        <td><h2>Email</h2></td>
+        <td><h3>{{k.email}}</h3></td>
+    </tr>
+    <tr>
+        <td><h3>Location</h3></td>
+        <td><h3>{{k.location}}</h3></td>
+    </tr>
+    <tr>
+        <td><h3>twitter</h3></td>
+        <td><h3>{{k.twitter}}</h3></td>
+    </tr>
+    <tr>
+        <td><h3>linkedin</h2></td>
+        <td><h3>{{k.linked_in}}</h3></td>
+    </tr>
+    <tr>
+        <td><h3>Facebook</h3></td>
+        <td><h3>{{k.Facebook}}</h3></td>
+    </tr>
+    <tr>
+        <td><h3>instagram</h3></td>
+        <td><h3>{{k.insta}}</h3></td>
+    </tr>
+    <tr>
+        <td><h2>Click to Update Your Profile</h2>></td>
+        <td> <a href="{% url 'updateEmp' k.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply">Update</button> </a></td>
+    </tr>
+
+</table>
+<hr>
+{% endfor %}
+
+</div>
+</div>
+</div>                </div>
+{% endblock %}
+    </div>
+</div>
+</div>
+<input type="hidden" id="is_accordion" value="1">
+</section>
 
 {% endblock %}

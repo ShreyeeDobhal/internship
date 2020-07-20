@@ -21,7 +21,7 @@ class JobPostform(forms.ModelForm):
         fields = ('JobTitle','JobDesciption','Jobindustry',
         'CompanyName','company_logo','location',
         'email' ,
-        'phone_number', 
+        'phone_number','valid_till', 
         'country',
         'jobType','hear','contractType')
                

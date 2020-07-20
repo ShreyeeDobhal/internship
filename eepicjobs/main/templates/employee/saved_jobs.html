@@ -1,47 +1,200 @@
-<html>
-                   
-<body>
-
-    {% extends "base.html" %}
+{% extends "dashboard.html" %}
 {% load static %}
 {% block content %}
-<section class="n-pages-breadcrumb"  style="background: rgba(0, 0, 0, 0.6) url({% static 'img/header/login-slider-image.png' %}) 0 0 no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-position: center center; background-attachment:scroll;">
-    <div class="container">
-       <div class="row">
-          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
-             <div class="n-breadcrumb-info">
-               <h1>Looking for a Job?</h1><p>Here’s how to sort through the millions available to find the one that’s right for you.</p>
-             </div>
-          </div>
-       </div>
+
+<section class="dashboard-new candidate-dashboard ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                                    <div class="col-lg-2 col-md-3 col-sm-2 col-xs-12 nopadding">
+                     <div class="profile-menu">
+                     <div class="menu-avtr-box">
+                            <div class="user-img">
+                             <img src="https://demo.nokriwp.com/wp-content/themes/nokri/images/candidate-dp.jpg" id="candidate_dp" class="img-responsive" alt="candidate profile image">
+                            </div>
+                            <div class="user-text">
+                                <h4>Howdy !</h4>
+                                <p>Welcome back</p>
+                            </div>
+                        </div>
+                         <a href="javascript:void(0)" class="menu-dashboard"> <i class="ti-menu-alt"></i></a>
+                        <ul id="accordion" class="accordion ps ps--active-y">
+                            <li><a href="{% url 'employeein' %}"><span class="la la-tachometer"></span>Dashboard</a></li>
+                            {% if request.user.userprofile.employee.id %}
+                            <li><a href="{% url 'employeeup' %}"><span class="la la-edit"></span>update profile</a></li>
+
+                            <div class="profile-menu-link">
+                                <span class="la la-bars"></span>Update Profile<i class="fa fa-angle-down"></i>
+                              </div>
+                              <ul class="submenu">
+                                <li><a href="{% url 'eeup' request.user.userprofile.employee.id %}"> Update personal info</a></li>
+                                <li><a href="{% url 'updateJobexp' request.user.userprofile.jobexperience_set.first.id %}"> Update Jobexperience</a></li>
+                                <li><a href=""> Update project info</a></li>
+                                <li><a href=""> Update Education details</a></li>
+                                
+                              </ul>
+                            </li>
+                            {% endif %}
+                            <li>
+                          
+                            </li>
+                            <div class="profile-menu-link">
+                                <span class="la la-bars"></span>Create Resume<i class="fa fa-angle-down"></i>
+                              </div>
+                              <ul class="submenu">
+                                <li><a href="{% url 'createresume' %}"> create resume</a></li>
+                                <li><a href="{% url 'updateresume' request.user.id %}"> Update your resume</a></li>
+                                <li><a href="{% url 'rr' %}"> View your resume</a></li>
+                                
+                              </ul>
+                            </li>
+                            
+
+                            
+                            <li><a href="{% url 'eeview' %}"><span class="la la-user"></span>view my profile</a></li>
+                            <li><a href="{% url 'rr' %}"><span class="la la-file-pdf-o"></span>My Resume</a></li>
+                            <li><a href="{% url 'employeeapp' %}"><span class="la la-bars"></span>Jobs Applied</a></li>
+                            <li><a href="{% url 'saved_jobs' %}"><span class="la la-bookmark"></span>Saved Jobs</a></li>
+                            <li><a href="{% url 'employeein' %}"><span class="la la-external-link"></span>Followed </a></li>
+                            <li><a href="{% url 'employeeal' %}"><span class="la la-bell"></span>Job alerts</a></li>
+                            <li><a href="{% url 'check_status' %}"><span class="la la-list-alt"></span>My packages</a></li>
+                            <li><a href="{% url 'employeeor' %}"><span class="la la-check-circle"></span>My order</a></li>
+                            <li><a href="{% url 'logout' %}"><span class="la la-sign-out"></span>Logout</a></li>
+                            <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                            </div>
+                            <div class="ps__rail-y" style="top: 0px; height: 500px; right: 0px;">
+                                <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 454px;"></div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-9 col-sm-12 col-xs-12 col-lg-push-7 nopadding ">
+                 <div class="theiaStickySidebar">
+                    <div class="main-profile-card">
+                        <div class="contact-box">
+                            <div class="contact-img">
+                                <img src="https://demo.nokriwp.com/wp-content/themes/nokri/images/candidate-dp.jpg" id="candidate_dp" class="img-responsive img-circle" alt="candidate profile image">
+                            </div>
+                            <div class="contact-caption">
+                                <h4>{{ request.user.first_name }} {{ request.user.last_name }}</h4>
+                                <span></span>
+                            </div>
+                            <ul class="social-links list-inline">
+                                                                    </ul>
+                                                                <div class="progress-bar-section">
+                                <div class="progress">
+                                    <div class="progress-bar"> <span data-percent="5" class="profile5" style="transition: width 3s ease 0s; width: 5%;"></span> </div>
+                                </div>
+                                <div class="progress-bar-title">
+                                    <h5>Profile Percent</h5>
+                                    <span class="progress-percentage">5%</span>
+                                </div>
+                                                  
+                                  <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+              <strong>Alert ! </strong>				</div>
+                                                                    </div>
+                                                            </div>
+                        <div class="resume-detail">
+                                <ul>
+                                                                            <li> <i class="ti-email"></i> {{request.user.email}}</li>
+                                                                            </ul>
+                            </div>
+                                                            <div class="notification-area">
+                                                              <div class="notif-box">
+                                <ul>
+                                                                                <li>
+                                                                                    <div class="notif-single">
+                                            <h4>Set your skills for job notifications</h4>
+                                        </div>
+                                                                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                                                    </div>
+                    </div>
+                </div>
+                {% block dash %}  
+                <div class="col-lg-7 col-md-9 col-sm-12 col-xs-12 col-lg-pull-3 col-lg-offset-0 col-md-offset-3">
+                <div class="main-body n-candidate-detail">
+<div class="dashboard-stats">
+<div class="row">
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="stat-box parallex">
+        <div class="stat-box-meta">
+            <div class="stat-box-meta-text">
+                <h4>Applied jobs</h4>
+                
+                <h3>{{ request.user.userprofile.applicant_set.count }}</h3>
+                
+                
+            </div>
+            <div class="stat-box-meta-icon">
+                <img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/icons/applied-jobs.png" class="img-responsive" alt="applied jobs">
+            </div>
+        </div>
+        {% if request.user.userprofile.applicant.id %}
+        <p><a href="{% url 'showapplied' request.user.userprofile.applicant_set.first.id %}">View all applied jobs</a></p>
+ 
+        {% else %}
+   <p><a href="{% url 'noappli' %}">View all applied jobs</a></p>
+   {% endif %}
     </div>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="stat-box blue">
+        <div class="stat-box-meta">
+            <div class="stat-box-meta-text">
+                <h4>Followed companies</h4>
+                <h3>0</h3>
+            </div>
+            <div class="stat-box-meta-icon">
+                <img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/icons/followers.png" class="img-responsive" alt="followed companies">
+            </div>
+        </div>
+        <p><a href="https://jobs.nokriwp.com/dashboard/?candidate-page=followed-companies">View all followed companies</a></p>
+    </div>
+</div>
+</div>
+</div>
+ <div class="n-candidate-meta">
+     <h4>My profile</h4>
+               </div>
+
+               <div>
+    
+                {% for k in messages %}
+                <li style="color:black">{{k}}</li>
+                {% endfor %}
+        
+        </div><br>
+        
+        
+        <h2>Following are your saved jobs</h2>
+        
+         <div style="color :black">
+                <br>
+                {% for k in sav %}
+              <p>{{k.jid.Jobtitle}}</p> 
+              <p>{{k.jid.CompanyName}}</p> 
+              <p>{{k.jid.Jobindusrty}}</p> 
+                {% endfor %}
+        
+        
+        
+        </div>
+                        </div>
+</div>                        </div>
+{% endblock %}
+                                   </div>
+      </div>
+  </div>
+  <input type="hidden" id="is_accordion" value="1">
 </section>
-    <head><link rel='stylesheet' type="text/css" href="/static/css/bootstrap.min.css"></head>
+
+{% endblock %}
  
     
-<div>
-    
-        {% for k in messages %}
-        <li style="color:black">{{k}}</li>
-        {% endfor %}
 
-</div><br>
-
-
-<h2>Following are your saved jobs</h2>
-
- <div style="color :black">
-        <br>
-        {% for k in sav %}
-      <p>{{k.jid.Jobtitle}}</p> 
-      <p>{{k.jid.CompanyName}}</p> 
-      <p>{{k.jid.Jobindusrty}}</p> 
-        {% endfor %}
-
-
-
-</div>
-                </div>
-            </body>
-            </html>
-{%endblock content%}
+           

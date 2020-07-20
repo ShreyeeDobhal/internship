@@ -33,9 +33,17 @@
                       <li><a href="{% url 'showmyjobs' %}">In-Active Jobs</a></li>
                       <li><a href="{% url 'showmyjobs' %}">Pending Jobs</a></li>
                     </ul>
-                  </li><li>
-                
                   </li>
+                  <div class="profile-menu-link">
+                    <span class="la la-bars"></span>Buy subscription<i class="fa fa-angle-down"></i>
+                  </div>
+                  <ul class="submenu">
+                    <li><a href="{% url 'sub' %}"> Buy your subscription pack</a></li>
+                    <li><a href="{% url 'updatesubs' request.user.subscription.id%}"><span class="la la-user"></span>Update your subscription pack</a></li>
+                    
+                  </ul>
+                </li>
+                  
                   <li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=matched-resumes"><span class="la la-external-link"></span>Matched Resumes</a></li><li><a href="{% url 'saved_resume' %}"><span class="la la-file-pdf-o"></span>Saved Resumes</a></li><li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=our-followers"><span class="fa fa-users"></span>Followers</a></li><li><a href="{% url 'check_status' %}">
                     <span class="la la-list-alt"></span>My Package</a></li><li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=my-orders"><span class="la la-check-circle"></span>My Order</a></li><li><a href="https://jobs.nokriwp.com/wp-login.php?action=logout&amp;redirect_to=https%3A%2F%2Fjobs.nokriwp.com&amp;_wpnonce=477d8604c7"><span class="la la-sign-out"></span>Logout</a></li>                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 500px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 454px;"></div></div></ul>
             </div>
@@ -108,18 +116,21 @@
     <tbody>
         <tr>
             <th scope="row">Job Title</th>
-            <th scope="row">Status</th>
+            <th scope="row">Valid Till </th>
+            <th scope="row">Company Name </th>
             <th scope="row">Resume</th>
             <th scope="row">Views</th>
         </tr>
         {% for job in request.user.userprofile.jobpost_set.all %}
         <tr>
             <td> {{ job.JobTitle }} </td>
+            <td> {{ job.valid_till }} </td>
+            <td> {{ job.CompanyName }} </td>
             <td> {{ job.JobType }} </td>
-            <td> {{ job.JobType }} </td>
-            <td> {{ job.JobType }} </td>
+            <td>  </td>
         </tr>
         {% endfor %}
+        
                         </tbody>
 </table>
 </div>

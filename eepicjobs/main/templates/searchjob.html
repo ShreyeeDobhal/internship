@@ -395,6 +395,7 @@
                                                         <span> <strong>Job type</strong>{{k.jobType}}</span>
                                                         <span> <strong>Company:</strong> {{k.CompanyName }}</span>
                                                         <span> <strong>Country :</strong> {{k.country}}</span>
+                                                        <span> <strong>Job post valid till : </strong>{{k.valid_till}}</span>
                                                     </li>
                                                     <li class="n-job-btns">
                                                         <a href="{% url 'applyjob' k.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Apply now</button> </a>

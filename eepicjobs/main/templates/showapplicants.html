@@ -1,23 +1,109 @@
-<html>
-                   
-<body>
-
-    {% extends "base.html" %}
+{% extends "dashboard.html" %}
 {% load static %}
 {% block content %}
-<section class="n-pages-breadcrumb"  style="background: rgba(0, 0, 0, 0.6) url({% static 'img/header/login-slider-image.png' %}) 0 0 no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-position: center center; background-attachment:scroll;">
-    <div class="container">
-       <div class="row">
-          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
-             <div class="n-breadcrumb-info">
-               <h1>Looking for a Job?</h1><p>Here’s how to sort through the millions available to find the one that’s right for you.</p>
-             </div>
-          </div>
-       </div>
+
+<section class="dashboard-new emp_dashboard  " style="transform: none;">
+    <div class="container-fluid" style="transform: none;">
+        <div class="row" style="transform: none;">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding" style="transform: none;">
+            <div class="col-lg-2 col-md-1 col-sm-2 col-xs-12 nopadding">
+             <div class="profile-menu">
+             <div class="menu-avtr-box">
+                            <div class="user-img">
+                                <img src="https://demo.nokriwp.com/wp-content/themes/nokri/images/candidate-dp.jpg" class="img-responsive" alt="image">
+                            </div>
+                            <div class="user-text">
+                                <h4>Howdy !</h4>
+                                <p>Welcome back</p>
+                            </div>
+                        </div>
+                <a href="javascript:void(0)" class="menu-dashboard"> <i class="ti-menu-alt"></i></a>
+                <ul id="accordion" class="accordion ps ps--active-y">
+                <li><a href="{% url 'employerin' %}"><span class="la la-tachometer"></span>Dashbboard</a></li>
+                {% if request.user.userprofile.employer.id %}
+                <li><a href="{% url 'updateEmp' request.user.userprofile.employer.id %}"><span class="la la-edit"></span>Update Profile</a></li>
+                {% endif %}
+                <li><a href="{% url 'empview' %}"><span class="la la-user"></span>View My Profile</a></li><li>
+                    <li><a href="{% url 'jobpost' %}"><span class="la la-user"></span>Post a job</a></li><li></li>
+                    <div class="profile-menu-link">
+                      <span class="la la-bars"></span>My Jobs<i class="fa fa-angle-down"></i>
+                    </div>
+                    <ul class="submenu">
+                      <li><a href="{% url 'showmyjobs' %}"> Active Jobs</a></li>
+                      <li><a href="{% url 'showmyjobs' %}">In-Active Jobs</a></li>
+                      <li><a href="{% url 'showmyjobs' %}">Pending Jobs</a></li>
+                    </ul>
+                  </li><li>
+                
+                  </li>
+                  <li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=matched-resumes"><span class="la la-external-link"></span>Matched Resumes</a></li><li><a href="{% url 'saved_resume' %}"><span class="la la-file-pdf-o"></span>Saved Resumes</a></li><li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=our-followers"><span class="fa fa-users"></span>Followers</a></li><li><a href="{% url 'check_status' %}">
+                    <span class="la la-list-alt"></span>My Package</a></li><li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=my-orders"><span class="la la-check-circle"></span>My Order</a></li><li><a href="https://jobs.nokriwp.com/wp-login.php?action=logout&amp;redirect_to=https%3A%2F%2Fjobs.nokriwp.com&amp;_wpnonce=477d8604c7"><span class="la la-sign-out"></span>Logout</a></li>                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 500px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 454px;"></div></div></ul>
+            </div>
+        </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 col-lg-push-7 col-md-push-7 nopadding" id="dashboard-bar-right" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+            <div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static;">
+                <div class="main-profile-card">
+                <div class="contact-box">
+                    <div class="contact-img">
+                        <img src="https://demo.nokriwp.com/wp-content/themes/nokri/images/candidate-dp.jpg" id="emp_dp" class="img-responsive" alt="image">
+                    </div>
+                    <div class="contact-caption">
+                        <h4>{{ request.user.first_name }} {{ request.user.last_name }}</h4>
+                        <span></span>
+                    </div>
+                    <ul class="social-links list-inline">
+                                  </ul>
+                </div>
+                <div class="notification-area">
+                    <h4> Recent Notifications</h4>
+                    <div class="notif-box">
+                        <ul>
+                                No Notifications                                    <li>
+                                                                </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        {% block dash %}                    
+        <div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 col-lg-pull-3 col-md-pull-2">
+        <div class="main-body dashbord-height-fix">
+<div class="dashboard-stats">
+<div class="row">
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="stat-box parallex">
+        <div class="stat-box-meta">
+            <div class="stat-box-meta-text">
+                <h4>Published Jobs</h4>
+                <h3>{{ request.user.userprofile.jobpost_set.count }}</h3>
+            </div>
+            <div class="stat-box-meta-icon">
+                <img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/icons/job1.png" class="img-responsive" alt="image">
+            </div>
+        </div>
+        <p><a href="{% url 'showmyjobs' %}">View All Published Jobs</a></p>
     </div>
-</section>
-    <head><link rel='stylesheet' type="text/css" href="/static/css/bootstrap.min.css"></head>
- 
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="stat-box blue">
+        <div class="stat-box-meta">
+            <div class="stat-box-meta-text">
+                <h4>Pending Jobs</h4>
+                <h3>0</h3>
+            </div>
+            <div class="stat-box-meta-icon">
+                <img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/icons/warning.png" class="img-responsive" alt="published jobs">
+            </div>
+        </div>
+        <p><a href="https://jobs.nokriwp.com/dashboard/?tab-data=pending-jobs">View All Pending Jobs</a></p>
+    </div>
+</div>
+</div>
+</div>
+<div class="dashboard-job-stats">
+<h4>Recent Jobs Overview</h4>
+<div class="table-responsive dashboard-job-stats-table">
     <div class="container">
         <h1>List of applicants to your job posts</h1>
        
@@ -71,6 +157,13 @@
             <td><h4>Experiences</h4></td>
             <td>{{k.experience}}</td>
     </tr>
+
+        <tr>
+                    
+            <td><h4>Click to view Resume</h4></td>
+            <td><a href="{% url 'rrr' k.id %}" <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >View resume </button></td>
+    </tr>
+      
             <tr>
                 <td><h4>Click To Set Interview</h4></td>
             <td><a href="{% url 'sending' k.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Set Interview</button></td>
@@ -83,6 +176,39 @@
 
 </div>
                 </div>
+</div>
+</div>
+</div>                </div>
+{% endblock %}
+    </div>
+</div>
+</div>
+<input type="hidden" id="is_accordion" value="1">
+</section>
+
+{% endblock %}
+
+<html>
+                   
+<body>
+
+    {% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="n-pages-breadcrumb"  style="background: rgba(0, 0, 0, 0.6) url({% static 'img/header/login-slider-image.png' %}) 0 0 no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-position: center center; background-attachment:scroll;">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+             <div class="n-breadcrumb-info">
+               <h1>Looking for a Job?</h1><p>Here’s how to sort through the millions available to find the one that’s right for you.</p>
+             </div>
+          </div>
+       </div>
+    </div>
+</section>
+    <head><link rel='stylesheet' type="text/css" href="/static/css/bootstrap.min.css"></head>
+ 
+    
             </body>
             </html>
 {%endblock content%}

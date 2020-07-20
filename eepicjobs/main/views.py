@@ -1,4 +1,6 @@
 import stripe
+from datetime import timedelta
+from django.db.models import F
 from django.conf import settings
 from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 from django.core.mail import send_mail
@@ -16,8 +18,8 @@ from  accounts.models import Employee
 from  accounts.employee import EmployeeForm
 from  accounts.models import Employer
 from  accounts.models import savedresume
-from  accounts.models import subscriptionpack
-from  accounts.subsform import subscriptionpackForm
+from  accounts.models import subscription
+from  accounts.subsform import subscriptionForm
 from  accounts.employer import EmployerForm
 from  accounts.projects import ProjectsForm
 from  accounts.models import UserProfile
@@ -410,23 +412,22 @@ def project(request):
     return render(request, 'projects.html',context)
     
 def createresume(request):
-    try:
-        profile = request.user.userprofile
-    except UserProfile.DoesNotExist:
-        profile = UserProfile(user=request.user)
-
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=profile)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Successfully created")
-            return redirect('home')
+    s=UserProfile.objects.filter(user=request.user)
+    if(s.exists):
+        messages.error(request,"You have already created yiur resume, you may update existing one")
+        return redirect(employeein)
     else:
-        form = UserProfileForm(instance=profile)
-
-    context = {
-        "form": form,}
-    return render(request, 'resume.html',context)
+        form=subscriptionForm(request.POST or None,request.FILES or None)
+        if form.is_valid():
+            instance=form.save(commit=False)
+            instance.user=request.user
+            instance.save()
+            #message of success
+            messages.success(request,"Successfully created")
+            return redirect('employeein')
+        context = {
+            "form": form,}
+        return render(request, 'resume.html',context)
 
 
 
@@ -438,7 +439,7 @@ def updateresume(request,pk):
         if form.is_valid():  
                 form.save()
                 messages.success(request,"Successfully created")
-                return redirect('/') 
+                return redirect('employeein') 
     context={'form':form}
     return render(request,'resume.html',context)  
 
@@ -514,6 +515,7 @@ def dashboard(request):
         return render(request,'dashboard.html')
 
 def employerin(request):
+    
     return render(request,'employer/index.html')
     
 def employerup(request):
@@ -557,6 +559,17 @@ def rr(request):
     "edu" : edu,
     "pro":pro}
     return render(request, 'resumebuilder.html', context)
+
+def rrr(request,pk):
+    ap=applicant.objects.get(id=pk)
+    
+    edu=Education.objects.filter(resume=ap.user)
+    pro = Project.objects.filter(projectuser=ap.user)
+    context={"ap":ap,"edu":edu,"pro":pro}
+    print(ap)
+    print(pro)
+    print(edu)
+    return render(request, 'applicantresume.html', context)
 
 
 def change_password(request):
@@ -608,7 +621,7 @@ def updateEmp(request,pk):
         if form.is_valid(): 
             messages.success(request,"Successfully created") 
             form.save()
-            return redirect('/') 
+            return redirect('employerin') 
     context={'form':form}
     return render(request,'e.html',context) 
 
@@ -625,7 +638,7 @@ def showapplicants(request, jid):
         return render(request,'showapplicants.html',{'appli':appli})
     else:
         messages.error(request,'There are no applicants to this job yet')
-        return redirect('home')
+        return redirect('employerin')
 
 def applyjobb(request, jid):
     form=applicantform(request.POST or None,request.FILES or None)
@@ -635,7 +648,7 @@ def applyjobb(request, jid):
         instance.save()
         #message of success
         messages.success(request,"Successfully created")
-        return redirect('home')
+        return redirect('employeein')
     #form= JobPostform()
     job = Jobpost.objects.get(id=jid)
     context = {
@@ -655,30 +668,51 @@ def saved_jobs(request):
 
 def check_status(request):
     #to check if subscription of logged in user is expired or not
-    value=subscriptionpack.objects.filter(empid=request.user.userprofile)
+    value=subscription.objects.filter(user=request.user)
     stat=""
     if (value.exists()):
         for k in value:
-            d0 =k.purchasedate
+            d0 =k.last_date
             d1=date.today()
-            delta = d1 - d0
-            if(delta.days>30):
-                k.status="expired"
-                stat='expired'
-            else:
-                k.status="active"
-                stat="active"
+            delta = d0 - d1
+            note=""
+            if(k.subscriptionid=="499 per month"):
+                if(delta.days>30):
+                    subscription.objects.filter(status=request.user.subscription.status).update(status="expired")
+
+                    k.status="expired"
+                    stat='expired'
+                else:
+                    subscription.objects.filter(status=request.user.subscription.status).update(status="active")
+                    k.status="active"
+                    stat='active'
+
+                note="There are "+str(delta.days)+" days left for your subscription to get over"
+
+
+            elif(k.subscriptionid=="Yearly subscription @3400"):
+                if(delta.days>365):
+                    subscription.objects.filter(status=request.user.subscription.status).update(status="expired")
+                    k.status="expired"
+                    stat='expired'
+                else:
+                    subscription.objects.filter(status=request.user.subscription.status).update(status="active")
+                    k.status="active"
+                    stat='active'
+
+                note="There are "+str(delta.days)+" days left for your subscription to get over"
+
             subs=k.subscriptionid    
             
-        context={'subs':subs,'stat':stat} 
+        context={'subs':subs,'stat':stat,"note":note} 
         return render(request,'subscription.html',context)
     else:
         messages.error(request, "Sorry! No valid subscriptions")
-        return redirect('home')
+        return redirect('employerin')
 
 def check_status_employee(request):
     #to check if subscription of logged in user is expired or not
-    eevalue=subscriptionpack.objects.filter(empid=request.user.userprofile)
+    eevalue=subscription.objects.filter(user=request.user)
     stat=""
     if (eevalue.exists()):
         for k in eevalue:
@@ -697,30 +731,34 @@ def check_status_employee(request):
         return render(request,'subscription.html',context)
     else:
         messages.error(request, "Sorry! No valid subscriptions")
-        return redirect('home')
+        return redirect('employeein')
 
 def sub(request):
-    form=subscriptionpackForm(request.POST or None,request.FILES or None)
-    if form.is_valid():
-        instance=form.save(commit=False)
-        instance.empid=request.user.userprofile
-        instance.save()
-        #message of success
-        messages.success(request,"Successfully created")
-        return redirect('home')
-    context = {
-        "form": form,}
-    return render(request, 'subsformm.html',context)
+    if(subscription.objects.filter(user=request.user)):
+        messages.error(request,"Your subscription id exists, kindly update your pack by clicking on Update subscription")
+        return redirect('dashboard')
+    else:
+        form=subscriptionForm(request.POST or None,request.FILES or None)
+        if form.is_valid():
+            instance=form.save(commit=False)
+            instance.user=request.user
+            instance.save()
+            #message of success
+            messages.success(request,"Successfully created")
+            return redirect('recharge')
+        context = {
+            "form": form,}
+        return render(request, 'subsformm.html',context)
 
 def updatesubs(request,pk):
-    up=subscriptionpack.objects.get(id=pk)
-    form=subscriptionpackForm(instance=up)
+    up=subscription.objects.get(id=pk)
+    form=subscriptionForm(instance=up)
     if(request.method=='POST'):
-        form=subscriptionpackForm(request.POST,instance=up)
+        form=subscriptionForm(request.POST,instance=up)
         if form.is_valid(): 
             messages.success(request,"Successfully created") 
             form.save()
-            return redirect('/') 
+            return redirect('recharge') 
     context={'form':form}
     return render(request,'subsformm.html',context) 
 
@@ -850,10 +888,10 @@ def eeup(request,pk):
     return render(request,'employee/ee.html',context) 
 
 def eduup(request,pk):
-    up=EducationForm.objects.get(id=pk)
-    form=EmployerForm(instance=up)
+    up=Education.objects.get(id=pk)
+    form=EducationForm(instance=up)
     if(request.method=='POST'):
-        form=EmployerForm(request.POST,instance=up)
+        form=EducationForm(request.POST,instance=up)
         if form.is_valid(): 
             messages.success(request,"Successfully created") 
             form.save()
@@ -906,13 +944,15 @@ def join(request):
 
 @login_required
 def checkout(request):
-    if request.method =="POST":
+    if(request.method =="POST"):
         stripe_customer=stripe.Customer.create(email=request.user.email,source=request.POST['stripeToken'])
-        price="prod_HejhyUxVSoZhAt"
+        if request.POST['price']=="Subscription@499pm":
+            price="prod_HejhyUxVSoZhAt"
         if request.POST['price']=="Subscription@1400for three months":
             price="prod_HejiWQVbLXRdYy"
         if request.POST['price']=="Subscription@3000 for a year":
             price="prod_Hejk6aN99DhNaY"
+        
         subscription=stripe.Subscription.create(customer=stripe_customer.id,items=[{"price":price}],coupon="none")
         customer=Customer()
         customer.user=request.user
@@ -943,13 +983,13 @@ def checkout(request):
                 final_amt = 3000
         amount=amount*100
         return render(request, 'payment/checkout.html',{"price":price,"coupon":coupon,"amount":amount,"original_amt":original_amt,"final_amt":final_amt,
-                                                         "coupon_amt":coupon_amt })
+                                                            "coupon_amt":coupon_amt })
 
     
 
 
 def order(request):
-    form=subscriptionpackForm(request.POST or None,request.FILES or None)
+    form=subscriptionForm(request.POST or None,request.FILES or None)
     if form.is_valid():
         instance=form.save(commit=False)
         instance.empid=request.user.userprofile
@@ -961,3 +1001,47 @@ def order(request):
         "form": form,}
     return render(request, 'payment/order.html',context)
     
+
+
+def charge(request):
+    if request.method == "POST":
+        amount = int(request.POST['amount'])
+
+        print('Data:', request.POST)
+
+        amount = int(request.POST['amount'])
+
+        customer = stripe.Customer.create(
+            email=request.user.email,
+            name=request.user.username,
+            source=request.POST['stripeToken']
+            )
+
+        charge = stripe.Charge.create(
+            customer=customer,
+            amount=amount*100,
+            currency='INR',
+            description="Subscription"
+            )
+
+        subscription.objects.filter(price=request.user.subscription.price).update(price=F('price')+ amount)
+        #subscription.objects.filter(purchasedate=request.user.subscription.purchasedate).update(=F('price')+ amount)
+        s=subscription.objects.filter(user=request.user)
+        for k in s:
+            sub=k.subscriptionid
+            if(sub=="499 per month"):
+                lastt_date=date.today()+timedelta(days=30)
+                subscription.objects.filter(last_date=request.user.subscription.last_date).update(last_date=(date.today()+timedelta(days=30)))
+            
+            if(sub=="Yearly subscription @3400"):
+                lastt_date=date.today()+timedelta(days=365)
+                subscription.objects.filter(last_date=request.user.subscription.last_date).update(last_date=(date.today()+timedelta(days=365)))
+        messages.success(request,"Payment Succesfull")   
+        return redirect('dashboard')
+    return redirect('recharge')
+
+
+
+def recharge(request):
+    return render(request,'recharge.html')
+
