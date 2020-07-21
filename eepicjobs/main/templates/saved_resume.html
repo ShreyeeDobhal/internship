@@ -103,58 +103,21 @@
 </div>
 <div class="dashboard-job-stats">
 <h4>Recent Jobs Overview</h4>
-{% for k in messages %}
-        <li style="color:black">{{k}}</li>
-        {% endfor %}
 
-</div><br>
-<div style="color:black">
-    <h3>Your details</h3>
-    {% for k in employees %}
-    <table border="5px" width="350px">
-        <tr>
-            <td>Name</td>
-            <td>{{k.name}}</td>
-        </tr>
-        <tr>
-            <td>Profile photo</td>
-                {%if k.profile_photo %}
-                <td><img src="{{k.profile_photo.url}}" class="img-responsive" /></td>
-                {%endif%}
-                
-            
-        </tr>
-        
-
-        <tr>
-            <td>Phone number</td>
-            <td>{{k.phone_number}}</td>
-        
-        
-        <tr>
-            <td>Email</td>
-            <td>{{k.email}}</td>
-        </tr>
-        
-        
-
-    </table>
-    <hr>
-    {% endfor %}
 
 <h2>Following are your saved Resumes</h2>
 
     <div style="color :blueviolet">
         {% for k in sav %}
-      <p>{{k.resid}}</p> 
-       <p>{{k.empid}}</p>
+        <table>
+            <td><a href="{% url 'rrr'  k.aplid.id %}" <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >View resume </button>
+                </td>
+        </table>
+       
+      
         {% endfor %}
 
-</div>
-                </div>
-            
-</div>
-</div>                </div>
+            </div>
 {% endblock %}
     </div>
 </div>

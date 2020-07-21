@@ -405,12 +405,12 @@ class Employee(models.Model):
 
 
 
-class savedresume(models.Model):
-    resid=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+class Ssavedresume(models.Model):
+    aplid=models.ForeignKey(applicant,on_delete=models.CASCADE)
     empid=models.ForeignKey(Employer,on_delete=models.CASCADE)
     class Meta:
-            verbose_name = 'savedresume'
-            verbose_name_plural = 'savedresumes'
+            verbose_name = 'Ssavedresume'
+            verbose_name_plural = 'Ssavedresumes'
     def __str__(self):
         return "{} - {}".format(str(self.id))
 

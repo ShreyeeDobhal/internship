@@ -38,8 +38,12 @@
                     <span class="la la-bars"></span>Buy subscription<i class="fa fa-angle-down"></i>
                   </div>
                   <ul class="submenu">
+                      {% if request.user.subscription.id %}
+                      <li><a href="{% url 'updatesubs' request.user.subscription.id%}"><span class="la la-user"></span>Update your subscription pack</a></li>
+                      {% else %}
                     <li><a href="{% url 'sub' %}"> Buy your subscription pack</a></li>
-                    <li><a href="{% url 'updatesubs' request.user.subscription.id%}"><span class="la la-user"></span>Update your subscription pack</a></li>
+                    {% endif %}
+                    
                     
                   </ul>
                 </li>

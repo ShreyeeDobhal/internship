@@ -163,6 +163,12 @@
             <td><h4>Click to view Resume</h4></td>
             <td><a href="{% url 'rrr' k.id %}" <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >View resume </button></td>
     </tr>
+
+    <!tr>
+                    
+        <td><h4>Click to save resume</h4></td>
+        <td><a href="{% url 'saveresum' request.user.userprofile.employer.id k.id %}" <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Save resume </button></td>
+</tr>
       
             <tr>
                 <td><h4>Click To Set Interview</h4></td>

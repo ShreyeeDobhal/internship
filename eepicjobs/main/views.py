@@ -17,7 +17,7 @@ from accounts.Jobexp import JobexperienceForm
 from  accounts.models import Employee
 from  accounts.employee import EmployeeForm
 from  accounts.models import Employer
-from  accounts.models import savedresume
+from  accounts.models import Ssavedresume
 from  accounts.models import subscription
 from  accounts.subsform import subscriptionForm
 from  accounts.employer import EmployerForm
@@ -560,6 +560,15 @@ def rr(request):
     "pro":pro}
     return render(request, 'resumebuilder.html', context)
 
+def sr(request,pk):
+    ress = UserProfile.objects.get(id=pk)
+    edu=Education.objects.filter(resume=ress)
+    pro = Project.objects.filter(projectuser=ress)
+    context={"ress":ress,
+    "edu" : edu,
+    "pro":pro}
+    return render(request, 'resumebuilder.html', context)
+
 def rrr(request,pk):
     ap=applicant.objects.get(id=pk)
     
@@ -656,8 +665,17 @@ def applyjobb(request, jid):
         "job": job,}
     return render(request, 'applyjobb.html',context)
 
+def saveresum(request,e,r):
+    emp=Employer.objects.get(id=e)
+    ap=applicant.objects.get(id=r)
+    
+    Ssavedresume.objects.create(empid=emp,aplid=ap)
+    messages.success(request,"Successfully saved")
+    return redirect("employerin")
+
+
 def saved_resume(request):
-    sav=savedresume.objects.filter(empid=request.user.userprofile.employer)
+    sav=Ssavedresume.objects.filter(empid=request.user.userprofile.employer)
     return render(request,'saved_resume.html',{"sav": sav})
 
 def saved_jobs(request):
@@ -772,7 +790,7 @@ def sendemail(request,apid):
     s=settime.objects.filter(Q(empid=request.user.userprofile.employer),Q(apliid=ap))
     print(s)
     for k in s:
-        print("Regarding the Interview Process","Congratulations on being selected for the interview.Your interview will be held on "+str(k.indate)+" timings are "+str(k.intime),"eepicjob.com",["recipent@gmail.com"])
+        print("Regarding the Interview Process","Congratulations on being selected for the interview.Your interview will be held on "+str(k.indate)+" timings are "+str(k.intime) +" hrs .","eepicjob.com",["recipent@gmail.com"])
         send_mail("Regarding the Interview Process","Dear "+str(k.apliid.name)+", Congratulations on being selected for the interview.Your interview will be held on "+str(k.indate)+" timings are "+str(k.intime),"eepicjob.com",[k.apliid.email],fail_silently=False)
         #send_mail("Regarding the Interview Process","Dear "+str(k.apliid.name)+", Congratulations on being selected for the interview.Your interview will be held on "+str(k.indate)+", timings are "+str(k.intime),"agritadobhal.21864@gmail.com",["agritadobhal.21864@gmail.com"],fail_silently=False)
     return render(request,'sendemail.html')
