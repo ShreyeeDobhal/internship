@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% load compress %}
+{% compress css %}
+{% compress js %}
 {% load static %}
 {% block content %}
 <section class="n-single-job n-single-job-transparent" style=" background: url({% static 'img/4.png' %});  background-repeat: no-repeat; background-size: cover;  background-position: center center;  background-attachment: scroll; ">
@@ -41,3 +44,5 @@
     <input type="submit"class="butn btn-default" value="Submit"/>
     </form>
     {% endblock content %}
+{% endcompress %}
+{% endcompress %}

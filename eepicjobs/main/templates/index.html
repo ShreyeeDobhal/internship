@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
+{% load compress %}
+
+{% compress css %}
+{% compress js %}
 {% block content %}
+
 
 <section class="main-section-category"  style="background:  url({% static 'img/header/15.jpg' %}) no-repeat scroll center center / cover;"> 
     <div class="container">
@@ -396,5 +401,8 @@
                     </div>
                     </div>
                 </section>
+         
 
 {% endblock %}
+{% endcompress %} 
+{% endcompress %} 

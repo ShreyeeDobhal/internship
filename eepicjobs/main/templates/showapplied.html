@@ -1,5 +1,8 @@
 {% extends "dashboard.html" %}
 {% load static %}
+{% load compress %}
+{% compress css %}
+{% compress js %}
 {% block content %}
 
 <section class="dashboard-new candidate-dashboard ">
@@ -203,6 +206,7 @@
 </section>
 
 {% endblock %}
- 
+ {% endcompress %}
+ {% endcompress %}
    
-            <
+            

@@ -1,5 +1,8 @@
 {% extends "dashboard.html" %}
 {% load static %}
+{% load compress %}
+{% compress css %}
+{% compress js %}
 {% block content %}
 
 <section class="dashboard-new emp_dashboard  " style="transform: none;">
@@ -110,7 +113,7 @@
     <div style="color :blueviolet">
         {% for k in sav %}
         <table>
-            <td><a href="{% url 'rrr'  k.aplid.id %}" <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >View resume </button>
+            <td><a href="{% url 'rrr'  k.aplid.id %}" <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >{{k.aplid.name}} - {{k.aplid.email}} </button>
                 </td>
         </table>
        
@@ -127,3 +130,5 @@
 
 {% endblock %}
 
+{% endcompress %}
+{% endcompress %}

@@ -42,11 +42,18 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'widget_tweaks',
 'django_countries',
+'compressor',
     'main',
     'stripe'
+
 ]
 
 MIDDLEWARE = [
+    'django.middleware.gzip.GZipMiddleware',
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
+
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -151,3 +158,29 @@ EMAIL_USE_SSL = False
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE_ID= os.environ.get('STRIPE_PUBLISHABLE_ID')
 STRIPE_PLAN_ANNUAL_ID=os.environ.get('STRIPE_PLAN_ANNUAL_ID')
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+    # Add this
+    'compressor.finders.CompressorFinder',
+)
+
+
+
+
+
+COMPRESS_ENABLED = True
+COMPRESS_CSS_HASHING_METHOD = 'content'
+COMPRESS_FILTERS = {
+    'css':[
+        'compressor.filters.css_default.CssAbsoluteFilter',
+        'compressor.filters.cssmin.rCSSMinFilter',
+    ],
+    'js':[
+        'compressor.filters.jsmin.JSMinFilter',
+    ]
+}
+HTML_MINIFY = True
+KEEP_COMMENTS_ON_MINIFYING = True

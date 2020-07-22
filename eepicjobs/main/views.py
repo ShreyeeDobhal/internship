@@ -559,7 +559,7 @@ def rr(request):
     "edu" : edu,
     "pro":pro}
     return render(request, 'resumebuilder.html', context)
-
+'''
 def sr(request,pk):
     ress = UserProfile.objects.get(id=pk)
     edu=Education.objects.filter(resume=ress)
@@ -567,7 +567,7 @@ def sr(request,pk):
     context={"ress":ress,
     "edu" : edu,
     "pro":pro}
-    return render(request, 'resumebuilder.html', context)
+    return render(request, 'resumebuilder.html', context)'''
 
 def rrr(request,pk):
     ap=applicant.objects.get(id=pk)
@@ -649,6 +649,7 @@ def showapplicants(request, jid):
         messages.error(request,'There are no applicants to this job yet')
         return redirect('employerin')
 
+@login_required
 def applyjobb(request, jid):
     form=applicantform(request.POST or None,request.FILES or None)
     if form.is_valid():

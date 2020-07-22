@@ -1,6 +1,10 @@
 {% extends "dashboard.html" %}
 {% load static %}
+{% load compress %}
+{% compress css %}
+{% compress js %}
 {% block content %}
+
 
 <section class="dashboard-new candidate-dashboard ">
     <div class="container-fluid">
@@ -176,7 +180,9 @@
   </div>
   <input type="hidden" id="is_accordion" value="1">
 </section>
-
 {% endblock %}
+{% endcompress js %}
+{% endcompress css %}
+
 
 

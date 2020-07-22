@@ -4,6 +4,9 @@
 
     {% extends "base.html" %}
 {% load static %}
+{% load compress %}
+{% compress css %}
+{% compress js %}
 {% block content %}
 <section class="n-pages-breadcrumb"  style="background: rgba(0, 0, 0, 0.6) url({% static 'img/header/login-slider-image.png' %}) 0 0 no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-position: center center; background-attachment:scroll;">
     <div class="container">
@@ -97,3 +100,5 @@
             </body>
             </html>
 {%endblock content%}
+{% endcompress %}
+{% endcompress %}

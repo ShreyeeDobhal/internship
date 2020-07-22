@@ -63,7 +63,7 @@ urlpatterns = [
                 path('dashboard/employerdetails/', views.employerdetails, name='employerdetails'),
                 path('checksubscription/',views.check_status,name='check_status'),
                  path('rr/', views.rr, name='rr'),
-                 path('sr/<str:pk>', views.sr, name='sr'),
+           
                  path('saveresum/<str:e>/<str:r>/', views.saveresum, name='saveresum'),
                  path('rrr/<str:pk>', views.rrr, name='rrr'),
                   path('savedresume', views.saved_resume, name='saved_resume'),

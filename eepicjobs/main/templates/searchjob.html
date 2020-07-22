@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% load compress %}
+{% compress css %}
+{% compress js %}
 {% load static %}
 {% block nav %}
 <nav id="menu-1" class="mega-menu fa-change-black n-header-trabsparent as-breadcrumb" style=" background: url({% static 'img/4.png' %});  background-repeat: no-repeat; background-size: cover;  background-position: center center;  background-attachment: scroll; ">  
@@ -427,3 +430,5 @@
     </div>
 </section>
 {%endblock content%}
+{% endcompress %}
+{% endcompress %}

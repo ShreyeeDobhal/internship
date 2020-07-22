@@ -1,9 +1,13 @@
 
 {% extends "base.html" %}
 {% load static %}
+{% load compress %}
 {% block bodyclass %}
+
 class="page-template page-template-page-dashboard page-template-page-dashboard-php page page-id-235 logged-in theme-nokri woocommerce-js wpb-js-composer js-comp-ver-6.0.5 vc_responsive"
 {% endblock %}
+{% compress css %}
+{% compress js %}
 {% block headerclass %}
 <div class="navbar-fixed-top"><div class="top-bar">
     <div class="container">
@@ -108,3 +112,5 @@ class="page-template page-template-page-dashboard page-template-page-dashboard-p
 {% endblock %}
 
 {% endblock %}
+{% endcompress %}
+{% endcompress %}

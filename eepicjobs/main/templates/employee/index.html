@@ -1,6 +1,12 @@
 {% extends "dashboard.html" %}
 {% load static %}
+{% load compress %}
+{% compress css %}
+{% compress js %}
 {% block content %}
+
+
+
 
 <section class="dashboard-new candidate-dashboard ">
     <div class="container-fluid">
@@ -20,6 +26,7 @@
                          <a href="javascript:void(0)" class="menu-dashboard"> <i class="ti-menu-alt"></i></a>
                         <ul id="accordion" class="accordion ps ps--active-y">
                             <li><a href="{% url 'employeein' %}"><span class="la la-tachometer"></span>Dashboard</a></li>
+                            
                             {% if request.user.userprofile.employee.id %}
                             <li><a href="{% url 'employeeup' %}"><span class="la la-edit"></span>update profile</a></li>
 
@@ -177,6 +184,7 @@
      <h4>My profile</h4>
                </div>
 </div>                        </div>
+
 {% endblock %}
                                    </div>
       </div>
@@ -185,3 +193,5 @@
 </section>
 
 {% endblock %}
+{% endcompress %}
+{% endcompress %}

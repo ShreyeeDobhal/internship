@@ -1,4 +1,6 @@
 {% load static %}
+{% load compress %}
+
 <!DOCTYPE html>
 <html lang="en-US" class="no-js">
 <head>
@@ -29,6 +31,8 @@
             background: none !important;
             padding: 0 !important;
         }
+        
+
     </style>
     <link rel="canonical" href="index.html" />
     <link rel='stylesheet' id='bootstrap-theme-css'  href="{% static 'css/bootstrap.min1852.css' %}" type='text/css' media='all' />
@@ -93,6 +97,8 @@
     <script type='text/javascript' defer src="{% static 'assets/leaflet/leaflet1852.js'%}"></script>
     <script type='text/javascript' defer src="{% static 'assets/leaflet/leaflet.markercluster1852.js'%}"></script>
     <script type='text/javascript' defer src="{% static 'assets/leaflet/leaflet-search.min1852.js'%}"></script>
+    
+   
     {% block userstyle %}
     {% endblock %}
 </head>

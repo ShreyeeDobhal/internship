@@ -1,5 +1,8 @@
 {% extends "employee/index.html" %}
 {% load static %}
+{% load compress %}
+{% compress css %}
+{% compress js %}
 {% block dash %}
 
 <div class="col-lg-7 col-md-9 col-sm-12 col-xs-12 col-lg-pull-3 col-lg-offset-0 col-md-offset-3">
@@ -729,3 +732,5 @@ document.getElementById('ad_map_long').value = markerz.getLatLng().lng;
 </script>                        </div>
 
 {% endblock %}
+{% endcompress %}
+{% endcompress %}

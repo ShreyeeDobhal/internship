@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% load compress %}
+{% compress css %}
+{% compress js %}
 {% block content %}
 <section class="n-single-job n-single-job-transparent" style=" background: url({% static 'img/4.png' %});  background-repeat: no-repeat; background-size: cover;  background-position: center center;  background-attachment: scroll; ">
     <div class="container">
@@ -211,3 +214,5 @@
 
 
 {% endblock content %}
+{% endcompress %}
+{% endcompress %}

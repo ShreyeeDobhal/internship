@@ -1,6 +1,9 @@
 
     {% extends "dashboard.html" %}
     {% load static %}
+    {% load compress %}
+{% compress css %}
+{% compress js %}
     {% block content %}
     
     <section class="dashboard-new emp_dashboard  " style="transform: none;">
@@ -122,4 +125,5 @@
     
     {% endblock %}
     
-    
+    {% endcompress %}
+    {% endcompress %}
