@@ -19,7 +19,7 @@ class UserProfile(models.Model):
     """
     This model is for creating a UserProfile that contains more information about the user
     """
-    USER_PROFILE_PHOTO = 'user__profilephoto'
+    #USER_PROFILE_PHOTO = 'user__profilephoto'
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_photo = models.ImageField(upload_to="images/", null=True, blank=True)
@@ -228,7 +228,8 @@ class Jobpost(models.Model):
     posted_on=models.DateField(default=datetime.today )
     #timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
     #updated = models.DateTimeField(auto_now=True, auto_now_add=False)
-    valid_till=models.DateField(verbose_name='Enter date in yy-mm-dd format',default=datetime.today)
+    requirements = models.TextField(blank = True)
+    valid_till=models.DateField(verbose_name='Enter last date of applying in yy-mm-dd format :',default=datetime.today)
     email = models.EmailField(validators=[validators.EmailValidator], null=True)
     phone_number = models.CharField(validators=[phone_regex], max_length=17, null=True)
     contractchoices=(('Contract',"Contract"),('Internship',"Internship"),('Temporary',"Temporary"),('Walk-In',"Walk-In"),('Fresher',"Fresher"))

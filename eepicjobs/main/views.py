@@ -301,7 +301,7 @@ def jobpost_create(request):
         instance.save()
         #message of success
         messages.success(request,"Successfully created")
-        return redirect('home')
+        return redirect('employerin')
     #form= JobPostform()
     context = {
         "form": form,}
@@ -1065,3 +1065,20 @@ def charge(request):
 def recharge(request):
     return render(request,'recharge.html')
 
+def jobss(request):
+    match=Jobpost.objects.all()
+    return render(request,'searchjob.html',{'sr':match})
+
+def loc(request):
+    match=Jobpost.objects.all()
+    return render(request,'base.html',{'sr':match})
+
+def jobloc(request,loc):
+    match=Jobpost.objects.filter(Q(location__icontains=loc))
+    return render(request,'searchjob.html',{'sr':match})
+
+def types(request,ctype):
+    c=Jobpost.objects.filter(contractType__icontains=ctype)
+    context={"sr":c}
+    return render(request,'searchjob.html',context)
+                        

@@ -151,7 +151,13 @@
                             <li><a  href="{% url 'index' %}">Home</a></li>
                             <li><a  href="{% url 'index' %}">Home</a></li>
                             <li><a  href="{% url 'index' %}">Home</a></li>
-                            <li><a  href="{% url 'index' %}">Home</a></li>
+                            <li><a  href="{% url 'types' 'Walk-in' %}">Walk in</a></li>
+                            <li><a  href="{% url 'types' 'Contract' %}">Contract</a></li>
+                            <li><a  href="{% url 'types' 'Temporary' %}">Temporary</a></li>
+                            <li><a  href="{% url 'types' 'Internship' %}">Internships</a></li>
+
+
+                            <li><a  href="{% url 'jobss' %}">Jobs</a></li>
                             {% if request.user.userprofile.employee.id %}
                             <li><a  href="{% url 'employeein' %}">Dashboard</a></li>
                             {% elif request.user.userprofile.employer.id %}
@@ -200,12 +206,26 @@
                         </ul>
                     </div>                  </div>
               </div>
+             
+             
+
+
+
+              
               <div class="col-sm-6 col-md-5 col-lg-5 col-xs-12">                  <div class="n-footer-block">
-                    <h4>Job Locations</h4>                     <ul class="n-page-links multiple">
-                       <li><a href="../search-page/index6b2e.html?job-location=67">Albama</a></li><li><a href="../search-page/index26ed.html?job-location=68">Anniston</a></li><li><a href="../search-page/index0967.html?job-location=69">Chickasaw</a></li><li><a href="../search-page/index1556.html?job-location=71">Delhi</a></li><li><a href="../search-page/index5641.html?job-location=74">Dubai</a></li><li><a href="../search-page/index8a52.html?job-location=76">Germany</a></li><li><a href="../search-page/index2896.html?job-location=77">Hamburg</a></li><li><a href="../search-page/indexf296.html?job-location=70">India</a></li>                     </ul>
-                 </div>
-              </div>
-                             <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
+                <h4>Job Locations</h4>     
+                <a href="{% url 'loc' %}"><h4 style="color: white;">Click here to see all job locations</h4>>  </a> </p>    
+                {% for k in sr %}
+                        <ul class="n-page-links multiple">
+                   <li><a href="{% url 'jobloc' k.location %}">{{k.location}} , {{k.country}}</a></li>                     </ul>
+                   {% endfor %}
+                </div>
+          </div>
+             
+             
+             
+             
+                    <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
                  <div class="n-footer-block">
                  <h4>Get Our Apps</h4>                  	<div class="n-app-btn">
                        <a href="https://play.google.com/store/apps/details?id=com.scriptsbundle.nokri" target="_blank">

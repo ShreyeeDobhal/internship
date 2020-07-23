@@ -14,7 +14,9 @@ urlpatterns = [
                 path('login/', views.login, name='login'),
                 path('order',views.order,name='order'),
                 path('register/', views.register, name='register'),
-                
+                path("jobloc/<str:loc>/",views.jobloc,name="jobloc"),
+                path("loc/",views.loc,name="loc"),
+                path('types/<str:ctype>/',views.types,name="types"),
                 path('logout/', views.logout, name='logout'),
                 path('home/', views.home, name='home'),
                 ########### CURRENT URLS ##########################
@@ -63,7 +65,7 @@ urlpatterns = [
                 path('dashboard/employerdetails/', views.employerdetails, name='employerdetails'),
                 path('checksubscription/',views.check_status,name='check_status'),
                  path('rr/', views.rr, name='rr'),
-           
+                path("jobss",views.jobss,name='jobss'),
                  path('saveresum/<str:e>/<str:r>/', views.saveresum, name='saveresum'),
                  path('rrr/<str:pk>', views.rrr, name='rrr'),
                   path('savedresume', views.saved_resume, name='saved_resume'),

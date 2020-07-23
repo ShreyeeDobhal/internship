@@ -14,8 +14,8 @@ class JobPostform(forms.ModelForm):
     email = forms.EmailField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Email'}))
     country = CountryField().formfield()
     jobType=forms.ChoiceField(label=('What Type of Job are you Looking for?'), 
-                               choices=(('0',"Full time"),('1',"Part time")))
-    hear=forms.ChoiceField(label=('Where did you hear of us?'), choices=(('0',"Mail"),('1',"Tv"),('2',"Newspapaer"),('3',"other")))
+                               choices=(('Full time',"Full time"),('Part time',"Part time")))
+    hear=forms.ChoiceField(label=('Where did you hear of us?'), choices=(('Mail',"Mail"),('Tv',"Tv"),('Newspapaer',"Newspapaer"),('other',"other")))
     class Meta:
         model=Jobpost
         fields = ('JobTitle','JobDesciption','Jobindustry',
@@ -23,5 +23,5 @@ class JobPostform(forms.ModelForm):
         'email' ,
         'phone_number','valid_till', 
         'country',
-        'jobType','hear','contractType')
+        'jobType','hear','contractType','requirements',)
                
