@@ -1066,15 +1066,19 @@ def recharge(request):
     return render(request,'recharge.html')
 
 def jobss(request):
-    match=Jobpost.objects.all()
+    
+    match=Jobpost.objects.all().order_by('-valid_till')
     return render(request,'searchjob.html',{'sr':match})
 
 def loc(request):
-    match=Jobpost.objects.all()
+    match=Jobpost.objects.all().order_by('-valid_till').distinct()
+    #match = Jobpost.objects.values_list('location', flat=True).distinct()
     return render(request,'base.html',{'sr':match})
 
 def jobloc(request,loc):
-    match=Jobpost.objects.filter(Q(location__icontains=loc))
+    #m=Jobpost.objects.filter(valid_date__lte='-date.today').delete()
+    #m.save()
+    match=Jobpost.objects.filter(Q(location__icontains=loc)).order_by('-valid_till')
     return render(request,'searchjob.html',{'sr':match})
 
 def types(request,ctype):

@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% load static %}
 {% load compress %}
@@ -79,6 +80,19 @@
                                     <input placeholder="Phone Number" class="form-control" type="Number" data-parsley-type="digits"  name="phone_number" value=""/>
                                  </div>
                               </div>
+                              
+
+                              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 nopadding">
+                            <div class="n-page-right-side">
+                                <div class="post-job-heading"><h3>Using Social Accounts</h3></div><div class="form-group"><p>mollis et mi. Morbi elementum, purus eu congue efficitur, justo dolor condimentum ex, at gravida nisi massa</p></div>
+                                <div class="social-buttons">
+                                <div class="form-group"><a href="{% url 'social:begin' 'facebook' %}"><img src="{% static 'images/f-logo.png' %}" class="img-resposive" alt="facebook logo"/><span> <h5 style="color: white;"> facebook</h5></span></a></div>
+                                <div class="form-group"><a href="{% url 'social:begin' 'google-oauth2' %}"><img src="{% static 'images/g-logo.png' %}" class="img-resposive" alt="Google logo"/><span><h5 style="color: white;"> Signin With Google</h5> </span></a></div><div class="form-group"><a href="{% url 'social:begin' 'linkedin-oauth2' %}"><i class="ti-linkedin"></i><span><h5 style="color: white;">Sign In With LinkedIn</h5> </span></a></div>
+                                </div>
+                            </div>
+                              </div>
+                              
+
 
   
                               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

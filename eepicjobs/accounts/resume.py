@@ -16,7 +16,7 @@ class UserProfileForm(forms.ModelForm):
 
     address =forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Address'}))
 
-    prev_Employments= forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Previous employments'}))
+    prev_Employments= forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Previous employments'}),label="Mention your previous employments")
 
     education_details= forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Educational details'}))
     projects= forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Project details'}))

@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+'django.contrib.sites',
+#'allauth',
+    #'allauth.account',
+    #'allauth.socialaccount',
+    #'allauth.socialaccount.providers.facebook',
+    #'allauth.socialaccount.providers.google',
+    #'allauth.socialaccount.providers.twitter', 
     'rest_framework',
     'accounts',
     'phonenumber_field',
@@ -44,6 +51,7 @@ INSTALLED_APPS = [
 'django_countries',
 'compressor',
     'main',
+'social_django',  
     'stripe'
 
 ]
@@ -61,6 +69,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+    #'get_message(request, exception)',
+#'get_redirect_uri(request, exception)',
+
 ]
 
 ROOT_URLCONF = 'eepicjobs.urls'
@@ -76,11 +88,34 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  
+                'social_django.context_processors.login_redirect', 
 
             ],
         },
     },
 ]
+
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+   
+    'social_core.backends.google.GooglePlusAuth',
+    'social_core.backends.linkedin.LinkedinOAuth2',
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.google.GoogleOAuth',
+   
+    
+   
+   
+    #'allauth.account.auth_backends.ModelBackend,'
+)
+#AIzaSyC50L4QAbNli6PyXjIMK9QFFw1MYF8I1Fk
 
 WSGI_APPLICATION = 'eepicjobs.wsgi.application'
 
@@ -115,6 +150,19 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+SOCIAL_AUTH_FACEBOOK_KEY = '750232149042876'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '16f3fc2b921710bdeb140125254bec5f' # App Secret
+
+
+SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '78ghy8wizvnjtx'#'750232149042876'   App ID
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'D8GQgYfz5yYynubb'#'D8GQgYfz5yYynubb' App Secret
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "643424918173-351ramjbhbdn56okkd8srsfc7454sveg.apps.googleusercontent.com"
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET ="gMzmBW_nHbkxpRi7VvFNDRXB"
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -131,7 +179,12 @@ USE_TZ = True
 
 # Configiration for AUthentication
 
-LOGOUT_REDIRECT_URL = 'main:login'
+LOGOUT_REDIRECT_URL ='main:login'
+#LOGIN_URL='auth/login/google-oath2'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'home'
+SOCIAL_AUTH_URL_NAMESPACE="social"
 
 
 
@@ -184,3 +237,24 @@ COMPRESS_FILTERS = {
 }
 HTML_MINIFY = True
 KEEP_COMMENTS_ON_MINIFYING = True
+
+
+SITE_ID=1
+
+
+
+SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
+
+
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.social_auth.associate_by_email',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)

@@ -2,6 +2,7 @@ from django.urls import path,include
 from . import views
 from django.conf import settings
 from django.contrib.auth import views as auth_views
+#from mysite.core import views as core_views
 from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 from django.conf.urls import url
 
@@ -11,6 +12,9 @@ urlpatterns = [
 
         #path('order/<int:pk>',views.edit_order,name='edit_order'),
         path('order',views.order,name='order'),
+        #url(r'^settings/$', core_views.settings, name='settings'),
+   # url(r'^settings/password/$', core_views.password, name='password'),
+        url(r'^oauth/', include('social_django.urls', namespace='social')),
                 path('login/', views.login, name='login'),
                 path('order',views.order,name='order'),
                 path('register/', views.register, name='register'),

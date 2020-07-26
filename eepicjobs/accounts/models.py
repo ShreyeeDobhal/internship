@@ -236,12 +236,15 @@ class Jobpost(models.Model):
     hearchoices=(('Mail',"Mail"),('Tv',"Tv"),('Newspapaer',"Newspapaer"),('other',"other"))
     jobchoice= (('Full time',"Full time"),('Part time',"Part time"))
     company_logo=models.ImageField(upload_to='images/',null=True,blank=True)
-    hear = models.CharField(max_length=20,choices=hearchoices,default='Newspaper')
-    contractType = models.CharField(max_length=20,choices=contractchoices,default='Fresher')
-    jobType=models.CharField(max_length=20,choices=jobchoice,default='Full time')
+    hear = models.CharField(max_length=255,choices=hearchoices,default='Newspaper')
+    contractType = models.CharField(max_length=255,choices=contractchoices,default='Fresher',verbose_name="Contract type of this jobpost")
+    jobType=models.CharField(max_length=255,choices=jobchoice,default='Full time')
     country = CountryField()
     location = models.CharField(max_length=255, null=True)
-    
+    no_of_employees=models.IntegerField(blank=True, null=True)
+    updates_email=models.EmailField(validators=[validators.EmailValidator], null=True,verbose_name="Daily updates about this job and candidates will be sent to:")
+    #salary_beg= models.FloatField(default=0.0)
+    #salary_end= models.FloatField(default=0.0)
 
     class Meta:
         verbose_name = 'Jobpost'

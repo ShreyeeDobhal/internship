@@ -163,7 +163,7 @@
                             {% elif request.user.userprofile.employer.id %}
                             <li><a  href="{% url 'employerin' %}">Dashboard</a></li>
                             {% else %}
-                            <li><a  href="{% url 'index' %}">Home</a></li>
+                            <li><a  href="{% url 'dashboard' %}">Dashboard</a></li>
                             {% endif %}
 
 
@@ -189,7 +189,7 @@
         </div>
     </div>
     <!-- FOOTER -->
-
+</br>
     <section class="n-footer-transparent footer-two" style=" background: url({% static 'img/footer/acasc.jpg' %});  background-repeat: no-repeat; background-size: cover;  background-position: center center;  background-attachment: scroll; ">
         <div class="container">
            <div class="row">

@@ -63,9 +63,9 @@
                             <div class="n-page-right-side">
                                 <div class="post-job-heading"><h3>Using Social Accounts</h3></div><div class="form-group"><p>mollis et mi. Morbi elementum, purus eu congue efficitur, justo dolor condimentum ex, at gravida nisi massa</p></div>
                                 <div class="social-buttons">
-                                <div class="form-group"><a href="javascript:void(0)" class="btn-facebook btn-block btn-social"  onclick="hello('facebook').login({scope : 'email',})"><img src="{% static 'images/f-logo.png' %}" class="img-resposive" alt="facebook logo"/><span>Signin With facebook</span></a></div>
-                                <div class="form-group"><a href="javascript:void(0)" class="btn-google btn-block btn-social"  onclick="hello('google').login({scope : 'email',})"><img src="{% static 'images/g-logo.png' %}" class="img-resposive" alt="Google logo"/><span>Signin With Google</span></a></div><div class="form-group"><a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&amp;client_id=819vq98insh6za&amp;redirect_uri=https://jobs.nokriwp.com/&amp;state=popup&amp;scope=r_liteprofile%20r_emailaddress" class="btn-linkedIn btn-block"><i class="ti-linkedin"></i><span>Signin With LinkedIn</span></a></div>
-                                </div>
+                                    <div class="form-group"><a href="{% url 'social:begin' 'facebook' %}"><img src="{% static 'images/f-logo.png' %}" class="img-resposive" alt="facebook logo"/><span> <h5 style="color: white;"> facebook</h5></span></a></div>
+                                    <div class="form-group"><a href="{% url 'social:begin' 'google-oauth2' %}"><img src="{% static 'images/g-logo.png' %}" class="img-resposive" alt="Google logo"/><span><h5 style="color: white;"> Signin With Google</h5> </span></a></div><div class="form-group"><a href="{% url 'social:begin' 'linkedin-oauth2' %}"><i class="ti-linkedin"></i><span><h5 style="color: white;">Sign In With LinkedIn</h5> </span></a></div>
+                                    </div>
                             </div>
                         </div>
                     </div>
