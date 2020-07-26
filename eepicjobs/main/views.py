@@ -417,7 +417,7 @@ def createresume(request):
         messages.error(request,"You have already created your resume, you may update existing one")
         return redirect(employeein)
     else:
-        form=subscriptionForm(request.POST or None,request.FILES or None)
+        form=UserProfileForm(request.POST or None,request.FILES or None)
         if form.is_valid():
             instance=form.save(commit=False)
             instance.user=request.user

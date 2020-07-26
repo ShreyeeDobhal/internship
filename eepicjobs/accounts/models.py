@@ -242,9 +242,13 @@ class Jobpost(models.Model):
     country = CountryField()
     location = models.CharField(max_length=255, null=True)
     #no_of_employees=models.IntegerField(blank=True, null=True)
-   # updates_email=models.EmailField(validators=[validators.EmailValidator], null=True,verbose_name="Daily updates about this job and candidates will be sent to:")
+    #updates_email=models.EmailField(validators=[validators.EmailValidator], null=True,verbose_name="Daily updates about this job and candidates will be sent to:")
     #salary_beg= models.FloatField(default=0.0)
     #salary_end= models.FloatField(default=0.0)
+    #adchoice= (('Feature',"Feature"),('Premium',"Premium"))
+   # ad= models.CharField(max_length=255,choices=adchoice,default='Feature',verbose_name="select your add type, (chose premium only if you have a subscription pack)")
+
+
 
     class Meta:
         verbose_name = 'Jobpost'
