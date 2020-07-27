@@ -95,4 +95,9 @@ urlpatterns = [
     path('checkout', views.checkout, name='checkout'),
     url(r'^recharge/$', views.recharge, name='recharge'),
     url(r'^charge/$', views.charge, name='charge'),
+    path('contract', views.contract, name='contract'),
+path('internship', views.internn, name='internn'),
+path('walk', views.walk, name='walk'),
+path('premium', views.premium, name='premium'),
+path('feature', views.feat, name='feat'),
 ]

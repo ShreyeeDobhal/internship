@@ -1,0 +1,70 @@
+<body>
+    {% extends "base.html" %}
+    {% load static %}
+    {% load compress %}
+{% compress css %}
+{% compress js %}
+    {% block content %}
+    <section class="n-pages-breadcrumb"  style="background: rgba(0, 0, 0, 0.6) url({% static 'img/header/login-slider-image.png' %}) 0 0 no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-position: center center; background-attachment:scroll;">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+                <div class="n-breadcrumb-info">
+                    <h1>Account SignIn</h1><p>Having great skills and specialty in software quality assurance, software testing, software requirement.</p>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section class="n-job-pages-section">
+        <div class="container">  
+            <div class="col-sm-8 col-sm-offset-3">
+                <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+        <h1>Upload Your Resume Details </h1>
+        <h2>EEpicjobs For Employers</h2>
+    {% for k in i %}
+    <table border="5px">
+    <tr>
+        <td><h3>Job Title</h3></td>
+        <td>{{k.JobTitle}}</td>
+
+    </tr>
+    <tr>
+        <td><h3>Job Desciption</h3></td>
+    <td>{{k.JobDesciption}}</td>
+
+    </tr>
+    
+
+    <tr>
+        <td><h3>Company Name</h3></td>
+        <td>{{k.CompanyName}}</td>
+    </tr>
+    <tr>
+        <td><h3>Ad Type</h3></td>
+
+        <td>{{k.ad}}</td>
+    </tr>
+    <tr>
+        <td><h3>Company Logo</h3></td>
+
+        <td><img  class="img-responsive watch-right" alt="not found" width="400" height="300"  src={% if k.company_logo %}"{{k.company_logo.url}}"{% endif %}/></td>
+    </tr>
+
+    <tr>
+        <td><h3>Contract type</h3></td>
+
+        <td>{{k.contractType}}</td>
+    </tr>
+    <br><br>
+    
+</table>
+{%endfor %}
+
+                </br>
+    
+    {% endblock content %}
+    {% endcompress %}
+    {% endcompress %}

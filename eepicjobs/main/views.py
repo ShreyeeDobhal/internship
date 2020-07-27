@@ -1156,3 +1156,29 @@ def deletejob(request,pk):
         messages.success(request,"Succesfully deleted")
         return redirect('employerin')
     return render(request,"employer/deletejob.html",context)
+
+
+def internn(request):
+    w=Jobpost.objects.filter(contractType__icontains="Internship")
+    context={"i":i}
+    return render(request,"frontpage/internship.html",context)
+def walk(request):
+    i=Jobpost.objects.filter(contractType__icontains="Walk-In")
+    context={"i":i}
+    return render(request,"frontpage/walk.html",context)
+
+def contract(request):
+    i=Jobpost.objects.filter(contractType__icontains="contract")
+    context={"i":i}
+    return render(request,"frontpage/contract.html",context)
+
+def premium(request):
+    i=Jobpost.objects.filter(ad__icontains="premium")
+    context={"i":i}
+    return render(request,"frontpage/premium.html",context)
+
+def feat(request):
+    typee=Jobpost.objects.filter(ad__icontains="feature")
+    context={"i":i}
+    return render(request,"frontpage/feature.html",context)
+
