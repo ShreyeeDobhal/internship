@@ -52,6 +52,20 @@
                                 
                               </ul>
                             </li>
+
+                            <div class="profile-menu-link">
+                                <span class="la la-bars"></span>Buy subscription<i class="fa fa-angle-down"></i>
+                              </div>
+                              <ul class="submenu">
+                                  {% if request.user.subscription.id %}
+                                  <li><a href="{% url 'updatesubs' request.user.subscription.id%}"><span class="la la-user"></span>Update your subscription pack</a></li>
+                                  {% else %}
+                                <li><a href="{% url 'sub' %}"> Buy your subscription pack</a></li>
+                                {% endif %}
+                                
+                                
+                              </ul>
+                            </li>
                             
 
                             
@@ -61,7 +75,7 @@
                             <li><a href="{% url 'saved_jobs' %}"><span class="la la-bookmark"></span>Saved Jobs</a></li>
                             <li><a href="{% url 'employeein' %}"><span class="la la-external-link"></span>Followed </a></li>
                             <li><a href="{% url 'employeeal' %}"><span class="la la-bell"></span>Job alerts</a></li>
-                            <li><a href="{% url 'check_status' %}"><span class="la la-list-alt"></span>My packages</a></li>
+                            <li><a href="{% url 'check_status_employee' %}"><span class="la la-list-alt"></span>My packages</a></li>
                             <li><a href="{% url 'employeeor' %}"><span class="la la-check-circle"></span>My order</a></li>
                             <li><a href="{% url 'logout' %}"><span class="la la-sign-out"></span>Logout</a></li>
                             <div class="ps__rail-x" style="left: 0px; bottom: 0px;">

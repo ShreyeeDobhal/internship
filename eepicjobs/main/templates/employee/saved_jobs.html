@@ -5,6 +5,9 @@
 {% compress js %}
 {% block content %}
 
+
+
+
 <section class="dashboard-new candidate-dashboard ">
     <div class="container-fluid">
         <div class="row">
@@ -23,6 +26,7 @@
                          <a href="javascript:void(0)" class="menu-dashboard"> <i class="ti-menu-alt"></i></a>
                         <ul id="accordion" class="accordion ps ps--active-y">
                             <li><a href="{% url 'employeein' %}"><span class="la la-tachometer"></span>Dashboard</a></li>
+                            
                             {% if request.user.userprofile.employee.id %}
                             <li><a href="{% url 'employeeup' %}"><span class="la la-edit"></span>update profile</a></li>
 
@@ -46,7 +50,7 @@
                               </div>
                               <ul class="submenu">
                                 <li><a href="{% url 'createresume' %}"> create resume</a></li>
-                                <li><a href="{% url 'updateresume' request.user.id %}"> Update your resume</a></li>
+                                <li><a href="{% url 'updateresume' request.user.userprofile.id %}"> Update your resume</a></li>
                                 <li><a href="{% url 'rr' %}"> View your resume</a></li>
                                 
                               </ul>
@@ -55,12 +59,27 @@
 
                             
                             <li><a href="{% url 'eeview' %}"><span class="la la-user"></span>view my profile</a></li>
+                            
                             <li><a href="{% url 'rr' %}"><span class="la la-file-pdf-o"></span>My Resume</a></li>
                             <li><a href="{% url 'employeeapp' %}"><span class="la la-bars"></span>Jobs Applied</a></li>
                             <li><a href="{% url 'saved_jobs' %}"><span class="la la-bookmark"></span>Saved Jobs</a></li>
+                            <div class="profile-menu-link">
+                                <span class="la la-bars"></span>Buy subscription<i class="fa fa-angle-down"></i>
+                              </div>
+                              <ul class="submenu">
+                                  {% if request.user.subscription.id %}
+                                  <li><a href="{% url 'updatesubs' request.user.subscription.id%}"><span class="la la-user"></span>Update your subscription pack</a></li>
+                                  {% else %}
+                                <li><a href="{% url 'sub' %}"> Buy your subscription pack</a></li>
+                                {% endif %}
+                                
+                                
+                              </ul>
+                            </li>
                             <li><a href="{% url 'employeein' %}"><span class="la la-external-link"></span>Followed </a></li>
                             <li><a href="{% url 'employeeal' %}"><span class="la la-bell"></span>Job alerts</a></li>
                             <li><a href="{% url 'check_status' %}"><span class="la la-list-alt"></span>My packages</a></li>
+                            
                             <li><a href="{% url 'employeeor' %}"><span class="la la-check-circle"></span>My order</a></li>
                             <li><a href="{% url 'logout' %}"><span class="la la-sign-out"></span>Logout</a></li>
                             <div class="ps__rail-x" style="left: 0px; bottom: 0px;">

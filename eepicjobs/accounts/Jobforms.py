@@ -12,7 +12,7 @@ class JobPostform(forms.ModelForm):
     Jobindustry=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Jobindustry'}))
     location=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Location'}))
     email = forms.EmailField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Email'}))
-    phone_number = PhoneNumberField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':('Phone')}),label=("Phone number"), required=True)
+    #phone_number = PhoneNumberField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':('Phone')}),label=("Phone number"), required=True)
     valid_till=forms.DateField(label=('Enter the last date of applying in yy-mm-dd format'),widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Date'}))
     requirements=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Requirements'}))
     hear=forms.ChoiceField(label=('Where did you hear of us?'), choices=(('Mail',"Mail"),('Tv',"Tv"),('Newspapaer',"Newspapaer"),('other',"other")))
@@ -31,5 +31,10 @@ class JobPostform(forms.ModelForm):
         'email' ,
         'phone_number','valid_till', 
         
-        'jobType','hear','contractType','country',)
+        'jobType','hear','contractType','country',"no_of_employees",
+    "updates_email",
+    "salary_beg",
+    "salary_end",
+    
+    "ad")
                

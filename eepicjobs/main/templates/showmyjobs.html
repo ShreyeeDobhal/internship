@@ -37,6 +37,19 @@
                       <li><a href="{% url 'showmyjobs' %}">Pending Jobs</a></li>
                     </ul>
                   </li><li>
+                    <div class="profile-menu-link">
+                        <span class="la la-bars"></span>Buy subscription<i class="fa fa-angle-down"></i>
+                      </div>
+                      <ul class="submenu">
+                          {% if request.user.subscription.id %}
+                          <li><a href="{% url 'updatesubs' request.user.subscription.id%}"><span class="la la-user"></span>Update your subscription pack</a></li>
+                          {% else %}
+                        <li><a href="{% url 'sub' %}"> Buy your subscription pack</a></li>
+                        {% endif %}
+                        
+                        
+                      </ul>
+                    </li>
                 
                   </li>
                   <li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=matched-resumes"><span class="la la-external-link"></span>Matched Resumes</a></li><li><a href="{% url 'saved_resume' %}"><span class="la la-file-pdf-o"></span>Saved Resumes</a></li><li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=our-followers"><span class="fa fa-users"></span>Followers</a></li><li><a href="{% url 'check_status' %}">
@@ -107,7 +120,7 @@
 <div class="dashboard-job-stats">
 <h4>Recent Jobs Overview</h4>
 <div class="container">
-    <h1>Here is the list of your job posts</h1>
+    <h2><i>Here is the list of your job posts</i></h2>
    
 <div>
 
@@ -116,35 +129,75 @@
     {% endfor %}
 
 </div><br>
+<style>
+
+    
+    #customers {
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    #customers td, #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+    
+    #customers tr:hover {background-color: #ddd;}
+    
+    #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #4CAF50;
+      color: white;
+    }
+    </style>
 
 <div style="color:black">
     {% for k in jobdisplay %}
-    <table border="5px" width="850px">
+    <table border="5px" >
         <tr>
-            <td><h4>Job Title</h4></td>
+            <td><h3>Job Title</h3></td>
             <td>{{k.JobTitle}}</td>
 
         </tr>
         <tr>
-            <td><h4>Job Desciption</h4></td>
+            <td><h3>Job Desciption</h3></td>
         <td>{{k.JobDesciption}}</td>
 
         </tr>
         
 
         <tr>
-            <td><h4>Company Name</h4></td>
+            <td><h3>Company Name</h3></td>
             <td>{{k.CompanyName}}</td>
         </tr>
         <tr>
-            <td><h4>Company Logo</h4></td>
+            <td><h3>Ad Type</h3></td>
+
+            <td>{{k.ad}}</td>
+        </tr>
+        <tr>
+            <td><h3>Company Logo</h3></td>
 
             <td><img  class="img-responsive watch-right" alt="not found" width="400" height="300"  src={% if k.company_logo %}"{{k.company_logo.url}}"{% endif %}/></td>
         </tr>
         <tr>
-            <td><h4>Applicants list</h4></td>
+            <td><h3><b>Applicants list</b></h3></td>
             <td><a href="{% url 'showapplicants' k.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Click to see applicants of this job</button></td>
         </tr>
+        <tr>
+            <td><h3><b>Update Jobpost</b></h3></td>
+            <td><a href="{% url 'updatejob' k.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Click to see Update the job post</button></td>
+        </tr>
+        <tr>
+            <td><h3><b>Delete this Jobpost</b></h3></td>
+            <td><a href="{% url 'deletejob' k.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Click to delete this job post</button></td>
+        </tr>
+
 
         
     </table>

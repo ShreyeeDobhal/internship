@@ -293,11 +293,47 @@ def delmsg(request):
 
 
 
+
+
+def check_stat(request):
+    #to check if subscription of logged in user is expired or not
+    eevalue=subscription.objects.filter(user=request.user)
+    stat=""
+    if (eevalue.exists()):
+        for k in eevalue:
+            d0 =k.purchasedate
+            d1=date.today()
+            delta = d1 - d0
+            if(delta.days>30):
+                k.status="expired"
+                stat='expired'
+            else:
+                k.status="active"
+                stat="active"
+            subs=k.subscriptionid    
+            
+        context={'subs':subs,'stat':stat} 
+        return context
+
+
 def jobpost_create(request):
     form=JobPostform(request.POST or None,request.FILES or None)
     if form.is_valid():
         instance=form.save(commit=False)
         instance.user=request.user.userprofile
+        if(instance.ad=="Premium"):
+            try:
+                if(request.user.subscription.id):
+                    context=check_stat(request)
+                    if context["stat"]=="expired":
+                        instance.ad="Featured"
+                        #Jobpost.objects.filter(user=request.user.userprofile).update(ad="Featured")
+                        messages.error(request,"you don't have subscriptionpack , your add will be saved as featured")
+                    else:
+                        instance.ad="Premium"
+            except:
+                instance.ad="Featured"
+                messages.error(request,"you don't have subscriptionpack , your add will be saved as featured")
         instance.save()
         #message of success
         messages.success(request,"Successfully created")
@@ -1071,8 +1107,8 @@ def jobss(request):
     return render(request,'searchjob.html',{'sr':match})
 
 def loc(request):
-    match=Jobpost.objects.all().order_by('-valid_till').distinct()
-    #match = Jobpost.objects.values_list('location', flat=True).distinct()
+    #match=Jobpost.objects.all().order_by('-valid_till').distinct()
+    match = Jobpost.objects.values_list('location', flat=True).distinct()
     return render(request,'base.html',{'sr':match})
 
 def jobloc(request,loc):
@@ -1085,4 +1121,38 @@ def types(request,ctype):
     c=Jobpost.objects.filter(contractType__icontains=ctype)
     context={"sr":c}
     return render(request,'searchjob.html',context)
-                        
+
+
+def adtype(request,addtype):
+    typee=Jobpost.objects.filter(ad__icontains=addtype)
+    
+    context={"sr":typee}
+    return render(request,'searchjob.html',context)
+
+def adtypes(request,addtype):
+    typee=Jobpost.objects.filter(ad__icontains=addtype)
+    
+    context={"srrr":typee}
+    return render(request,'index.html',context)
+
+
+def updatejob(request,pk):
+    up=Jobpost.objects.get(id=pk)
+    form=JobPostform(instance=up)
+    if(request.method=='POST'):
+        form=JobPostform(request.POST,instance=up)
+        if form.is_valid(): 
+            messages.success(request,"Successfully created") 
+            form.save()
+            return redirect('employerin') 
+    context={'form':form}
+    return render(request,'jobpostForm.html',context)
+
+def deletejob(request,pk):
+    up=Jobpost.objects.get(id=pk)
+    context={'item':up}
+    if request.method=="POST":
+        up.delete()
+        messages.success(request,"Succesfully deleted")
+        return redirect('employerin')
+    return render(request,"employer/deletejob.html",context)

@@ -122,19 +122,20 @@
 <table class="table table-striped">
     <tbody>
         <tr>
-            <th scope="row">Job Title</th>
-            <th scope="row">Valid Till </th>
-            <th scope="row">Company Name </th>
-            <th scope="row">Resume</th>
-            <th scope="row">Views</th>
+            <th scope="row"><b>Job Title</b></th>
+            <th scope="row"><b>Valid Till</b> </th>
+            <th scope="row"><b>Company</b> </th>
+            <th scope="row"><b>Update Job</b></th>
+            <th scope="row"><b>Delete job</b></th>
         </tr>
         {% for job in request.user.userprofile.jobpost_set.all %}
         <tr>
             <td> {{ job.JobTitle }} </td>
             <td> {{ job.valid_till }} </td>
             <td> {{ job.CompanyName }} </td>
-            <td> {{ job.JobType }} </td>
-            <td>  </td>
+           
+            <td> <a href="{% url 'updatejob' job.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Update</button></td>
+            <td><a href="{% url 'deletejob' job.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Delete</button></td>
         </tr>
         {% endfor %}
         

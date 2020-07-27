@@ -241,12 +241,12 @@ class Jobpost(models.Model):
     jobType=models.CharField(max_length=255,choices=jobchoice,default='Full time')
     country = CountryField()
     location = models.CharField(max_length=255, null=True)
-    #no_of_employees=models.IntegerField(blank=True, null=True)
-    #updates_email=models.EmailField(validators=[validators.EmailValidator], null=True,verbose_name="Daily updates about this job and candidates will be sent to:")
-    #salary_beg= models.FloatField(default=0.0)
-    #salary_end= models.FloatField(default=0.0)
-    #adchoice= (('Feature',"Feature"),('Premium',"Premium"))
-   # ad= models.CharField(max_length=255,choices=adchoice,default='Feature',verbose_name="select your add type, (chose premium only if you have a subscription pack)")
+    no_of_employees=models.IntegerField(blank=True, null=True)
+    updates_email=models.EmailField(validators=[validators.EmailValidator], null=True,verbose_name="Daily updates about this job and candidates will be sent to:")
+    salary_beg= models.FloatField(default=0.0,verbose_name="Give the initial sal range")
+    salary_end= models.FloatField(default=0.0,verbose_name="Give the end of sal range")
+    adchoice= (('Feature',"Feature"),('Premium',"Premium"))
+    ad= models.CharField(max_length=255,choices=adchoice,default='Feature',verbose_name="select your add type, (chose premium only if you have a subscription pack)")
 
 
 

@@ -149,8 +149,8 @@
                         
                         <ul class="menu-links ">
                             <li><a  href="{% url 'index' %}">Home</a></li>
-                            <li><a  href="{% url 'index' %}">Home</a></li>
-                            <li><a  href="{% url 'index' %}">Home</a></li>
+                            <li><a  href="{% url 'adtype' 'Premium' %}">Premium Jobs</a></li>
+                            <li><a  href="{% url 'adtype' 'Feature' %}">Feature Jobs</a></li>
                             <li><a  href="{% url 'types' 'Walk-in' %}">Walk in</a></li>
                             <li><a  href="{% url 'types' 'Contract' %}">Contract</a></li>
                             <li><a  href="{% url 'types' 'Temporary' %}">Temporary</a></li>
@@ -217,7 +217,7 @@
                 <a href="{% url 'loc' %}"><h4 style="color: white;">Click here to see all job locations</h4>>  </a> </p>    
                 {% for k in sr %}
                         <ul class="n-page-links multiple">
-                   <li><a href="{% url 'jobloc' k.location %}">{{k.location}} , {{k.country}}</a></li>                     </ul>
+                   <li><a href="{% url 'jobloc' k %}">{{k}}</a></li>                     </ul>
                    {% endfor %}
                 </div>
           </div>

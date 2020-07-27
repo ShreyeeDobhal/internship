@@ -37,6 +37,20 @@
                       <li><a href="{% url 'showmyjobs' %}">Pending Jobs</a></li>
                     </ul>
                   </li><li>
+
+                    <div class="profile-menu-link">
+                        <span class="la la-bars"></span>Buy subscription<i class="fa fa-angle-down"></i>
+                      </div>
+                      <ul class="submenu">
+                          {% if request.user.subscription.id %}
+                          <li><a href="{% url 'updatesubs' request.user.subscription.id%}"><span class="la la-user"></span>Update your subscription pack</a></li>
+                          {% else %}
+                        <li><a href="{% url 'sub' %}"> Buy your subscription pack</a></li>
+                        {% endif %}
+                        
+                        
+                      </ul>
+                    </li>
                 
                   </li>
                   <li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=matched-resumes"><span class="la la-external-link"></span>Matched Resumes</a></li><li><a href="{% url 'saved_resume' %}"><span class="la la-file-pdf-o"></span>Saved Resumes</a></li><li><a href="https://jobs.nokriwp.com/dashboard/?tab-data=our-followers"><span class="fa fa-users"></span>Followers</a></li><li><a href="{% url 'check_status' %}">
@@ -109,6 +123,8 @@
 <div class="table-responsive dashboard-job-stats-table">
     <div class="container">
         <h1>List of applicants to your job posts</h1>
+        
+            
        
 <div>
     
@@ -120,7 +136,22 @@
 
     <div style="color: crimson">
         {% for k in appli %}
-        <table border="5px" width="850px">
+        <style>
+            table, td, th {
+              border: 1px solid black;
+            }
+            
+            table {
+              border-collapse: collapse;
+              width: 100%;
+            }
+            
+            td {
+              height: 50px;
+              vertical-align: bottom;
+            }
+            </style>
+        <table border="5px" >
             <tr>
                 <td><h4>Job Title</h4></td>
                 <td>{{k.job.JobTitle}}</td>

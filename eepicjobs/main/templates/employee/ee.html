@@ -61,7 +61,7 @@
                             <li><a href="{% url 'saved_jobs' %}"><span class="la la-bookmark"></span>Saved Jobs</a></li>
                             <li><a href="{% url 'employeein' %}"><span class="la la-external-link"></span>Followed </a></li>
                             <li><a href="{% url 'employeeal' %}"><span class="la la-bell"></span>Job alerts</a></li>
-                            <li><a href="{% url 'check_status' %}"><span class="la la-list-alt"></span>My packages</a></li>
+                            <li><a href="{% url 'check_status_employee' %}"><span class="la la-list-alt"></span>My packages</a></li>
                             <li><a href="{% url 'employeeor' %}"><span class="la la-check-circle"></span>My order</a></li>
                             <li><a href="{% url 'logout' %}"><span class="la la-sign-out"></span>Logout</a></li>
                             <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
@@ -166,7 +166,7 @@
      <h4>My profile</h4>
      <p><h4>Scroll Down To Update Your Profile</h4></p>
      <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
-        <h1>Fill in your details </h1>
+        <h2><i>Fill your details</i> </h2>
         
     {{form.as_p}}
                 </br>
