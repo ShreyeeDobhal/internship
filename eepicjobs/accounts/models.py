@@ -303,7 +303,7 @@ class Employer(models.Model):
     about_yourself=models.CharField(max_length=2000, null=True)
     email =  models.EmailField(validators=[validators.EmailValidator], null=True)
     compchoice=(('Php',"Php"),('JS',"JS"),('Designing',"Designing"),('Application development',"Application development"),('Painting',"Painting"),('Arts',"Arts"),('Development',"Development"),('Modeling',"Modeling"),('SEO','SEO'),('Architecture',"Architecture"),('Management',"Management"),('SMM',"SMM"),('Culinary Arts',"Culinary Arts"),('Peruvian Cuisine',"Peruvian Cuisine"),('Team Management',"Team Management"),('patience',"patience"),('Commitment',"Commitment"),('Team Work',"Team Work"),('Flexibility',"Flexibility"),('Stress Management',"Stress Management"),('Analytical skills',"Analytical skills"),('trainings',"trainings"),('communication skills','communication skills'),('Food Products',"Food Products"),('Education',"Education"),('cooking',"cooking"))
-    company_specialization=models.CharField(max_length=20,choices=compchoice,default='Php')
+    company_specialization=models.CharField(max_length=50,choices=compchoice,default='Php')
     no_of_employees=models.IntegerField(blank=True, null=True)
     Established_Date= models.DateField(verbose_name='Enter date in yy-mm-dd format') 
     location = models.CharField(max_length=255, null=True)
@@ -392,7 +392,7 @@ class Employee(models.Model):
     about_yourself=models.CharField(max_length=2000, null=True)
     email =  models.EmailField(validators=[validators.EmailValidator], null=True)
     compchoice=(('Php',"Php"),('JS',"JS"),('Designing',"Designing"),('Application development',"Application development"),('Painting',"Painting"),('Arts',"Arts"),('Development',"Development"),('Modeling',"Modeling"),('SEO','SEO'),('Architecture',"Architecture"),('Management',"Management"),('SMM',"SMM"),('Culinary Arts',"Culinary Arts"),('Peruvian Cuisine',"Peruvian Cuisine"),('Team Management',"Team Management"),('patience',"patience"),('Commitment',"Commitment"),('Team Work',"Team Work"),('Flexibility',"Flexibility"),('Stress Management',"Stress Management"),('Analytical skills',"Analytical skills"),('trainings',"trainings"),('communication skills','communication skills'),('Food Products',"Food Products"),('Education',"Education"),('cooking',"cooking"))
-    company_specialization=models.CharField(max_length=20,choices=compchoice,default='Php')
+    company_specialization=models.CharField(max_length=50,choices=compchoice,default='Php')
     location = models.CharField(max_length=255, null=True)
     Facebook= models.URLField(blank=True,null=True)
     
