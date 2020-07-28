@@ -148,7 +148,7 @@
             <div class="stat-box-meta-text">
                 <h4>Applied jobs</h4>
                 
-                <h3>{{ request.user.userprofile.applicant_set.count }}</h3>
+                <h3>{{ request.user.userprofile.applicantt_set.count }}</h3>
                 
                 
             </div>
@@ -156,8 +156,8 @@
                 <img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/icons/applied-jobs.png" class="img-responsive" alt="applied jobs">
             </div>
         </div>
-        {% if request.user.userprofile.applicant_set.first.id %}
-        <p><a href="{% url 'showapplied' request.user.userprofile.applicant_set.first.id %}">View all applied jobs</a></p>
+        {% if request.user.userprofile.applicantt_set.first.id %}
+        <p><a href="{% url 'showapplied' request.user.userprofile.applicantt_set.first.id %}">View all applied jobs</a></p>
  
         {% else %}
    <p><a href="{% url 'noappli' %}">View all applied jobs</a></p>

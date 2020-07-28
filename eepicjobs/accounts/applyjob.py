@@ -1,5 +1,6 @@
 from django import forms
 from .models import applicant
+from .models import applicantt
 from django.core.validators import RegexValidator
 from phonenumber_field.formfields import PhoneNumberField
 from django_countries.fields import CountryField
@@ -9,6 +10,15 @@ class applicantform(forms.ModelForm):
 
     class Meta:
             model=applicant
+            fields = ('name',
+        'email' ,
+        'phone_number','education_details',
+        'prev_Employments','skills','projects','accomplishments','experience','otherLinks')
+
+class applicanttform(forms.ModelForm):
+
+    class Meta:
+            model=applicantt
             fields = ('name',
         'email' ,
         'phone_number','education_details',

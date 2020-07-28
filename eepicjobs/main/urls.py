@@ -100,4 +100,9 @@ path('internship', views.internn, name='internn'),
 path('walk', views.walk, name='walk'),
 path('premium', views.premium, name='premium'),
 path('feature', views.feat, name='feat'),
+
+
+path('jobpostt', views.jobpostt, name='jobpostt'),
+path('multistepform', views.multistepform, name='multistepform'),
+
 ]

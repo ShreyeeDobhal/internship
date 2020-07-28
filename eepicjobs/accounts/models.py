@@ -223,8 +223,6 @@ class Jobpost(models.Model):
     JobDesciption=models.TextField()
     CompanyName=models.CharField(max_length=250)
     Jobindustry=models.CharField(max_length=250,null=True)
-    statuschoice=(('expired','expired'),('active','active'))
-    status=models.CharField(max_length=20,choices=statuschoice,default='expired')
     posted_on=models.DateField(default=datetime.today )
     #timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
     #updated = models.DateTimeField(auto_now=True, auto_now_add=False)
@@ -258,6 +256,73 @@ class Jobpost(models.Model):
         return "{} - {}".format(str(self.id), self.JobTitle,self.Jobindustry,self.jobType,self.JobDesciption,self.CompanyName)
     
     
+
+
+class Jobpostt(models.Model):
+    id=models.AutoField(primary_key=True)
+    objects=models.Manager()
+    user=models.ForeignKey(UserProfile,on_delete=models.CASCADE,null=True)
+    JobTitle=models.CharField(max_length=250,null=True)
+    JobDesciption=models.CharField(max_length=255,null=True)
+    CompanyName=models.CharField(max_length=250,null=True)
+    Jobindustry=models.CharField(max_length=250,null=True)
+    posted_on=models.DateField(default=datetime.today )
+    #timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+    #updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+    requirements = models.CharField(max_length=255,null=True)
+    valid_till=models.DateField(verbose_name='Enter last date of applying in yy-mm-dd format :',default=datetime.today)
+    email = models.CharField(max_length=255,null=True)
+    phone_number = models.CharField(max_length=255,null=True)
+    
+    company_logo=models.ImageField(upload_to='images/',null=True,blank=True)
+    hear = models.CharField(max_length=255,null=True)
+    contractType = models.CharField(max_length=255,null=True)
+    jobType=models.CharField(max_length=255,null=True)
+    country = models.CharField(max_length=255,null=True)
+    location = models.CharField(max_length=255, null=True)
+    no_of_employees=models.CharField(max_length=255,null=True)
+    updates_email=models.CharField(max_length=255,null=True)
+    salary_beg= models.CharField(max_length=255,null=True)
+    salary_end= models.CharField(max_length=255,null=True)
+
+    ad= models.CharField(max_length=255,null=True)
+
+
+    class Meta:
+        verbose_name = 'Jobpostt'
+        verbose_name_plural = 'Jobpostts'
+
+    def __str__(self):
+        return "{} - {}".format(str(self.id), self.JobTitle,self.Jobindustry,self.jobType,self.JobDesciption,self.CompanyName)
+    
+    
+
+
+class applicantt(models.Model):
+        user=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+        job=models.ForeignKey(Jobpostt,on_delete=models.CASCADE,default=0)
+        
+        email = models.EmailField(validators=[validators.EmailValidator], null=True)
+        
+        phone_number = models.CharField(validators=[phone_regex], max_length=17, null=True)
+        is_emp = models.BooleanField(default=False)
+        is_seek = models.BooleanField(default=False)
+        name=models.CharField(max_length=255, null=True, blank=True)
+        skills=models.CharField(max_length=255, null=True, verbose_name="Mention Your Skils")
+        experience= models.CharField(max_length=255, null=True, verbose_name='experience')
+        address= models.CharField(max_length=255, null=True, verbose_name='address')
+        prev_Employments= models.CharField(max_length=255, null=True, verbose_name="Mention Your Previous employments")
+        education_details= models.CharField(max_length=255, null=True, verbose_name='Mention Your Education Details')
+        projects= models.CharField(max_length=255, null=True, verbose_name='Give a beief about your projects')
+        accomplishments= models.CharField(max_length=255, null=True, verbose_name='accomplishments')
+        otherLinks=models.URLField(blank=True, null=True)
+        
+
+        class Meta:
+            verbose_name = 'applicantt'
+            verbose_name_plural = 'applicantts'
+
+
 class applicant(models.Model):
         user=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
         job=models.ForeignKey(Jobpost,on_delete=models.CASCADE,default=0)
@@ -410,6 +475,18 @@ class Employee(models.Model):
 
     
 
+class Svedresume(models.Model):
+    aplid=models.ForeignKey(applicantt,on_delete=models.CASCADE)
+    empid=models.ForeignKey(Employer,on_delete=models.CASCADE)
+    class Meta:
+            verbose_name = 'Svedresume'
+            verbose_name_plural = 'Svedresumes'
+    def __str__(self):
+        return "{} - {}".format(str(self.id))
+
+
+
+
 
 
 
@@ -423,7 +500,7 @@ class Ssavedresume(models.Model):
         return "{} - {}".format(str(self.id))
 
 class savedjobs(models.Model):
-    jid=models.ForeignKey(Jobpost,on_delete=models.CASCADE)
+    jid=models.ForeignKey(Jobpostt,on_delete=models.CASCADE)
     empid=models.ForeignKey(Employee,on_delete=models.CASCADE)
     class Meta:
             verbose_name = 'savedjob'
@@ -475,6 +552,16 @@ class settime(models.Model):
     def __str__(self):
         return "{} - {}".format(str(self.id),self.empid,self.indate,self.intime,self.apliid)
 
+class set_Time(models.Model):
+    indate=models.DateField(auto_now=False, auto_now_add=False,verbose_name='Enter date in yyyy-mm-dd format')
+    intime=models.TimeField(auto_now=False, auto_now_add=False,verbose_name='Enter time in IST date time format(hh:mm:ss)')
+    empid=models.ForeignKey(Employer,on_delete=models.CASCADE)
+    apliid=models.ForeignKey(applicantt, on_delete=models.CASCADE)
+    class Meta:
+            verbose_name = 'set_Time'
+            
+    def __str__(self):
+        return "{} - {}".format(str(self.id),self.empid,self.indate,self.intime,self.apliid)
 
 
 

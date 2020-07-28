@@ -27,7 +27,7 @@
                 <li><a href="{% url 'updateEmp' request.user.userprofile.employer.id %}"><span class="la la-edit"></span>Update Profile</a></li>
                 {% endif %}
                 <li><a href="{% url 'empview' %}"><span class="la la-user"></span>View My Profile</a></li><li>
-                    <li><a href="{% url 'jobpost' %}"><span class="la la-user"></span>Post a job</a></li><li></li>
+                    <li><a href="{% url 'jobpostt' %}"><span class="la la-user"></span>Post a job</a></li><li></li>
                     <div class="profile-menu-link">
                       <span class="la la-bars"></span>My Jobs<i class="fa fa-angle-down"></i>
                     </div>
@@ -93,7 +93,7 @@
         <div class="stat-box-meta">
             <div class="stat-box-meta-text">
                 <h4>Published Jobs</h4>
-                <h3>{{ request.user.userprofile.jobpost_set.count }}</h3>
+                <h3>{{ request.user.userprofile.jobpostt_set.count }}</h3>
             </div>
             <div class="stat-box-meta-icon">
                 <img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/icons/job1.png" class="img-responsive" alt="image">

@@ -8,16 +8,18 @@ from django.contrib import messages
 from accounts.models import settime
 from accounts.models import Pay
 from  accounts.setime import settimeForm
+from  accounts.setime import set_TimeForm
 from datetime import date
 
 from django.contrib.auth.hashers import make_password
 from  accounts.models import Jobpost
+from  accounts.models import Jobpostt
 from  accounts.models import Jobexperience
 from accounts.Jobexp import JobexperienceForm
 from  accounts.models import Employee
 from  accounts.employee import EmployeeForm
 from  accounts.models import Employer
-from  accounts.models import Ssavedresume
+from  accounts.models import Svedresume
 from  accounts.models import subscription
 from  accounts.subsform import subscriptionForm
 from  accounts.employer import EmployerForm
@@ -28,6 +30,7 @@ from accounts.models import Education
 from accounts.education import EducationForm
 from accounts.Jobforms import JobPostform
 from accounts.applyjob import applicantform
+from accounts.applyjob import applicanttform
 from accounts.resume import UserProfileForm
 from .models import *
 from json import dumps 
@@ -314,6 +317,54 @@ def check_stat(request):
             
         context={'subs':subs,'stat':stat} 
         return context
+def jobpostt(request):
+    if request.method!="POST":
+        return HttpResponseRedirect(reverse("multistepform"))
+    else:
+        jd=request.POST.get("jd")
+        jt=request.POST.get("jt")
+        contract=request.POST.get("contract")
+        ji=request.POST.get("ji")
+        sal1=request.POST.get("sal1")
+        sal2=request.POST.get("sal2")
+        hear=request.POST.get("hear")
+        adtype=request.POST.get("ad")
+        jobType=request.POST.get("jobtype")
+        phone=request.POST.get("phone")
+        comp=request.POST.get("twitter")
+        no_of=request.POST.get("facebook")
+        valid_till=request.POST.get("valid_till")
+        email=request.POST.get("email")
+        company_logo=request.POST.get("myfile")
+        co=request.POST.get("co")
+        loc=request.POST.get("loc")
+        req=request.POST.get("req")
+        updates_email=request.POST.get("updates_email")
+        try:
+            if(adtype=="Premium"):
+                try:
+                    if(request.user.subscription.id):
+                        context=check_stat(request)
+                        if context["stat"]=="expired":
+                            adtype="Featured"
+                        else:
+                            adtype="Premium"
+                except:
+                    adtype="Featured"
+                    
+  
+            multistepform=Jobpostt(user=request.user.userprofile,updates_email=updates_email,requirements=req,valid_till=valid_till,location=loc,company_logo=company_logo,country=co,salary_beg=sal1,salary_end=sal2,contractType=contract,JobTitle=jt,JobDesciption=jd,Jobindustry=ji,jobType=jobType,phone_number=phone,no_of_employees=no_of,CompanyName=comp,hear=hear,email=email,ad=adtype)
+            multistepform.save()
+            messages.success(request,"Data Save Successfully")
+            return redirect("employerin")
+        except:
+            messages.error(request,"Error in Saving Data")
+            return HttpResponseRedirect(reverse('multistepform'))
+
+
+def multistepform(request):
+    return render(request,"multistepform.html")
+
 
 
 def jobpost_create(request):
@@ -347,7 +398,7 @@ def searchjob(request):
     if(request.method=='POST'):
         srch=request.POST['srh']
         if srch:
-            match=Jobpost.objects.filter(Q(JobTitle__icontains=srch) | Q(JobDesciption__icontains=srch) | Q(jobType__iexact=srch))
+            match=Jobpostt.objects.filter(Q(JobTitle__icontains=srch) | Q(JobDesciption__icontains=srch) | Q(jobType__iexact=srch))
             if(match.exists()):
                 return render(request,'searchjob.html',{'sr':match})
             else:
@@ -360,7 +411,7 @@ def searchjobb(request):
     if(request.method=='POST'):
         srch=request.POST['srh']
         if srch:
-            match=Jobpost.objects.filter(Q(JobTitle__icontains=srch) | Q(JobDesciption__icontains=srch) | Q(jobType__iexact=srch))
+            match=Jobpostt.objects.filter(Q(JobTitle__icontains=srch) | Q(JobDesciption__icontains=srch) | Q(jobType__iexact=srch))
             if(match.exists()):
                 return render(request,'index.html',{'sr':match})
             else:
@@ -372,7 +423,7 @@ def searchjobb(request):
 
     
 def automotive(request):
-    match = Jobpost.objects.filter(Q(Jobindustry__icontains="automotive") | Q(JobDesciption__icontains="automotive") | Q(Jobindustry__icontains="automotion"))
+    match = Jobpostt.objects.filter(Q(Jobindustry__icontains="automotive") | Q(JobDesciption__icontains="automotive") | Q(Jobindustry__icontains="automotion"))
     if (match.exists()):
         return render(request, 'industry.html', {'sr': match})
     
@@ -384,7 +435,7 @@ def automotive(request):
 
 
 def food(request):
-    match = Jobpost.objects.filter(Q(Jobindustry__icontains="food") | Q(JobDesciption__icontains="food service") | Q(Jobindustry__icontains="food"))
+    match = Jobpostt.objects.filter(Q(Jobindustry__icontains="food") | Q(JobDesciption__icontains="food service") | Q(Jobindustry__icontains="food"))
     if (match.exists()):
         return render(request, 'industry.html', {'sr': match})
     
@@ -394,7 +445,7 @@ def food(request):
 
 
 def educationIndustry(request):
-    match = Jobpost.objects.filter(Q(Jobindustry__icontains="education"))
+    match = Jobpostt.objects.filter(Q(Jobindustry__icontains="education"))
     if (match.exists()):
         return render(request, 'industry.html', {'sr': match})
     
@@ -403,7 +454,7 @@ def educationIndustry(request):
         return redirect('home')
 
 def designer(request):
-    match = Jobpost.objects.filter(Q(Jobindustry__icontains="designer"))
+    match = Jobpostt.objects.filter(Q(Jobindustry__icontains="designer"))
     if (match.exists()):
         return render(request, 'industry.html', {'sr': match})
     
@@ -413,7 +464,7 @@ def designer(request):
 
 
 def cutomerService(request):
-    match = Jobpost.objects.filter(Q(Jobindustry__icontains="Customer Service") | Q(Jobindustry__icontains="Customer Care"))
+    match = Jobpostt.objects.filter(Q(Jobindustry__icontains="Customer Service") | Q(Jobindustry__icontains="Customer Care"))
     if (match.exists()):
         return render(request, 'industry.html', {'sr': match})
     
@@ -423,7 +474,7 @@ def cutomerService(request):
 
 
 def health(request):
-    match = Jobpost.objects.filter(Q(Jobindustry__icontains="Health"))
+    match = Jobpostt.objects.filter(Q(Jobindustry__icontains="Health"))
     if (match.exists()):
         return render(request, 'industry.html', {'sr': match})
     
@@ -506,18 +557,18 @@ def education(request):
 
 def applyjob(request, jid):
 
-    form=applicantform(request.POST or None,request.FILES or None)
+    form=applicanttform(request.POST or None,request.FILES or None)
     if form.is_valid():
         instance=form.save(commit=False)
         instance.user=request.user.userprofile
-        job = Jobpost.objects.get(id=jid)
+        job = Jobpostt.objects.get(id=jid)
         instance.job=job
         instance.save()
         #message of success
         messages.success(request,"Successfully created")
         return redirect('employeein')
     #form= JobPostform()
-    job = Jobpost.objects.get(id=jid)
+    job = Jobpostt.objects.get(id=jid)
     context = {
         "form": form,
         "job": job,}
@@ -530,7 +581,7 @@ def applyjob(request, jid):
 
 
 def showmyjobs(request):
-    jobdisplay=Jobpost.objects.filter(user=request.user.userprofile)
+    jobdisplay=Jobpostt.objects.filter(user=request.user.userprofile)
     return render(request,'showmyjobs.html',{'jobdisplay':jobdisplay})
 
 def noappli(request):
@@ -606,7 +657,7 @@ def sr(request,pk):
     return render(request, 'resumebuilder.html', context)'''
 
 def rrr(request,pk):
-    ap=applicant.objects.get(id=pk)
+    ap=applicantt.objects.get(id=pk)
     
     edu=Education.objects.filter(resume=ap.user)
     pro = Project.objects.filter(projectuser=ap.user)
@@ -676,9 +727,9 @@ def employerview(request):
 
 
 def showapplicants(request, jid):
-    ap=Jobpost.objects.filter(user=request.user.userprofile)
+    ap=Jobpostt.objects.filter(user=request.user.userprofile)
     jobb = ap.get(id=jid)
-    appli=applicant.objects.filter(job=jobb)
+    appli=applicantt.objects.filter(job=jobb)
     if appli.exists():
         return render(request,'showapplicants.html',{'appli':appli})
     else:
@@ -687,7 +738,7 @@ def showapplicants(request, jid):
 
 @login_required
 def applyjobb(request, jid):
-    form=applicantform(request.POST or None,request.FILES or None)
+    form=applicanttform(request.POST or None,request.FILES or None)
     if form.is_valid():
         instance=form.save(commit=False)
         instance.user=request.user.userprofile
@@ -696,7 +747,7 @@ def applyjobb(request, jid):
         messages.success(request,"Successfully created")
         return redirect('employeein')
     #form= JobPostform()
-    job = Jobpost.objects.get(id=jid)
+    job = Jobpostt.objects.get(id=jid)
     context = {
         "form": form,
         "job": job,}
@@ -704,15 +755,15 @@ def applyjobb(request, jid):
 
 def saveresum(request,e,r):
     emp=Employer.objects.get(id=e)
-    ap=applicant.objects.get(id=r)
+    ap=applicantt.objects.get(id=r)
     
-    Ssavedresume.objects.create(empid=emp,aplid=ap)
+    Svedresume.objects.create(empid=emp,aplid=ap)
     messages.success(request,"Successfully saved")
     return redirect("employerin")
 
 
 def saved_resume(request):
-    sav=Ssavedresume.objects.filter(empid=request.user.userprofile.employer)
+    sav=Svedresume.objects.filter(empid=request.user.userprofile.employer)
     return render(request,'saved_resume.html',{"sav": sav})
 
 def saved_jobs(request):
@@ -823,7 +874,7 @@ def sendemail(request,apid):
     '''if(request.method=='GET'):
         return render(request,'settime.html')'''
     
-    ap=applicant.objects.get(id=apid)
+    ap=applicantt.objects.get(id=apid)
     s=settime.objects.filter(Q(empid=request.user.userprofile.employer),Q(apliid=ap))
     print(s)
     for k in s:
@@ -852,7 +903,7 @@ def sending(request,apid):
     form=settimeForm(request.POST or None,request.FILES or None)
     a=apid
     if form.is_valid():
-        ap=applicant.objects.get(id=apid)
+        ap=applicantt.objects.get(id=apid)
         instance=form.save(commit=False)
         instance.empid=request.user.userprofile.employer
         instance.apliid=ap
@@ -866,7 +917,7 @@ def sending(request,apid):
     return render(request, 'set_time.html',context)
 
 def seeing(request,apid):
-    a=applicant.objects.get(id=apid)
+    a=applicantt.objects.get(id=apid)
     ss=settime.objects.filter(empid=request.user.userprofile.employer,apliid=a )
     if(ss.exists()):
             context={'ss':ss}
@@ -970,7 +1021,7 @@ def proup(request,pk):
 
 
 def showapplied(request,pk):
-     appli=applicant.objects.filter(user=request.user.userprofile)
+     appli=applicantt.objects.filter(user=request.user.userprofile)
      return render(request,'showapplied.html',{'appli':appli})
 
 def upgrade(request):
@@ -1103,18 +1154,18 @@ def recharge(request):
 
 def jobss(request):
     
-    match=Jobpost.objects.all().order_by('-valid_till')
+    match=Jobpostt.objects.all().order_by('-valid_till')
     return render(request,'searchjob.html',{'sr':match})
 
 def loc(request):
     #match=Jobpost.objects.all().order_by('-valid_till').distinct()
-    match = Jobpost.objects.values_list('location', flat=True).distinct()
+    match = Jobpostt.objects.values_list('location', flat=True).distinct()
     return render(request,'base.html',{'sr':match})
 
 def jobloc(request,loc):
     #m=Jobpost.objects.filter(valid_date__lte='-date.today').delete()
     #m.save()
-    match=Jobpost.objects.filter(Q(location__icontains=loc)).order_by('-valid_till')
+    match=Jobpostt.objects.filter(Q(location__icontains=loc)).order_by('-valid_till')
     return render(request,'searchjob.html',{'sr':match})
 
 def types(request,ctype):
@@ -1124,13 +1175,13 @@ def types(request,ctype):
 
 
 def adtype(request,addtype):
-    typee=Jobpost.objects.filter(ad__icontains=addtype)
+    typee=Jobpostt.objects.filter(ad__icontains=addtype)
     
     context={"sr":typee}
     return render(request,'searchjob.html',context)
 
 def adtypes(request,addtype):
-    typee=Jobpost.objects.filter(ad__icontains=addtype)
+    typee=Jobpostt.objects.filter(ad__icontains=addtype)
     
     context={"srrr":typee}
     return render(request,'index.html',context)
@@ -1148,8 +1199,17 @@ def updatejob(request,pk):
     context={'form':form}
     return render(request,'jobpostForm.html',context)
 
-def deletejob(request,pk):
+def deleteold(request,pk):
     up=Jobpost.objects.get(id=pk)
+    context={'item':up}
+    if request.method=="POST":
+        up.delete()
+        messages.success(request,"Succesfully deleted")
+        return redirect('employerin')
+    return render(request,"employer/deletejob.html",context)
+
+def deletejob(request,pk):
+    up=Jobpostt.objects.get(id=pk)
     context={'item':up}
     if request.method=="POST":
         up.delete()
@@ -1159,26 +1219,26 @@ def deletejob(request,pk):
 
 
 def internn(request):
-    w=Jobpost.objects.filter(contractType__icontains="Internship")
+    w=Jobpostt.objects.filter(contractType__icontains="Internship")
     context={"i":i}
     return render(request,"frontpage/internship.html",context)
 def walk(request):
-    i=Jobpost.objects.filter(contractType__icontains="Walk-In")
+    i=Jobpostt.objects.filter(contractType__icontains="Walk-In")
     context={"i":i}
     return render(request,"frontpage/walk.html",context)
 
 def contract(request):
-    i=Jobpost.objects.filter(contractType__icontains="contract")
+    i=Jobpostt.objects.filter(contractType__icontains="contract")
     context={"i":i}
     return render(request,"frontpage/contract.html",context)
 
 def premium(request):
-    i=Jobpost.objects.filter(ad__icontains="premium")
+    i=Jobpostt.objects.filter(ad__icontains="premium")
     context={"i":i}
     return render(request,"frontpage/premium.html",context)
 
 def feat(request):
-    typee=Jobpost.objects.filter(ad__icontains="feature")
+    typee=Jobpostt.objects.filter(ad__icontains="feature")
     context={"i":i}
     return render(request,"frontpage/feature.html",context)
 
