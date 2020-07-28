@@ -263,6 +263,7 @@ class Jobpostt(models.Model):
     objects=models.Manager()
     user=models.ForeignKey(UserProfile,on_delete=models.CASCADE,null=True)
     JobTitle=models.CharField(max_length=250,null=True)
+    qualification = models.CharField(max_length=255, null=True)
     JobDesciption=models.CharField(max_length=255,null=True)
     CompanyName=models.CharField(max_length=250,null=True)
     Jobindustry=models.CharField(max_length=250,null=True)
@@ -483,7 +484,6 @@ class Svedresume(models.Model):
             verbose_name_plural = 'Svedresumes'
     def __str__(self):
         return "{} - {}".format(str(self.id))
-
 
 
 

@@ -32,19 +32,22 @@
                                          
                         <div class="panel panel-default">
                             <div class="panel-heading active" role="tab">
-                                <a role="button" class="" data-toggle="collapse" href="#search-widget">
-                                    Search by Keywords            </a>
+
+
+                              <div class="clearfix">
+                              <p>Search by Keywords</p>
+                                  <form method="POST" action="/search/">
+                                      {% csrf_token %}
+                                      <div class="form-group">
+                                      <input type="text" name="srh" class='form-control' placeholder='Enter the job post '><button type="submit"><i class="ti-search"></i> </button>
+                                  </div></form>
+
+
+                               
                             </div>
                             <div id="search-widget" class="panel-collapse collapse in" role="tabpanel" >
                                 <div class="panel-body">
-                                <form role="search" method="get" action = "https://jobs.nokriwp.com/search-page/">
-                                    <div class="form-group">
-                                            <input type="text" class="form-control" value="" name="job-title" placeholder="Search Here">
-                                    </div>
-                                    <div class="form-group form-action">
-                                        <button type="submit" class="btn"><i class="fa fa-search"></i></button>
-                                    </div>
-                                    </form>
+                                
                                 </div>
                             </div>
                         </div>
@@ -56,34 +59,37 @@
                             </div>
                             <div id="collapse-job_category"  class="panel-collapse collapse in" role="tabpanel" >
                                 <div class="panel-body">
-                                    <form method="get" id="search_form" action="https://jobs.nokriwp.com/search-page/">
+                                    <form method="get" id="search_form" action="{% url 'indust' %}">
                                         <div class="cp-loader"></div>
                                         <div class="form-group">
-                                            <select class="questions-category form-control" data-parsley-required="true" id="make_id">
+                                            <select name="categ" class="questions-category form-control" data-parsley-required="true" id="make_id" >
                                                 <option value="asa">Select an option</option>
-                                                <option value="80" >Automotive</option>
-                                                <option value="88" >Construction</option>
-                                                <option value="18" >Consultant</option>
-                                                <option value="11" >Customer Service</option>
-                                                <option value="8" >Designer</option>
-                                                <option value="204" >Development</option>
-                                                <option value="84" >Digital Service</option>
-                                                <option value="83" >Education</option>
-                                                <option value="13" >Engineering</option>
-                                                <option value="16" >Fitness Trainer</option>
-                                                <option value="86" >Food Service</option>
-                                                <option value="81" >Health and Care</option>
-                                                <option value="15" >HR</option>
-                                                <option value="12" >Human Resource</option>
-                                                <option value="79" >Industry</option>
-                                                <option value="9" >Information Technology</option>
-                                                <option value="10" >Marketing</option>
-                                                <option value="17" >Networking</option>
-                                                <option value="85" >Other Services</option>
-                                                <option value="14" >Security</option>
-                                                <option value="87" >Web Designer</option>
-                                                <option value="82" >Web Development</option>
-                                            </select>
+                                                <option value="Automotive" >Automotive</option>
+                                                <option value="IT" >IT</option>
+                                                <option value="Construction" >Construction</option>
+                                                <option value="Consultant" >Consultant</option>
+                                                <option value="Customer Service" >Customer Service</option>
+                                                <option value="Designer" >Designer</option>
+                                                <option value="Development" >Development</option>
+                                                <option value="Digital Service" >Digital Service</option>
+                                                <option value="Education" >Education</option>
+                                                <option value="Engineering" >Engineering</option>
+                                                <option value="Fitness Trainer" >Fitness Trainer</option>
+                                                <option value="Food Service" >Food Service</option>
+                                                <option value="Health and Care" >Health and Care</option>
+                                                <option value="HR" >HR</option>
+                                                <option value="Human Resource" >Human Resource</option>
+                                                <option value="Industry" >Industry</option>
+                                                <option value="Information Technology" >Information Technology</option>
+                                                <option value="Marketing" >Marketing</option>
+                                                <option value="Networking" >Networking</option>
+                                                <option value="Other Services" >Other Services</option>
+                                                <option value="Security" >Security</option>
+                                                <option value="Web Designer" >Web Designer</option>
+                                                <option value="Web Development" >Web Development</option>
+                                              </select>
+                                                <button type="submit"><i class="ti-search"></i> </button>
+                                            
                                         </div>
                                         <div class="form-group" id="select_modal">
                 
@@ -96,7 +102,7 @@
                                         </div>
                                         <div class="form-group form-action">
                                         </div>
-                                        <input type="button" class="btn n-btn-flat btn-mid" id="category_search" value="Search">
+                                        
                                         <input type="hidden" name="cat-id" id="cat_id" value="" />
                                     </form>
                                 </div>
@@ -112,9 +118,9 @@
                             </div>
                             <div id="collapse-job_type" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                    <form  method="get" action="{% url 'typesss' %}">
                                         <ul class="list">
-                                            <li class=""><input class="input-icheck-search change_select" value = "19" name = "job_type" type="radio"  ><label>Freelance</label></li><li class=""><input class="input-icheck-search change_select" value = "20" name = "job_type" type="radio"  ><label>Full time</label></li><li class=""><input class="input-icheck-search change_select" value = "21" name = "job_type" type="radio"  ><label>Contract</label></li><li class="hide_nexts hide_nexts-job_type"><input class="input-icheck-search change_select" value = "22" name = "job_type" type="radio"  ><label>Internship</label></li><li class="hide_nexts hide_nexts-job_type"><input class="input-icheck-search change_select" value = "23" name = "job_type" type="radio"  ><label>Temporary</label></li><li class="hide_nexts hide_nexts-job_type"><input class="input-icheck-search change_select" value = "24" name = "job_type" type="radio"  ><label>Part time</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_type">Show more</a></small><li>
+                                            <li class=""><input class="input-icheck-search change_select" value = "Freelance" name = "job_type" type="radio"  ><label>Freelance</label></li><li class=""><input class="input-icheck-search change_select" value = "Walk in" name = "job_type" type="radio"  ><label>Walk in</label></li><li class=""><input class="input-icheck-search change_select" value = "Contract" name = "job_type" type="radio"  ><label>Contract</label></li><li class="hide_nexts hide_nexts-job_type"><input class="input-icheck-search change_select" value = "Internship" name = "job_type" type="radio"  ><label>Internship</label></li><li class="hide_nexts hide_nexts-job_type"><input class="input-icheck-search change_select" value = "Temporary" name = "job_type" type="radio"  ><label>Temporary</label></li><li class="hide_nexts hide_nexts-job_type"><input class="input-icheck-search change_select" value = "Fresher" name = "job_type" type="radio"  ><label>Fresher</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_type">Show more</a></small><li>
                                         </ul>
                                           
                                     </form>
@@ -130,9 +136,9 @@
                                        </div>
                                        <div id="collapse-job_qualifications" class="panel-collapse collapse in">
                                          <div class="panel-body">
-                                         <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                         <form  method="get" action="{%url 'req' %}">
                                            <ul class="list">
-                                             <li class=""><input class="input-icheck-search change_select" value = "103" name = "job_qualifications" type="radio"  ><label>Bachelor</label></li><li class=""><input class="input-icheck-search change_select" value = "104" name = "job_qualifications" type="radio"  ><label>Master</label></li><li class=""><input class="input-icheck-search change_select" value = "105" name = "job_qualifications" type="radio"  ><label>PHD</label></li>
+                                             <li class=""><input class="input-icheck-search change_select" value = "Bachelor" name = "job_qualifications" type="radio"  ><label>Bachelor</label></li><li class=""><input class="input-icheck-search change_select" value = "Master" name = "job_qualifications" type="radio"  ><label>Master</label></li><li class=""><input class="input-icheck-search change_select" value = "PHD" name = "job_qualifications" type="radio"  ><label>PHD</label></li>
                                           </ul>
                                           
                                          </form>
@@ -317,20 +323,16 @@
                                 </div>
                                 <div id="location_search"  class="panel-collapse collapse in" role="tabpanel">
                                     <div class="panel-body">
-                                        <form method="get" id="search_form" action="https://jobs.nokriwp.com/search-page/">
+                                        <form method="get" id="search_form" action="{% url 'coun' %}">
                                             <div class="cp-loader"></div>
                                             <div class="form-group">
-                                                <select class="questions-category form-control" data-parsley-required="true" id="countries_id" >
-                                                    <option value="0">Select an option</option><option value="116" >Australia</option><option value="76" >Germany</option><option value="70" >India</option><option value="72" >New delhi</option><option value="132" >Pakistan</option><option value="73" >UAE</option><option value="66" >USA</option>            </select>
-                                            </div>
-                                                <div class="form-group" id="select_modal_countries"></div>
-                                                <div id="select_modals_state" class="form-group"></div>
-                                                <div id="select_forth_div_city" class="margin-top-10"></div>
-                                                <div class="form-group form-action">
-                                                </div>
-                                                    <input type="button" class="btn n-btn-flat btn-mid location_search" id="location_search_btn" value="Search">
-                                                    <input type="hidden" name="job-location" id="location_id" value="" />
-                                        </form>
+                                                <select class="questions-category form-control" data-parsley-required="true" id="countries_id" name="coun">
+                                                    <option value="0">Select an option</option><option value="Australia" >Australia</option><option value="Germany" >Germany</option><option value="India" >India</option><option value="Russia" >Russia</option><option value="132" >Pakistan</option><option value="73" >UAE</option><option value="66" >USA</option>            </select>
+                                            
+                                                    <button type="submit"><i class="ti-search"></i> </button>
+                                                  </div>
+                                                  </form>
+                                                
                                     </div>
                                 </div>
                         </div>      
@@ -341,8 +343,19 @@
                    <div class="n-search-main">
                         <div class="n-bread-crumb">
                             <ol class="breadcrumb">
-                                <li> <a href="javascript:void(0)">Home</a></li>
-                                <li class="active"><a href="javascript:void(0);" class="active">Search Page</a></li>
+                                
+                                
+                                <li> <a href="{% url 'adtype' 'Premium' %}">Premium Jobs</a></li>
+                                
+                                <li> <a href="{% url 'adtype' 'Featured' %}">Featured Jobs</a></li>
+                                
+                                
+                                <li> <a href="{% url 'types' 'Walk In' %}">  Walk In</a></li>
+                                <li> <a href="{% url 'types' 'Intership' %}">Intership</a></li>
+                                <li> <a href="{% url 'types' 'Fresher' %}">Fresher</a></li>
+                                <li> <a href="{% url 'types' 'Contract' %}">Contract</a></li>
+                                <li> <a href="{% url 'types' 'Temporary' %}">Temporary</a></li>
+                                
                             </ol>
                         </div>
                         <div class="heading-area">
@@ -388,7 +401,10 @@
                                                         <p>
                                                         <span><i class="ti-location-pin"></i> <a href="index8a52.html?job-location=76">{{k.location}}</a></span><span><i class="ti-tag"></i> <a href="index23bc.html?cat-id=9">{{k.Jobindustry}}</a></span>
                                                         </p>
-                                                        <ul class="featured-badge-list"><li style=" background-color: rgba(250,122,86,0.2) !important;"><a href="" class="job-class-tags-anchor" style="color: #fa7a56 !important;">{{k.contractType}}</a></li></ul>
+                                                        <ul class="featured-badge-list"><li style=" background-color: rgba(250,122,86,0.2) !important;"><a href="" class="job-class-tags-anchor" style="color: #fa7a56 !important;">{{k.contractType}}</a></li>
+                                                         <br>
+                                                          <class="featured-badge-list"><li style=" background-color: rgba(250,122,86,0.2) !important;"><a href="" class="job-class-tags-anchor" style="color: #fa7a56 !important;">{{k.ad}} Job</a></li>
+                                                        </ul>
                                                     </li>
                                                     <li class="n-job-short">
                                                       <span> <strong>Company logo</strong><img  class="img-responsive watch-right" alt="not found" width="160" height="160"  src={% if k.company_logo %}"{{k.company_logo.url}}"{% endif %}/></span>

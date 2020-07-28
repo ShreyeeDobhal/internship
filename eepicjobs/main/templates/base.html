@@ -223,7 +223,7 @@
                 <a href="{% url 'loc' %}"><h4 style="color: white;">Click here to see all job locations</h4>>  </a> </p>    
                 {% for k in sr %}
                         <ul class="n-page-links multiple">
-                   <li><a href="{% url 'jobloc' k %}">{{k}}</a></li>                     </ul>
+                   <li><a href="{% url 'jobloc' k %}">{{k.location}}</a></li>                     </ul>
                    {% endfor %}
                 </div>
           </div>

@@ -322,6 +322,7 @@ def jobpostt(request):
         return HttpResponseRedirect(reverse("multistepform"))
     else:
         jd=request.POST.get("jd")
+        qu=request.POST.get("job_qualification")
         jt=request.POST.get("jt")
         contract=request.POST.get("contract")
         ji=request.POST.get("ji")
@@ -353,7 +354,7 @@ def jobpostt(request):
                     adtype="Featured"
                     
   
-            multistepform=Jobpostt(user=request.user.userprofile,updates_email=updates_email,requirements=req,valid_till=valid_till,location=loc,company_logo=company_logo,country=co,salary_beg=sal1,salary_end=sal2,contractType=contract,JobTitle=jt,JobDesciption=jd,Jobindustry=ji,jobType=jobType,phone_number=phone,no_of_employees=no_of,CompanyName=comp,hear=hear,email=email,ad=adtype)
+            multistepform=Jobpostt(user=request.user.userprofile,qualification=qu,updates_email=updates_email,requirements=req,valid_till=valid_till,location=loc,company_logo=company_logo,country=co,salary_beg=sal1,salary_end=sal2,contractType=contract,JobTitle=jt,JobDesciption=jd,Jobindustry=ji,jobType=jobType,phone_number=phone,no_of_employees=no_of,CompanyName=comp,hear=hear,email=email,ad=adtype)
             multistepform.save()
             messages.success(request,"Data Save Successfully")
             return redirect("employerin")
@@ -421,6 +422,20 @@ def searchjobb(request):
     return render(request,'index.html')
 
 
+
+
+def indust(request):
+    if(request.method != "GET"):
+        return HttpResponseRedirect("/searchJob/")
+    else:
+        categ=request.GET.get("categ")
+        match = Jobpostt.objects.filter(Jobindustry__icontains=categ)
+        if (match.exists()):
+            return render(request, 'searchjob.html', {'sr': match})
+        
+        else:
+            messages.error(request, "Sorry! No results found.")
+            return redirect('home')
     
 def automotive(request):
     match = Jobpostt.objects.filter(Q(Jobindustry__icontains="automotive") | Q(JobDesciption__icontains="automotive") | Q(Jobindustry__icontains="automotion"))
@@ -1174,6 +1189,20 @@ def types(request,ctype):
     return render(request,'searchjob.html',context)
 
 
+def typesss(request):
+    if(request.method != "GET"):
+        return HttpResponseRedirect("/searchJob/")
+    else:
+        ty=request.GET.get("job_type")
+        match = Jobpostt.objects.filter(contractType__icontains=ty)
+        if (match.exists()):
+            return render(request, 'searchjob.html', {'sr': match})
+        
+        else:
+            messages.error(request, "Sorry! No results found.")
+            return redirect('home')
+    
+
 def adtype(request,addtype):
     typee=Jobpostt.objects.filter(ad__icontains=addtype)
     
@@ -1242,3 +1271,28 @@ def feat(request):
     context={"i":i}
     return render(request,"frontpage/feature.html",context)
 
+def req(request):
+    if(request.method != "GET"):
+        return HttpResponseRedirect("/searchJob/")
+    else:
+        ty=request.GET.get("job_qualifications")
+        match = Jobpostt.objects.filter(requirements__icontains=ty)
+        if (match.exists()):
+            return render(request, 'searchjob.html', {'sr': match})
+        
+        else:
+            messages.error(request, "Sorry! No results found.")
+            return redirect('home')
+
+def coun(request):
+    if(request.method != "GET"):
+        return HttpResponseRedirect("/searchJob/")
+    else:
+        ty=request.GET.get("coun")
+        match = Jobpostt.objects.filter(country__icontains=ty)
+        if (match.exists()):
+            return render(request, 'searchjob.html', {'sr': match})
+        
+        else:
+            messages.error(request, "Sorry! No results found.")
+            return redirect('home')
