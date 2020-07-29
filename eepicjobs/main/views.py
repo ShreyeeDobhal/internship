@@ -341,6 +341,7 @@ def jobpostt(request):
         loc=request.POST.get("loc")
         req=request.POST.get("req")
         updates_email=request.POST.get("updates_email")
+        salary=request.POST.get("salary")
         try:
             if(adtype=="Premium"):
                 try:
@@ -354,7 +355,7 @@ def jobpostt(request):
                     adtype="Featured"
                     
   
-            multistepform=Jobpostt(user=request.user.userprofile,qualification=qu,updates_email=updates_email,requirements=req,valid_till=valid_till,location=loc,company_logo=company_logo,country=co,salary_beg=sal1,salary_end=sal2,contractType=contract,JobTitle=jt,JobDesciption=jd,Jobindustry=ji,jobType=jobType,phone_number=phone,no_of_employees=no_of,CompanyName=comp,hear=hear,email=email,ad=adtype)
+            multistepform=Jobpostt(user=request.user.userprofile,salary=salary,qualification=qu,updates_email=updates_email,requirements=req,valid_till=valid_till,location=loc,company_logo=company_logo,country=co,salary_beg=sal1,salary_end=sal2,contractType=contract,JobTitle=jt,JobDesciption=jd,Jobindustry=ji,jobType=jobType,phone_number=phone,no_of_employees=no_of,CompanyName=comp,hear=hear,email=email,ad=adtype)
             multistepform.save()
             messages.success(request,"Data Save Successfully")
             return redirect("employerin")
@@ -1289,7 +1290,20 @@ def coun(request):
         return HttpResponseRedirect("/searchJob/")
     else:
         ty=request.GET.get("coun")
-        match = Jobpostt.objects.filter(country__icontains=ty)
+        match = Jobpostt.objects.filter(Q(country__icontains=ty)|Q(location__icontains = ty))
+        if (match.exists()):
+            return render(request, 'searchjob.html', {'sr': match})
+        
+        else:
+            messages.error(request, "Sorry! No results found.")
+            return redirect('home')
+
+def sal(request):
+    if(request.method != "GET"):
+        return HttpResponseRedirect("/searchJob/")
+    else:
+        ty=request.GET.get("job_salary")
+        match = Jobpostt.objects.filter(salary__icontains=ty)
         if (match.exists()):
             return render(request, 'searchjob.html', {'sr': match})
         

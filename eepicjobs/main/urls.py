@@ -105,6 +105,7 @@ path('typesss', views.typesss, name='typesss'),
 path('jobpostt', views.jobpostt, name='jobpostt'),
 path('req', views.req, name='req'),
 path('coun', views.coun, name='coun'),
+path('sal', views.sal, name='sal'),
 path('multistepform', views.multistepform, name='multistepform'),
 
 ]
