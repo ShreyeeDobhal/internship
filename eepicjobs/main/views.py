@@ -1181,6 +1181,9 @@ def loc(request):
 def jobloc(request,loc):
     #m=Jobpost.objects.filter(valid_date__lte='-date.today').delete()
     #m.save()
+    loc=str(loc)
+    loc
+    print(loc)
     match=Jobpostt.objects.filter(location__icontains=loc).order_by('-valid_till')
     return render(request,'searchjob.html',{'sr':match})
 

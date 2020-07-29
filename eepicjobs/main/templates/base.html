@@ -225,7 +225,7 @@
                {% if sr %}
                {% for k in sr %}
                <ul class="n-page-links multiple">
-          <li><a href="{% url 'jobloc' k.location %}">{{k.location}} , {{k.country}}</a></li>                     </ul>
+          <li><a href="{% url 'jobloc' k %}">{{k.location}} , {{k.country}}</a></li>                     </ul>
           {% endfor %}
           {% endif %}
                 </div>

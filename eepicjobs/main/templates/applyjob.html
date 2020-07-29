@@ -11,10 +11,11 @@
                 <div class="n-single-title">
                     <h4>{{ job.JobTitle }}</h4>
                     <ul>
-                        <li> <i class="fa fa-folder-open"></i>Web Designer</li>
-                        <li> <i class="fa fa-hand-o-right"></i>{% if job.jobType == 0 %} Full Time {% else %} Part Time {% endif %}</li>
-                        <li> <i class="fa fa-clock-o"></i>2 years ago</li>
-                        <li> <i class="fa fa-map-marker"></i>{{ job.country }} ,Delhi</li>
+                        <li> <i class="fa fa-folder-open"></i>{{job.jobType}}</li>
+                        <li> <i class="fa fa-hand-o-right"></i>{{job.ad}}</li>
+                        <li> <i class="fa fa-clock-o"></i>Posted On : {{job.posted_on}}</li>
+                        
+                        <li> <i class="fa fa-map-marker"></i>{{job.location}},{{ job.country }} </li>
                     </ul>
                 </div>
           </div>
@@ -46,7 +47,7 @@
                         </div>
                         <div class="short-detail-meta">
                             <small>Salary</small>
-                            <strong>Rupees 4000-5000 / Hourly</strong>
+                            <strong>{{job.salary}} / {{job.salary}}</strong>
                         </div>
                     </li>
                                             
@@ -64,7 +65,7 @@
                          <img src="{% static 'img/icons/tick-icon.png' %}" class="img-responsive" alt="icon">
                       </div>
                       <div class="short-detail-meta">
-                         <small>No. of Openings</small>
+                         <small>Total workers</small>
                          <strong>2 openings</strong>
                       </div>
                    </li>
@@ -165,7 +166,7 @@
                    </div>
                    <div class="short-detail-meta">
                       <small>Deadline</small>
-                      <strong>November 1, 2025</strong>
+                      <strong>{{job.valid_till}}</strong>
                    </div>
                    <span class="ab-iocn"><i class="ti-alarm-clock"></i></span>
                 </div>
