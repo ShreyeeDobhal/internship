@@ -22,7 +22,7 @@ urlpatterns = [
                 path('updatejob/<str:pk>/',views.updatejob,name='updatejob'),
                 path('deletejob/<str:pk>/',views.deletejob,name='deletejob'),
                 path('register/', views.register, name='register'),
-                path("jobloc/<str:loc>/",views.jobloc,name="jobloc"),
+                path('jobloc/<str:loc>/',views.jobloc,name="jobloc"),
                 path("loc/",views.loc,name="loc"),
                 path('types/<str:ctype>/',views.types,name="types"),
                 path('logout/', views.logout, name='logout'),
@@ -106,6 +106,7 @@ path('jobpostt', views.jobpostt, name='jobpostt'),
 path('req', views.req, name='req'),
 path('coun', views.coun, name='coun'),
 path('sal', views.sal, name='sal'),
+path('latest', views.latest, name='latest'),
 path('multistepform', views.multistepform, name='multistepform'),
 
 ]

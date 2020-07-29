@@ -415,14 +415,14 @@
                                                         </ul>
                                                     </li>
                                                     <li class="n-job-short">
-                                                      <span> <strong>Company logo</strong><img  class="img-responsive watch-right" alt="not found" width="160" height="160"  src={% if k.company_logo %}"{{k.company_logo.url}}"{% endif %}/></span>
+                                                      <span> <strong>Company logo</strong><img  class="img-responsive watch-right" alt="not found" width="160" height="160"  src={% if k.company_logo %} "{{k.company_logo.url}}" {% endif %}/></span>
                                                       
                                                   </li>
                                                     <li class="n-job-short">
-                                                        <span> <strong>Job type</strong>{{k.jobType}}</span>
-                                                        <span> <strong>Company  </strong> {{k.CompanyName }}</span>
-                                                        <span> <strong>Country   </strong> {{k.country}}</span>
-                                                        <span> <strong>Job post valid till  </strong>{{k.valid_till}}</span>
+                                                        <span> <strong>Job type       :  </strong>{{k.jobType}}</span>
+                                                        <span> <strong>Company        :  </strong> {{k.CompanyName }}</span>
+                                                        <span> <strong>Country        :   </strong> {{k.country}}</span>
+                                                        <span> <strong>End date for applying   </strong>{{k.valid_till}}</span>
                                                     </li>
                                                     <li class="n-job-btns">
                                                         <a href="{% url 'applyjob' k.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Apply now</button> </a>

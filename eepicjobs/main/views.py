@@ -355,7 +355,7 @@ def jobpostt(request):
                     adtype="Featured"
                     
   
-            multistepform=Jobpostt(user=request.user.userprofile,salary=salary,qualification=qu,updates_email=updates_email,requirements=req,valid_till=valid_till,location=loc,company_logo=company_logo,country=co,salary_beg=sal1,salary_end=sal2,contractType=contract,JobTitle=jt,JobDesciption=jd,Jobindustry=ji,jobType=jobType,phone_number=phone,no_of_employees=no_of,CompanyName=comp,hear=hear,email=email,ad=adtype)
+            multistepform=Jobpostt(user=request.user.userprofile,salary=salary,qualification=qu,updates_email=updates_email,requirements=req,valid_till=valid_till,location=loc,company_logo=company_logo,country=co,salary_type=sal1,salary_currency=sal2,contractType=contract,JobTitle=jt,JobDesciption=jd,Jobindustry=ji,jobType=jobType,phone_number=phone,no_of_employees=no_of,CompanyName=comp,hear=hear,email=email,ad=adtype)
             multistepform.save()
             messages.success(request,"Data Save Successfully")
             return redirect("employerin")
@@ -1174,15 +1174,16 @@ def jobss(request):
     return render(request,'searchjob.html',{'sr':match})
 
 def loc(request):
-    #match=Jobpost.objects.all().order_by('-valid_till').distinct()
-    match = Jobpostt.objects.values_list('location', flat=True).distinct()
+    match=Jobpostt.objects.all().order_by('-valid_till').distinct()
+    #match = Jobpost.objects.values_list('location', flat=True).distinct()
     return render(request,'base.html',{'sr':match})
 
 def jobloc(request,loc):
     #m=Jobpost.objects.filter(valid_date__lte='-date.today').delete()
     #m.save()
-    match=Jobpostt.objects.filter(Q(location__icontains=loc)).order_by('-valid_till')
+    match=Jobpostt.objects.filter(location__icontains=loc).order_by('-valid_till')
     return render(request,'searchjob.html',{'sr':match})
+
 
 def types(request,ctype):
     c=Jobpost.objects.filter(contractType__icontains=ctype)
@@ -1310,3 +1311,10 @@ def sal(request):
         else:
             messages.error(request, "Sorry! No results found.")
             return redirect('home')
+
+
+
+def latest(request):
+    match=Jobpostt.objects.all().order_by("-posted_on")
+    context={"sr":match}
+    return render(request,"searchjob.html",context)

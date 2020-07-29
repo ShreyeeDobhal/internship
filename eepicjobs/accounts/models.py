@@ -284,8 +284,8 @@ class Jobpostt(models.Model):
     location = models.CharField(max_length=255, null=True)
     no_of_employees=models.CharField(max_length=255,null=True)
     updates_email=models.CharField(max_length=255,null=True)
-    salary_beg= models.CharField(max_length=255,null=True)
-    salary_end= models.CharField(max_length=255,null=True)
+    salary_type= models.CharField(max_length=255,null=True)
+    salary_currency= models.CharField(max_length=255,null=True)
 
     ad= models.CharField(max_length=255,null=True)
 

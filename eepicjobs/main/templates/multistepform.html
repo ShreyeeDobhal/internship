@@ -245,8 +245,39 @@
                 <h2 class="fs-title">Job Details</h2>
                 <h3 class="fs-subtitle">Tell us something about your job post</h3>
                 <input type="text" name="jt" placeholder="Job title"/>
+                
                 <input type="text" name="jd" placeholder="Job Description"/>
-                <input type="text" name="ji" placeholder="Job industry"/>
+               
+                <h3 class="fs-subtitle" style="text-align:left;">Select Your Job Industry
+                    <br><br>
+                <select style="text-align:left;" name="ji" id="ji">
+                                                <option value="Automotive" >Automotive</option>
+                                                <option value="IT" >IT</option>
+                                                <option value="Construction" >Construction</option>
+                                                <option value="Consultant" >Consultant</option>
+                                                <option value="Customer Service" >Customer Service</option>
+                                                <option value="Designer" >Designer</option>
+                                                <option value="Development" >Development</option>
+                                                <option value="Digital Service" >Digital Service</option>
+                                                <option value="Education" >Education</option>
+                                                <option value="Engineering" >Engineering</option>
+                                                <option value="Fitness Trainer" >Fitness Trainer</option>
+                                                <option value="Food Service" >Food Service</option>
+                                                <option value="Health and Care" >Health and Care</option>
+                                                <option value="HR" >HR</option>
+                                                <option value="Human Resource" >Human Resource</option>
+                                                <option value="Industry" >Industry</option>
+                                                <option value="Information Technology" >Information Technology</option>
+                                                <option value="Marketing" >Marketing</option>
+                                                <option value="Networking" >Networking</option>
+                                                <option value="Other Services" >Other Services</option>
+                                                <option value="Security" >Security</option>
+                                                <option value="Web Designer" >Web Designer</option>
+                                                <option value="Web Development" >Web Development</option>
+                                              </select>
+                                                
+                                            </h3> 
+                                        
                 
                
                 <h3 class="fs-subtitle" style="text-align:left;">Chose the employment Type
@@ -359,13 +390,35 @@
                 
                 <fieldset>
                 <h2 class="fs-title" style="text-align:centre;">Salary Info</h2>
-                <h3 class="fs-subtitle"  style="text-align:left;">Enter the salary range for this job post</h3>
+                <!--h3 class="fs-subtitle"  style="text-align:left;">Enter the salary range for this job post</h3>
                 <input type="number" name="sal1" placeholder="From (initial slary range)"/><br>
                 <h4 class="fs-title" style="text-align:centre;">To</h4>
-                <input type="number" name="sal2" placeholder="End Range"/>
+                <input type="number" name="sal2" placeholder="End Range"/!-->
                 <h3 class="fs-subtitle"  style="text-align:left;">Enter the salary range for this job post( eg.1000-2000)</h3>
                 <input type="text" name="salary" placeholder="Salary"/>
-                
+                <p style="text-align:left;"><label for="sal2">Salary currency</label>
+                    <br>
+                <select name="sal2" id="sal2">
+                    <option value="Dollar">Dollar</option>
+                    <option value="Rupees">Rupees</option>
+                    <option value="Pound">Pound</option>
+                   
+
+
+                    
+                </select></p>
+
+                <p style="text-align:left;"><label for="sal1">Salary Type</label>
+                    <br>
+                <select name="sal1" id="sal1">
+                    <option value="Monthly">Monthly</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Hourly">Hourly</option>
+                    
+
+
+                    
+                </select></p>
                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                 <input type="submit" name="submit" class="submit action-button" value="Submit"/>
             </fieldset>
