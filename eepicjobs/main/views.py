@@ -447,7 +447,15 @@ def automotive(request):
         messages.error(request, "Sorry! No results found.")
         return redirect('home')
     
-
+def industries(request,ind):
+    match = Jobpostt.objects.filter(Q(Jobindustry__icontains=ind))
+    if (match.exists()):
+        return render(request, 'searchjob.html', {'sr': match})
+    
+    else:
+        messages.error(request, "Sorry! No results found.")
+        return redirect('home')
+    
 
 
 def food(request):
@@ -1192,7 +1200,9 @@ def loc(request):
 def jobloc(request,loc):
     #m=Jobpost.objects.filter(valid_date__lte='-date.today').delete()
     #m.save()
-    match=Jobpostt.objects.filter(location__icontains=loc).order_by('-valid_till')
+    m=Jobpostt.objects.get(id=loc)
+    m.location
+    match=Jobpostt.objects.filter(location__icontains=m.location).order_by('-valid_till')
     return render(request,'searchjob.html',{'sr':match})
 
 
@@ -1329,3 +1339,5 @@ def latest(request):
     match=Jobpostt.objects.all().order_by("-posted_on")
     context={"sr":match}
     return render(request,"searchjob.html",context)
+
+

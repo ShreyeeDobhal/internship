@@ -74,6 +74,7 @@ urlpatterns = [
                 path('checksubscription/',views.check_status,name='check_status'),
                  path('rr/', views.rr, name='rr'),
                 path("jobss",views.jobss,name='jobss'),
+                 path('industries/<str:ind>/',views.industries,name='industries'),
                  path('saveresum/<str:e>/<str:r>/', views.saveresum, name='saveresum'),
                  path('sav_jobs/<str:ee>/<str:jid>/', views.sav_jobs, name='sav_jobs'),
                  path('rrr/<str:pk>', views.rrr, name='rrr'),

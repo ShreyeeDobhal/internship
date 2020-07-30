@@ -173,8 +173,10 @@
                    <span class="ab-iocn"><i class="ti-alarm-clock"></i></span>
                 </div>
                 <div class="n-single-job-company">
+                   {% if request.user.userprofile.employee.id %}
                     <a class="btn btn-block n-btn-custom-two save_job" href="{% url 'sav_jobs' request.user.userprofile.employee.id job.id %}" data-value=315>Save This Job </a>
-                </div>
+            {% endif %}
+                  </div>
                                      <div class="n-single-job-company">
                     <a class="btn btn-block n-btn-custom email_this_job" href="javascript:void(0)" data-job-id=315>Email This Job </a>
                 </div>
@@ -188,7 +190,7 @@
                                            <li> <a href="#"><img src="{% static 'img/icons/005-linkedin.png' %}" alt="icon" class="img-responsive"></a></li>
                                         </ul>
                       <div class="contact-img">
-                         <img src="{{../../wp-content/uploads/2018/09/af0d7d7202555927da033a17925db572-1-150x150.png}}" class="img-responsive img-circle" alt="company profile image">
+                         <img src="" class="img-responsive img-circle" alt="company profile image">
                       </div>
                       <div class="contact-caption">
                          <h4>Excings Motors</h4>

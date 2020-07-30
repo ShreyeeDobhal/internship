@@ -105,82 +105,74 @@
 
 <body {% block bodyclass %} class="page-template page-template-page-home page-template-page-home-php page page-id-1075 theme-nokri woocommerce-no-js wpb-js-composer js-comp-ver-6.0.5 vc_responsive" {% endblock %}>
     <div id="spinner">
-        <div class="spinner-img"><img alt="Preloader" src="{% static 'img/loader.gif' %}"/>
+        <div class="spinner-img"><img alt="Preloader" src="{% static 'images/loader.gif' %}"/>
           <h2>Loading</h2>
         </div>
     </div>
     <!---HEADER AND NAVIGATION-->
     {% block headerclass %}
-    <div class="transparent-header-1">
-        {% block nav %}
-        <nav id="menu-1" class="mega-menu fa-change-black n-header-trabsparent " >
-            {% endblock %}
-                <section class="menu-list-items ">
-                    <div class="container">
-                    <ul class="menu-logo">
-                        <li><a href="{% url 'index' %}" style="display: flex;"><img  src="{% static 'img/logo.png' %}" class="img-responsive" alt="logo" style="width: 30px;"><span style="color: white; font-size: 1em;font-weight: 900; padding-left: 20px;">EEPIC Jobs</span></a></li>
-                        <!--<li style="color: white; font-size: 1.556em;font-weight: 900;">EEPIC Jobs</li>-->
-                    </ul>
-                    {% if user.is_authenticated %}
-                    <ul class="menu-button">
-                        <li>
-                        <a href="{% url 'dashboard' %}" class="n-login-header">Hi, {{ user.first_name }}</a>
-                        </li>
-                        <li>
-                        <a href="{% url 'logout' %}" class="n-login-header"><i class="fa fa-sign-out"></i>Logout</a>
-                        </li>
-                        <li>
-                        <a href="{% url 'jobpostt' %}" class="btn n-btn-flat"><i class="fa fa-plus-square"></i>Job Post</a>
-                        </li>
-                    </ul>
+    <div class="top-bar">
+    	<div class="container">
+    	    <div class="row">
+    	        <div class="col-lg-7 col-md-5 col-sm-5 col-xs-12">
+    	            <ul class="header-social pull-left ">
+    	            	<li><a href="http://www.facebook.com/" class="social-facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
+    	            	<li><a href="http://www.twitter.com/" class="social-twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
+    	            	<li><a href="http://www.instagram.com/" class="social-instagram" target="_blank"><i class="fa fa-instagram"></i></a></li>
+    	            	<li><a href="http://www.linkedin.com/" class="social-linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+    	            </ul>       
+    	        </div>
+    	        <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12">
+    	        	<div class="header-info">
+    	            	<a href="mailto:support@eepicjobs.com"><i class="fa fa-envelope"></i>support@eepicjobs.com</a><a href="tel:+91 8077600748"><i class="fa fa-phone"></i> +91 8077600748</a>
+    	            </div>
+    	       </div>
+    	    </div>
+    	</div>
+    </div> 
+    {% block nav %}
+    <nav id="menu-1" class="mega-menu mega-menu fa-change-black">
+        {% endblock %}
+    	<section class="menu-list-items">
+        	<div class="container">
+                <ul class="menu-logo">
+                    <li><a href="{% url 'index' %}"><img  src="{% static 'images/eepic_jobs_logo.png' %}" class="img-responsive" alt="logo" width="180px;"></a>
+                    </li>
+                </ul>
+                {% if user.is_authenticated %}
+                <ul class="menu-button">            
+                	<li><a href="{% url 'dashboard' %}" class="n-login-header">Hi, {{ user.first_name }}</a></li>
+                    <li><a href="{% url 'logout' %}" class="n-login-header"><i class="fa fa-sign-out"></i>Logout</a></li>
+                    <li><a href="{% url 'jobpostt' %}" class="btn n-btn-flat"><i class="fa fa-plus-square"></i>Job Post</a></li>
+                </ul>
+                {% else %}
+                <ul class="menu-button">
+                    <li><a href="{% url 'login' %}" class="n-login-header"><i class="fa fa-sign-in"></i>Login</a></li>
+                    <li><a href="{% url 'register' %}" class="n-login-header"><i class="fa fa-user-plus"></i>Register</a></li>
+                    <li><a href="{% url 'login' %}" class="btn n-btn-flat"><i class="fa fa-plus-square"></i>Job Post</a></li>
+                </ul>
+                {% endif %}
+               	<ul class="menu-links ">
+                    <li><a  href="{% url 'index' %}">Home</a></li>
+                    <li><a  href="">About Us</a></li>
+                    <li><a  href="{% url 'jobss' %}">Jobs.</a></li>
+                    <li><a  href="{% url 'index' %}">Services</a></li>
+                    <li><a  href="{% url 'loc' %}">Locations</a></li>
+                    <li><a  href="">Contact us</a></li>
+                    {% if request.user.userprofile.employee.id %}
+                    <li><a  href="{% url 'employeein' %}">Dashboard</a></li>
+                    {% elif request.user.userprofile.employer.id %}
+                    <li><a  href="{% url 'employerin' %}">Dashboard</a></li>
                     {% else %}
-                    <ul class="menu-button">
-                        <li>
-                        <a href="{% url 'login' %}" class="n-login-header"><i class="fa fa-sign-in"></i>Login</a>
-                        </li>
-                        <li>
-                        <a href="{% url 'register' %}" class="n-login-header"><i class="fa fa-user-plus"></i>Register</a>
-                        </li>
-                        <li>
-                        <a href="{% url 'login' %}" class="btn n-btn-flat"><i class="fa fa-plus-square"></i>Job Post</a>
-                        </li>
-                    </ul>
+                    <li><a  href="{% url 'dashboard' %}">Dashboard</a></li>
                     {% endif %}
-                        
-                        <ul class="menu-links ">
-                            <li><a  href="{% url 'index' %}">Home</a></li>
-                            <!--li><a  href="{% url 'adtype' 'Premium' %}">Premium Jobs</a></li>
-                            <li><a  href="{% url 'adtype' 'Feature' %}">Feature Jobs</a></li>
-                            <li><a  href="{% url 'types' 'Walk-in' %}">Walk in</a></li>
-                            <li><a  href="{% url 'types' 'Contract' %}">Contract</a></li>
-                            <li><a  href="{% url 'types' 'Temporary' %}">Temporary</a></li>
-                            <li><a  href="{% url 'types' 'Internship' %}">Internships</a></li!-->
-                            <li><a  href="{% url 'latest' %}">Latest Jobs</a></li>
-                            <li><a  href="{% url 'premium' %}">Premium Jobs</a></li>
-                            <li><a  href="{% url 'feat' %}">Feature Jobs</a></li>
-                            <li><a  href="{% url 'internn' %}">Internship</a></li>
-                            <li><a  href="{% url 'walk' %}">Walk in</a></li>
-                            <li><a  href="{% url 'contract' %}">Contract</a></li>
-                            <li><a  href="{% url 'types' 'Temporary' %}">Temporary</a></li>
 
-
-                            <li><a  href="{% url 'jobss' %}">Jobs</a></li>
-                            {% if request.user.userprofile.employee.id %}
-                            <li><a  href="{% url 'employeein' %}">Dashboard</a></li>
-                            {% elif request.user.userprofile.employer.id %}
-                            <li><a  href="{% url 'employerin' %}">Dashboard</a></li>
-                            {% else %}
-                            <li><a  href="{% url 'dashboard' %}">Dashboard</a></li>
-                            {% endif %}
-
-
-                        </ul>
-                    </div>
-                </section>
-            </nav> 
-    </div>
-    <!--HEADER ENDS-->
+                </ul>
+            </div>
+    	</section>
+    </nav>
     <div class="clearfix"></div>
+    <!--HEADER ENDS-->
     <div class="vc_row wpb_row vc_row-fluid">
         <div class="wpb_column vc_column_container vc_col-sm-12">
             <div class="vc_column-inner">
@@ -196,13 +188,13 @@
         </div>
     </div>
     <!-- FOOTER -->
-</br>
+
     <section class="n-footer-transparent footer-two" style=" background: url({% static 'img/footer/acasc.jpg' %});  background-repeat: no-repeat; background-size: cover;  background-position: center center;  background-attachment: scroll; ">
         <div class="container">
            <div class="row">
               <div class="col-lg-3 col-sm-3 col-md-2 col-xs-12">
                  <div class="n-footer-block">
-                  <img class="img-responsive footer-logo" src="{% static 'img/logo.png' %}"  alt="logo" style="width: 90px;">
+                  <img class="img-responsive footer-logo" src="{% static 'images/logo.png' %}"  alt="logo" style="width: 90px;">
                   <div class="n-social-bar">
                         <ul>
                             <li><a class="fa fa-facebook"  href="https://www.facebook.com/eepicmanagement/" target="_blank"></a></li>
@@ -216,18 +208,17 @@
              
              
 
-            </br></br></br>
+
 
               
               <div class="col-sm-6 col-md-5 col-lg-5 col-xs-12">                  <div class="n-footer-block">
                 <h4>Job Locations</h4>     
                 <a href="{% url 'loc' %}"><h4 style="color: white;">Click here to see all job locations</h4>>  </a> </p>    
-               {% if sr %}
-               {% for k in sr %}
-               <ul class="n-page-links multiple">
-          <li><a href="{% url 'jobloc' k %}">{{k.location}} , {{k.country}}</a></li>                     </ul>
-          {% endfor %}
-          {% endif %}
+                {% for k in sr %}
+               
+                        <ul class="n-page-links multiple">
+                   <li><a href="{% url 'jobloc' k.id %}">{{k.location}} , {{k.country}}</a></li>                     </ul>
+                   {% endfor %}
                 </div>
           </div>
              
