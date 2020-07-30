@@ -295,7 +295,7 @@ class Jobpostt(models.Model):
         verbose_name_plural = 'Jobpostts'
 
     def __str__(self):
-        return "{} - {}".format( self.location,str(self.id),)
+        return "{} - {}".format(str(self.id), self.JobTitle,self.Jobindustry,self.jobType,self.JobDesciption,self.CompanyName)
     
     
 
@@ -507,7 +507,7 @@ class savedjobs(models.Model):
             verbose_name = 'savedjob'
             verbose_name_plural = 'savedjobs'
     def __str__(self):
-        return "{} - {}".format(str(self.id))
+        return "{} - {}".format(str(self.id),self.jid,self.empid)
         
 
 

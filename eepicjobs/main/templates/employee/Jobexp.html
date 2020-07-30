@@ -181,12 +181,12 @@
 </div>
 </div>
  <div class="n-candidate-meta">
-     <h4>My profile</h4>
+ 
      <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
-        <h4>Fill in your Job experiences </h4>
-        <br>
-        <h4>Note : Kindly fill the columns according to the number of job experiences you have.</h3>
-           <h4> Leave the remaining columns blank !</h4>
+        <h3 style="font-family: 'Times New Roman', Times, serif;">Fill in your Job experiences </h3>
+        
+        <h3 style="font-size: small; font-family: 'Times New Roman', Times, serif;">Note : Kindly fill the columns according to the number of job experiences you have.</h3>
+           <h3 style="font-size: small; font-family: 'Times New Roman', Times, serif;"> Leave the remaining columns blank !</h3>
     
     <br>
         {{form.as_p}}

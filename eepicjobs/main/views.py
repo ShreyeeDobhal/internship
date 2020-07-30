@@ -758,6 +758,7 @@ def applyjobb(request, jid):
     if form.is_valid():
         instance=form.save(commit=False)
         instance.user=request.user.userprofile
+        instance.job=Jobpostt.objects.get(id=jid)
         instance.save()
         #message of success
         messages.success(request,"Successfully created")
@@ -782,9 +783,19 @@ def saved_resume(request):
     sav=Svedresume.objects.filter(empid=request.user.userprofile.employer)
     return render(request,'saved_resume.html',{"sav": sav})
 
+
+
+def sav_jobs(request,ee,jid):
+    eemp=Employee.objects.get(id=ee)
+    job=Jobpostt.objects.get(id=jid)
+    sav=savedjobs.objects.create(empid=request.user.userprofile.employee,jid=job)
+    messages.success(request,"Successfully saved")
+    return redirect("employeein")
+
 def saved_jobs(request):
     sav=savedjobs.objects.filter(empid=request.user.userprofile.employee)
-    return render(request,'employee/saved_jobs.html',{"sav": sav})
+    context={"sav":sav}
+    return render(request,'employee/saved_jobs.html',context)
 
 
 
@@ -1181,9 +1192,6 @@ def loc(request):
 def jobloc(request,loc):
     #m=Jobpost.objects.filter(valid_date__lte='-date.today').delete()
     #m.save()
-    loc=str(loc)
-    loc
-    print(loc)
     match=Jobpostt.objects.filter(location__icontains=loc).order_by('-valid_till')
     return render(request,'searchjob.html',{'sr':match})
 

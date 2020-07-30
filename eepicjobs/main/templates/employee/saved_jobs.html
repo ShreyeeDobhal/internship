@@ -148,7 +148,7 @@
             <div class="stat-box-meta-text">
                 <h4>Applied jobs</h4>
                 
-                <h3>{{ request.user.userprofile.applicant_set.count }}</h3>
+                <h3>{{ request.user.userprofile.applicantt_set.count }}</h3>
                 
                 
             </div>
@@ -197,10 +197,24 @@
         
          <div style="color :black">
                 <br>
+                
                 {% for k in sav %}
-              <p>{{k.jid.Jobtitle}}</p> 
-              <p>{{k.jid.CompanyName}}</p> 
-              <p>{{k.jid.Jobindusrty}}</p> 
+              <table border="3px" width=:'600' >
+                  <tr>
+                      <td>Jobtitle</td>
+                      <td>Company</td>
+                      <td>Job industry</td>
+                      <td>Deadline</td>
+                  </tr>
+              <tr>
+                <td>{{k.jid.JobTitle}}</td> 
+                <td>{{k.jid.CompanyName}}</td> 
+                <td>{{k.jid.Jobindusrty}}</td> 
+                <td>{{k.jid.valid_till}}</td> 
+                
+              </tr>
+              <br><br>
+            </table> 
                 {% endfor %}
         
         

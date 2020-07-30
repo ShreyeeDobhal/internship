@@ -24,7 +24,8 @@
                     <div class="apply-buttons">
                     </div>
                     <div class="apply-buttons">
-                        <a href="javascript:void(0)" class="btn n-btn-flat btn-mid btn-clear apply_job" data-job-id="315" data-author-id="10" data-toggle="modal" data-target="#myModal" id="applying_job">Apply now</a>
+                     <a href="{% url 'applyjobb' job.id %}"> <button id="myButton" class="btn n-btn-rounded btn-mid btn-clear external_apply" >Apply Now</button>
+                        <br><br>
                         <a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&amp;client_id=819vq98insh6za&amp;redirect_uri=https://jobs.nokriwp.com/&amp;state=not_logged_in-315&amp;scope=r_emailaddress%20r_basicprofile" class="btn-linkedIn btn-block"><i class="ti-linkedin"></i> <span>Apply With LinkedIn</span></a>
                     </div>
                 </aside>
@@ -47,7 +48,7 @@
                         </div>
                         <div class="short-detail-meta">
                             <small>Salary</small>
-                            <strong>{{job.salary}} / {{job.salary}}</strong>
+                            <strong>{{job.salary}} / {{job.salary_type}}</strong>
                         </div>
                     </li>
                                             
@@ -66,7 +67,7 @@
                       </div>
                       <div class="short-detail-meta">
                          <small>Total workers</small>
-                         <strong>2 openings</strong>
+                         <strong>{{job.no_of_employees}}</strong>
                       </div>
                    </li>
                                             <li>
@@ -93,7 +94,7 @@
                       </div>
                       <div class="short-detail-meta">
                          <small>Job Qualifications</small>
-                         <strong>Master</strong>
+                         <strong>{{job.qualification}}</strong>
                       </div>
                    </li> 
                                            </ul>
@@ -103,14 +104,15 @@
                <p><span style="color: #000000">{{ job.JobDesciption }}.</span></p>
 
                
-               <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+               <!--form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
                   <h1>Fill in your new details </h1>
                   <h2>EEpicjobs For employers</h2>
               {{form.as_p}}
                           </br>
               <input type="submit"class="butn btn-default" value="Submit"/>
-              </form>
-
+              </form!-->
+              <p><span style="color: #000000"><b>Requirements</b></span></p>
+              <p><span style="color: #000000">{{job.requirements}}</span></p>
 
 
 
@@ -171,7 +173,7 @@
                    <span class="ab-iocn"><i class="ti-alarm-clock"></i></span>
                 </div>
                 <div class="n-single-job-company">
-                    <a class="btn btn-block n-btn-custom-two save_job" href="javascript:void(0)" data-value=315>Save This Job </a>
+                    <a class="btn btn-block n-btn-custom-two save_job" href="{% url 'sav_jobs' request.user.userprofile.employee.id job.id %}" data-value=315>Save This Job </a>
                 </div>
                                      <div class="n-single-job-company">
                     <a class="btn btn-block n-btn-custom email_this_job" href="javascript:void(0)" data-job-id=315>Email This Job </a>
@@ -186,7 +188,7 @@
                                            <li> <a href="#"><img src="{% static 'img/icons/005-linkedin.png' %}" alt="icon" class="img-responsive"></a></li>
                                         </ul>
                       <div class="contact-img">
-                         <img src="../../wp-content/uploads/2018/09/af0d7d7202555927da033a17925db572-1-150x150.png" class="img-responsive img-circle" alt="company profile image">
+                         <img src="{{../../wp-content/uploads/2018/09/af0d7d7202555927da033a17925db572-1-150x150.png}}" class="img-responsive img-circle" alt="company profile image">
                       </div>
                       <div class="contact-caption">
                          <h4>Excings Motors</h4>

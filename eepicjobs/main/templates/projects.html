@@ -22,9 +22,10 @@
         <div class="container">  
             <div class="col-sm-8 col-sm-offset-3">
                 <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
-        <h1>Fill in your Project Details </h1>
-        <h2>EEpicjobs For employers</h2>
-        <h3>Fill the columns according to the number of projects you have done,leave others blank</h3>
+        <h2 style="font-family: 'Times New Roman', Times, serif;"><b>Fill in your Project Details </b></h2>
+        
+        <h4 style=" font-family: 'Times New Roman', Times, serif;"><b>Fill the columns according to the number of projects you have done,leave others blank</b></h4>
+    <br>
     {{form.as_p}}
                 </br>
     <input type="submit"class="butn btn-default" value="Submit"/>
