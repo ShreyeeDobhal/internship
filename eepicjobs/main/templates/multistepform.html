@@ -219,7 +219,7 @@
 </div>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <form id="msform" action="{% url 'jobpostt' %}" method="post">
+        <form id="msform" action="{% url 'jobpostt' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- progressbar -->
             <ul id="progressbar">
@@ -298,6 +298,8 @@
                         <select name="ad" id="ad">
                             <option value="Feature" placeholder="Feature">Feature</option>
                             <option value="Premium">Premium</option>
+                            <option value="Urgent">Urgent</option>
+                            <option value="Private">Private</option>
                             
                         </select></h3>
 

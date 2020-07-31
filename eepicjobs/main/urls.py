@@ -9,7 +9,7 @@ from django.conf.urls import url
 urlpatterns = [
 				path('', views.index, name='index'),
         path('saltyp', views.saltyp, name='saltyp'),
-
+path('searchh/<str:pk>/', views.searchh, name='searchh'),
 
         #path('order/<int:pk>',views.edit_order,name='edit_order'),
         path('order',views.order,name='order'),
@@ -105,6 +105,7 @@ path('premium', views.premium, name='premium'),
 path('feature', views.feat, name='feat'),
 path('indust', views.indust, name='indust'),
 path('typesss', views.typesss, name='typesss'),
+path('adtypesss', views.adtypesss, name='adtypesss'),
 path('jobpostt', views.jobpostt, name='jobpostt'),
 path('req', views.req, name='req'),
 path('coun', views.coun, name='coun'),

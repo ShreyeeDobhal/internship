@@ -65,8 +65,8 @@ def index(request):
     match=Jobpostt.objects.all().order_by("-posted_on")[:9]
     featu=Jobpostt.objects.filter(ad__icontains="feature")[:4]
     pre=Jobpostt.objects.filter(ad__icontains="premium")[:4]
-    contr=Jobpostt.objects.filter(jobType__icontains="contract")[:4]
-    inter=Jobpostt.objects.filter(jobType__icontains="internship")[:4]
+    contr=Jobpostt.objects.filter(contractType__icontains="Contract")[:4]
+    inter=Jobpostt.objects.filter(contractType__icontains="internship")[:4]
     context={"lat":match,"featu":featu,"pre":pre,"contr":contr,"inter":inter}
     return render(request, 'index.html',context)
 @csrf_exempt
@@ -177,7 +177,13 @@ def home(request):
         return redirect(index)
     else:
         messages.success(request,'Welcome '+ str(request.user.first_name))
-    return render(request, 'index.html')
+    match=Jobpostt.objects.all().order_by("-posted_on")[:9]
+    featu=Jobpostt.objects.filter(ad__icontains="feature")[:4]
+    pre=Jobpostt.objects.filter(ad__icontains="premium")[:4]
+    contr=Jobpostt.objects.filter(contractType__icontains="Contract")[:4]
+    inter=Jobpostt.objects.filter(contractType__icontains="internship")[:4]
+    context={"lat":match,"featu":featu,"pre":pre,"contr":contr,"inter":inter}
+    return render(request, 'index.html',context)
 
 def logout(request):
     auth_logout(request)
@@ -342,7 +348,7 @@ def jobpostt(request):
         no_of=request.POST.get("facebook")
         valid_till=request.POST.get("valid_till")
         email=request.POST.get("email")
-        company_logo=request.POST.get("myfile")
+        company_logo=request.FILES["myfile"]
         co=request.POST.get("co")
         loc=request.POST.get("loc")
         req=request.POST.get("req")
@@ -1230,6 +1236,20 @@ def typesss(request):
         else:
             messages.error(request, "Sorry! No results found.")
             return redirect('home')
+
+
+def adtypesss(request):
+    if(request.method != "GET"):
+        return HttpResponseRedirect("/searchJob/")
+    else:
+        ty=request.GET.get("job_type")
+        match = Jobpostt.objects.filter(ad__icontains=ty)
+        if (match.exists()):
+            return render(request, 'searchjob.html', {'sr': match})
+        
+        else:
+            messages.error(request, "Sorry! No results found.")
+            return redirect('home')
     
 
 def adtype(request,addtype):
@@ -1367,3 +1387,8 @@ def front_type(request):
     sr=Jobpostt.objects.filter(ad__icontains="feature")
     context={"sr":sr}
     return render(request,"index.html",context)
+
+def searchh(request,pk):
+    sr=Jobpostt.objects.filter(id=int(pk))
+    context={"sr":sr}
+    return render(request,"searchjob.html",context)

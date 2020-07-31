@@ -315,10 +315,24 @@
                                        </div>
                                 <div id="collapse-job_class" class="panel-collapse collapse in">
                                     <div class="panel-body">
-                                        <form  method="get" action="https://jobs.nokriwp.com/search-page/">
-                                           <ul class="list">
-                                             <li class=""><input class="input-icheck-search change_select" value = "63" name = "job_class" type="radio"  ><label>Feature</label></li><li class=""><input class="input-icheck-search change_select" value = "64" name = "job_class" type="radio"  ><label>Urgent</label></li><li class="hide_nexts hide_nexts-job_class"><input class="input-icheck-search change_select" value = "65" name = "job_class" type="radio"  ><label>Private</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_class">Show more</a></small><li>
-                                          </ul>
+
+
+                                      <!--form method="get" id="search_form" action="{% url 'typesss' %}">
+                                        <div class="cp-loader"></div>
+                                        <div class="form-group">
+                                            <select class="questions-category form-control" data-parsley-required="true" id="job_type_id" name="job_type">
+                                                <option value="0">Select an option</option><option value="Feature" >Feature</option><option value="Urgent" >Urgent</option><option value="Private" >Private</option>            </select>
+                                        
+                                                <button type="submit"><i class="ti-search"></i> </button>
+                                              </div>
+                                              </form!-->
+                                         <form method="get" id="search_form" action="{% url 'adtypesss' %}">
+                                        <div class="cp-loader"></div>
+
+                                      
+                                        <ul class="list">
+                                          <li class=""><input class="input-icheck-search change_select" value = "Feature" name = "job_type" type="radio"  ><label>Feature</label></li><li class=""><input class="input-icheck-search change_select" value = "Urgent" name = "job_type" type="radio"  ><label>Urgent</label></li><li class="hide_nexts hide_nexts-job_class"><input class="input-icheck-search change_select" value = "Private" name = "job_type" type="radio"  ><label>Private</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_class">Show more</a></small><li>
+                                       </ul>
                                           
                                         </form>
                                     </div>
@@ -349,7 +363,7 @@
             </div>
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                    <div class="n-search-main">
-                        <div class="n-bread-crumb">
+                        <!--div class="n-bread-crumb">
                             <ol class="breadcrumb">
                                 
                                 
@@ -365,7 +379,7 @@
                                 <li> <a href="{% url 'types' 'Temporary' %}">Temporary</a></li>
                                 
                             </ol>
-                        </div>
+                        </div!-->
                         <div class="heading-area">
                             <div class="row">
                                 <div class="col-md-8 col-sm-8 col-xs-12">
