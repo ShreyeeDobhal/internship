@@ -288,7 +288,10 @@ class Jobpostt(models.Model):
     salary_currency= models.CharField(max_length=255,null=True)
 
     ad= models.CharField(max_length=255,null=True)
-
+    #jobtags
+    #jobshift
+    #jobexperience
+    
 
     class Meta:
         verbose_name = 'Jobpostt'

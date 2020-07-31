@@ -8,6 +8,7 @@ from django.conf.urls import url
 
 urlpatterns = [
 				path('', views.index, name='index'),
+        path('saltyp', views.saltyp, name='saltyp'),
 
 
         #path('order/<int:pk>',views.edit_order,name='edit_order'),

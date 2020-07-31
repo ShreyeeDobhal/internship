@@ -62,7 +62,13 @@ stripe.api_key="sk_test_51H55s7EqYDD5vPrpoPYOjFkBpY9BjqS72mY8R1e9u1aiB2SL9ZjheHI
 
 
 def index(request):
-    return render(request, 'index.html')
+    match=Jobpostt.objects.all().order_by("-posted_on")[:9]
+    featu=Jobpostt.objects.filter(ad__icontains="feature")
+    pre=Jobpostt.objects.filter(ad__icontains="premium")
+    contr=Jobpostt.objects.filter(jobType__icontains="contract")
+    inter=Jobpostt.objects.filter(jobType__icontains="internship")
+    context={"lat":match,"featu":featu,"pre":pre,"contr":contr,"inter":inter}
+    return render(request, 'index.html',context)
 @csrf_exempt
 def login(request):
     """
@@ -1201,7 +1207,7 @@ def jobloc(request,loc):
     #m=Jobpost.objects.filter(valid_date__lte='-date.today').delete()
     #m.save()
     m=Jobpostt.objects.get(id=loc)
-    m.location
+    
     match=Jobpostt.objects.filter(location__icontains=m.location).order_by('-valid_till')
     return render(request,'searchjob.html',{'sr':match})
 
@@ -1333,6 +1339,21 @@ def sal(request):
             messages.error(request, "Sorry! No results found.")
             return redirect('home')
 
+def saltyp(request):
+    if(request.method != "GET"):
+        return HttpResponseRedirect("/searchJob/")
+    else:
+        ty=request.GET.get("job_salary_type")
+        match = Jobpostt.objects.filter(salary_type__icontains=ty)
+        if (match.exists()):
+            return render(request, 'searchjob.html', {'sr': match})
+        
+        else:
+            messages.error(request, "Sorry! No results found.")
+            return redirect('home')
+
+
+
 
 
 def latest(request):
@@ -1341,3 +1362,8 @@ def latest(request):
     return render(request,"searchjob.html",context)
 
 
+
+def front_type(request):
+    sr=Jobpostt.objects.filter(ad__icontains="feature")
+    context={"sr":sr}
+    return render(request,"index.html",context)

@@ -116,6 +116,7 @@
                                     <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
                                         <div class="n-search-listing n-featured-jobs">
                                             <div class="n-featured-job-boxes">
+                                            
                                                 <div class="n-job-single">
                                                     <div class="n-job-img">
                                                         <img src="{%  static  'images/09/01-2-1-150x150.png' %}" alt="logo" class="img-responsive"/>
@@ -656,19 +657,24 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
+                        
                         <div class="row">
+                            
                             <div class="mansi" style="position: relative; height: 627px;">
+                                {%for k in lat %}
                                <div class="col-md-4 col-sm-6 col-xs-12" style="position: absolute; left: 0px; top: 0px;">
-                                    <div class="job-list-simple">
+                                   
+                                <div class="job-list-simple">
                                         <div class="job-list-simple-img">
                                             <a href="https://jobs.nokriwp.com/job/software-developer/"><img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/candidate-dp.jpg" class="img-responsive" alt="image"></a>
                                         </div> 
                                         <div class="job-list-simple-title">
-                                            <a href="https://jobs.nokriwp.com/job/software-developer/">software developer</a> Ali,<p>Wiesbaden</p>
+                                            <a href="https://jobs.nokriwp.com/job/software-developer/">{{k.JobTitle}}</a>{{k.location}},<p>{{k.country}}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12" style="position: absolute; left: 390px; top: 0px;">
+                                {%endfor%}
+                                <!--div class="col-md-4 col-sm-6 col-xs-12" style="position: absolute; left: 390px; top: 0px;">
                                     <div class="job-list-simple">
                                         <div class="job-list-simple-img">
                                             <a href="https://jobs.nokriwp.com/job/junior-boq-officer/"><img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/candidate-dp.jpg" class="img-responsive" alt="image"></a>
@@ -676,7 +682,7 @@
                                         <div class="job-list-simple-title">
                                             <a href="https://jobs.nokriwp.com/job/junior-boq-officer/">junior boq officer</a>arooba ,<p>Victoria</p>
                                         </div>
-                                    </div>
+                                    </div!-->
                                 </div>
                             </div>
                         </div>
