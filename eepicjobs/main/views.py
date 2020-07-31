@@ -63,10 +63,10 @@ stripe.api_key="sk_test_51H55s7EqYDD5vPrpoPYOjFkBpY9BjqS72mY8R1e9u1aiB2SL9ZjheHI
 
 def index(request):
     match=Jobpostt.objects.all().order_by("-posted_on")[:9]
-    featu=Jobpostt.objects.filter(ad__icontains="feature")
-    pre=Jobpostt.objects.filter(ad__icontains="premium")
-    contr=Jobpostt.objects.filter(jobType__icontains="contract")
-    inter=Jobpostt.objects.filter(jobType__icontains="internship")
+    featu=Jobpostt.objects.filter(ad__icontains="feature")[:4]
+    pre=Jobpostt.objects.filter(ad__icontains="premium")[:4]
+    contr=Jobpostt.objects.filter(jobType__icontains="contract")[:4]
+    inter=Jobpostt.objects.filter(jobType__icontains="internship")[:4]
     context={"lat":match,"featu":featu,"pre":pre,"contr":contr,"inter":inter}
     return render(request, 'index.html',context)
 @csrf_exempt
