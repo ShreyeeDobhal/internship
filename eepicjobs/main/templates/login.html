@@ -4,7 +4,7 @@
 {% compress js %}
 {% load static %}
 {% block content %}
-<section class="n-pages-breadcrumb"  style="background: rgba(0, 0, 0, 0.6) url({% static 'img/header/login-slider-image.png' %}) 0 0 no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-position: center center; background-attachment:scroll;">
+<section class="n-pages-breadcrumb"  style="background: rgba(0, 0, 0, 0.6) url({% static 'images/header/login-slider-image.png' %}) 0 0 no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-position: center center; background-attachment:scroll;">
     <div class="container">
         <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
@@ -25,47 +25,48 @@
                     <div class="n-job-pages">
                         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                             <div class="row">
-                                    <div class="n-page-left-side">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="post-job-heading"><h3>Login Using EEPIC ID</h3></div></div>
-                                            <form id="sb-login-form-data" method="POST" action="{% url 'login' %}">
-                                                {% csrf_token %}
-                                                <input type="hidden" id="nokri_ajax_url" value="{% url 'login' %}" />
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="form-group">
-                                                        <input placeholder="Your Username" class="form-control" type="text"  name="username" id="sb_reg_username" />
-                                                    </div>
+                                <div class="n-page-left-side">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="post-job-heading"><h3>Login Using EEPIC ID</h3></div>
+                                        <form id="sb-login-form-data" method="POST" action="{% url 'login' %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" id="nokri_ajax_url" value="{% url 'login' %}" />
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <input placeholder="Your Username" class="form-control" type="text"  name="username" id="sb_reg_username" />
                                                 </div>
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="form-group">
-                                                        <input placeholder="Your Password" class="form-control" type="password" data-parsley-required="true" data-parsley-error-message="Please enter your password." name="password"/>
-                                                    </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <input placeholder="Your Password" class="form-control" type="password" data-parsley-required="true" data-parsley-error-message="Please enter your password." name="password"/>
                                                 </div>
-
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="form-group">
-                                                            <a href="#" class="pull-left " data-target="#myModal" data-toggle="modal">Forget Password</a>
-                                                            <button class="btn n-btn-flat btn-mid pull-right " type="submit" id="sb_login_submit">Login</button>
-                                                            <button class="btn n-btn-flat btn-mid pull-right  no-display" type="button" id="sb_login_msg" disabled>Processing...</button>
-                                                            <button class="btn n-btn-flat btn-mid pull-right  no-display" type="button" id="sb_login_redirect" disabled>Redirecting...</button>
-                                                    </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                        <a href="#" class="pull-left " data-target="#myModal" data-toggle="modal">Forget Password</a>
+                                                        <button class="btn n-btn-flat btn-mid pull-right " type="submit" id="sb_login_submit">Login</button>
+                                                        <button class="btn n-btn-flat btn-mid pull-right  no-display" type="button" id="sb_login_msg" disabled>Processing...</button>
+                                                        <button class="btn n-btn-flat btn-mid pull-right  no-display" type="button" id="sb_login_redirect" disabled>Redirecting...</button>
                                                 </div>
-
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="signup-area">
-                                                        Don't you have account?<a href="{% url 'register' %}"> Sign up now</a>
-                                                    </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="signup-area">
+                                                    Don't you have account? <a href="{% url 'register' %}"> Sign up now</a>
                                                 </div>
-                                            </form>
+                                            </div>
+                                        </form>
                                     </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 nopadding">
                             <div class="n-page-right-side">
-                                <div class="post-job-heading"><h3>Using Social Accounts</h3></div><div class="form-group"><p>mollis et mi. Morbi elementum, purus eu congue efficitur, justo dolor condimentum ex, at gravida nisi massa</p></div>
+                                <div class="post-job-heading"><h3>Using Social Accounts</h3></div>
                                 <div class="social-buttons">
-                                    <div class="form-group"><a href="{% url 'social:begin' 'facebook' %}"><img src="{% static 'images/f-logo.png' %}" class="img-resposive" alt="facebook logo"/><span> <h5 style="color: white;"> facebook</h5></span></a></div>
-                                    <div class="form-group"><a href="{% url 'social:begin' 'google-oauth2' %}"><img src="{% static 'images/g-logo.png' %}" class="img-resposive" alt="Google logo"/><span><h5 style="color: white;"> Signin With Google</h5> </span></a></div><div class="form-group"><a href="{% url 'social:begin' 'linkedin-oauth2' %}"><i class="ti-linkedin"></i><span><h5 style="color: white;">Sign In With LinkedIn</h5> </span></a></div>
-                                    </div>
+                                    <div class="form-group"><a href="{% url 'social:begin' 'facebook' %}" class="btn-facebook btn-block btn-social"><img src="{% static 'images/f-logo.png' %}" class="img-resposive" alt="facebook logo"/><span>Signin With facebook</span></a></div> 
+                                    <div class="form-group"><a href="{% url 'social:begin' 'google-oauth2' %}" class="btn-google btn-block btn-social"><img src="{% static 'images/g-logo.png' %}" class="img-resposive" alt="Google logo"/><span>Signin With Google</span></a></div>
+                                    <div class="form-group"><a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&amp;client_id=77udh7dzbuhdad&amp;redirect_uri=https://jobs.nokriwp.com/&amp;state=popup&amp;scope=r_liteprofile%20r_emailaddress" class="btn-linkedIn btn-block"><i class="ti-linkedin"></i><span>Signin With LinkedIn</span></a></div>
+                                </div>
                             </div>
                         </div>
                     </div>

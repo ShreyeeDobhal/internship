@@ -119,6 +119,7 @@
                                             
                                                 <div class="n-job-single">
                                                     <div class="n-job-img">
+                                                        
                                                         <img src="{%  static  'images/09/01-2-1-150x150.png' %}" alt="logo" class="img-responsive"/>
                                                     </div>
                                                     {%for k in featu %}
@@ -222,7 +223,7 @@
                                                     <div class="n-job-img">
                                                         <img src="{%  static  'images/09/jornadas-nutricao-2017-ULSNE-1-150x150.png' %}" alt="logo" class="img-responsive"/>
                                                     </div>
-                                                    
+                                                    {% if contr %}
                                                     {% for j in contr %}
                                                     <div class="n-job-detail">
                                                         
@@ -250,7 +251,8 @@
                                                     {% endfor %}
                                                 
                                                 </div>
-                                                <!--div class="n-job-single">
+                                                {%else%}
+                                                <div class="n-job-single">
                                                     <div class="n-job-img">
                                                         <img src="{%  static  'images/09/06-150x150.png' %}" alt="logo" class="img-responsive"/>
                                                     </div>
@@ -313,7 +315,8 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                </div!-->
+                                                </div>
+                                                {% endif %}
                                             </div>
                                         </div> 
                                     </div>
@@ -325,6 +328,7 @@
                                                 <div class="n-job-img">
                                                     <img src="{%  static  'images/09/jornadas-nutricao-2017-ULSNE-1-150x150.png' %}" alt="logo" class="img-responsive"/>
                                                 </div>
+                                                {% if inter %}
                                                 {% for j in inter %}
                                                     <div class="n-job-detail">
                                                         
@@ -352,7 +356,8 @@
                                                     {% endfor %}
                                                 
                                                 </div>
-                                                <!--div class="n-job-single">
+                                                {%else%}
+                                                <div class="n-job-single">
                                                     <div class="n-job-img">
                                                         <img src="{%  static  'images/09/01-2-1-150x150.png' %}" alt="logo" class="img-responsive"/>
                                                     </div>
@@ -393,7 +398,8 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                </div!-->
+                                                </div>
+                                                {% endif %}
                                             </div>
                                         </div> 
                                     </div>
@@ -406,12 +412,14 @@
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="featured-job-slider-sidebar">
                     <h4 class="featured-job-sidebar-heading-title">Premium Jobs</h4>   
-                    {%for k in pre %}                 
+                    {% if pre %}
+                    {% for k in pre %}                 
                     <div class="featured-job-slider owl-carousel owl-theme">
                         <div class="item">
                             <div class="featured-image-box">
                                 <div class="img-box">
-                                    <img src="{%  static  'images/09/ibm.png' %}" class="img-responsive center-block" alt="logo"/>
+                                    <img  class="img-responsive center-block" alt="not found" width="160" height="160"  src={% if k.company_logo %} "{{k.company_logo.url}}" {% endif %}/></span>
+                                    <!--img src="{%  static  'images/09/ibm.png' %}" class="img-responsive center-block" alt="logo"/!-->
                                 </div>
                                 
                                 <div class="content-area">
@@ -427,7 +435,14 @@
                                 </div>
                             </div>
                             
-                            <!--div class="featured-image-box">
+                            
+                                
+                        </div>
+                        {% endfor %}
+                        
+
+{%else%}
+<div class="featured-image-box">
                                 <div class="img-box">
                                     <img src="{% static 'images/09/hp.png' %}" class="img-responsive center-block" alt="logo"/>
                                 </div>
@@ -475,10 +490,9 @@
                                         <a href="../search-page/indexc743.html?job_type=24" class="label part-time"  style= "background-color: #dd9933;  color: #fff;">Part time</a>
                                     </div>
                                     <div class="feature-post-meta-bottom"> <span> Rupees 2000-3000 / Hourly</span></div>
-                                </div!-->
-                                
-                        </div>
-                        {% endfor %}
+                                </div>
+                                {%endif%}
+
                             </div>
                         </div>
                     </div>

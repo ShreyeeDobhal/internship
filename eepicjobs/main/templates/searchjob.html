@@ -155,9 +155,9 @@
                                        </div>
                                        <div id="collapse-job_level" class="panel-collapse collapse in">
                                          <div class="panel-body">
-                                         <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                         <form  method="get" action="{% url 'joblev' %}">
                                            <ul class="list">
-                                             <li class=""><input class="input-icheck-search change_select" value = "25" name = "job_level" type="radio"  ><label>Manager</label></li><li class=""><input class="input-icheck-search change_select" value = "26" name = "job_level" type="radio"  ><label>Officer</label></li><li class=""><input class="input-icheck-search change_select" value = "27" name = "job_level" type="radio"  ><label>Student</label></li><li class="hide_nexts hide_nexts-job_level"><input class="input-icheck-search change_select" value = "28" name = "job_level" type="radio"  ><label>Executive</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_level">Show more</a></small><li>
+                                             <li class=""><input class="input-icheck-search change_select" value = "Manager" name = "job_level" type="radio"  ><label>Manager</label></li><li class=""><input class="input-icheck-search change_select" value = "Officer" name = "job_level" type="radio"  ><label>Officer</label></li><li class=""><input class="input-icheck-search change_select" value = "Student" name = "job_level" type="radio"  ><label>Student</label></li><li class="hide_nexts hide_nexts-job_level"><input class="input-icheck-search change_select" value = "Executive" name = "job_level" type="radio"  ><label>Executive</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_level">Show more</a></small><li>
                                           </ul>
                                           
                                          </form>
@@ -239,9 +239,9 @@
                                        </div>
                                        <div id="collapse-job_experience" class="panel-collapse collapse in">
                                          <div class="panel-body">
-                                         <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                         <form  method="get" action="{% url 'jobexperiences' %}">
                                            <ul class="list">
-                                             <li class=""><input class="input-icheck-search change_select" value = "47" name = "job_experience" type="radio"  ><label>Fresh</label></li><li class=""><input class="input-icheck-search change_select" value = "48" name = "job_experience" type="radio"  ><label>1 year</label></li><li class=""><input class="input-icheck-search change_select" value = "49" name = "job_experience" type="radio"  ><label>2 year</label></li><li class="hide_nexts hide_nexts-job_experience"><input class="input-icheck-search change_select" value = "50" name = "job_experience" type="radio"  ><label>3 year</label></li><li class="hide_nexts hide_nexts-job_experience"><input class="input-icheck-search change_select" value = "51" name = "job_experience" type="radio"  ><label>4 year</label></li><li class="hide_nexts hide_nexts-job_experience"><input class="input-icheck-search change_select" value = "52" name = "job_experience" type="radio"  ><label>5 year</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_experience">Show more</a></small><li>
+                                             <li class=""><input class="input-icheck-search change_select" value = "Fresher" name = "job_experience" type="radio"  ><label>Fresher</label></li><li class=""><input class="input-icheck-search change_select" value = "1 year" name = "job_experience" type="radio"  ><label>1 year</label></li><li class=""><input class="input-icheck-search change_select" value = "2 year" name = "job_experience" type="radio"  ><label>2 year</label></li><li class="hide_nexts hide_nexts-job_experience"><input class="input-icheck-search change_select" value = "3 year" name = "job_experience" type="radio"  ><label>3 year</label></li><li class="hide_nexts hide_nexts-job_experience"><input class="input-icheck-search change_select" value = "4 year" name = "job_experience" type="radio"  ><label>4 year</label></li><li class="hide_nexts hide_nexts-job_experience"><input class="input-icheck-search change_select" value = "5 year" name = "job_experience" type="radio"  ><label>5 year</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_experience">Show more</a></small><li>
                                           </ul>
                                           
                                          </form>
@@ -258,9 +258,9 @@
                                        </div>
                                        <div id="collapse-job_currency" class="panel-collapse collapse in">
                                          <div class="panel-body">
-                                         <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                         <form  method="get" action="{% url 'curren' %}">
                                            <ul class="list">
-                                             <li class=""><input class="input-icheck-search change_select" value = "53" name = "job_currency" type="radio"  ><label>Dollar</label></li><li class=""><input class="input-icheck-search change_select" value = "54" name = "job_currency" type="radio"  ><label>Rupees</label></li><li class=""><input class="input-icheck-search change_select" value = "55" name = "job_currency" type="radio"  ><label>Pound</label></li><li class="hide_nexts hide_nexts-job_currency"><input class="input-icheck-search change_select" value = "56" name = "job_currency" type="radio"  ><label>Aed</label></li><li class="hide_nexts hide_nexts-job_currency"><input class="input-icheck-search change_select" value = "57" name = "job_currency" type="radio"  ><label>Euro</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_currency">Show more</a></small><li>
+                                             <li class=""><input class="input-icheck-search change_select" value = "Dollar" name = "job_currency" type="radio"  ><label>Dollar</label></li><li class=""><input class="input-icheck-search change_select" value = "Rupees" name = "job_currency" type="radio"  ><label>Rupees</label></li><li class=""><input class="input-icheck-search change_select" value = "Pound" name = "job_currency" type="radio"  ><label>Pound</label></li><li class="hide_nexts hide_nexts-job_currency"><input class="input-icheck-search change_select" value = "56" name = "job_currency" type="radio"  ><label>Aed</label></li><li class="hide_nexts hide_nexts-job_currency"><input class="input-icheck-search change_select" value = "57" name = "job_currency" type="radio"  ><label>Euro</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_currency">Show more</a></small><li>
                                           </ul>
                                           
                                          </form>
@@ -277,9 +277,9 @@
                                        </div>
                                        <div id="collapse-job_shift" class="panel-collapse collapse in">
                                          <div class="panel-body">
-                                         <form  method="get" action="https://jobs.nokriwp.com/search-page/">
+                                         <form  method="get" action="{% url 'jobshift' %}">
                                            <ul class="list">
-                                             <li class=""><input class="input-icheck-search change_select" value = "58" name = "job_shift" type="radio"  ><label>Morning</label></li><li class=""><input class="input-icheck-search change_select" value = "59" name = "job_shift" type="radio"  ><label>Evening</label></li><li class=""><input class="input-icheck-search change_select" value = "60" name = "job_shift" type="radio"  ><label>Night</label></li><li class="hide_nexts hide_nexts-job_shift"><input class="input-icheck-search change_select" value = "61" name = "job_shift" type="radio"  ><label>Round</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_shift">Show more</a></small><li>
+                                             <li class=""><input class="input-icheck-search change_select" value = "Morning" name = "job_shift" type="radio"  ><label>Morning</label></li><li class=""><input class="input-icheck-search change_select" value = "Evening" name = "job_shift" type="radio"  ><label>Evening</label></li><li class=""><input class="input-icheck-search change_select" value = "Night" name = "job_shift" type="radio"  ><label>Night</label></li><li class="hide_nexts hide_nexts-job_shift"><input class="input-icheck-search change_select" value = "61" name = "job_shift" type="radio"  ><label>Round</label></li><li class="show-more"><small><a href="javascript:void(0);" class="show_next" data-tax-id="job_shift">Show more</a></small><li>
                                           </ul>
                                           
                                          </form>
@@ -416,7 +416,9 @@
                                             <div class="n-job-single featured-box">
                                             <div class="n-job-img"><img src="../wp-content/themes/nokri/images/candidate-dp.jpg" alt="image" class="img-responsive"></div>
                                             <div class="n-job-detail">
+                                              
                                             <div class="features-star-2"><i class="fa fa-star"></i></div>
+                                            
                                                 <ul class="list-inline">
                                                     <li class="n-job-title-box">
                                                         <h4><a href="../job/network-assistant-manager/index.html">{{k.JobTitle}}</a></h4>

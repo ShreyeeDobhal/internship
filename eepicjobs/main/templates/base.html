@@ -154,11 +154,12 @@
                 {% endif %}
                	<ul class="menu-links ">
                     <li><a  href="{% url 'index' %}">Home</a></li>
-                    <li><a  href="">About Us</a></li>
+                
+                    <li><a  href="{% url 'about' %}">About Us</a></li>
                     <li><a  href="{% url 'jobss' %}">Jobs.</a></li>
                     <li><a  href="{% url 'index' %}">Services</a></li>
                     <li><a  href="{% url 'loc' %}">Locations</a></li>
-                    <li><a  href="">Contact us</a></li>
+                    <li><a  href="{% url 'contact' %}">Contact us</a></li>
                     {% if request.user.userprofile.employee.id %}
                     <li><a  href="{% url 'employeein' %}">Dashboard</a></li>
                     {% elif request.user.userprofile.employer.id %}

@@ -288,9 +288,9 @@ class Jobpostt(models.Model):
     salary_currency= models.CharField(max_length=255,null=True)
 
     ad= models.CharField(max_length=255,null=True)
-    #jobtags
-    #jobshift
-    #jobexperience
+    job_level=models.CharField(max_length=255,null=True)
+    job_shift=models.CharField(max_length=255,null=True)
+    job_experience=models.CharField(max_length=255,null=True)
     
 
     class Meta:

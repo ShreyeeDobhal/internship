@@ -1,4 +1,5 @@
 import stripe
+from django.core.files.storage import FileSystemStorage
 from datetime import timedelta
 from django.db.models import F
 from django.conf import settings
@@ -348,12 +349,21 @@ def jobpostt(request):
         no_of=request.POST.get("facebook")
         valid_till=request.POST.get("valid_till")
         email=request.POST.get("email")
+        job_shift=request.POST.get("job_shift")
+        job_experience=request.POST.get("job_experience")
+        job_level=request.POST.get("job_level")
         company_logo=request.FILES["myfile"]
+        fs=FileSystemStorage()
+        name=fs.save(company_logo.name,company_logo)
+        url=fs.url(name)
+        print(url)
         co=request.POST.get("co")
         loc=request.POST.get("loc")
         req=request.POST.get("req")
         updates_email=request.POST.get("updates_email")
         salary=request.POST.get("salary")
+        print(company_logo.name)
+        print(company_logo.size)
         try:
             if(adtype=="Premium"):
                 try:
@@ -367,7 +377,7 @@ def jobpostt(request):
                     adtype="Featured"
                     
   
-            multistepform=Jobpostt(user=request.user.userprofile,salary=salary,qualification=qu,updates_email=updates_email,requirements=req,valid_till=valid_till,location=loc,company_logo=company_logo,country=co,salary_type=sal1,salary_currency=sal2,contractType=contract,JobTitle=jt,JobDesciption=jd,Jobindustry=ji,jobType=jobType,phone_number=phone,no_of_employees=no_of,CompanyName=comp,hear=hear,email=email,ad=adtype)
+            multistepform=Jobpostt(user=request.user.userprofile,job_shift=job_shift,job_experience=job_experience,job_level=job_level,salary=salary,qualification=qu,updates_email=updates_email,requirements=req,valid_till=valid_till,location=loc,company_logo=company_logo,country=co,salary_type=sal1,salary_currency=sal2,contractType=contract,JobTitle=jt,JobDesciption=jd,Jobindustry=ji,jobType=jobType,phone_number=phone,no_of_employees=no_of,CompanyName=comp,hear=hear,email=email,ad=adtype)
             multistepform.save()
             messages.success(request,"Data Save Successfully")
             return redirect("employerin")
@@ -1224,6 +1234,13 @@ def types(request,ctype):
     return render(request,'searchjob.html',context)
 
 
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
+
 def typesss(request):
     if(request.method != "GET"):
         return HttpResponseRedirect("/searchJob/")
@@ -1346,6 +1363,24 @@ def coun(request):
             messages.error(request, "Sorry! No results found.")
             return redirect('home')
 
+
+def curren(request):
+    if(request.method != "GET"):
+        return HttpResponseRedirect("/searchJob/")
+    else:
+        ty=request.GET.get("job_currency")
+        match = Jobpostt.objects.filter(salary_currency__icontains=ty)
+        if (match.exists()):
+            return render(request, 'searchjob.html', {'sr': match})
+        
+        else:
+            messages.error(request, "Sorry! No results found.")
+            return redirect('home')
+
+
+
+
+
 def sal(request):
     if(request.method != "GET"):
         return HttpResponseRedirect("/searchJob/")
@@ -1365,6 +1400,45 @@ def saltyp(request):
     else:
         ty=request.GET.get("job_salary_type")
         match = Jobpostt.objects.filter(salary_type__icontains=ty)
+        if (match.exists()):
+            return render(request, 'searchjob.html', {'sr': match})
+        
+        else:
+            messages.error(request, "Sorry! No results found.")
+            return redirect('home')
+
+def joblev(request):
+    if(request.method != "GET"):
+        return HttpResponseRedirect("/searchJob/")
+    else:
+        ty=request.GET.get("job_level")
+        match = Jobpostt.objects.filter(job_level__icontains=ty)
+        if (match.exists()):
+            return render(request, 'searchjob.html', {'sr': match})
+        
+        else:
+            messages.error(request, "Sorry! No results found.")
+            return redirect('home')
+
+def jobexperiences(request):
+    if(request.method != "GET"):
+        return HttpResponseRedirect("/searchJob/")
+    else:
+        ty=request.GET.get("job_experience")
+        match = Jobpostt.objects.filter(job_experience__icontains=ty)
+        if (match.exists()):
+            return render(request, 'searchjob.html', {'sr': match})
+        
+        else:
+            messages.error(request, "Sorry! No results found.")
+            return redirect('home')
+
+def jobshift(request):
+    if(request.method != "GET"):
+        return HttpResponseRedirect("/searchJob/")
+    else:
+        ty=request.GET.get("job_shift")
+        match = Jobpostt.objects.filter(job_shift__icontains=ty)
         if (match.exists()):
             return render(request, 'searchjob.html', {'sr': match})
         
