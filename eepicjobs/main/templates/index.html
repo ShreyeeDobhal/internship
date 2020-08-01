@@ -721,10 +721,10 @@
                                    
                                 <div class="job-list-simple">
                                         <div class="job-list-simple-img">
-                                            <a href="https://jobs.nokriwp.com/job/software-developer/"><img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/candidate-dp.jpg" class="img-responsive" alt="image"></a>
+                                            <a href="{%url 'searchh' k.id %}"><img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/candidate-dp.jpg" class="img-responsive" alt="image"></a>
                                         </div> 
                                         <div class="job-list-simple-title">
-                                            <a href="https://jobs.nokriwp.com/job/software-developer/">{{k.JobTitle}}</a>{{k.location}},<p>{{k.country}}</p>
+                                            <a href="{%url 'searchh' k.id %}">{{k.JobTitle}}</a>{{k.location}},<p>{{k.country}}</p>
                                         </div>
                                     </div>
                                 </div>
